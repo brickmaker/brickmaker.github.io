@@ -90,19 +90,21 @@
 
 
 
-<meta name="description" content="题目https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/  想法嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样 我的答案一次AC了 123456789101112131415161718192021222324252627/** * Definitio">
+<meta name="description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
 <meta property="og:type" content="article">
-<meta property="og:title" content="515. Find Largest Value in Each Tree Row">
-<meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode515/index.html">
+<meta property="og:title" content="368. Largest Divisible Subset">
+<meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode368/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/  想法嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样 我的答案一次AC了 123456789101112131415161718192021222324252627/** * Definitio">
+<meta property="og:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15013344250877.png">
-<meta property="og:updated_time" content="2017-07-29T13:36:20.000Z">
+<meta property="og:image" content="http://yoursite.com/media/15013367330825.png">
+<meta property="og:image" content="http://yoursite.com/media/15013385099186.png">
+<meta property="og:image" content="http://yoursite.com/media/15013386806811.png">
+<meta property="og:updated_time" content="2017-07-29T15:01:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="515. Find Largest Value in Each Tree Row">
-<meta name="twitter:description" content="题目https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/  想法嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样 我的答案一次AC了 123456789101112131415161718192021222324252627/** * Definitio">
-<meta name="twitter:image" content="http://yoursite.com/media/15013344250877.png">
+<meta name="twitter:title" content="368. Largest Divisible Subset">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
+<meta name="twitter:image" content="http://yoursite.com/media/15013367330825.png">
 
 
 
@@ -130,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/29/LeetCode515/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/29/LeetCode368/"/>
 
 
 
 
 
-  <title>515. Find Largest Value in Each Tree Row | Xiaodong's Blog</title>
+  <title>368. Largest Divisible Subset | Xiaodong's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -255,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode515/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode368/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -276,7 +278,7 @@
             
             
               
-                515. Find Largest Value in Each Tree Row
+                368. Largest Divisible Subset
               
             
           </h1>
@@ -291,7 +293,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T21:19:14+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T21:58:03+08:00">
                 2017-07-29
               </time>
             
@@ -326,12 +328,15 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/" target="_blank" rel="external">https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/</a></p>
-<p><img src="/media/15013344250877.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样</p>
-<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><p>一次AC了</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxVal;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestValues(TreeNode* root) &#123;</div><div class="line">        travel(root, <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> maxVal;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode* node, <span class="keyword">int</span> level)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (node == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span> (maxVal.size() &lt; level)</div><div class="line">            maxVal.push_back(node-&gt;val);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (node-&gt;val &gt; maxVal[level - <span class="number">1</span>])</div><div class="line">            maxVal[level - <span class="number">1</span>] = node-&gt;val;</div><div class="line">        travel(node-&gt;left, level + <span class="number">1</span>);</div><div class="line">        travel(node-&gt;right, level + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>比较明确，比较简单吧。<br>不做多余的事，更新最大值就好了，难得有一题如此轻松地AC哈哈。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-divisible-subset/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/description/</a></p>
+<p><img src="/media/15013367330825.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>没有什么思路…或许贪心？</p>
+<p>不，应该可以从数学的角度上解决的。<br>如果能任意地被整除，需要满足什么条件呢？<br>每添加进一个，都可以被这个set中的每一个整除<br>这样一来，是个O(n^2 )的复杂度，可以吗？<br>先试试吧<br>不对，不是O(n^2 )，排序需要n<em>log n，因为已经序的了，应该只用O(n </em> k)，k是set的数量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; sets;</div><div class="line">        <span class="keyword">bool</span> inserted = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> maxSize = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> maxSizeIdx = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; sets.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] % sets[j][sets[j].size() - <span class="number">1</span>] == <span class="number">0</span>) &#123;</div><div class="line">                    sets[j].push_back(nums[i]);</div><div class="line">                    <span class="keyword">if</span> (maxSize &lt; sets[j].size()) &#123;</div><div class="line">                        maxSize = sets[j].size();</div><div class="line">                        maxSizeIdx = j;</div><div class="line">                    &#125;</div><div class="line">                    inserted = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (inserted == <span class="literal">false</span>) &#123;</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</div><div class="line">                sets.push_back(vec);</div><div class="line">                sets[sets.size() - <span class="number">1</span>].push_back(nums[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                inserted = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sets[maxSizeIdx];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>嗯，看来自己本来有一些Naive了<br><img src="/media/15013385099186.png" alt=""><br>没有考虑到这样的情况<br>那看来原来的想法是不行的<br>一个更明显的例子：<br><img src="/media/15013386806811.png" alt=""></p>
+<p><del>考虑用DP做</del><br><del>因为，大数可以表示成因式的和</del></p>
+<p>看问题的样子，是很符合贪心的策略的，但是怎么用呢？<br>唔，有必要补一补基础知识了，唉，先看下答案吧，不想想了orz</p>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><p>哈？答案一票都是用DP的？？？</p>
 
       
     </div>
@@ -368,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/29/LeetCode621/" rel="next" title="621. Task Scheduler">
-                <i class="fa fa-chevron-left"></i> 621. Task Scheduler
+              <a href="/2017/07/29/LeetCode515/" rel="next" title="515. Find Largest Value in Each Tree Row">
+                <i class="fa fa-chevron-left"></i> 515. Find Largest Value in Each Tree Row
               </a>
             
           </div>
@@ -377,10 +382,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/29/LeetCode368/" rel="prev" title="368. Largest Divisible Subset">
-                368. Largest Divisible Subset <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,7 +492,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的答案"><span class="nav-number">3.</span> <span class="nav-text">我的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">4.</span> <span class="nav-text">回顾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考答案"><span class="nav-number">3.</span> <span class="nav-text">参考答案</span></a></li></ol></div>
             
 
           </div>
