@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="Another Test 中文测试">
+<meta name="description" content="题目https://leetcode.com/problems/bulb-switcher/description/  想法注意题意是toggle! 对一个数因式分解，如果不同的因式数量是奇数，则on；如果偶数，则off1 : 1 on2 : 1, 2 off3 : 1, 3 off4 : 1, 2, 4 on…8 : 1, 2, 4, 8 off找到一个数的不同因数  Number of Fac">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xiaodong&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2017/04/26/Another-test/index.html">
+<meta property="og:title" content="319. Bulb Switcher">
+<meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode319/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Another Test 中文测试">
+<meta property="og:description" content="题目https://leetcode.com/problems/bulb-switcher/description/  想法注意题意是toggle! 对一个数因式分解，如果不同的因式数量是奇数，则on；如果偶数，则off1 : 1 on2 : 1, 2 off3 : 1, 3 off4 : 1, 2, 4 on…8 : 1, 2, 4, 8 off找到一个数的不同因数  Number of Fac">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/14931711144165.jpg">
-<meta property="og:updated_time" content="2017-04-26T01:47:25.000Z">
+<meta property="og:image" content="http://yoursite.com/media/15013072834236.png">
+<meta property="og:updated_time" content="2017-07-29T06:44:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xiaodong&#39;s Blog">
-<meta name="twitter:description" content="Another Test 中文测试">
-<meta name="twitter:image" content="http://yoursite.com/media/14931711144165.jpg">
+<meta name="twitter:title" content="319. Bulb Switcher">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/bulb-switcher/description/  想法注意题意是toggle! 对一个数因式分解，如果不同的因式数量是奇数，则on；如果偶数，则off1 : 1 on2 : 1, 2 off3 : 1, 3 off4 : 1, 2, 4 on…8 : 1, 2, 4, 8 off找到一个数的不同因数  Number of Fac">
+<meta name="twitter:image" content="http://yoursite.com/media/15013072834236.png">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/26/Another-test/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/29/LeetCode319/"/>
 
 
 
 
 
-  <title> | Xiaodong's Blog</title>
+  <title>319. Bulb Switcher | Xiaodong's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/Another-test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode319/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -276,7 +276,7 @@
             
             
               
-                
+                319. Bulb Switcher
               
             
           </h1>
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-26T09:44:22+08:00">
-                2017-04-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T13:46:53+08:00">
+                2017-07-29
               </time>
             
 
@@ -326,8 +326,30 @@
       
 
       
-        <h1 id="Another-Test"><a href="#Another-Test" class="headerlink" title="Another Test"></a>Another Test</h1><p><img src="/media/14931711144165.jpg" alt=""></p>
-<p>中文测试</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/bulb-switcher/description/" target="_blank" rel="external">https://leetcode.com/problems/bulb-switcher/description/</a></p>
+<p><img src="/media/15013072834236.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>注意题意是toggle!</p>
+<p>对一个数因式分解，如果不同的因式数量是奇数，则on；如果偶数，则off<br>1 : 1 on<br>2 : 1, 2 off<br>3 : 1, 3 off<br>4 : 1, 2, 4 on<br>…<br>8 : 1, 2, 4, 8 off<br><strong>找到一个数的不同因数</strong></p>
+<blockquote>
+<p>Number of Factors of an Integer<br><a href="http://www.cut-the-knot.org/blue/NumberOfFactors.shtml" target="_blank" rel="external">http://www.cut-the-knot.org/blue/NumberOfFactors.shtml</a></p>
+</blockquote>
+<p>$n = a^pb^q…c^r$<br>where a, b, c is prime</p>
+<p>8: 2^3 3个+1个（1）<br>4: 2^2 2个+1<br>3: 3^1 1+1个<br>9: 1, 3, 9 – 3^2 2+1个<br>12: 1, 2, 3, 4, 6, 12 – 2^2 3^1 (2+1)(1+1)</p>
+<p><strong>所以最终得到：(p+1)(q+1)…(r+1)个，其中包括了其本身和1</strong></p>
+<p><strong>转化为找到其素因数</strong><br>先找出素数表，再除去就可以了</p>
+<p><strong>！！想错了，这只找出了最后一个灯的亮灭</strong></p>
+<p>看了高票的答案，自己想对了部分，但是关键的一点没有想到，就是<strong>只有完全平方数最后才会保持亮着！！！</strong></p>
+<h2 id="一个答案"><a href="#一个答案" class="headerlink" title="一个答案"></a>一个答案</h2><blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">&gt;   <span class="keyword">return</span> <span class="built_in">sqrt</span>(n);</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>A bulb ends up on iff it is switched an odd number of times.</p>
+<p>Call them bulb 1 to bulb n. Bulb i is switched in round d if and only if d divides i. So bulb i ends up on if and only if it has an odd number of divisors.</p>
+<p>Divisors come in pairs, like i=12 has divisors 1 and 12, 2 and 6, and 3 and 4. Except when i is a square, like 36 has divisors 1 and 36, 2 and 18, 3 and 12, 4 and 9, and double divisor 6. So bulb i ends up on if and only if i is a square.</p>
+<p>So just count the square numbers.</p>
+<p>Let R = int(sqrt(n)). That’s the root of the largest square in the range [1,n]. And 1 is the smallest root. So you have the roots from 1 to R, that’s R roots. Which correspond to the R squares. So int(sqrt(n)) is the answer. (C++ does the conversion to int automatically, because of the specified return type).</p>
+</blockquote>
+<p>优秀！</p>
+<p>##回顾</p>
+<p>这道题，自己最后还是没有想到，一道算是找规律的题吧，虽然自己发现了些道理，但是还是没有进一步的发现，加油吧！</p>
 
       
     </div>
@@ -364,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/26/2017-04-26/" rel="next" title="test">
-                <i class="fa fa-chevron-left"></i> test
+              <a href="/2017/07/27/LeetCode198/" rel="next" title="198. House Robber">
+                <i class="fa fa-chevron-left"></i> 198. House Robber
               </a>
             
           </div>
@@ -373,10 +395,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/13/kaggle-first-look/" rel="prev" title="First Look of Titanic Problem on Kaggle">
-                First Look of Titanic Problem on Kaggle <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Another-Test"><span class="nav-number">1.</span> <span class="nav-text">Another Test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个答案"><span class="nav-number">3.</span> <span class="nav-text">一个答案</span></a></li></ol></div>
             
 
           </div>
