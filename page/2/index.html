@@ -254,6 +254,127 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/2017-04-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/27/2017-04-26/" itemprop="url">
+                  test
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Test-GitHub-Pages"><a href="#Test-GitHub-Pages" class="headerlink" title="Test GitHub Pages"></a>Test GitHub Pages</h1><h3 id="test-for"><a href="#test-for" class="headerlink" title="test for "></a>test for <br></h3><p>abc<br>new line</p>
+<h3 id="test-for-image"><a href="#test-for-image" class="headerlink" title="test for image"></a>test for image</h3><p><img src="../media/14931692205317.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -334,135 +455,6 @@
 <p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
 <p>比较轻松地做出来：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode67/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/27/LeetCode67/" itemprop="url">
-                  67. Add binary
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://leetcode.com/problems/add-binary/tabs/description" target="_blank" rel="external">https://leetcode.com/problems/add-binary/tabs/description</a><br><img src="/media/15011429725434.png" alt=""></p>
-<p>比较简单与无聊的一道题，但是自己并没有顺利地做出来。<br>总没有想到一个优雅的方式去解决问题。</p>
-<p>抄了个答案：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addBinary</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="built_in">string</span> s = <span class="string">""</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>, i = a.size() - <span class="number">1</span>, j = b.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || c == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            c += i &gt;= <span class="number">0</span> ? a[i--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            c += j &gt;= <span class="number">0</span> ? b[j--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            s = <span class="keyword">char</span>(c % <span class="number">2</span> + <span class="string">'0'</span>) + s;</div><div class="line">            c /= <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个答案还是有一些要学习的地方。</p>
-<ol>
-<li>用string表示数时的一些操作，如<code>-&#39;0&#39;</code>这样的操作</li>
-<li><code>c % 2</code>等这种用结果代替条件判断的</li>
-<li>两个<code>c+=...</code>用来搞进位的</li>
-</ol>
 
           
         
@@ -938,7 +930,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/2017-04-26/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/Another-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -960,8 +952,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/2017-04-26/" itemprop="url">
-                  test
+                <a class="post-title-link" href="/2017/07/27/Another-test/" itemprop="url">
+                  Untitled
                 </a>
               
             
@@ -1014,8 +1006,137 @@
       
         
           
-            <h1 id="Test-GitHub-Pages"><a href="#Test-GitHub-Pages" class="headerlink" title="Test GitHub Pages"></a>Test GitHub Pages</h1><h3 id="test-for"><a href="#test-for" class="headerlink" title="test for "></a>test for <br></h3><p>abc<br>new line</p>
-<h3 id="test-for-image"><a href="#test-for-image" class="headerlink" title="test for image"></a>test for image</h3><p><img src="../media/14931692205317.png" alt=""></p>
+            <h1 id="Another-Test"><a href="#Another-Test" class="headerlink" title="Another Test"></a>Another Test</h1><p><img src="/media/14931711144165.jpg" alt=""></p>
+<p>中文测试</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode67/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/27/LeetCode67/" itemprop="url">
+                  67. Add binary
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://leetcode.com/problems/add-binary/tabs/description" target="_blank" rel="external">https://leetcode.com/problems/add-binary/tabs/description</a><br><img src="/media/15011429725434.png" alt=""></p>
+<p>比较简单与无聊的一道题，但是自己并没有顺利地做出来。<br>总没有想到一个优雅的方式去解决问题。</p>
+<p>抄了个答案：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addBinary</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="built_in">string</span> s = <span class="string">""</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>, i = a.size() - <span class="number">1</span>, j = b.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || c == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            c += i &gt;= <span class="number">0</span> ? a[i--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            c += j &gt;= <span class="number">0</span> ? b[j--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            s = <span class="keyword">char</span>(c % <span class="number">2</span> + <span class="string">'0'</span>) + s;</div><div class="line">            c /= <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个答案还是有一些要学习的地方。</p>
+<ol>
+<li>用string表示数时的一些操作，如<code>-&#39;0&#39;</code>这样的操作</li>
+<li><code>c % 2</code>等这种用结果代替条件判断的</li>
+<li>两个<code>c+=...</code>用来搞进位的</li>
+</ol>
 
           
         
@@ -1099,7 +1220,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
