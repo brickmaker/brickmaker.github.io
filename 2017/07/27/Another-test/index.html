@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="https://leetcode.com/problems/house-robber/tabs/description/ 一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。 比较轻松地做出来： 1234567891011121314class Solution &amp;#123;public:    int rob(vector&amp;lt;int&amp;gt;&amp;amp">
+<meta name="description" content="Another Test 中文测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="198. House Robber">
-<meta property="og:url" content="http://yoursite.com/2017/07/27/LeetCode198/index.html">
+<meta property="og:title" content="Xiaodong&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/07/27/Another-test/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="https://leetcode.com/problems/house-robber/tabs/description/ 一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。 比较轻松地做出来： 1234567891011121314class Solution &amp;#123;public:    int rob(vector&amp;lt;int&amp;gt;&amp;amp">
+<meta property="og:description" content="Another Test 中文测试">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15011598519407.png">
-<meta property="og:updated_time" content="2017-07-27T14:17:25.000Z">
+<meta property="og:image" content="http://yoursite.com/media/14931711144165.jpg">
+<meta property="og:updated_time" content="2017-07-27T14:12:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="198. House Robber">
-<meta name="twitter:description" content="https://leetcode.com/problems/house-robber/tabs/description/ 一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。 比较轻松地做出来： 1234567891011121314class Solution &amp;#123;public:    int rob(vector&amp;lt;int&amp;gt;&amp;amp">
-<meta name="twitter:image" content="http://yoursite.com/media/15011598519407.png">
+<meta name="twitter:title" content="Xiaodong&#39;s Blog">
+<meta name="twitter:description" content="Another Test 中文测试">
+<meta name="twitter:image" content="http://yoursite.com/media/14931711144165.jpg">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/27/LeetCode198/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/27/Another-test/"/>
 
 
 
 
 
-  <title>198. House Robber | Xiaodong's Blog</title>
+  <title> | Xiaodong's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/Another-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -276,7 +276,7 @@
             
             
               
-                198. House Robber
+                
               
             
           </h1>
@@ -326,10 +326,8 @@
       
 
       
-        <p><a href="https://leetcode.com/problems/house-robber/tabs/description/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/tabs/description/</a><br><img src="/media/15011598519407.png" alt=""></p>
-<p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
-<p>比较轻松地做出来：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+        <h1 id="Another-Test"><a href="#Another-Test" class="headerlink" title="Another Test"></a>Another Test</h1><p><img src="/media/14931711144165.jpg" alt=""></p>
+<p>中文测试</p>
 
       
     </div>
@@ -366,8 +364,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/27/LeetCode67/" rel="next" title="67. Add binary">
-                <i class="fa fa-chevron-left"></i> 67. Add binary
+              <a href="/2017/07/27/2017-04-26/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
               </a>
             
           </div>
@@ -376,8 +374,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/27/LeetCode518/" rel="prev" title="518. Coin Change 2">
-                518. Coin Change 2 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/29/LeetCode319/" rel="prev" title="319. Bulb Switcher">
+                319. Bulb Switcher <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -425,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -470,6 +477,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Another-Test"><span class="nav-number">1.</span> <span class="nav-text">Another Test</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
