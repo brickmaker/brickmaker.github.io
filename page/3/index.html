@@ -90,19 +90,16 @@
 
 
 
-<meta name="description" content="##题目 https://leetcode.com/problems/task-scheduler/description/  想法第一眼，感觉是Greedy 算了，想了半天，还是没有什么头绪看答案吧 （LeetCode有答案好，也不好orz） 参考答案12345678910111213141516171819class Solution &amp;#123;public:    int leastInt">
-<meta property="og:type" content="article">
-<meta property="og:title" content="621. Task Scheduler">
-<meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode621/index.html">
+<meta name="description" content="Coder love Design">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xiaodong&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="##题目 https://leetcode.com/problems/task-scheduler/description/  想法第一眼，感觉是Greedy 算了，想了半天，还是没有什么头绪看答案吧 （LeetCode有答案好，也不好orz） 参考答案12345678910111213141516171819class Solution &amp;#123;public:    int leastInt">
+<meta property="og:description" content="Coder love Design">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15013127240073.png">
-<meta property="og:updated_time" content="2017-07-29T08:10:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="621. Task Scheduler">
-<meta name="twitter:description" content="##题目 https://leetcode.com/problems/task-scheduler/description/  想法第一眼，感觉是Greedy 算了，想了半天，还是没有什么头绪看答案吧 （LeetCode有答案好，也不好orz） 参考答案12345678910111213141516171819class Solution &amp;#123;public:    int leastInt">
-<meta name="twitter:image" content="http://yoursite.com/media/15013127240073.png">
+<meta name="twitter:title" content="Xiaodong&#39;s Blog">
+<meta name="twitter:description" content="Coder love Design">
 
 
 
@@ -130,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/29/LeetCode621/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
 
 
-  <title>621. Task Scheduler | Xiaodong's Blog</title>
+  <title>Xiaodong's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -161,7 +158,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +243,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -255,7 +254,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode621/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/2017-04-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -276,7 +275,10 @@
             
             
               
-                621. Task Scheduler
+                
+                <a class="post-title-link" href="/2017/07/27/2017-04-26/" itemprop="url">
+                  test
+                </a>
               
             
           </h1>
@@ -291,8 +293,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T15:17:37+08:00">
-                2017-07-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
+                2017-07-27
               </time>
             
 
@@ -326,36 +328,25 @@
       
 
       
-        <p>##题目</p>
-<p><a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="external">https://leetcode.com/problems/task-scheduler/description/</a></p>
-<p><img src="/media/15013127240073.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>第一眼，感觉是Greedy</p>
-<p>算了，想了半天，还是没有什么头绪<br>看答案吧</p>
-<p>（LeetCode有答案好，也不好orz）</p>
-<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; <span class="built_in">map</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : tasks) &#123;</div><div class="line">            <span class="built_in">map</span>[t]++;</div><div class="line">            count = max(count, <span class="built_in">map</span>[t]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num = (n + <span class="number">1</span>) * (count - <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : <span class="built_in">map</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (t.second == count)</div><div class="line">                num++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>)tasks.size(), num);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>自己本来的思路跟这个类似，就选择这个作为答案了<br>先找到最大的，然后拉一个框：<code>(n+1)*(count-1)</code>,如果有超出的（最大的），刚+1<br>另外还要考虑task大，n小，框框放不下的情况，这样需要<code>max(task.size(), num)</code></p>
+        
+          
+            <h1 id="Test-GitHub-Pages"><a href="#Test-GitHub-Pages" class="headerlink" title="Test GitHub Pages"></a>Test GitHub Pages</h1><h3 id="test-for"><a href="#test-for" class="headerlink" title="test for "></a>test for <br></h3><p>abc<br>new line</p>
+<h3 id="test-for-image"><a href="#test-for-image" class="headerlink" title="test for image"></a>test for image</h3><p><img src="../media/14931692205317.png" alt=""></p>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -363,42 +354,25 @@
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/07/29/LeetCode155/" rel="next" title="155. Min Stack">
-                <i class="fa fa-chevron-left"></i> 155. Min Stack
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/29/LeetCode515/" rel="prev" title="515. Find Largest Value in Each Tree Row">
-                515. Find Largest Value in Each Tree Row <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -406,10 +380,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -429,17 +399,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -483,22 +444,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">1.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考答案"><span class="nav-number">2.</span> <span class="nav-text">参考答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">3.</span> <span class="nav-text">回顾</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -612,10 +557,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
