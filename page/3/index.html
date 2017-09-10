@@ -254,6 +254,131 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode515/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode515/" itemprop="url">
+                  515. Find Largest Value in Each Tree Row
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T21:19:14+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/" target="_blank" rel="external">https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/</a></p>
+<p><img src="/media/15013344250877.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样</p>
+<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><p>一次AC了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxVal;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestValues(TreeNode* root) &#123;</div><div class="line">        travel(root, <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> maxVal;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode* node, <span class="keyword">int</span> level)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (node == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span> (maxVal.size() &lt; level)</div><div class="line">            maxVal.push_back(node-&gt;val);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (node-&gt;val &gt; maxVal[level - <span class="number">1</span>])</div><div class="line">            maxVal[level - <span class="number">1</span>] = node-&gt;val;</div><div class="line">        travel(node-&gt;left, level + <span class="number">1</span>);</div><div class="line">        travel(node-&gt;right, level + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>比较明确，比较简单吧。<br>不做多余的事，更新最大值就好了，难得有一题如此轻松地AC哈哈。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode621/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -648,7 +773,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode518/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -670,8 +795,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/LeetCode518/" itemprop="url">
-                  518. Coin Change 2
+                <a class="post-title-link" href="/2017/07/27/LeetCode198/" itemprop="url">
+                  198. House Robber
                 </a>
               
             
@@ -724,14 +849,288 @@
       
         
           
-            <h1 id="518-Coin-change-2"><a href="#518-Coin-change-2" class="headerlink" title="518. Coin change 2"></a>518. Coin change 2</h1><p><a href="https://leetcode.com/problems/coin-change-2/tabs/description" target="_blank" rel="external">https://leetcode.com/problems/coin-change-2/tabs/description</a><br><img src="/media/15011409467725.jpg" alt=""></p>
-<p>本来超时的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> amount, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</div><div class="line">        <span class="built_in">std</span>::sort(coins.begin(), coins.end(), <span class="built_in">std</span>::greater&lt;<span class="keyword">int</span>&gt;());</div><div class="line">        <span class="keyword">return</span> changeRem(amount, coins);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">changeRem</span><span class="params">(<span class="keyword">int</span> amount, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (coins.empty()) &#123;</div><div class="line">            <span class="keyword">if</span> (amount == <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">return</span> <span class="number">0</span>;            </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; remain(coins.begin() + <span class="number">1</span>, coins.end());</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt;= amount / coins[<span class="number">0</span>]; i++) &#123;</div><div class="line">            res += changeRem(amount - i * coins[<span class="number">0</span>], remain);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>暴力遍历的方式，轻松就超时了。</p>
-<p><strong>关键思想：</strong> DP<br>DP是容易想到的，但是本来自己想的DP老是纠结在如何通过n-1的得到n的，但实际上这的确有点难操作。</p>
-<p>更好的想法是，<strong>如果有一个k面值的coin，那么，n处的可能数就多了n-k个</strong><br>另外，还要搞清楚的一点是，dp[0] == 1，这是dp的初始条件！</p>
-<p><strong>AC的解法，3ms</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> amount, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (amount == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (coins.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(amount + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; coins.size(); ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = coins[i]; j &lt;= amount; ++j) &#123;</div><div class="line">                dp[j] += dp[j - coins[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[amount];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+            <p><a href="https://leetcode.com/problems/house-robber/tabs/description/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/tabs/description/</a><br><img src="/media/15011598519407.png" alt=""></p>
+<p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
+<p>比较轻松地做出来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode67/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/27/LeetCode67/" itemprop="url">
+                  67. Add binary
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://leetcode.com/problems/add-binary/tabs/description" target="_blank" rel="external">https://leetcode.com/problems/add-binary/tabs/description</a><br><img src="/media/15011429725434.png" alt=""></p>
+<p>比较简单与无聊的一道题，但是自己并没有顺利地做出来。<br>总没有想到一个优雅的方式去解决问题。</p>
+<p>抄了个答案：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addBinary</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="built_in">string</span> s = <span class="string">""</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>, i = a.size() - <span class="number">1</span>, j = b.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || c == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            c += i &gt;= <span class="number">0</span> ? a[i--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            c += j &gt;= <span class="number">0</span> ? b[j--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            s = <span class="keyword">char</span>(c % <span class="number">2</span> + <span class="string">'0'</span>) + s;</div><div class="line">            c /= <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个答案还是有一些要学习的地方。</p>
+<ol>
+<li>用string表示数时的一些操作，如<code>-&#39;0&#39;</code>这样的操作</li>
+<li><code>c % 2</code>等这种用结果代替条件判断的</li>
+<li>两个<code>c+=...</code>用来搞进位的</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/event-reccomendation-data-processing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/27/event-reccomendation-data-processing/" itemprop="url">
+                  Event Recommendation data processing
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
+                2017-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Events-recommendation"><a href="#Events-recommendation" class="headerlink" title="Events recommendation"></a>Events recommendation</h1><p>This article is to describe the project of <em>Design Thinking</em> course in ZJU.</p>
+<p><strong>This article is under updating…</strong></p>
+<h2 id="Project-Objective"><a href="#Project-Objective" class="headerlink" title="Project Objective"></a>Project Objective</h2><p>Provide personalized events information around campus for students according to events contents, user’s information, etc.</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><ul>
+<li><strong>Event Info</strong>: include event’s time, location and event’s content, etc.</li>
+<li><strong>User Info</strong>: include user’s age, gender, event preferences, etc.</li>
+</ul>
+<p>But it’s hard to get real life dataset for time or some other reasons.<br>So…</p>
+<p>Use a similar existing dataset from internet.</p>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="Resource:"></a>Resource:</h3><p>From dataset of one of Kaggle Competition.<br><a href="https://www.kaggle.com/c/event-recommendation-engine-challenge/data" target="_blank" rel="external">https://www.kaggle.com/c/event-recommendation-engine-challenge/data</a></p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><p>This is the original description of all dataset from Kaggle:</p>
+<blockquote>
+<p>There are six files in all: train.csv, test.csv, users.csv, user_friends.csv, events.csv, and event_attendees.csv.</p>
+<p>train.csv has six columns:  user, event, invited, timestamp, interested, and not_interested.  Test.csv contains the same columns as train.csv, except for interested and not_interested. Each row corresponds to an event that was shown to a user in our application.  event is an id identifying an event in a our system.  user is an id representing a user in our system.  invited is a binary variable indicated whether the user has been invited to the event. timestamp is a ISO-8601 UTC time string representing the approximate time (+/- 2 hours) when the user saw the event in our application. interested is a binary variable indicating whether a user clicked on the “Interested” button for this event; it is 1 if the user clicked Interested and 0 if the user did not click the button.  Similarly, not_interested is a binary variable indicating whether a user clicked on the “Not Interested” button for this event; it is 1 if the user clicked the button and 0 if not.  It is possible that the user saw an event and clicked neither Interested nor Not Interested, and hence there are rows that contain 0,0 as values for interested,not_interested.</p>
+<p>users.csv contains demographic data about our some of our users (including all of the users appearing in the train and test files), and it has the following columns: user_id, locale, birthyear, gender, joinedAt, location, and timezone. user_id is the id of the user in our system.  locale is a string representing the user’s locale, which should be of the form language_territory. birthyear is a 4-digit integer representing the year when the user was born. gender is either male or female, depending on the user’s gender.  joinedAt is an ISO-8601 UTC time string representing when the user first used our application.  location is a string representing the user’s location (if known).  timezone is a signed integer representing the user’s UTC offset (in minutes).</p>
+<p>user_friends.csv contains social data about this user, and contains two columns:  user and friends.  user is the user’s id in our system, and friends is a space-delimited list of the user’s friends’ ids.</p>
+<p>events.csv contains data about events in our system, and has 110 columns.  The first nine columns are event_id, user_id, start_time, city, state, zip, country, lat, and lng.  event_id is the id of the event, and user_id is the id of the user who created the event.  city, state, zip, and country represent more details about the location of the venue (if known).  lat and lng are floats representing the latitude and longitude coordinates of the venue, rounded to three decimal places.  start_time is the ISO-8601 UTC time string representing when the event is scheduled to begin.  The last 101 columns require a bit more explanation; first, we determined the 100 most common word stems (obtained via Porter Stemming) occuring in the name or description of a large random subset of our events.  The last 101 columns are count_1, count_2, …, count_100, count_other, where count_N is an integer representing the number of times the Nth most common word stem appears in the name or description of this event.  count_other is a count of the rest of the words whose stem wasn’t one of the 100 most common stems.</p>
+<p>event_attendees.csv contains information about which users attended various events, and has the following columns: event_id, yes, maybe, invited, and no. event_id identifies the event. yes, maybe, invited, and no are space-delimited lists of user id’s representing users who indicated that they were going, maybe going, invited to, or not going to the event.</p>
+</blockquote>
+<p><strong>But we’ll only use part of them:</strong></p>
+<ul>
+<li>events</li>
+<li>users</li>
+</ul>
+<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><p>The code is show as jupyter notebook. And it will update consecutively(Below is updating info).</p>
+<p><a href="/media/Reccomandation.html">data preprocessing code</a></p>
+<h3 id="updating-info"><a href="#updating-info" class="headerlink" title="updating info:"></a>updating info:</h3><h4 id="5-23"><a href="#5-23" class="headerlink" title="5.23"></a>5.23</h4><ul>
+<li>Read <code>events.csv</code> and take a general look of it.</li>
+<li>reduce the high dimension dataset to 2-D format and use <code>matplotlib</code> to visualize it.</li>
+</ul>
 
           
         
@@ -1058,7 +1457,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/event-reccomendation-data-processing/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/2017-04-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -1080,8 +1479,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/event-reccomendation-data-processing/" itemprop="url">
-                  Event Recommendation data processing
+                <a class="post-title-link" href="/2017/07/27/2017-04-26/" itemprop="url">
+                  test
                 </a>
               
             
@@ -1134,409 +1533,8 @@
       
         
           
-            <h1 id="Events-recommendation"><a href="#Events-recommendation" class="headerlink" title="Events recommendation"></a>Events recommendation</h1><p>This article is to describe the project of <em>Design Thinking</em> course in ZJU.</p>
-<p><strong>This article is under updating…</strong></p>
-<h2 id="Project-Objective"><a href="#Project-Objective" class="headerlink" title="Project Objective"></a>Project Objective</h2><p>Provide personalized events information around campus for students according to events contents, user’s information, etc.</p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><ul>
-<li><strong>Event Info</strong>: include event’s time, location and event’s content, etc.</li>
-<li><strong>User Info</strong>: include user’s age, gender, event preferences, etc.</li>
-</ul>
-<p>But it’s hard to get real life dataset for time or some other reasons.<br>So…</p>
-<p>Use a similar existing dataset from internet.</p>
-<h3 id="Resource"><a href="#Resource" class="headerlink" title="Resource:"></a>Resource:</h3><p>From dataset of one of Kaggle Competition.<br><a href="https://www.kaggle.com/c/event-recommendation-engine-challenge/data" target="_blank" rel="external">https://www.kaggle.com/c/event-recommendation-engine-challenge/data</a></p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><p>This is the original description of all dataset from Kaggle:</p>
-<blockquote>
-<p>There are six files in all: train.csv, test.csv, users.csv, user_friends.csv, events.csv, and event_attendees.csv.</p>
-<p>train.csv has six columns:  user, event, invited, timestamp, interested, and not_interested.  Test.csv contains the same columns as train.csv, except for interested and not_interested. Each row corresponds to an event that was shown to a user in our application.  event is an id identifying an event in a our system.  user is an id representing a user in our system.  invited is a binary variable indicated whether the user has been invited to the event. timestamp is a ISO-8601 UTC time string representing the approximate time (+/- 2 hours) when the user saw the event in our application. interested is a binary variable indicating whether a user clicked on the “Interested” button for this event; it is 1 if the user clicked Interested and 0 if the user did not click the button.  Similarly, not_interested is a binary variable indicating whether a user clicked on the “Not Interested” button for this event; it is 1 if the user clicked the button and 0 if not.  It is possible that the user saw an event and clicked neither Interested nor Not Interested, and hence there are rows that contain 0,0 as values for interested,not_interested.</p>
-<p>users.csv contains demographic data about our some of our users (including all of the users appearing in the train and test files), and it has the following columns: user_id, locale, birthyear, gender, joinedAt, location, and timezone. user_id is the id of the user in our system.  locale is a string representing the user’s locale, which should be of the form language_territory. birthyear is a 4-digit integer representing the year when the user was born. gender is either male or female, depending on the user’s gender.  joinedAt is an ISO-8601 UTC time string representing when the user first used our application.  location is a string representing the user’s location (if known).  timezone is a signed integer representing the user’s UTC offset (in minutes).</p>
-<p>user_friends.csv contains social data about this user, and contains two columns:  user and friends.  user is the user’s id in our system, and friends is a space-delimited list of the user’s friends’ ids.</p>
-<p>events.csv contains data about events in our system, and has 110 columns.  The first nine columns are event_id, user_id, start_time, city, state, zip, country, lat, and lng.  event_id is the id of the event, and user_id is the id of the user who created the event.  city, state, zip, and country represent more details about the location of the venue (if known).  lat and lng are floats representing the latitude and longitude coordinates of the venue, rounded to three decimal places.  start_time is the ISO-8601 UTC time string representing when the event is scheduled to begin.  The last 101 columns require a bit more explanation; first, we determined the 100 most common word stems (obtained via Porter Stemming) occuring in the name or description of a large random subset of our events.  The last 101 columns are count_1, count_2, …, count_100, count_other, where count_N is an integer representing the number of times the Nth most common word stem appears in the name or description of this event.  count_other is a count of the rest of the words whose stem wasn’t one of the 100 most common stems.</p>
-<p>event_attendees.csv contains information about which users attended various events, and has the following columns: event_id, yes, maybe, invited, and no. event_id identifies the event. yes, maybe, invited, and no are space-delimited lists of user id’s representing users who indicated that they were going, maybe going, invited to, or not going to the event.</p>
-</blockquote>
-<p><strong>But we’ll only use part of them:</strong></p>
-<ul>
-<li>events</li>
-<li>users</li>
-</ul>
-<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><p>The code is show as jupyter notebook. And it will update consecutively(Below is updating info).</p>
-<p><a href="/media/Reccomandation.html">data preprocessing code</a></p>
-<h3 id="updating-info"><a href="#updating-info" class="headerlink" title="updating info:"></a>updating info:</h3><h4 id="5-23"><a href="#5-23" class="headerlink" title="5.23"></a>5.23</h4><ul>
-<li>Read <code>events.csv</code> and take a general look of it.</li>
-<li>reduce the high dimension dataset to 2-D format and use <code>matplotlib</code> to visualize it.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/27/LeetCode198/" itemprop="url">
-                  198. House Robber
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://leetcode.com/problems/house-robber/tabs/description/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/tabs/description/</a><br><img src="/media/15011598519407.png" alt=""></p>
-<p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
-<p>比较轻松地做出来：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode67/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/27/LeetCode67/" itemprop="url">
-                  67. Add binary
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://leetcode.com/problems/add-binary/tabs/description" target="_blank" rel="external">https://leetcode.com/problems/add-binary/tabs/description</a><br><img src="/media/15011429725434.png" alt=""></p>
-<p>比较简单与无聊的一道题，但是自己并没有顺利地做出来。<br>总没有想到一个优雅的方式去解决问题。</p>
-<p>抄了个答案：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">addBinary</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="built_in">string</span> s = <span class="string">""</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>, i = a.size() - <span class="number">1</span>, j = b.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || c == <span class="number">1</span>)</div><div class="line">        &#123;</div><div class="line">            c += i &gt;= <span class="number">0</span> ? a[i--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            c += j &gt;= <span class="number">0</span> ? b[j--] - <span class="string">'0'</span> : <span class="number">0</span>;</div><div class="line">            s = <span class="keyword">char</span>(c % <span class="number">2</span> + <span class="string">'0'</span>) + s;</div><div class="line">            c /= <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个答案还是有一些要学习的地方。</p>
-<ol>
-<li>用string表示数时的一些操作，如<code>-&#39;0&#39;</code>这样的操作</li>
-<li><code>c % 2</code>等这种用结果代替条件判断的</li>
-<li>两个<code>c+=...</code>用来搞进位的</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/Another-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/27/Another-test/" itemprop="url">
-                  Untitled
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Another-Test"><a href="#Another-Test" class="headerlink" title="Another Test"></a>Another Test</h1><p><img src="/media/14931711144165.jpg" alt=""></p>
-<p>中文测试</p>
+            <h1 id="Test-GitHub-Pages"><a href="#Test-GitHub-Pages" class="headerlink" title="Test GitHub Pages"></a>Test GitHub Pages</h1><h3 id="test-for"><a href="#test-for" class="headerlink" title="test for "></a>test for <br></h3><p>abc<br>new line</p>
+<h3 id="test-for-image"><a href="#test-for-image" class="headerlink" title="test for image"></a>test for image</h3><p><img src="../media/14931692205317.png" alt=""></p>
 
           
         
@@ -1620,7 +1618,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
