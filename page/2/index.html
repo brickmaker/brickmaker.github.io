@@ -254,6 +254,140 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/02/LeetCode239/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/02/LeetCode239/" itemprop="url">
+                  239. Sliding Window Maximum
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-02T08:02:55+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sliding-window-maximum/description/" target="_blank" rel="external">https://leetcode.com/problems/sliding-window-maximum/description/</a></p>
+<p><img src="/media/15043106329725.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>初看觉得，直接扫一遍就好了，但是细想想，最大值是不断更新的，要各个状态下的最大值。</p>
+<p>记录下最大的两个值看怎么样，不行，还是会更新</p>
+<p>要不还是用DP试试，也不知道从何下手啊～</p>
+<p><strong>或许可以这样</strong> 先算出 1～k的最大值，再求2～k的是大值，再求2～k+1的最大值，再3～k+1最大值！<br>但是同样没有考虑重复，比如：5，3，3，2，2 (k = 3)</p>
+<p>额，没有思路，如果完全用DP做，算出各段的最大值，真的好傻啊<br>算了，先这样做吧</p>
+<p><strong>放弃，看答案吧</strong> 这应该是一个很经典的问题，就算是记也要住</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Monotonic Queue<br><a href="https://abitofcs.blogspot.com/2014/11/data-structure-sliding-window-minimum.html" target="_blank" rel="external">https://abitofcs.blogspot.com/2014/11/data-structure-sliding-window-minimum.html</a></p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>参考他人的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dq;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!dq.empty() &amp;&amp; dq.front() == i - k)</div><div class="line">                dq.pop_front();</div><div class="line">            <span class="keyword">while</span>(!dq.empty() &amp;&amp; nums[i] &gt; nums[dq.back()])</div><div class="line">                dq.pop_back();</div><div class="line">            dq.push_back(i);</div><div class="line">            <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>)</div><div class="line">                ans.push_back(nums[dq.front()]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>很经典的题目了</p>
+<p>deque运用，用deque存索引是我没有想到的，这是一个值得学习的地方</p>
+<p>还是注意分析表象背后的条件，一个个的往过移，那个一个较大的值出现，前边较小的就不再会成为最大值了，如代码中的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(!dq.empty() &amp;&amp; nums[i] &gt; nums[dq.back()])</div><div class="line">    dp.pop_back();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/LeetCode442/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1405,138 +1539,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode621/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/29/LeetCode621/" itemprop="url">
-                  621. Task Scheduler
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T15:17:37+08:00">
-                2017-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##题目</p>
-<p><a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="external">https://leetcode.com/problems/task-scheduler/description/</a></p>
-<p><img src="/media/15013127240073.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>第一眼，感觉是Greedy</p>
-<p>算了，想了半天，还是没有什么头绪<br>看答案吧</p>
-<p>（LeetCode有答案好，也不好orz）</p>
-<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; <span class="built_in">map</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : tasks) &#123;</div><div class="line">            <span class="built_in">map</span>[t]++;</div><div class="line">            count = max(count, <span class="built_in">map</span>[t]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num = (n + <span class="number">1</span>) * (count - <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : <span class="built_in">map</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (t.second == count)</div><div class="line">                num++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>)tasks.size(), num);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>自己本来的思路跟这个类似，就选择这个作为答案了<br>先找到最大的，然后拉一个框：<code>(n+1)*(count-1)</code>,如果有超出的（最大的），刚+1<br>另外还要考虑task大，n小，框框放不下的情况，这样需要<code>max(task.size(), num)</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1581,7 +1588,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
