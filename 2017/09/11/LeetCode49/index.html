@@ -90,17 +90,19 @@
 
 
 
-<meta name="description" content="Events recommendationThis article is to describe the project of Design Thinking course in ZJU. This article is under updating… Project ObjectiveProvide personalized events information around campus fo">
+<meta name="description" content="题目https://leetcode.com/problems/group-anagrams/description/  想法这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中 用python做了下，主要的时间花在了研究python的语法上 这道题用C/C++还真要花点功夫 自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个has">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Event Recommendation data processing">
-<meta property="og:url" content="http://yoursite.com/2017/07/27/event-reccomendation-data-processing/index.html">
+<meta property="og:title" content="49. Group Anagrams">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/LeetCode49/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Events recommendationThis article is to describe the project of Design Thinking course in ZJU. This article is under updating… Project ObjectiveProvide personalized events information around campus fo">
+<meta property="og:description" content="题目https://leetcode.com/problems/group-anagrams/description/  想法这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中 用python做了下，主要的时间花在了研究python的语法上 这道题用C/C++还真要花点功夫 自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个has">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-07-27T14:12:27.000Z">
+<meta property="og:image" content="http://yoursite.com/media/15051177753190.jpg">
+<meta property="og:updated_time" content="2017-09-11T08:55:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Event Recommendation data processing">
-<meta name="twitter:description" content="Events recommendationThis article is to describe the project of Design Thinking course in ZJU. This article is under updating… Project ObjectiveProvide personalized events information around campus fo">
+<meta name="twitter:title" content="49. Group Anagrams">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/group-anagrams/description/  想法这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中 用python做了下，主要的时间花在了研究python的语法上 这道题用C/C++还真要花点功夫 自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个has">
+<meta name="twitter:image" content="http://yoursite.com/media/15051177753190.jpg">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/27/event-reccomendation-data-processing/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/11/LeetCode49/"/>
 
 
 
 
 
-  <title>Event Recommendation data processing | Xiaodong's Blog</title>
+  <title>49. Group Anagrams | Xiaodong's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -253,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/event-reccomendation-data-processing/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/11/LeetCode49/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -274,7 +276,7 @@
             
             
               
-                Event Recommendation data processing
+                49. Group Anagrams
               
             
           </h1>
@@ -289,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-11T16:15:22+08:00">
+                2017-09-11
               </time>
             
 
@@ -324,36 +326,18 @@
       
 
       
-        <h1 id="Events-recommendation"><a href="#Events-recommendation" class="headerlink" title="Events recommendation"></a>Events recommendation</h1><p>This article is to describe the project of <em>Design Thinking</em> course in ZJU.</p>
-<p><strong>This article is under updating…</strong></p>
-<h2 id="Project-Objective"><a href="#Project-Objective" class="headerlink" title="Project Objective"></a>Project Objective</h2><p>Provide personalized events information around campus for students according to events contents, user’s information, etc.</p>
-<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><ul>
-<li><strong>Event Info</strong>: include event’s time, location and event’s content, etc.</li>
-<li><strong>User Info</strong>: include user’s age, gender, event preferences, etc.</li>
-</ul>
-<p>But it’s hard to get real life dataset for time or some other reasons.<br>So…</p>
-<p>Use a similar existing dataset from internet.</p>
-<h3 id="Resource"><a href="#Resource" class="headerlink" title="Resource:"></a>Resource:</h3><p>From dataset of one of Kaggle Competition.<br><a href="https://www.kaggle.com/c/event-recommendation-engine-challenge/data" target="_blank" rel="external">https://www.kaggle.com/c/event-recommendation-engine-challenge/data</a></p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h3><p>This is the original description of all dataset from Kaggle:</p>
-<blockquote>
-<p>There are six files in all: train.csv, test.csv, users.csv, user_friends.csv, events.csv, and event_attendees.csv.</p>
-<p>train.csv has six columns:  user, event, invited, timestamp, interested, and not_interested.  Test.csv contains the same columns as train.csv, except for interested and not_interested. Each row corresponds to an event that was shown to a user in our application.  event is an id identifying an event in a our system.  user is an id representing a user in our system.  invited is a binary variable indicated whether the user has been invited to the event. timestamp is a ISO-8601 UTC time string representing the approximate time (+/- 2 hours) when the user saw the event in our application. interested is a binary variable indicating whether a user clicked on the “Interested” button for this event; it is 1 if the user clicked Interested and 0 if the user did not click the button.  Similarly, not_interested is a binary variable indicating whether a user clicked on the “Not Interested” button for this event; it is 1 if the user clicked the button and 0 if not.  It is possible that the user saw an event and clicked neither Interested nor Not Interested, and hence there are rows that contain 0,0 as values for interested,not_interested.</p>
-<p>users.csv contains demographic data about our some of our users (including all of the users appearing in the train and test files), and it has the following columns: user_id, locale, birthyear, gender, joinedAt, location, and timezone. user_id is the id of the user in our system.  locale is a string representing the user’s locale, which should be of the form language_territory. birthyear is a 4-digit integer representing the year when the user was born. gender is either male or female, depending on the user’s gender.  joinedAt is an ISO-8601 UTC time string representing when the user first used our application.  location is a string representing the user’s location (if known).  timezone is a signed integer representing the user’s UTC offset (in minutes).</p>
-<p>user_friends.csv contains social data about this user, and contains two columns:  user and friends.  user is the user’s id in our system, and friends is a space-delimited list of the user’s friends’ ids.</p>
-<p>events.csv contains data about events in our system, and has 110 columns.  The first nine columns are event_id, user_id, start_time, city, state, zip, country, lat, and lng.  event_id is the id of the event, and user_id is the id of the user who created the event.  city, state, zip, and country represent more details about the location of the venue (if known).  lat and lng are floats representing the latitude and longitude coordinates of the venue, rounded to three decimal places.  start_time is the ISO-8601 UTC time string representing when the event is scheduled to begin.  The last 101 columns require a bit more explanation; first, we determined the 100 most common word stems (obtained via Porter Stemming) occuring in the name or description of a large random subset of our events.  The last 101 columns are count_1, count_2, …, count_100, count_other, where count_N is an integer representing the number of times the Nth most common word stem appears in the name or description of this event.  count_other is a count of the rest of the words whose stem wasn’t one of the 100 most common stems.</p>
-<p>event_attendees.csv contains information about which users attended various events, and has the following columns: event_id, yes, maybe, invited, and no. event_id identifies the event. yes, maybe, invited, and no are space-delimited lists of user id’s representing users who indicated that they were going, maybe going, invited to, or not going to the event.</p>
-</blockquote>
-<p><strong>But we’ll only use part of them:</strong></p>
-<ul>
-<li>events</li>
-<li>users</li>
-</ul>
-<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><p>The code is show as jupyter notebook. And it will update consecutively(Below is updating info).</p>
-<p><a href="/media/Reccomandation.html">data preprocessing code</a></p>
-<h3 id="updating-info"><a href="#updating-info" class="headerlink" title="updating info:"></a>updating info:</h3><h4 id="5-23"><a href="#5-23" class="headerlink" title="5.23"></a>5.23</h4><ul>
-<li>Read <code>events.csv</code> and take a general look of it.</li>
-<li>reduce the high dimension dataset to 2-D format and use <code>matplotlib</code> to visualize it.</li>
-</ul>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/group-anagrams/description/" target="_blank" rel="external">https://leetcode.com/problems/group-anagrams/description/</a></p>
+<p><img src="/media/15051177753190.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中</p>
+<p>用python做了下，主要的时间花在了研究python的语法上</p>
+<p>这道题用C/C++还真要花点功夫</p>
+<p>自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个hash，但是没有找到这样的一个hash函数</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</div><div class="line">            inserted = <span class="keyword">False</span></div><div class="line">            tmp = <span class="string">''</span>.join(sorted(str))</div><div class="line">            <span class="keyword">if</span> tmp <span class="keyword">in</span> m:</div><div class="line">                m[tmp].append(str)</div><div class="line">                inserted = <span class="keyword">True</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[tmp] = [str]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>高级语言一些封装好的东西，真的是太方便了</p>
+<p>看了别人的解答，有这样的一个hash函数而自己没有想到</p>
+<p>用素数！<br>每个字母用一个素数表示<br>于是，一个str用每个字母的乘积表示，这不会重复！！！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        prime = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">101</span>]</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> strs:</div><div class="line">            <span class="comment"># v = reduce(lambda x, y: prime[ord(x) - 97] * prime[ord(y) - 97], s)</span></div><div class="line">            v = <span class="number">1</span></div><div class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> s:</div><div class="line">                v *= prime[ord(c) - <span class="number">97</span>]</div><div class="line">            <span class="keyword">if</span> v <span class="keyword">in</span> m:</div><div class="line">                m[v].append(s)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[v] = [s]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
+<p>用py写了下，本以为会beat &gt;90%，没想到不快反慢了，这可能是python的原因吧，或者python本身的dictionary很高效</p>
 
       
     </div>
@@ -390,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/27/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/09/10/LeetCode45/" rel="next" title="45. Jump Game II">
+                <i class="fa fa-chevron-left"></i> 45. Jump Game II
               </a>
             
           </div>
@@ -399,10 +383,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/27/LeetCode67/" rel="prev" title="67. Add binary">
-                67. Add binary <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +493,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Events-recommendation"><span class="nav-number">1.</span> <span class="nav-text">Events recommendation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Objective"><span class="nav-number">1.1.</span> <span class="nav-text">Project Objective</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset"><span class="nav-number">1.2.</span> <span class="nav-text">Dataset</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource"><span class="nav-number">1.2.1.</span> <span class="nav-text">Resource:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.2.2.</span> <span class="nav-text">Description:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CODE"><span class="nav-number">1.3.</span> <span class="nav-text">CODE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#updating-info"><span class="nav-number">1.3.1.</span> <span class="nav-text">updating info:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-23"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">5.23</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">4.</span> <span class="nav-text">回顾</span></a></li></ol></div>
             
 
           </div>
