@@ -254,6 +254,262 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode221/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/10/LeetCode221/" itemprop="url">
+                  221. Maximal Square
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-10T11:05:56+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/maximal-square/description/" target="_blank" rel="external">https://leetcode.com/problems/maximal-square/description/</a></p>
+<p><img src="/media/15050128035141.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>直觉告诉我，这是用DP做的<br>但如果很单纯地算各个大小的块的话，空间太浪费了</p>
+<p>没有想法，看别人的解答</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximalSquare</span><span class="params">(self, matrix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type matrix: List[List[str]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        max_size = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>]))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix))]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix)):</div><div class="line">            max_size[i][<span class="number">0</span>] = int(matrix[i][<span class="number">0</span>])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</div><div class="line">            max_size[<span class="number">0</span>][i] = int(matrix[<span class="number">0</span>][i])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix[<span class="number">0</span>])):</div><div class="line">                <span class="keyword">if</span> int(matrix[i][j]) == <span class="number">0</span>:</div><div class="line">                    max_size[i][j] = <span class="number">0</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    max_size[i][j] = min(max_size[i - <span class="number">1</span>][j - <span class="number">1</span>], max_size[i][j - <span class="number">1</span>], max_size[i - <span class="number">1</span>][j]) + <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max([max(l) <span class="keyword">for</span> l <span class="keyword">in</span> max_size]) ** <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>根据别人的想法写出来的</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实DP的确是运用在此处的，但是自己没有找到所谓的<em>state equation</em>，关系等式</p>
+<p>而在这个题目中，关键的关系等式就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">max_size[i][j] = min(max_size[i - 1][j], max_size[i][j - 1], max_size[i - 1][j - 1]) + 1</div></pre></td></tr></table></figure>
+<p>自己最开始想的是计算出每一点是最大的，认为会浪费太多的时间，便是其实并不知道每个点最终能够有多大的空间，而是要讨论其中一个（比如右下角）最后能张成多大的空间就可以了，这是关键！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/09/LeetCode105/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/09/LeetCode105/" itemprop="url">
+                  105. Construct Binary Tree from Preorder and Inorder Traversal
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-09T09:40:45+08:00">
+                2017-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="external">https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/</a></p>
+<p><img src="/media/15049213069728.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>经典题目，思路是清楚的，就是具体怎么写需要想想</p>
+<p>反正是建树，递归做</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator prebegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator preend, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inbegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inend)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (prebegin == preend)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(*prebegin);</div><div class="line">        <span class="keyword">auto</span> inmid = <span class="built_in">std</span>::find(inbegin, inend, *prebegin);</div><div class="line">        root-&gt;left = helper(prebegin + <span class="number">1</span>, prebegin + (inmid - inbegin) + <span class="number">1</span>, inbegin, inmid);</div><div class="line">        root-&gt;right = helper(prebegin + (inmid - inbegin) + <span class="number">1</span>, preend , inmid + <span class="number">1</span>, inend);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>一次AC</p>
+<p>这算是一次对C++的vector与iterator操作的熟悉吧，如何传递一个子的vector，需要iterator来帮助<br>如果用python做，肯定超省劲</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type preorder: List[int]</div><div class="line">        :type inorder: List[int]</div><div class="line">        :rtype: TreeNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> inorder:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        mid = preorder.pop(<span class="number">0</span>)</div><div class="line">        idx = inorder.index(mid)</div><div class="line">        root = TreeNode(mid)</div><div class="line">        root.left = self.buildTree(preorder, inorder[:idx])</div><div class="line">        root.right = self.buildTree(preorder, inorder[idx + <span class="number">1</span>:])</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/LeetCode240/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1264,281 +1520,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/LeetCode442/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/30/LeetCode442/" itemprop="url">
-                  442. Find All Duplicates in an Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-30T09:02:00+08:00">
-                2017-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/description/" target="_blank" rel="external">https://leetcode.com/problems/find-all-duplicates-in-an-array/description/</a></p>
-<p><img src="/media/15040549865411.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>no extra space…</p>
-<p>注意到 $ 1 &lt;= a[i] &lt;= n$</p>
-<p>用下标对应的关系应该就可以了吧</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p><strong>第一个AC的答案</strong><br>噗，0.61% hhh</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findDuplicates(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] != i+<span class="number">1</span> &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</div><div class="line">                swap(nums[i], nums[nums[i] - <span class="number">1</span>]);</div><div class="line">                i--;                </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] == i+<span class="number">1</span>)</div><div class="line">                nums[i] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</div><div class="line">                nums.erase(nums.begin() + i);</div><div class="line">                i--;                </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>尽管是O(n)，但是应该是做了好多无用的事</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>唔，看了别人的答案，只是觉得，想法基本上是一样的，只是without extra space，自己也没有新开一个vector来存结果</p>
-<p>有一些粗心，注意下标的一些获取！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/2017-08-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/28/2017-08-28/" itemprop="url">
-                  C++测试框架Catch的作用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-28T23:53:21+08:00">
-                2017-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="C-测试框架Catch使用"><a href="#C-测试框架Catch使用" class="headerlink" title="C++ 测试框架Catch使用"></a>C++ 测试框架<code>Catch</code>使用</h1><p>今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。</p>
-<p>Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是<code>Catch</code>。</p>
-<h2 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h2><p><a href="https://github.com/philsquared/Catch" target="_blank" rel="external">https://github.com/philsquared/Catch</a><br><a href="https://github.com/philsquared/Catch/blob/master/docs/tutorial.md" target="_blank" rel="external">https://github.com/philsquared/Catch/blob/master/docs/tutorial.md</a><br>GitHub上的Repo已经说得比较清楚了</p>
-<ol>
-<li>下载<code>catch.hpp</code> 就一个单的头文件</li>
-<li>放到想要放的地方</li>
-<li>按正常的头文件引入就可以了，在CMake里写相应的东西</li>
-</ol>
-<p>但为了测试与原有的项目分离，还是需要有所规划，因为这个json parser的项目很简单，没有分得很清晰严格。</p>
-<h2 id="工程示例"><a href="#工程示例" class="headerlink" title="工程示例"></a>工程示例</h2><p><strong>工程结构</strong></p>
-<ul>
-<li>my_lept_json<ul>
-<li>lib<ul>
-<li>catch.cpp</li>
-</ul>
-</li>
-<li>CMakeLists.txt</li>
-<li>lept_json.h</li>
-<li>lept_json.cpp</li>
-<li>test.cpp</li>
-</ul>
-</li>
-</ul>
-<p><strong>CMake配置</strong>：<code>CMakeLists.txt</code></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</div><div class="line"><span class="keyword">project</span>(my_lept_json)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CATCH_TEST_HEADER lib/catch.hpp)</div><div class="line"><span class="keyword">set</span>(SOURCE_FILES lept_json.h lept_json.cpp)</div><div class="line"><span class="keyword">set</span>(TEST_FILES test.cpp)</div><div class="line"><span class="keyword">add_executable</span>(my_lept_json <span class="variable">$&#123;SOURCE_FILES&#125;</span> <span class="variable">$&#123;CATCH_TEST_HEADER&#125;</span> <span class="variable">$&#123;TEST_FILES&#125;</span>)</div><div class="line"><span class="keyword">target_link_libraries</span>(my_lept_json)</div></pre></td></tr></table></figure>
-<p><strong>测试文件示例</strong>：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2017/8/28.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CATCH_CONFIG_MAIN</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lib/catch.hpp"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lept_json.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *json, leptType originType, leptType expectedType, leptParseResponse response)</span> </span>&#123;</div><div class="line">    LeptValue value;</div><div class="line">    value.type = originType;</div><div class="line">    REQUIRE(leptParse(&amp;value, json) == response);</div><div class="line">    REQUIRE(getType(&amp;value) == expectedType);</div><div class="line">&#125;</div><div class="line"></div><div class="line">TEST_CASE(<span class="string">"Parse null"</span>) &#123;</div><div class="line">    test(<span class="string">"null"</span>, LEPT_TRUE, LEPT_NULL, LEPT_PARSE_OK);</div><div class="line">&#125;</div><div class="line"></div><div class="line">TEST_CASE(<span class="string">"Parse true"</span>) &#123;</div><div class="line">    test(<span class="string">"true"</span>, LEPT_NULL, LEPT_TRUE, LEPT_PARSE_OK);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1588,7 +1569,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
