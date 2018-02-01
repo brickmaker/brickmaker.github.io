@@ -263,6 +263,256 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/26/opengl-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/26/opengl-config/" itemprop="url">
+                  OpenGL配置（Mac + CLion）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-26T22:25:38+08:00">
+                2017-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>受人指导配置了OpenGL开发环境，记下备忘</p>
+<h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install glew glfw</div></pre></td></tr></table></figure>
+<h3 id="CLion-cmake配置"><a href="#CLion-cmake配置" class="headerlink" title="CLion cmake配置"></a>CLion cmake配置</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</div><div class="line"><span class="keyword">project</span>(graph)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</div><div class="line"></div><div class="line"><span class="comment"># find library</span></div><div class="line"><span class="keyword">find_library</span>(OPENGL OpenGL)</div><div class="line"><span class="keyword">find_library</span>(GLFW glfw)</div><div class="line"><span class="keyword">find_library</span>(GLEW glew)</div><div class="line"></div><div class="line"><span class="comment"># link them</span></div><div class="line"><span class="keyword">link_libraries</span>(<span class="variable">$&#123;GLEW&#125;</span> <span class="variable">$&#123;GLFW&#125;</span> <span class="variable">$&#123;OPENGL&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(SOURCE_FILES main.cpp)</div><div class="line"></div><div class="line"><span class="keyword">add_executable</span>(graph <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</div></pre></td></tr></table></figure>
+<h3 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL/glew.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GLFW/glfw3.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_WIDTH = <span class="number">800</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_HEIGHT = <span class="number">600</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// glfw: initialize and configure</span></div><div class="line">    glfwInit();</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); <span class="comment">// uncomment this statement to fix compilation on OS X</span></div><div class="line"></div><div class="line">    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, <span class="string">"LearnOpenGL"</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">if</span> (window == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Failed to create GLFW window"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        glfwTerminate();</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    glfwMakeContextCurrent(window);</div><div class="line"></div><div class="line">    <span class="comment">// glad: load all OpenGL function pointers</span></div><div class="line">    GLenum err = glewInit();</div><div class="line">    <span class="keyword">if</span>(err != GLEW_OK) &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"glewInit failed: "</span> &lt;&lt; glewGetErrorString(err) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// render loop</span></div><div class="line">    <span class="keyword">while</span> (!glfwWindowShouldClose(window))</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// input</span></div><div class="line">        <span class="comment">// ......</span></div><div class="line"></div><div class="line">        <span class="comment">// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)</span></div><div class="line">        glfwSwapBuffers(window);</div><div class="line">        glfwPollEvents();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// glfw: terminate, clearing all previously allocated GLFW resources.</span></div><div class="line">    glfwTerminate();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h3><p><a href="https://learnopengl-cn.github.io/" target="_blank" rel="external">https://learnopengl-cn.github.io/</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/LeetCode84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/15/LeetCode84/" itemprop="url">
+                  84. Largest Rectangle in Histogram
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-15T21:16:53+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-rectangle-in-histogram/description/</a></p>
+<p><img src="/media/15054814609061.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>贪心？DP？</p>
+<p>DP的话，似乎要N^2的复杂度</p>
+<p>先用DP试一下，就是算i~j之间的最小值吧</p>
+<p>唔，用DP，简单地算最小值，然后处理，TLE</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">largestRectangleArea</span><span class="params">(self, heights)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type heights: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> heights:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> len(heights) == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> heights[<span class="number">0</span>]</div><div class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(len(heights))] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights))]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights)):</div><div class="line">            dp[i][i] = heights[i]</div><div class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">1</span>, len(heights)):</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(l, len(heights)):</div><div class="line">                dp[i - l][i] = min(dp[i - l][i - <span class="number">1</span>], dp[i][i])</div><div class="line">        ans = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(heights)):</div><div class="line">                <span class="keyword">if</span> dp[i][j] * (j - i + <span class="number">1</span>) &gt; ans:</div><div class="line">                    ans = dp[i][j] * (j - i + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/12/LeetCode209/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1281,255 +1531,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/LeetCode15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/06/LeetCode15/" itemprop="url">
-                  15. 3Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T13:36:53+08:00">
-                2017-09-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode.com/problems/3sum/description/" target="_blank" rel="external">https://leetcode.com/problems/3sum/description/</a></p>
-<p><img src="/media/15046762625848.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>就先暴力扫一下</p>
-<p>唔… 突然就不想做这一系列的题了，感觉好无聊…</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/LeetCode18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/04/LeetCode18/" itemprop="url">
-                  18. 4Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-04T09:15:35+08:00">
-                2017-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/4sum/description/" target="_blank" rel="external">https://leetcode.com/problems/4sum/description/</a></p>
-<p><img src="/media/15044877894822.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>跟昨天的那个combination sum应该差不多，回溯就可以了</p>
-<p>唔 试了半天并不可以<br>有错误的代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sumIt</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;curr, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> idx, <span class="keyword">int</span> k, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (k == <span class="number">0</span> || idx == nums.size())</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span> (nums[idx] == target &amp;&amp; k == <span class="number">1</span>) &#123;</div><div class="line">            curr.push_back(nums[idx]);</div><div class="line">            ans.push_back(curr);</div><div class="line">            curr.pop_back();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[idx] &lt; target) &#123;</div><div class="line">            <span class="keyword">if</span> (k &gt; <span class="number">1</span>) &#123;</div><div class="line">                curr.push_back(nums[idx]);</div><div class="line">                sumIt(curr, nums, idx + <span class="number">1</span>, k - <span class="number">1</span>, target - nums[idx]);</div><div class="line">                curr.pop_back();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                sumIt(curr, nums, idx + <span class="number">1</span>, k, target);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"><span class="comment">//        curr.pop_back();</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; fourSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr;</div><div class="line">        sumIt(curr, nums, <span class="number">0</span>, <span class="number">4</span>, target);</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>看了其他人的答案，发现没有用这种方式的，想必会超时吧</p>
-<p>待研究…</p>
-<p>这里并没有限制数的范围，如果用回溯的话，需要遍历剩余的的所有的数，那么将是O(n^2)的复杂度，不现实</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1579,7 +1580,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1625,7 +1626,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
