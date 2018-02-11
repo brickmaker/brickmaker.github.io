@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="在基础数据结构课程中学到的知识，时隔一年之后，真的是忘得一干二净，这些东西，不用，真的就会忘掉。 在思索图像四联通分量标记时等价表的实现时，不知道怎样高效的实现，经人提醒，才发现这就是不相交集/并查集，惭愧。 做一整理，供日后回顾复习。  定义、性质与操作 A disjoint-set data structure, also called a union–find data structure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Disjoint Set 不相交集 相关整理">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/2018-02-10-disjoint-set/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="在基础数据结构课程中学到的知识，时隔一年之后，真的是忘得一干二净，这些东西，不用，真的就会忘掉。 在思索图像四联通分量标记时等价表的实现时，不知道怎样高效的实现，经人提醒，才发现这就是不相交集/并查集，惭愧。 做一整理，供日后回顾复习。  定义、性质与操作 A disjoint-set data structure, also called a union–find data structure">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-02-11T07:57:58.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Disjoint Set 不相交集 相关整理">
+<meta name="twitter:description" content="在基础数据结构课程中学到的知识，时隔一年之后，真的是忘得一干二净，这些东西，不用，真的就会忘掉。 在思索图像四联通分量标记时等价表的实现时，不知道怎样高效的实现，经人提醒，才发现这就是不相交集/并查集，惭愧。 做一整理，供日后回顾复习。  定义、性质与操作 A disjoint-set data structure, also called a union–find data structure">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/2018-02-10-disjoint-set/"/>
+
+
+
+
+
+  <title>Disjoint Set 不相交集 相关整理 | Xiaodong's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108560624-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/2018-02-10-disjoint-set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Disjoint Set 不相交集 相关整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-10T21:44:58+08:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在基础数据结构课程中学到的知识，时隔一年之后，真的是忘得一干二净，这些东西，不用，真的就会忘掉。 在思索图像四联通分量标记时等价表的实现时，不知道怎样高效的实现，经人提醒，才发现这就是不相交集/并查集，惭愧。</p>
+<p>做一整理，供日后回顾复习。</p>
+<hr>
+<h2 id="定义、性质与操作"><a href="#定义、性质与操作" class="headerlink" title="定义、性质与操作"></a>定义、性质与操作</h2><blockquote>
+<p><strong>A disjoint-set data structure, also called a union–find data structure or merge–find set, is a data structure that keeps track of a set of elements partitioned into a number of disjoint (non-overlapping) subsets.</strong></p>
+</blockquote>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="Init初始化"><a href="#Init初始化" class="headerlink" title="Init初始化"></a><code>Init</code>初始化</h4><p>给定一些元素，在初始状态，每个都属于不同的集合，初始化的过程就是要体现这一点，这根据实现的不同，会有不同的操作。</p>
+<h4 id="Union合并"><a href="#Union合并" class="headerlink" title="Union合并"></a><code>Union</code>合并</h4><p>将两个集合进行合并成为一个集合，即集合中所有的元素有相同的根。</p>
+<h4 id="Find查找"><a href="#Find查找" class="headerlink" title="Find查找"></a><code>Find</code>查找</h4><p>找到某个元素的根，目的是确定该元素所属的集合，常用于判断两个元素是否属于一个集合。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>由于要找到它的根，属于一个集合的元素有相同的根，所以可以想到属于一个集合的元素形成一个树，而整个所有集合就是一个森林。</p>
+<p>每一棵树不同于查找树，不会要求从根节点出发找到子节点的元素，只需要给定子节点，找到根，所以每个节点最基本的只需要记录两个值：</p>
+<ol>
+<li>自己所表示的元素</li>
+<li>自己的父元素</li>
+</ol>
+<p>这样的信息用数组就可以实现：</p>
+<p><strong>数组的下标本身就可以表示自己，数组中存的值可以记录父节点。</strong></p>
+<h4 id="关于根节点存储的值"><a href="#关于根节点存储的值" class="headerlink" title="关于根节点存储的值"></a>关于根节点存储的值</h4><p>这真的是一个很有趣的问题，子节点存储父节点无疑，但根节点存什么呢？根据自己的需求，可以存相应的值。</p>
+<p><strong>1. 0</strong></p>
+<p>根节点存0值，表示其是根节点。</p>
+<p><strong>2. 本元素</strong></p>
+<p>存本元素的值，这样，如果是根节点，则自己与自己所存的值相同，否则为非根节点。</p>
+<hr>
+<p>在后续的查找与合并的优化过程中，会用到树的size或height/rank. 所以跟节点会根据需要记录这些值，所以，根节点还可以记录：</p>
+<p><strong>3. -size</strong></p>
+<p>运用负值，可以区分根节点和非根节点，同时又可以表示树的size，初始化的时候，给每个元素都赋值为-1.</p>
+<p><strong>4. -rank/height</strong></p>
+<p>类似-size.</p>
+<h3 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h3><p>实现方式多样，不同的优化方式也有不同的效果。</p>
+<h4 id="Naive-Solution"><a href="#Naive-Solution" class="headerlink" title="Naive Solution"></a>Naive Solution</h4><p>没有路径压缩，Naive Union，根节点存0值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setInit</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= size; ++i) &#123;</div><div class="line">        <span class="built_in">set</span>[i] = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setUnion</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="built_in">set</span>[a] = b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setFind</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">set</span>[a] == <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> a;</div><div class="line">    <span class="keyword">return</span> setFind(<span class="built_in">set</span>[a]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Union-by-size-path-compression"><a href="#Union-by-size-path-compression" class="headerlink" title="Union by size + path compression"></a>Union by size + path compression</h4><p>根节点初始值为-1，存储-size。<br>每次查找的时候，都执行路径压缩。<br>在union的时候，也先进行查找。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setInit</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= size; ++i) &#123;</div><div class="line">        <span class="built_in">set</span>[i] = <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setFind</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">set</span>[a] &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> a;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">set</span>[a] = setFind(<span class="built_in">set</span>[a]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setUnion</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> root1 = setFind(a);</div><div class="line">    <span class="keyword">int</span> root2 = setFind(b);</div><div class="line">    <span class="keyword">if</span> (root1 == root2)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">set</span>[root1] &lt;= <span class="built_in">set</span>[root2]) &#123;</div><div class="line">        <span class="built_in">set</span>[root1] += <span class="built_in">set</span>[root2];</div><div class="line">        <span class="built_in">set</span>[root2] = root1;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">set</span>[root2] += <span class="built_in">set</span>[root1];</div><div class="line">        <span class="built_in">set</span>[root1] = root2;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>结论：带路径压缩，amortized time: O(1)</p>
+<p>TODO…看完算法导论有关的那一章再写…</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>求连通分量，再合适不过了…</p>
+<p>LeetCode上有一道四连通分量的题：<a href="https://leetcode.com/problems/number-of-islands/description/" target="_blank" rel="external">LeetCode 200. Number of Islands</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">setFind</span><span class="params">(<span class="keyword">int</span> x, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;<span class="built_in">set</span>)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">set</span>[x] &lt; <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">set</span>[x] = setFind(<span class="built_in">set</span>[x], <span class="built_in">set</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setUnion</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;<span class="built_in">set</span>)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> root1 = setFind(x, <span class="built_in">set</span>);</div><div class="line">        <span class="keyword">int</span> root2 = setFind(y, <span class="built_in">set</span>);</div><div class="line">        <span class="keyword">if</span> (root1 == root2)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">set</span>[root1] &lt; <span class="built_in">set</span>[root2]) &#123;</div><div class="line">            <span class="built_in">set</span>[root1] += <span class="built_in">set</span>[root2];</div><div class="line">            <span class="built_in">set</span>[root2] = root1;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">set</span>[root2] += <span class="built_in">set</span>[root1];</div><div class="line">            <span class="built_in">set</span>[root1] = root2;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; setInit(<span class="keyword">int</span> size) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(size, <span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSet</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;<span class="built_in">set</span>)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> count_if(<span class="built_in">set</span>.begin(), <span class="built_in">set</span>.end(), [](<span class="keyword">int</span> x) &#123; <span class="keyword">return</span> x &lt; <span class="number">0</span>; &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt; &amp;grid)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (grid.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> tagNum = <span class="number">-1</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; tags(grid.size(), <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(grid[<span class="number">0</span>].size(), <span class="number">-1</span>));</div><div class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; equals;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].size(); j++) &#123;</div><div class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="string">'0'</span>)</div><div class="line">                    <span class="keyword">continue</span>;</div><div class="line">                <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i - <span class="number">1</span>][j] == <span class="string">'1'</span> &amp;&amp; j - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i][j - <span class="number">1</span>] == <span class="string">'1'</span>) &#123;</div><div class="line">                    tags[i][j] = tags[i][j - <span class="number">1</span>];</div><div class="line">                    <span class="keyword">if</span> (tags[i][j - <span class="number">1</span>] != tags[i - <span class="number">1</span>][j])</div><div class="line">                        equals.emplace_back(tags[i][j - <span class="number">1</span>], tags[i - <span class="number">1</span>][j]);</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i - <span class="number">1</span>][j] == <span class="string">'1'</span>) &#123;</div><div class="line">                    tags[i][j] = tags[i - <span class="number">1</span>][j];</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i][j - <span class="number">1</span>] == <span class="string">'1'</span>) &#123;</div><div class="line">                    tags[i][j] = tags[i][j - <span class="number">1</span>];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    tagNum++;</div><div class="line">                    tags[i][j] = tagNum;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (tagNum == <span class="number">-1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span> (tagNum == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">set</span> = setInit(tagNum + <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; p : equals) &#123;</div><div class="line">            setUnion(p.first, p.second, <span class="built_in">set</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> countSet(<span class="built_in">set</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p>数据结构与算法分析（C语言描述）第二版<br><a href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure" target="_blank" rel="external">https://en.wikipedia.org/wiki/Disjoint-set_data_structure</a><br><a href="https://www.jianshu.com/p/def7767982ac" target="_blank" rel="external">https://www.jianshu.com/p/def7767982ac</a><br><a href="http://blog.csdn.net/dm_vincent/article/details/7655764" target="_blank" rel="external">http://blog.csdn.net/dm_vincent/article/details/7655764</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/01/2018-02-01-binary-tree/" rel="next" title="Binary Search Tree 相关算法总结">
+                <i class="fa fa-chevron-left"></i> Binary Search Tree 相关算法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Xiaodong Zhao" />
+          <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+           
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义、性质与操作"><span class="nav-number">1.</span> <span class="nav-text">定义、性质与操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">1.1.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Init初始化"><span class="nav-number">1.1.1.</span> <span class="nav-text">Init初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union合并"><span class="nav-number">1.1.2.</span> <span class="nav-text">Union合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Find查找"><span class="nav-number">1.1.3.</span> <span class="nav-text">Find查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">2.1.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于根节点存储的值"><span class="nav-number">2.1.1.</span> <span class="nav-text">关于根节点存储的值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作-1"><span class="nav-number">2.2.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Naive-Solution"><span class="nav-number">2.2.1.</span> <span class="nav-text">Naive Solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Union-by-size-path-compression"><span class="nav-number">2.2.2.</span> <span class="nav-text">Union by size + path compression</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">3.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">4.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
