@@ -263,6 +263,152 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/2018-02-24-heap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/24/2018-02-24-heap/" itemprop="url">
+                  Heap(堆) 数据结构整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-24T08:17:58+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>又一基础数据结构的整理，知识需要不停的回顾与学习。</p>
+<p>（此处的heap指binary heap, 且是最小堆）</p>
+<hr>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="structure"><a href="#structure" class="headerlink" title="structure"></a>structure</h3><p>complete binary tree</p>
+<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>根节点的值 &lt;= 叶节点的值</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>数组实现（完全二叉树的表示方式）</p>
+<ul>
+<li>根节点放在A[1] (A[0]不使用)</li>
+<li>A[x]的子节点为A[2x]以及A[2x + 1]</li>
+</ul>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="Insert-O-logN"><a href="#Insert-O-logN" class="headerlink" title="Insert O(logN)"></a>Insert O(logN)</h3><p>从最后向上找，找到适合放入插入值的位置放入。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap, <span class="keyword">int</span> val)</span> </span>&#123;</div><div class="line">    heap.push_back(val);</div><div class="line">    <span class="keyword">int</span> idx = heap.size() - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (idx &gt; <span class="number">1</span> &amp;&amp; heap[idx / <span class="number">2</span>] &gt; val) &#123;</div><div class="line">        heap[idx] = heap[idx / <span class="number">2</span>]; <span class="comment">// percolate up</span></div><div class="line">        idx /= <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = val;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DeleteMin-O-logN"><a href="#DeleteMin-O-logN" class="headerlink" title="DeleteMin O(logN)"></a>DeleteMin O(logN)</h3><p>从根节点出发，找到适合放入最后一个元素的位置放入。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">delete_min</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> idx = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> ret = heap[idx];</div><div class="line">    <span class="keyword">int</span> last = heap.back();</div><div class="line">    <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">        <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">        <span class="keyword">if</span> (child &lt; heap.size() - <span class="number">1</span> &amp;&amp; heap[child + <span class="number">1</span>] &lt; heap[child])</div><div class="line">            child++; <span class="comment">// 找到更小的child</span></div><div class="line">        <span class="keyword">if</span> (last &gt; heap[child])</div><div class="line">            heap[idx] = heap[child]; <span class="comment">// percolate down</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">break</span>; <span class="comment">// 找到最后一个元素插入的合适位置！！！</span></div><div class="line">        idx = child;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = last;</div><div class="line">    heap.pop_back();</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><h4 id="Naive-O-NlogN"><a href="#Naive-O-NlogN" class="headerlink" title="Naive O(NlogN)"></a>Naive O(NlogN)</h4><p>做n次插入操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> arr:</div><div class="line">    insert(heap, x)</div></pre></td></tr></table></figure>
+<h4 id="O-N"><a href="#O-N" class="headerlink" title="O(N)"></a>O(N)</h4><p>由下向上，依次进行heapify操作。</p>
+<p>时间复杂度分析：</p>
+<ul>
+<li>对于高度为h的heapify操作：O(h)</li>
+<li>每一层高度为h的最多的节点：$\lceil\frac{n}{2^{h + 1}}\rceil$</li>
+<li>两者相乘累加</li>
+</ul>
+<p>$${\begin{aligned}\sum <em>{h=0}^{\lfloor \log n\rfloor }{\frac {n}{2^{h}}}O(h)&amp;=O\left(n\sum </em>{h=0}^{\lfloor \log n\rfloor }{\frac {h}{2^{h}}}\right)\&amp;=O\left(n\sum _{h=0}^{\infty }{\frac {h}{2^{h}}}\right)\&amp;=O(n)\end{aligned}}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">build_heap(heap):</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">from</span> heap_size / <span class="number">2</span> to <span class="number">1</span>:</div><div class="line">        heapify(heap, i)</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">percolate_down</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap, <span class="keyword">int</span> idx)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> val = heap[idx];</div><div class="line">    <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">        <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">        <span class="keyword">if</span> (child &lt; heap.size() - <span class="number">1</span> &amp;&amp; heap[child + <span class="number">1</span>] &lt; heap[child])</div><div class="line">            child++;</div><div class="line">        <span class="keyword">if</span> (val &gt; heap[child])</div><div class="line">            heap[idx] = heap[child];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        idx = child;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = val;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_min_heap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = heap.size() / <span class="number">2</span>; i &gt; <span class="number">0</span>; --i) &#123;</div><div class="line">        percolate_down(heap, i);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h3><p>放到一起，build heap…</p>
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/2018-02-20-back-tracking/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1612,158 +1758,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/17/2017-10-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/17/2017-10-17/" itemprop="url">
-                  前端理解1.0
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-17T12:25:06+08:00">
-                2017-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>接触前端一年多点，有了些自己的理解，记下自己的心路历程，用以自勉。</p>
-<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><h3 id="前端很有趣"><a href="#前端很有趣" class="headerlink" title="前端很有趣"></a>前端很有趣</h3><p>…</p>
-<h3 id="前端是个大坑"><a href="#前端是个大坑" class="headerlink" title="前端是个大坑"></a>前端是个大坑</h3><p>…</p>
-<h3 id="基础还是最根本最真的东西"><a href="#基础还是最根本最真的东西" class="headerlink" title="基础还是最根本最真的东西"></a>基础还是最根本最真的东西</h3><p>最近真正开始做实际的东西，做一个小外包，简单的需求，页面要求也不复杂，但是发现，自己玩和做出来能看的东西之间的差距还是太大了。<br>总是想着用最新的东西，总是想用最爽的特性，总是想写优雅的结构，但是，一些基础的要求却不知道满足：完美还原设计稿了吗？浏览器兼容性够好吗？不同屏幕适配做好了吗？</p>
-<p>发现，最基础的HTML，CSS，自己还只是入门。</p>
-<p>HTML主要是H5中的一些新特性，自己还需要了解一下，不是只有div和a。</p>
-<p>CSS自己还相当的不熟悉，不说一些”新特性“，动画之类的完全不了解，就基础的布局都需要搜半天才能找到best practice。</p>
-<p>HTML与CSS，虽然发展不是很快，但恰恰证明这是很成熟，很基础的东西，这些搞懂，才能自如写界面。虽说过去部分人认为前端就是调布局，写页面这种想法在现在看来是错误的，但是不得不说，这些也是前端的根本，失去了根本，稿各种花里胡哨的框架结构，组织多么合理，结构多么优雅，都只是花瓶。</p>
-<h2 id="回顾学习历程"><a href="#回顾学习历程" class="headerlink" title="回顾学习历程"></a>回顾学习历程</h2><ol>
-<li>去年暑假开始看一些HTML、CSS之类的东西，没打算做什么，所以很低效。</li>
-<li>完成一个报名表的页面，边学边写，学到了不少东西，初步了解了HTML，CSS，第一次使用CSS/JS外部库：BootStrap。</li>
-<li>接触Vue，惊奇于这样精巧的组织方式以及一些绑定的理念，但只是专注于器，而不是道，同时缺乏实践，所以只是大致了解了其大致思想和样子吧。</li>
-<li>再看JavaScript的一些基础语法与使用，熟练了一些，了解了一点ES6的东西，但只是皮毛的语法糖。</li>
-<li>开始学习React并至今。弃Vue的原因是当时Vue比较新，一些IDE，文档，生态没有React那么好。思想很好，比较喜欢，在组织方式上很清晰，Component的划分与相应的行为设置很合理，但是感觉对初期的规划要求较高，不能乱糊，设计，分component还以有些讲究的。</li>
-<li>进一步通过项目使用React，接触Redux与React Router，初步具备了用React生态写前端的能力。</li>
-<li>接触了下React Native，因为思想完全相同，很亲切，由于这玩意不是很成熟，Bug比较多，写的体验很不好，毕竟没有安卓IOS数年的积淀，不过如果稳一些的话，依靠其跨平台的优势，的确很好，另一个优势在于界面布局上，感觉应该是优于原生开发的。</li>
-<li>第一次做实际的前端，发现自己所学的还是太少，考虑的还是太少，发先自己在近一年的时间没怎么了解过HTML5和CSS，正在回顾这些基础和进一步理解JS的过程中。</li>
-</ol>
-<h2 id="再谈前端学习"><a href="#再谈前端学习" class="headerlink" title="再谈前端学习"></a>再谈前端学习</h2><p>现在看自己的前端学习路程，还是有些后悔的。</p>
-<ol>
-<li>没有在入门的时候好好学一些HTML，CSS而去搞各种框架，重器而不重道。</li>
-<li>看的太多，写的太少，没怎么写实际的东西，现在才发现真正写起来和自己想象的还是很有差距的。</li>
-</ol>
-<p>额，可能这就是一个咸鱼者的心态，而不是一个踏踏实实的学习者的心态吧。</p>
-<p>学前端，真的一定要去写，没有什么高深理论的东西，最好的学习方式就是直接去做！</p>
-<h2 id="下一步规划"><a href="#下一步规划" class="headerlink" title="下一步规划"></a>下一步规划</h2><ol>
-<li><strong>H5, CSS学习</strong> 看相关文档以及一些例子</li>
-<li><strong>网页布局与效果研究</strong> 注意搜集好的网页布局或效果，尝试实现</li>
-<li><strong>JS基础学习</strong> 看完JS高程，ES6知识</li>
-<li><strong>阅读微型JS库的源码</strong> lodash之类的，一到两个</li>
-<li><strong>MVVM思想学习</strong> 弄明白MVVM原理，比如看个backboneJS源码</li>
-<li><strong>学习并掌握一个CSS拓展语言</strong> 选一个自己喜欢的，但要能够使用</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1813,7 +1807,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
