@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:    Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2    The processes">
+<meta name="description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:     Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2     The processe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OS course assignment 5 Question 1&amp;2">
 <meta property="og:url" content="http://yoursite.com/2017/10/22/os_assignment_5/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:    Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2    The processes">
+<meta property="og:description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:     Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2     The processe">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15086608517485.jpg">
 <meta property="og:image" content="http://yoursite.com/media/15086608662569.jpg">
 <meta property="og:updated_time" content="2018-01-26T15:10:06.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OS course assignment 5 Question 1&amp;2">
-<meta name="twitter:description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:    Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2    The processes">
+<meta name="twitter:description" content="Q1Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:     Process Burst Time Priority     P1 10 3   P2 1 1   P3 2 3   P4 1 4   P5 5 2     The processe">
 <meta name="twitter:image" content="http://yoursite.com/media/15086608517485.jpg">
 
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>OS course assignment 5 Question 1&2 | Xiaodong's Blog</title>
+  <title>OS course assignment 5 Question 1&2 | Xiaodong's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -147,7 +147,7 @@
 
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -337,6 +337,7 @@
 
       
         <h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -373,6 +374,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>The processes are assumed to have arrived in the order P1, P2, P3, P4, P5, all at time 0.<br>a. Draw four Gantt charts illustrating the execution of these processes . using FCFS, SJF, a nonpreemptive priority (a smaller priority number implies a higher priority), and RR (quantum = 1) scheduling.<br>b. What is the turnaround time of each process for each of the scheduling algorithms in part a?<br>c. What is the waiting time of each process for each of the scheduling algorithms in part a?<br>d. Which of the schedules in part a results in the minimal average waiting time (over all processes)?</p>
 <hr>
 <h4 id="a"><a href="#a" class="headerlink" title="a."></a>a.</h4><p><img src="/media/15086608517485.jpg" alt=""></p>
@@ -381,6 +383,7 @@
 <h4 id="d"><a href="#d" class="headerlink" title="d."></a>d.</h4><p>Average waiting time:<br><strong>FCFS:</strong> 9.6<br><strong>SJF:</strong> 3.2<br><strong>nonpreemptive priority:</strong> 8.2<br><strong>RR:</strong> 5.4</p>
 <p>SJF has minimal average waiting time.</p>
 <h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>Assume three processes P1, P2, and P3:<br>P1 consists of one thread T11<br>P2 consists of three threads T21, T22, and T23<br>P3 consists of two threads T31 and T32.<br>The following are the CPU bursts for these processes and their threads:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -422,6 +425,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Assume that all threads arrive at the same time 0.<br>Show in gantt charts the execution of these processes using Round-Robin scheduler and Tq=5 time units:<br>(1) If the threads are user-level threads<br>(2) If the threads are kernel (OS) supported threads.<br>Calculate the waiting times (Tw) and turnaround times (Ttr) for each process and their average values for both cases (1) and (2).</p>
 <hr>
 <h4 id="Gantt-charts"><a href="#Gantt-charts" class="headerlink" title="Gantt charts:"></a>Gantt charts:</h4><p><img src="/media/15086608662569.jpg" alt=""></p>
@@ -780,7 +784,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

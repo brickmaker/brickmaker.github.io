@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>First Look of Titanic Problem on Kaggle | Xiaodong's Blog</title>
+  <title>First Look of Titanic Problem on Kaggle | Xiaodong's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -144,7 +144,7 @@
 
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -341,7 +341,27 @@
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data_df.head() <span class="comment"># get first 5 element</span></div><div class="line">data_df.info()</div><div class="line">data_df.describe()</div><div class="line">data_df.shape()</div><div class="line">data_df.colums.values</div></pre></td></tr></table></figure>
 <h4 id="提取feature查看"><a href="#提取feature查看" class="headerlink" title="提取feature查看"></a>提取feature查看</h4><p>用一些组合与排序的方式达到目的，如：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">train_df[[<span class="string">'Sex'</span>, <span class="string">'Survived'</span>]].groupby([<span class="string">'Sex'</span>], as_index=<span class="keyword">False</span>).mean().sort_values(by=<span class="string">'Sex'</span>)</div></pre></td></tr></table></figure>
-<table><br>  <thead><br>    <tr><br>      <th></th><br>      <th>Sex</th><br>      <th>Survived</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>female</td><br>      <td>0.742038</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>male</td><br>      <td>0.188908</td><br>    </tr><br>  </tbody><br></table>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Sex</th>
+      <th>Survived</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>female</td>
+      <td>0.742038</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>male</td>
+      <td>0.188908</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="可视化查看"><a href="#可视化查看" class="headerlink" title="可视化查看"></a>可视化查看</h4><p>这一方面，<code>matplotlib</code>及<code>seaborn</code>的函数众多，自己还需要进一步的了解，需要做到自如地处理数据，在不同的层面上比较。</p>
 <h3 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h3><h4 id="删除无用的数据"><a href="#删除无用的数据" class="headerlink" title="删除无用的数据"></a>删除无用的数据</h4><p><code>drop()</code>删除df中的无用数据：</p>
@@ -405,14 +425,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/07/27/Another-test/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/27/Another-test/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/27/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -718,7 +742,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
