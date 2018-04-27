@@ -263,6 +263,133 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/2018-04-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/27/2018-04-27/" itemprop="url">
+                  图算法整理（二）：最大流
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T20:05:40+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Ford-Fulkerson-Algorithm"><a href="#Ford-Fulkerson-Algorithm" class="headerlink" title="Ford-Fulkerson Algorithm"></a>Ford-Fulkerson Algorithm</h2><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Gr: residual graph; G: original graph</span></div><div class="line">Gr = G</div><div class="line">flow = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> find a path <span class="keyword">in</span> Gr:</div><div class="line">    augment = min(segments <span class="keyword">in</span> path)</div><div class="line">    flow += augment</div></pre></td></tr></table></figure>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>$O(FE)$<br>F: 最大流<br>E: 边数</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>参考：<a href="https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/" target="_blank" rel="external">https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/</a></p>
+<p>示例图：</p>
+<p><img src="/media/15248338296604.jpg" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">findPath</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;G, <span class="keyword">int</span> src, <span class="keyword">int</span> dst, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;parent)</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(G.size(), <span class="literal">false</span>);</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">    q.push(src);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">        <span class="keyword">int</span> curr = q.front();</div><div class="line">        q.pop();</div><div class="line">        visited[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (G[curr][i] &gt; <span class="number">0</span> &amp;&amp; !visited[i]) &#123;</div><div class="line">                q.push(i);</div><div class="line">                parent[i] = curr;</div><div class="line">                visited[i] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> visited[dst];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; G = &#123;</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">16</span>, <span class="number">13</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">10</span>, <span class="number">12</span>, <span class="number">0</span>,  <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">4</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">14</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">9</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">20</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">7</span>,  <span class="number">0</span>,  <span class="number">4</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent(G.size());</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">5</span>;</div><div class="line">    <span class="keyword">while</span> (findPath(G, start, end, parent)) &#123;</div><div class="line">        <span class="keyword">int</span> minFlow = INT_MAX;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = end; i != start; i = parent[i]) &#123;</div><div class="line">            minFlow = min(G[parent[i]][i], minFlow);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = end; i != start; i = parent[i]) &#123;</div><div class="line">            G[parent[i]][i] -= minFlow;</div><div class="line">            G[i][parent[i]] += minFlow;</div><div class="line">        &#125;</div><div class="line">        res += minFlow;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意点：</strong></p>
+<p><code>parent</code>数组的使用！BFS不像DFS可以记录一条路径，回退重新延伸，不过可以逆向思维，记录parent，这样倒着推也可以得到整条路径！！！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/16/2018-04-16-graph-I/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -498,6 +625,7 @@
 <p>这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。</p>
 <hr>
 <h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><h4 id="1-getline-读入一行到string"><a href="#1-getline-读入一行到string" class="headerlink" title="1. getline 读入一行到string"></a>1. <code>getline</code> 读入一行到string</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div></pre></td></tr></table></figure>
+<h4 id="针对STDIO的优化"><a href="#针对STDIO的优化" class="headerlink" title="针对STDIO的优化"></a>针对STDIO的优化</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> ____ = []() &#123;</div><div class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
 <h2 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h2><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">s.insert(<span class="number">3</span>);</div><div class="line">s.erase(itrator);</div><div class="line">s.find(<span class="number">5</span>) != s.end();</div><div class="line">s.count(<span class="number">5</span>) == <span class="number">1</span>;</div></pre></td></tr></table></figure>
 <h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h4 id="remove-if"><a href="#remove-if" class="headerlink" title="remove_if"></a><code>remove_if</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">str2.erase(<span class="built_in">std</span>::remove_if(str2.begin(), </div><div class="line">                          str2.end(),</div><div class="line">                          [](<span class="keyword">unsigned</span> <span class="keyword">char</span> x)&#123;<span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">isspace</span>(x);&#125;),</div><div class="line">            str2.end());</div></pre></td></tr></table></figure>
 
@@ -1569,140 +1697,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/LeetCode42/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/16/LeetCode42/" itemprop="url">
-                  42. Trapping Rain Water
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-16T13:35:00+08:00">
-                2017-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank" rel="external">https://leetcode.com/problems/trapping-rain-water/description/</a></p>
-<p><img src="/media/15108105475270.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>每个块，直到遇到下一个&gt;=它的块，则存储确定…</p>
-<p>每个块都假定能盛满，直到最后遇不到&gt;=自己的块</p>
-<p>从左往右扫一遍，记录valid和如果valid所装的容量：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Bar</span> &#123;</span></div><div class="line">        <span class="keyword">int</span> s;</div><div class="line">        <span class="keyword">bool</span> v;</div><div class="line">        Bar() : s(<span class="number">0</span>), v(<span class="literal">false</span>) &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;Bar&gt; content(height.size());</div><div class="line">        <span class="keyword">int</span> s = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = s; j &lt; i &amp;&amp; content[j].v == <span class="literal">false</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (height[j] &lt;= height[i]) &#123;</div><div class="line">                    content[j].v = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">if</span> (j == s)</div><div class="line">                        s = i;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    content[j].s += height[j] - height[i];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxHeight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; content.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (height[i] &gt;= maxHeight &amp;&amp; content[i].v) &#123;</div><div class="line">                maxHeight = height[i];</div><div class="line">                res += content[i].s;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>错误！！！<br>都没有考虑最基础的情况： [4, 2, 3]<br>自己的答案在这个情况下，认为4没有找到&gt;=它的，所以invalid，也就没有后边的容量了</p>
-<hr>
-<p>看了discussion，发现自己还是没有想到简单解决问题的关键：</p>
-<blockquote>
-<p>Here is my idea: instead of calculating area by height*width, we can think it in a cumulative way. In other words, sum water amount of each bin(width=1).<br>Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. Fix the higher one and flow water from the lower part. For example, if current height of left is lower, we fill water in the left bin. Until left meets right, we filled the whole container.</p>
-</blockquote>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxRight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="keyword">if</span> (height[l] &lt;= height[r]) &#123;</div><div class="line">                <span class="keyword">if</span> (height[l] &gt;= maxLeft)</div><div class="line">                    maxLeft = height[l];</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    res += maxLeft - height[l];</div><div class="line">                l++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (height[r] &gt;= maxRight) &#123;</div><div class="line">                    maxRight = height[r];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    res += maxRight - height[r];</div><div class="line">                &#125;</div><div class="line">                r--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>记录左右的最高值，只要比本侧的最高值低且比另一侧低，就肯定会被填满…</p>
-<p>抓住问题的管家哇，分析关系！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1752,7 +1746,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); Data Structureset12345set&amp;lt;int&amp;gt; s;s.inse">
+<meta name="description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++常用函数、数据结构使用">
 <meta property="og:url" content="http://yoursite.com/2018/02/26/2018-02-26-cpp-api/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); Data Structureset12345set&amp;lt;int&amp;gt; s;s.inse">
+<meta property="og:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-26T13:52:37.622Z">
+<meta property="og:updated_time" content="2018-04-23T10:49:44.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++常用函数、数据结构使用">
-<meta name="twitter:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); Data Structureset12345set&amp;lt;int&amp;gt; s;s.inse">
+<meta name="twitter:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
 
 
 
@@ -337,6 +337,7 @@
 <p>这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。</p>
 <hr>
 <h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><h4 id="1-getline-读入一行到string"><a href="#1-getline-读入一行到string" class="headerlink" title="1. getline 读入一行到string"></a>1. <code>getline</code> 读入一行到string</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div></pre></td></tr></table></figure>
+<h4 id="针对STDIO的优化"><a href="#针对STDIO的优化" class="headerlink" title="针对STDIO的优化"></a>针对STDIO的优化</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> ____ = []() &#123;</div><div class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
 <h2 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h2><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">s.insert(<span class="number">3</span>);</div><div class="line">s.erase(itrator);</div><div class="line">s.find(<span class="number">5</span>) != s.end();</div><div class="line">s.count(<span class="number">5</span>) == <span class="number">1</span>;</div></pre></td></tr></table></figure>
 <h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h4 id="remove-if"><a href="#remove-if" class="headerlink" title="remove_if"></a><code>remove_if</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">str2.erase(<span class="built_in">std</span>::remove_if(str2.begin(), </div><div class="line">                          str2.end(),</div><div class="line">                          [](<span class="keyword">unsigned</span> <span class="keyword">char</span> x)&#123;<span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">isspace</span>(x);&#125;),</div><div class="line">            str2.end());</div></pre></td></tr></table></figure>
 
@@ -459,7 +460,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -498,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO"><span class="nav-number">1.</span> <span class="nav-text">IO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-getline-读入一行到string"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. getline 读入一行到string</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Structure"><span class="nav-number">2.</span> <span class="nav-text">Data Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">2.1.</span> <span class="nav-text">set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithms"><span class="nav-number">3.</span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-if"><span class="nav-number">3.0.1.</span> <span class="nav-text">remove_if</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO"><span class="nav-number">1.</span> <span class="nav-text">IO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-getline-读入一行到string"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. getline 读入一行到string</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对STDIO的优化"><span class="nav-number">1.0.2.</span> <span class="nav-text">针对STDIO的优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Structure"><span class="nav-number">2.</span> <span class="nav-text">Data Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">2.1.</span> <span class="nav-text">set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithms"><span class="nav-number">3.</span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-if"><span class="nav-number">3.0.1.</span> <span class="nav-text">remove_if</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
