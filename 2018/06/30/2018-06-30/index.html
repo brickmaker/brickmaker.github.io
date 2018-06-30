@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。  开始一个项目其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目管理总结——记软件工程课">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/2018-06-30/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。  开始一个项目其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-06-30T13:00:40.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目管理总结——记软件工程课">
+<meta name="twitter:description" content="软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。  开始一个项目其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/2018-06-30/"/>
+
+
+
+
+
+  <title>项目管理总结——记软件工程课 | Xiaodong's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108560624-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/2018-06-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                项目管理总结——记软件工程课
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T19:43:57+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。</p>
+<hr>
+<h2 id="开始一个项目"><a href="#开始一个项目" class="headerlink" title="开始一个项目"></a>开始一个项目</h2><p>其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结构等等。</p>
+<p>所以，要做的第一件事，正确的事，就是建立一个repo，写清楚开发指导，让大家知道如何开始写，这一部分，需要注意，或者说必须要做到的几点：</p>
+<h4 id="1-一个工程"><a href="#1-一个工程" class="headerlink" title="1. 一个工程"></a>1. 一个工程</h4><p>说起来是一句废话，既然最终是完成一个项目，当然是在一个工程里边写了。可是我有点太想当然了，于是还是有因为有的模块用了其它的脚手架，有着差异很大的代码结构，导致了整合时花费了些力气的不愉快经历。</p>
+<p>如果是最终是一个整体的项目，一定要在一个工程里写，不要想着先各自写自己的子模块，最后写一个顶层的模块将他们捏合在一起，会很痛苦。</p>
+<p>当然，比如像一个网站采取前后端分离的架构，那么前后端两个工程，这是没有关系的。</p>
+<h4 id="2-模块之间的独立性"><a href="#2-模块之间的独立性" class="headerlink" title="2. 模块之间的独立性"></a>2. 模块之间的独立性</h4><p>所有人在一个工程里开发，如果不能有很好的独立性，每个人的开发或多或少都会受到拘束，这是我们不愿意看到的。所以在本次开发过程中，建立工程的同事，就需要规定好每个模块如何相互独立的开发。</p>
+<p>以本次工程为例，初始项目中，为6个模块分别在合适的地方建立6个目录，有一个必要的入口文件。比如：</p>
+<p><strong>后端：</strong>用了Django，那么<code>urls.py</code>里写好路由映射，路由到对应目录下的<code>urls.py</code>即可。</p>
+<p><strong>前端：</strong>用了React生态，需要处理的事情多一些。首先是前端路由，给每个模块的入口component创建路由；其次还有redux的配置，创建根store，让每个子模块创建自己的store并注册到根store中。</p>
+<p>这样，初期的开发，每个人在前端直接进入自己的路由，请求后端也全部请求自己子路由下的内容，可以做到相互独立的开发。</p>
+<h4 id="3-示例参考"><a href="#3-示例参考" class="headerlink" title="3. 示例参考"></a>3. 示例参考</h4><p>成员在开发完项目之后，肯定都对所用到的技术栈，一些best practice有或多或少的理解，但是在项目的开始并不是这样的，有许多成员不了解相关的库，框架，语言等。</p>
+<p>此时，光给tutorial，documentation等是不够的，成员去学这些东西刚开始需要一段上手时间，而这并不是一个短期一次性项目高效的做法。最直接的就是，写个参考的示例，让不熟悉的成员能够模仿着去写，这样在模仿中学习，能够比较快的掌握所用的知识，同时，也可以学到一些在文档中并不会出现的best practice。</p>
+<p>在本次项目的开发中，可以首先写个最简单的前后端交互的示例，有如下的功能：</p>
+<ul>
+<li>前端发送GET请求</li>
+<li>后端返回数据，比如Hello World</li>
+<li>前端redux相关的操作：触发action、reducer的行为、store的改动与视图的更新</li>
+<li>react组件书写的示例</li>
+</ul>
+<p>经过以上的几步，基本做好了项目起始的准备，每个人应该知道了在哪里开始写，怎么开始写这最基本的问题。</p>
+<h2 id="Git-amp-GitHub使用"><a href="#Git-amp-GitHub使用" class="headerlink" title="Git&amp;GitHub使用"></a>Git&amp;GitHub使用</h2><p>本项目的组织方式大致是这样的：</p>
+<ul>
+<li>所有代码放在一个repo中</li>
+<li>master放整合的代码，受保护</li>
+<li>每个子模块有自己的分支，该模块的小组成员在此单分支上工作</li>
+<li>子模块完成某个功能之后，提交PR，将子分支merge到master中</li>
+</ul>
+<p>就我个人理解，多人的开发，一般有两种模式，一种是多分支，分支之间PR；另一种是fork-PR。我在这次选择了前者，有几个考虑因素：</p>
+<ol>
+<li>我可以看到各个子模块的进度，不至于不提交PR我什么都不知道</li>
+<li>如果必要，我可以直接在某个分支上提交来修改一些代码</li>
+<li>子模块一个分支上操作足够了，一个子模块有四个人参与，单分支基本满足了要求</li>
+</ol>
+<h3 id="单分支多人开发"><a href="#单分支多人开发" class="headerlink" title="单分支多人开发"></a>单分支多人开发</h3><p>对于多人在单分支上开发，还是需要遵从一定的workflow才能保证不会出现一些不愉快的事情。比如现在多人开发的单分支为common，可以遵从一下的流程：</p>
+<ol>
+<li><code>git checkout -b local</code> 建立自己的本地分支</li>
+<li>coding..coding..</li>
+<li><code>git commit -a -m &#39;blabla&#39;</code> 在自己的分支上提交</li>
+<li><code>git checkout common</code> 切换到common分支</li>
+<li><code>git pull</code> 看看别人在这段时间有没有提交</li>
+<li><code>git checkout local</code></li>
+<li><code>git merge common</code> 在自己的分支上merge别人的提交，如果有冲突，解决</li>
+<li><code>git checkout common</code></li>
+<li><code>git merge local</code> 此时，merge 自己分支上的东西，是不会发生冲突的</li>
+<li><code>git push</code></li>
+<li><code>git checkout local</code> 切回自己的分支，保持idle状态在自己本地分支这个习惯</li>
+</ol>
+<h3 id="Pull-Request的使用"><a href="#Pull-Request的使用" class="headerlink" title="Pull Request的使用"></a>Pull Request的使用</h3><p>第一次使用Pull Request这个功能，有一些经验不足，导致自己的使用并不是很愉快。</p>
+<p>Review这个设计方式很好，在接受更改的时候，可以审核代码，防止不合理的代码污染共有的分支。以下是自己经过尝试之后的一些心得：</p>
+<ol>
+<li>提交PR之后，只是声明了一个分支到另一个分支的合并，并不是当前提交的状态到另一个分支的合并，所以，提交PR之后的commit，仍然会更新。所以，request change的时候，直接修改就好，不用关掉这个PR再开一个新的PR。</li>
+<li>提交PR的频率尽可能高，不要憋着一个很大的功能再提交，我的建议是，只要写完了一小块内容，而这块内容不至于编译不通过，运行不起来，就可以提交PR，这样逐渐增加master上的功能，不至于一次提交PR，需要审核好多代码。</li>
+</ol>
+<h3 id="blame"><a href="#blame" class="headerlink" title="blame"></a>blame</h3><p>之前只是注意到这个按钮，但是并没有细究过它的用处，不过，这次可真的是发现了它的用处哈哈。多人开发里边，真的是神器呀。</p>
+<p>blame的功能是可以显示文件中对应行是由谁改动的，并且可以查看历史记录，看起来跟blame没有直接的关系，但其实我用到的时候，恰恰就是blame的时候。</p>
+<blockquote>
+<p>-“这谁把我的代码改掉了？？？是你吗？”<br>-“不是我，我怎么可能去动你这部分的代码？？”<br>-“哦，是吗？我们来blame一下”<br>-“我错了orzorz”</p>
+</blockquote>
+<p>今后多人开发的时候可要善用这个功能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/vscode_cheatsheet/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/pic_reverse.png"
+               alt="Xiaodong Zhao" />
+          <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+           
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始一个项目"><span class="nav-number">1.</span> <span class="nav-text">开始一个项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-一个工程"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 一个工程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-模块之间的独立性"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 模块之间的独立性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-示例参考"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 示例参考</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-amp-GitHub使用"><span class="nav-number">2.</span> <span class="nav-text">Git&GitHub使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单分支多人开发"><span class="nav-number">2.1.</span> <span class="nav-text">单分支多人开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pull-Request的使用"><span class="nav-number">2.2.</span> <span class="nav-text">Pull Request的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blame"><span class="nav-number">2.3.</span> <span class="nav-text">blame</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
