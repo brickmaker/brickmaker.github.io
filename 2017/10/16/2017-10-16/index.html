@@ -2,15 +2,25 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="en">
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +48,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,46 +56,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu 编译内核及GRUB引导折腾记">
-<meta property="og:url" content="http://yoursite.com/2017/10/16/2017-10-16/index.html">
-<meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-26T15:10:06.938Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu 编译内核及GRUB引导折腾记">
-<meta name="twitter:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
 
 
 
@@ -98,15 +83,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -118,12 +101,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 编译内核及GRUB引导折腾记">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/2017-10-16/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-10T05:36:15.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 编译内核及GRUB引导折腾记">
+<meta name="twitter:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/2017/10/16/2017-10-16/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Ubuntu 编译内核及GRUB引导折腾记 | Xiaodong's Blog</title>
   
@@ -131,18 +139,37 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-108560624-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -162,19 +189,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaodong's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Coder love Design</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,35 +211,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -218,12 +257,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -236,6 +283,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -245,7 +294,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -258,11 +307,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu 编译内核及GRUB引导折腾记</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu 编译内核及GRUB引导折腾记
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -270,16 +327,51 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T23:40:33+08:00">
-                2017-10-16
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-10-16 23:40:33" itemprop="dateCreated datePublished" datetime="2017-10-16T23:40:33+08:00">2017-10-16</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:36:15" itemprop="dateModified" datetime="2018-07-10T13:36:15+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -309,12 +401,15 @@
 
       
         <p>对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。</p>
-<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><p>按照Ubuntu Documentation上走，<a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。" target="_blank" rel="external">https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。</a></p>
+<h2 id="编译内核">编译内核</h2>
+<p>按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。</p>
 <p>每一步都比较清楚吧，1-11步走下来基本没有碰到问题。</p>
 <p>唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。</p>
-<h2 id="GRUB相关使用"><a href="#GRUB相关使用" class="headerlink" title="GRUB相关使用"></a>GRUB相关使用</h2><p>本来引导不会去折腾它，但是装完的<code>Linux 4.14.0-rc5</code>似乎不支持IPV4，这很难过，想换回去。于是，去改grub。</p>
-<h3 id="GRUB配置方式"><a href="#GRUB配置方式" class="headerlink" title="GRUB配置方式"></a>GRUB配置方式</h3><p><a href="https://help.ubuntu.com/community/Grub2/Setup" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup</a></p>
-<p><a href="https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2</a></p>
+<h2 id="grub相关使用">GRUB相关使用</h2>
+<p>本来引导不会去折腾它，但是装完的<code>Linux 4.14.0-rc5</code>似乎不支持IPV4，这很难过，想换回去。于是，去改grub。</p>
+<h3 id="grub配置方式">GRUB配置方式</h3>
+<p>https://help.ubuntu.com/community/Grub2/Setup</p>
+<p>https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2</p>
 <p><strong>配置方式：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/default/grub</div><div class="line">sudo update-grub</div></pre></td></tr></table></figure>
 <p><strong>常用配置：</strong></p>
@@ -324,20 +419,24 @@
 </ul>
 <hr>
 <p>改完之后发现一个很严重的问题，不小心看错改成memtest了，很尴尬，而且，HIDDEN_TIMEOUT是0，都没机会弹出窗口，没办法，尝试LiveCD进入然后操作。</p>
-<h3 id="外部系统修复GRUB"><a href="#外部系统修复GRUB" class="headerlink" title="外部系统修复GRUB"></a>外部系统修复GRUB</h3><p>在PD的虚拟机配置里，添加CD镜像，然后进入：</p>
-<ol>
+<h3 id="外部系统修复grub">外部系统修复GRUB</h3>
+<p>在PD的虚拟机配置里，添加CD镜像，然后进入：</p>
+<ol type="1">
 <li>mount相应盘</li>
 <li>chroot</li>
 <li>进行更改</li>
 </ol>
 <p>自己之前遇到没办法update-grub的问题，在网上找到了如下解决方法：</p>
-<p><a href="https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd" target="_blank" rel="external">https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd</a></p>
+<p>https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd</p>
 <hr>
 <p>最后，更新grub引导之后终于正常，长舒一口气。</p>
 <p>还是需要学习一些知识啊。</p>
 
       
     </div>
+
+    
+
     
     
     
@@ -397,9 +496,6 @@
           </div>
           
 
-
-          
-
   
 
 
@@ -445,35 +541,87 @@
               <p class="site-description motion-element" itemprop="description">Coder love Design</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-            
-
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -489,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译内核"><span class="nav-number">1.</span> <span class="nav-text">编译内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRUB相关使用"><span class="nav-number">2.</span> <span class="nav-text">GRUB相关使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRUB配置方式"><span class="nav-number">2.1.</span> <span class="nav-text">GRUB配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部系统修复GRUB"><span class="nav-number">2.2.</span> <span class="nav-text">外部系统修复GRUB</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译内核"><span class="nav-number">1.</span> <span class="nav-text">编译内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grub相关使用"><span class="nav-number">2.</span> <span class="nav-text">GRUB相关使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#grub配置方式"><span class="nav-number">2.1.</span> <span class="nav-text">GRUB配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部系统修复grub"><span class="nav-number">2.2.</span> <span class="nav-text">外部系统修复GRUB</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -510,16 +658,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
 
 
 
@@ -527,12 +679,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 
 
         
+
 
 
 
@@ -571,7 +724,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -591,16 +748,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -609,18 +756,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -628,48 +770,36 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -681,6 +811,23 @@
 
   
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
@@ -690,27 +837,18 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
+
+  
+  
+
+  
+
+  
+
+  
 
   
 

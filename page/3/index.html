@@ -2,15 +2,25 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="en">
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +48,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,25 +56,19 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
@@ -78,8 +78,35 @@
 
 
 
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
-<meta name="description" content="Coder love Design">
+
+  
+
+
+
+
+  <meta name="description" content="Coder love Design">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Xiaodong&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
@@ -92,29 +119,6 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
 
 
 
@@ -122,7 +126,11 @@
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Xiaodong's Blog</title>
   
@@ -130,18 +138,37 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-108560624-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -162,19 +189,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaodong's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Coder love Design</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,35 +211,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -218,12 +257,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -236,6 +283,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -245,7 +294,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -260,11 +309,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/26/opengl-config/" itemprop="url">OpenGL配置（Mac + CLion）</a></h1>
+                <a class="post-title-link" href="/2017/09/26/opengl-config/" itemprop="url">
+                  OpenGL配置（Mac + CLion）
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -272,16 +331,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-26T22:25:38+08:00">
-                2017-09-26
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-26 22:25:38" itemprop="dateCreated datePublished" datetime="2017-09-26T22:25:38+08:00">2017-09-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:35:42" itemprop="dateModified" datetime="2018-07-10T13:35:42+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -313,15 +414,22 @@
         
           
             <p>受人指导配置了OpenGL开发环境，记下备忘</p>
-<h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install glew glfw</div></pre></td></tr></table></figure>
-<h3 id="CLion-cmake配置"><a href="#CLion-cmake配置" class="headerlink" title="CLion cmake配置"></a>CLion cmake配置</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</div><div class="line"><span class="keyword">project</span>(graph)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</div><div class="line"></div><div class="line"><span class="comment"># find library</span></div><div class="line"><span class="keyword">find_library</span>(OPENGL OpenGL)</div><div class="line"><span class="keyword">find_library</span>(GLFW glfw)</div><div class="line"><span class="keyword">find_library</span>(GLEW glew)</div><div class="line"></div><div class="line"><span class="comment"># link them</span></div><div class="line"><span class="keyword">link_libraries</span>(<span class="variable">$&#123;GLEW&#125;</span> <span class="variable">$&#123;GLFW&#125;</span> <span class="variable">$&#123;OPENGL&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(SOURCE_FILES main.cpp)</div><div class="line"></div><div class="line"><span class="keyword">add_executable</span>(graph <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</div></pre></td></tr></table></figure>
-<h3 id="写代码"><a href="#写代码" class="headerlink" title="写代码"></a>写代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL/glew.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GLFW/glfw3.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_WIDTH = <span class="number">800</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_HEIGHT = <span class="number">600</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// glfw: initialize and configure</span></div><div class="line">    glfwInit();</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); <span class="comment">// uncomment this statement to fix compilation on OS X</span></div><div class="line"></div><div class="line">    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, <span class="string">"LearnOpenGL"</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">if</span> (window == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Failed to create GLFW window"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        glfwTerminate();</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    glfwMakeContextCurrent(window);</div><div class="line"></div><div class="line">    <span class="comment">// glad: load all OpenGL function pointers</span></div><div class="line">    GLenum err = glewInit();</div><div class="line">    <span class="keyword">if</span>(err != GLEW_OK) &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"glewInit failed: "</span> &lt;&lt; glewGetErrorString(err) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// render loop</span></div><div class="line">    <span class="keyword">while</span> (!glfwWindowShouldClose(window))</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// input</span></div><div class="line">        <span class="comment">// ......</span></div><div class="line"></div><div class="line">        <span class="comment">// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)</span></div><div class="line">        glfwSwapBuffers(window);</div><div class="line">        glfwPollEvents();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// glfw: terminate, clearing all previously allocated GLFW resources.</span></div><div class="line">    glfwTerminate();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h3><p><a href="https://learnopengl-cn.github.io/" target="_blank" rel="external">https://learnopengl-cn.github.io/</a></p>
+<h3 id="安装库">安装库</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install glew glfw</div></pre></td></tr></table></figure>
+<h3 id="clion-cmake配置">CLion cmake配置</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</div><div class="line"><span class="keyword">project</span>(graph)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</div><div class="line"></div><div class="line"><span class="comment"># find library</span></div><div class="line"><span class="keyword">find_library</span>(OPENGL OpenGL)</div><div class="line"><span class="keyword">find_library</span>(GLFW glfw)</div><div class="line"><span class="keyword">find_library</span>(GLEW glew)</div><div class="line"></div><div class="line"><span class="comment"># link them</span></div><div class="line"><span class="keyword">link_libraries</span>(<span class="variable">$&#123;GLEW&#125;</span> <span class="variable">$&#123;GLFW&#125;</span> <span class="variable">$&#123;OPENGL&#125;</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(SOURCE_FILES main.cpp)</div><div class="line"></div><div class="line"><span class="keyword">add_executable</span>(graph <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</div></pre></td></tr></table></figure>
+<h3 id="写代码">写代码</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GL/glew.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;GLFW/glfw3.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_WIDTH = <span class="number">800</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> SCR_HEIGHT = <span class="number">600</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// glfw: initialize and configure</span></div><div class="line">    glfwInit();</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, <span class="number">3</span>);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</div><div class="line">    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); <span class="comment">// uncomment this statement to fix compilation on OS X</span></div><div class="line"></div><div class="line">    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, <span class="string">"LearnOpenGL"</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">if</span> (window == <span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Failed to create GLFW window"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        glfwTerminate();</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    glfwMakeContextCurrent(window);</div><div class="line"></div><div class="line">    <span class="comment">// glad: load all OpenGL function pointers</span></div><div class="line">    GLenum err = glewInit();</div><div class="line">    <span class="keyword">if</span>(err != GLEW_OK) &#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"glewInit failed: "</span> &lt;&lt; glewGetErrorString(err) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// render loop</span></div><div class="line">    <span class="keyword">while</span> (!glfwWindowShouldClose(window))</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// input</span></div><div class="line">        <span class="comment">// ......</span></div><div class="line"></div><div class="line">        <span class="comment">// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)</span></div><div class="line">        glfwSwapBuffers(window);</div><div class="line">        glfwPollEvents();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// glfw: terminate, clearing all previously allocated GLFW resources.</span></div><div class="line">    glfwTerminate();</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="学习资源">学习资源</h3>
+<p>https://learnopengl-cn.github.io/</p>
 
           
         
       
     </div>
+
+    
+
     
     
     
@@ -358,6 +466,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -369,7 +479,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -384,11 +494,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/15/LeetCode84/" itemprop="url">84. Largest Rectangle in Histogram</a></h1>
+                <a class="post-title-link" href="/2017/09/15/LeetCode84/" itemprop="url">
+                  84. Largest Rectangle in Histogram
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -396,16 +516,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-15T21:16:53+08:00">
-                2017-09-15
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-15 21:16:53" itemprop="dateCreated datePublished" datetime="2017-09-15T21:16:53+08:00">2017-09-15</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:50" itemprop="dateModified" datetime="2018-07-10T13:34:50+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -436,9 +598,11 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-rectangle-in-histogram/description/</a></p>
-<p><img src="/media/15054814609061.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>贪心？DP？</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/largest-rectangle-in-histogram/description/</p>
+<p><img src="/media/15054814609061.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>贪心？DP？</p>
 <p>DP的话，似乎要N^2的复杂度</p>
 <p>先用DP试一下，就是算i~j之间的最小值吧</p>
 <p>唔，用DP，简单地算最小值，然后处理，TLE</p>
@@ -448,6 +612,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -484,6 +651,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -495,7 +664,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -510,11 +679,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/12/LeetCode209/" itemprop="url">209. Minimum Size Subarray Sum</a></h1>
+                <a class="post-title-link" href="/2017/09/12/LeetCode209/" itemprop="url">
+                  209. Minimum Size Subarray Sum
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -522,16 +701,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T10:23:21+08:00">
-                2017-09-12
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-12 10:23:21" itemprop="dateCreated datePublished" datetime="2017-09-12T10:23:21+08:00">2017-09-12</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:47" itemprop="dateModified" datetime="2018-07-10T13:34:47+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -562,16 +783,23 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/minimum-size-subarray-sum/description/" target="_blank" rel="external">https://leetcode.com/problems/minimum-size-subarray-sum/description/</a></p>
-<p><img src="/media/15051830630952.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>逐个遍历，然后保存最小的序列？是不是想得太简单点了，复杂度的话，O(n^2)，这应该是上界，一般不会这会多吧</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span><span class="params">(self, s, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: int</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        sum = <span class="number">0</span></div><div class="line">        sum += nums[<span class="number">0</span>]</div><div class="line">        <span class="keyword">if</span> sum &gt; s:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        a = <span class="number">0</span></div><div class="line">        ans = sys.maxsize</div><div class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</div><div class="line">            sum += nums[b]</div><div class="line">            <span class="keyword">while</span> sum &gt;= s:</div><div class="line">                ans = min(ans, b - a + <span class="number">1</span>)</div><div class="line">                sum -= nums[a]</div><div class="line">                a += <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> ans == sys.maxsize:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>准确的复杂度自己也说不清楚，应该能得到一个上界小于O(n^2)</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/minimum-size-subarray-sum/description/</p>
+<p><img src="/media/15051830630952.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>逐个遍历，然后保存最小的序列？是不是想得太简单点了，复杂度的话，O(n^2)，这应该是上界，一般不会这会多吧</p>
+<h2 id="答案">答案</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span><span class="params">(self, s, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: int</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        sum = <span class="number">0</span></div><div class="line">        sum += nums[<span class="number">0</span>]</div><div class="line">        <span class="keyword">if</span> sum &gt; s:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        a = <span class="number">0</span></div><div class="line">        ans = sys.maxsize</div><div class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</div><div class="line">            sum += nums[b]</div><div class="line">            <span class="keyword">while</span> sum &gt;= s:</div><div class="line">                ans = min(ans, b - a + <span class="number">1</span>)</div><div class="line">                sum -= nums[a]</div><div class="line">                a += <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> ans == sys.maxsize:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<h2 id="回顾">回顾</h2>
+<p>准确的复杂度自己也说不清楚，应该能得到一个上界小于O(n^2)</p>
 
           
         
       
     </div>
+
+    
+
     
     
     
@@ -608,6 +836,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -619,7 +849,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -634,11 +864,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/11/LeetCode49/" itemprop="url">49. Group Anagrams</a></h1>
+                <a class="post-title-link" href="/2017/09/11/LeetCode49/" itemprop="url">
+                  49. Group Anagrams
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -646,16 +886,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-11T16:15:22+08:00">
-                2017-09-11
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-11 16:15:22" itemprop="dateCreated datePublished" datetime="2017-09-11T16:15:22+08:00">2017-09-11</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:44" itemprop="dateModified" datetime="2018-07-10T13:34:44+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -686,16 +968,20 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/group-anagrams/description/" target="_blank" rel="external">https://leetcode.com/problems/group-anagrams/description/</a></p>
-<p><img src="/media/15051177753190.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/group-anagrams/description/</p>
+<p><img src="/media/15051177753190.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中</p>
 <p>用python做了下，主要的时间花在了研究python的语法上</p>
 <p>这道题用C/C++还真要花点功夫</p>
 <p>自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个hash，但是没有找到这样的一个hash函数</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</div><div class="line">            inserted = <span class="keyword">False</span></div><div class="line">            tmp = <span class="string">''</span>.join(sorted(str))</div><div class="line">            <span class="keyword">if</span> tmp <span class="keyword">in</span> m:</div><div class="line">                m[tmp].append(str)</div><div class="line">                inserted = <span class="keyword">True</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[tmp] = [str]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>高级语言一些封装好的东西，真的是太方便了</p>
+<h2 id="答案">答案</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</div><div class="line">            inserted = <span class="keyword">False</span></div><div class="line">            tmp = <span class="string">''</span>.join(sorted(str))</div><div class="line">            <span class="keyword">if</span> tmp <span class="keyword">in</span> m:</div><div class="line">                m[tmp].append(str)</div><div class="line">                inserted = <span class="keyword">True</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[tmp] = [str]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
+<h2 id="回顾">回顾</h2>
+<p>高级语言一些封装好的东西，真的是太方便了</p>
 <p>看了别人的解答，有这样的一个hash函数而自己没有想到</p>
-<p>用素数！<br>每个字母用一个素数表示<br>于是，一个str用每个字母的乘积表示，这不会重复！！！</p>
+<p>用素数！ 每个字母用一个素数表示 于是，一个str用每个字母的乘积表示，这不会重复！！！</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        prime = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">101</span>]</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> strs:</div><div class="line">            <span class="comment"># v = reduce(lambda x, y: prime[ord(x) - 97] * prime[ord(y) - 97], s)</span></div><div class="line">            v = <span class="number">1</span></div><div class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> s:</div><div class="line">                v *= prime[ord(c) - <span class="number">97</span>]</div><div class="line">            <span class="keyword">if</span> v <span class="keyword">in</span> m:</div><div class="line">                m[v].append(s)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[v] = [s]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
 <p>用py写了下，本以为会beat &gt;90%，没想到不快反慢了，这可能是python的原因吧，或者python本身的dictionary很高效</p>
 
@@ -703,6 +989,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -739,6 +1028,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -750,7 +1041,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -765,11 +1056,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/10/LeetCode45/" itemprop="url">45. Jump Game II</a></h1>
+                <a class="post-title-link" href="/2017/09/10/LeetCode45/" itemprop="url">
+                  45. Jump Game II
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -777,16 +1078,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-10T15:29:17+08:00">
-                2017-09-10
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-10 15:29:17" itemprop="dateCreated datePublished" datetime="2017-09-10T15:29:17+08:00">2017-09-10</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:39" itemprop="dateModified" datetime="2018-07-10T13:34:39+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -817,18 +1160,22 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/jump-game-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/jump-game-ii/description/</a></p>
-<p><img src="/media/15050286053481.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>贪心！<br>首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想…</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/jump-game-ii/description/</p>
+<p><img src="/media/15050286053481.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>贪心！ 首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想…</p>
 <p>其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了</p>
 <p>遍历，更新，应该就是这样吧</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        a = [sys.maxsize] * len(nums)</div><div class="line">        a[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> i + j &lt; len(a):</div><div class="line">                    a[i + j] = min(a[i + j], a[i] + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> a[<span class="number">-1</span>]</div></pre></td></tr></table></figure>
-<p>算是比较暴力的解决办法，不出所料，TLE…<br>毕竟是hard的题，不会那么简单吧</p>
+<p>算是比较暴力的解决办法，不出所料，TLE… 毕竟是hard的题，不会那么简单吧</p>
 <hr>
 <p>贪心，深度优先</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>参考一个人写的贪心的答案:</p>
+<h2 id="答案">答案</h2>
+<p>参考一个人写的贪心的答案:</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        ans = <span class="number">0</span></div><div class="line">        end = <span class="number">0</span></div><div class="line">        furthest = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums[:<span class="number">-1</span>]):</div><div class="line">            furthest = max(furthest, i + n)</div><div class="line">            <span class="keyword">if</span> i == end:</div><div class="line">                ans += <span class="number">1</span></div><div class="line">                end = furthest</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个答案很精巧</p>
+<h2 id="回顾">回顾</h2>
+<p>这个答案很精巧</p>
 <p>贪心，抓住关键点：能通过一步，走到最远的地方</p>
 <p><strong>经典</strong></p>
 
@@ -836,6 +1183,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -872,6 +1222,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -883,7 +1235,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -898,11 +1250,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/10/LeetCode241/" itemprop="url">241. Different Ways to Add Parentheses</a></h1>
+                <a class="post-title-link" href="/2017/09/10/LeetCode241/" itemprop="url">
+                  241. Different Ways to Add Parentheses
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -910,16 +1272,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-10T14:27:48+08:00">
-                2017-09-10
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-10 14:27:48" itemprop="dateCreated datePublished" datetime="2017-09-10T14:27:48+08:00">2017-09-10</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:36" itemprop="dateModified" datetime="2018-07-10T13:34:36+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -950,21 +1354,28 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/description/" target="_blank" rel="external">https://leetcode.com/problems/different-ways-to-add-parentheses/description/</a></p>
-<p><img src="/media/15050249179021.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个应该有多种解法吧<br>转化为构建二叉树？</p>
-<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…<br>这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组<br>不考虑，而且好像也不是那么回事</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/different-ways-to-add-parentheses/description/</p>
+<p><img src="/media/15050249179021.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>这个应该有多种解法吧 转化为构建二叉树？</p>
+<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果… 这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组 不考虑，而且好像也不是那么回事</p>
 <p>如果递归地遍历地话，会不会超时</p>
-<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式<br>这只是抽象出来了，如何写呢？</p>
+<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式 这只是抽象出来了，如何写呢？</p>
 <p>不会…</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
+<h2 id="答案">答案</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<h2 id="回顾">回顾</h2>
+<p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
 <p>我想应该有更好的方法，但是，不想了…</p>
 
           
         
       
     </div>
+
+    
+
     
     
     
@@ -1001,6 +1412,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1012,7 +1425,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -1027,11 +1440,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/10/LeetCode221/" itemprop="url">221. Maximal Square</a></h1>
+                <a class="post-title-link" href="/2017/09/10/LeetCode221/" itemprop="url">
+                  221. Maximal Square
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1039,16 +1462,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-10T11:05:56+08:00">
-                2017-09-10
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-10 11:05:56" itemprop="dateCreated datePublished" datetime="2017-09-10T11:05:56+08:00">2017-09-10</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:33" itemprop="dateModified" datetime="2018-07-10T13:34:33+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1079,13 +1544,17 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/maximal-square/description/" target="_blank" rel="external">https://leetcode.com/problems/maximal-square/description/</a></p>
-<p><img src="/media/15050128035141.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>直觉告诉我，这是用DP做的<br>但如果很单纯地算各个大小的块的话，空间太浪费了</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/maximal-square/description/</p>
+<p><img src="/media/15050128035141.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>直觉告诉我，这是用DP做的 但如果很单纯地算各个大小的块的话，空间太浪费了</p>
 <p>没有想法，看别人的解答</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximalSquare</span><span class="params">(self, matrix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type matrix: List[List[str]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        max_size = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>]))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix))]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix)):</div><div class="line">            max_size[i][<span class="number">0</span>] = int(matrix[i][<span class="number">0</span>])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</div><div class="line">            max_size[<span class="number">0</span>][i] = int(matrix[<span class="number">0</span>][i])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix[<span class="number">0</span>])):</div><div class="line">                <span class="keyword">if</span> int(matrix[i][j]) == <span class="number">0</span>:</div><div class="line">                    max_size[i][j] = <span class="number">0</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    max_size[i][j] = min(max_size[i - <span class="number">1</span>][j - <span class="number">1</span>], max_size[i][j - <span class="number">1</span>], max_size[i - <span class="number">1</span>][j]) + <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max([max(l) <span class="keyword">for</span> l <span class="keyword">in</span> max_size]) ** <span class="number">2</span></div></pre></td></tr></table></figure>
+<h2 id="答案">答案</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximalSquare</span><span class="params">(self, matrix)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type matrix: List[List[str]]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        max_size = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>]))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix))]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix)):</div><div class="line">            max_size[i][<span class="number">0</span>] = int(matrix[i][<span class="number">0</span>])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>])):</div><div class="line">            max_size[<span class="number">0</span>][i] = int(matrix[<span class="number">0</span>][i])</div><div class="line">            </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix)):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(matrix[<span class="number">0</span>])):</div><div class="line">                <span class="keyword">if</span> int(matrix[i][j]) == <span class="number">0</span>:</div><div class="line">                    max_size[i][j] = <span class="number">0</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    max_size[i][j] = min(max_size[i - <span class="number">1</span>][j - <span class="number">1</span>], max_size[i][j - <span class="number">1</span>], max_size[i - <span class="number">1</span>][j]) + <span class="number">1</span></div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max([max(l) <span class="keyword">for</span> l <span class="keyword">in</span> max_size]) ** <span class="number">2</span></div></pre></td></tr></table></figure>
 <p>根据别人的想法写出来的</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实DP的确是运用在此处的，但是自己没有找到所谓的<em>state equation</em>，关系等式</p>
+<h2 id="回顾">回顾</h2>
+<p>其实DP的确是运用在此处的，但是自己没有找到所谓的<em>state equation</em>，关系等式</p>
 <p>而在这个题目中，关键的关系等式就是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">max_size[i][j] = min(max_size[i - 1][j], max_size[i][j - 1], max_size[i - 1][j - 1]) + 1</div></pre></td></tr></table></figure>
 <p>自己最开始想的是计算出每一点是最大的，认为会浪费太多的时间，便是其实并不知道每个点最终能够有多大的空间，而是要讨论其中一个（比如右下角）最后能张成多大的空间就可以了，这是关键！</p>
@@ -1094,6 +1563,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -1130,6 +1602,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1141,7 +1615,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -1156,11 +1630,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/09/LeetCode105/" itemprop="url">105. Construct Binary Tree from Preorder and Inorder Traversal</a></h1>
+                <a class="post-title-link" href="/2017/09/09/LeetCode105/" itemprop="url">
+                  105. Construct Binary Tree from Preorder and Inorder Traversal
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1168,16 +1652,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-09T09:40:45+08:00">
-                2017-09-09
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-09 09:40:45" itemprop="dateCreated datePublished" datetime="2017-09-09T09:40:45+08:00">2017-09-09</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:30" itemprop="dateModified" datetime="2018-07-10T13:34:30+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1208,19 +1734,26 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="external">https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/</a></p>
-<p><img src="/media/15049213069728.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>经典题目，思路是清楚的，就是具体怎么写需要想想</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/</p>
+<p><img src="/media/15049213069728.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>经典题目，思路是清楚的，就是具体怎么写需要想想</p>
 <p>反正是建树，递归做</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator prebegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator preend, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inbegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inend)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (prebegin == preend)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(*prebegin);</div><div class="line">        <span class="keyword">auto</span> inmid = <span class="built_in">std</span>::find(inbegin, inend, *prebegin);</div><div class="line">        root-&gt;left = helper(prebegin + <span class="number">1</span>, prebegin + (inmid - inbegin) + <span class="number">1</span>, inbegin, inmid);</div><div class="line">        root-&gt;right = helper(prebegin + (inmid - inbegin) + <span class="number">1</span>, preend , inmid + <span class="number">1</span>, inend);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>一次AC</p>
-<p>这算是一次对C++的vector与iterator操作的熟悉吧，如何传递一个子的vector，需要iterator来帮助<br>如果用python做，肯定超省劲</p>
+<h2 id="答案">答案</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator prebegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator preend, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inbegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inend)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (prebegin == preend)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(*prebegin);</div><div class="line">        <span class="keyword">auto</span> inmid = <span class="built_in">std</span>::find(inbegin, inend, *prebegin);</div><div class="line">        root-&gt;left = helper(prebegin + <span class="number">1</span>, prebegin + (inmid - inbegin) + <span class="number">1</span>, inbegin, inmid);</div><div class="line">        root-&gt;right = helper(prebegin + (inmid - inbegin) + <span class="number">1</span>, preend , inmid + <span class="number">1</span>, inend);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾">回顾</h2>
+<p>一次AC</p>
+<p>这算是一次对C++的vector与iterator操作的熟悉吧，如何传递一个子的vector，需要iterator来帮助 如果用python做，肯定超省劲</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type preorder: List[int]</div><div class="line">        :type inorder: List[int]</div><div class="line">        :rtype: TreeNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> inorder:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        mid = preorder.pop(<span class="number">0</span>)</div><div class="line">        idx = inorder.index(mid)</div><div class="line">        root = TreeNode(mid)</div><div class="line">        root.left = self.buildTree(preorder, inorder[:idx])</div><div class="line">        root.right = self.buildTree(preorder, inorder[idx + <span class="number">1</span>:])</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
 
           
         
       
     </div>
+
+    
+
     
     
     
@@ -1257,6 +1790,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1268,7 +1803,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -1283,11 +1818,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/06/LeetCode240/" itemprop="url">240. Search a 2D Matrix II</a></h1>
+                <a class="post-title-link" href="/2017/09/06/LeetCode240/" itemprop="url">
+                  240. Search a 2D Matrix II
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1295,16 +1840,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T14:38:48+08:00">
-                2017-09-06
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-06 14:38:48" itemprop="dateCreated datePublished" datetime="2017-09-06T14:38:48+08:00">2017-09-06</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:26" itemprop="dateModified" datetime="2018-07-10T13:34:26+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1335,22 +1922,29 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/search-a-2d-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/search-a-2d-matrix-ii/description/</a></p>
-<p><img src="/media/15046799707349.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>对角线延伸？</p>
-<p>最直觉的是，扫一行，找到特定行再扫列<br>不，并不对</p>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/search-a-2d-matrix-ii/description/</p>
+<p><img src="/media/15046799707349.jpg"></p>
+<h2 id="想法">想法</h2>
+<p>对角线延伸？</p>
+<p>最直觉的是，扫一行，找到特定行再扫列 不，并不对</p>
 <p>对角线！</p>
-<p>二分查找：<br>0, 1, 2, 3, 4, 5</p>
+<p>二分查找： 0, 1, 2, 3, 4, 5</p>
 <p>看别人解答吧，感觉思路不够明确</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchMatrix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (matrix.size() == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> m = matrix.size();</div><div class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] == target)</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] &gt; target)</div><div class="line">                j--;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这算是一个经典的trick吧</p>
-<p>还是自己没能发现其中的性质<br>把向两边扩展转化为只向一边扩展，这真的很关键！！！</p>
+<h2 id="答案">答案</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchMatrix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (matrix.size() == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> m = matrix.size();</div><div class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] == target)</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] &gt; target)</div><div class="line">                j--;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾">回顾</h2>
+<p>这算是一个经典的trick吧</p>
+<p>还是自己没能发现其中的性质 把向两边扩展转化为只向一边扩展，这真的很关键！！！</p>
 <p>记住它吧！</p>
 
           
         
       
     </div>
+
+    
+
     
     
     
@@ -1389,6 +1983,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1398,7 +1994,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -1413,11 +2009,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/06/LeetCode537/" itemprop="url">537. Complex Number Multiplication</a></h1>
+                <a class="post-title-link" href="/2017/09/06/LeetCode537/" itemprop="url">
+                  537. Complex Number Multiplication
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1425,16 +2031,58 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-06T14:27:37+08:00">
-                2017-09-06
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-09-06 14:27:37" itemprop="dateCreated datePublished" datetime="2017-09-06T14:27:37+08:00">2017-09-06</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:23" itemprop="dateModified" datetime="2018-07-10T13:34:23+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1465,9 +2113,11 @@
       
         
           
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/complex-number-multiplication/description/" target="_blank" rel="external">https://leetcode.com/problems/complex-number-multiplication/description/</a></p>
-<p><img src="/media/15046793296092.jpg" alt=""></p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">complexNumberMultiply</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">auto</span> i = a.find(<span class="string">'+'</span>);</div><div class="line">        <span class="keyword">int</span> aa = stoi(a.substr(<span class="number">0</span>, i + <span class="number">1</span>));</div><div class="line">        <span class="keyword">int</span> ab = stoi(a.substr(i + <span class="number">1</span>, a.length() - <span class="number">1</span>));</div><div class="line"></div><div class="line">        <span class="keyword">auto</span> j = b.find(<span class="string">'+'</span>);</div><div class="line">        <span class="keyword">int</span> ba = stoi(b.substr(<span class="number">0</span>, j + <span class="number">1</span>));</div><div class="line">        <span class="keyword">int</span> bb = stoi(b.substr(j + <span class="number">1</span>, b.length() - <span class="number">1</span>));</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> ca = aa * ba - ab * bb;</div><div class="line">        <span class="keyword">int</span> cb = aa * bb + ab * ba;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> (to_string(ca) + <span class="string">'+'</span> + to_string(cb) + <span class="string">'i'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+            <h2 id="题目">题目</h2>
+<p>https://leetcode.com/problems/complex-number-multiplication/description/</p>
+<p><img src="/media/15046793296092.jpg"></p>
+<h2 id="答案">答案</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">complexNumberMultiply</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">auto</span> i = a.find(<span class="string">'+'</span>);</div><div class="line">        <span class="keyword">int</span> aa = stoi(a.substr(<span class="number">0</span>, i + <span class="number">1</span>));</div><div class="line">        <span class="keyword">int</span> ab = stoi(a.substr(i + <span class="number">1</span>, a.length() - <span class="number">1</span>));</div><div class="line"></div><div class="line">        <span class="keyword">auto</span> j = b.find(<span class="string">'+'</span>);</div><div class="line">        <span class="keyword">int</span> ba = stoi(b.substr(<span class="number">0</span>, j + <span class="number">1</span>));</div><div class="line">        <span class="keyword">int</span> bb = stoi(b.substr(j + <span class="number">1</span>, b.length() - <span class="number">1</span>));</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> ca = aa * ba - ab * bb;</div><div class="line">        <span class="keyword">int</span> cb = aa * bb + ab * ba;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> (to_string(ca) + <span class="string">'+'</span> + to_string(cb) + <span class="string">'i'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>用<code>stringstream</code>写起来更简单</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    string complexNumberMultiply(string a, string b) &#123;</div><div class="line">        std::stringstream a_in(a), b_in(b);</div><div class="line">        int aa, ab, ba, bb;</div><div class="line">        char tmp;</div><div class="line">        a_in &gt;&gt; aa &gt;&gt; tmp &gt;&gt; ab &gt;&gt; tmp;</div><div class="line">        b_in &gt;&gt; ba &gt;&gt; tmp &gt;&gt; bb &gt;&gt; tmp;</div><div class="line">        std::stringstream ans;</div><div class="line">        ans &lt;&lt; aa * ba - ab * bb &lt;&lt; '+' &lt;&lt; aa * bb + ab * ba &lt;&lt; 'i';</div><div class="line">        return ans.str();</div><div class="line">        // return to_string(aa * ba - ab * bb) + '+' + to_string(aa * bb + ab * ba) + 'i';</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
@@ -1475,6 +2125,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -1509,15 +2162,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1552,35 +2202,87 @@
               <p class="site-description motion-element" itemprop="description">Coder love Design</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-            
-
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -1601,16 +2303,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
 
 
 
@@ -1618,12 +2324,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 
 
         
+
 
 
 
@@ -1662,7 +2369,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -1682,16 +2393,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -1700,18 +2401,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -1723,40 +2419,28 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1768,6 +2452,23 @@
 
   
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
@@ -1777,27 +2478,40 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
 
+  
+
+
+  
+  
+
+  
+
+  
+
+  
 
   
 

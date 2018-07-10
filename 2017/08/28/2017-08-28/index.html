@@ -2,15 +2,25 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="en">
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +48,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,46 +56,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="C++ 测试框架Catch使用今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式https://github.com/philsquared/Catchhttps://github.com/phils">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++测试框架Catch的作用">
-<meta property="og:url" content="http://yoursite.com/2017/08/28/2017-08-28/index.html">
-<meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="C++ 测试框架Catch使用今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式https://github.com/philsquared/Catchhttps://github.com/phils">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-26T15:10:06.935Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++测试框架Catch的作用">
-<meta name="twitter:description" content="C++ 测试框架Catch使用今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式https://github.com/philsquared/Catchhttps://github.com/phils">
 
 
 
@@ -98,15 +83,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -118,12 +101,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="C++ 测试框架Catch使用 今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式 https://github.com/philsquared/Catch https://github.com/ph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++测试框架Catch的作用">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/2017-08-28/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="C++ 测试框架Catch使用 今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式 https://github.com/philsquared/Catch https://github.com/ph">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-10T05:33:37.407Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++测试框架Catch的作用">
+<meta name="twitter:description" content="C++ 测试框架Catch使用 今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。 Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是Catch。 引入方式 https://github.com/philsquared/Catch https://github.com/ph">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/2017/08/28/2017-08-28/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>C++测试框架Catch的作用 | Xiaodong's Blog</title>
   
@@ -131,18 +139,37 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-108560624-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -162,19 +189,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaodong's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Coder love Design</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,35 +211,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -218,12 +257,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -236,6 +283,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -245,7 +294,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -258,11 +307,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++测试框架Catch的作用</h1>
+          <h1 class="post-title" itemprop="name headline">C++测试框架Catch的作用
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -270,16 +327,51 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-28T23:53:21+08:00">
-                2017-08-28
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-08-28 23:53:21" itemprop="dateCreated datePublished" datetime="2017-08-28T23:53:21+08:00">2017-08-28</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:33:37" itemprop="dateModified" datetime="2018-07-10T13:33:37+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -308,28 +400,31 @@
       
 
       
-        <h1 id="C-测试框架Catch使用"><a href="#C-测试框架Catch使用" class="headerlink" title="C++ 测试框架Catch使用"></a>C++ 测试框架<code>Catch</code>使用</h1><p>今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。</p>
+        <h1 id="c-测试框架catch使用">C++ 测试框架<code>Catch</code>使用</h1>
+<p>今天第一次接触并使用C++测试框架，也是有需求的，是因为自己跟着lept_json教程来写json的parser，顺便可以学一下测试框架的使用。</p>
 <p>Google Test还是没有配好，可能之后等熟悉测试框架了之后再说。这次使用的是<code>Catch</code>。</p>
-<h2 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h2><p><a href="https://github.com/philsquared/Catch" target="_blank" rel="external">https://github.com/philsquared/Catch</a><br><a href="https://github.com/philsquared/Catch/blob/master/docs/tutorial.md" target="_blank" rel="external">https://github.com/philsquared/Catch/blob/master/docs/tutorial.md</a><br>GitHub上的Repo已经说得比较清楚了</p>
-<ol>
+<h2 id="引入方式">引入方式</h2>
+<p>https://github.com/philsquared/Catch https://github.com/philsquared/Catch/blob/master/docs/tutorial.md GitHub上的Repo已经说得比较清楚了</p>
+<ol type="1">
 <li>下载<code>catch.hpp</code> 就一个单的头文件</li>
 <li>放到想要放的地方</li>
 <li>按正常的头文件引入就可以了，在CMake里写相应的东西</li>
 </ol>
 <p>但为了测试与原有的项目分离，还是需要有所规划，因为这个json parser的项目很简单，没有分得很清晰严格。</p>
-<h2 id="工程示例"><a href="#工程示例" class="headerlink" title="工程示例"></a>工程示例</h2><p><strong>工程结构</strong></p>
+<h2 id="工程示例">工程示例</h2>
+<p><strong>工程结构</strong></p>
 <ul>
-<li>my_lept_json<ul>
-<li>lib<ul>
+<li>my_lept_json
+<ul>
+<li>lib
+<ul>
 <li>catch.cpp</li>
-</ul>
-</li>
+</ul></li>
 <li>CMakeLists.txt</li>
 <li>lept_json.h</li>
 <li>lept_json.cpp</li>
 <li>test.cpp</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p><strong>CMake配置</strong>：<code>CMakeLists.txt</code></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</div><div class="line"><span class="keyword">project</span>(my_lept_json)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span>(CATCH_TEST_HEADER lib/catch.hpp)</div><div class="line"><span class="keyword">set</span>(SOURCE_FILES lept_json.h lept_json.cpp)</div><div class="line"><span class="keyword">set</span>(TEST_FILES test.cpp)</div><div class="line"><span class="keyword">add_executable</span>(my_lept_json <span class="variable">$&#123;SOURCE_FILES&#125;</span> <span class="variable">$&#123;CATCH_TEST_HEADER&#125;</span> <span class="variable">$&#123;TEST_FILES&#125;</span>)</div><div class="line"><span class="keyword">target_link_libraries</span>(my_lept_json)</div></pre></td></tr></table></figure>
@@ -338,6 +433,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -397,9 +495,6 @@
           </div>
           
 
-
-          
-
   
 
 
@@ -445,35 +540,87 @@
               <p class="site-description motion-element" itemprop="description">Coder love Design</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-            
-
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -489,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-测试框架Catch使用"><span class="nav-number">1.</span> <span class="nav-text">C++ 测试框架Catch使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入方式"><span class="nav-number">1.1.</span> <span class="nav-text">引入方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程示例"><span class="nav-number">1.2.</span> <span class="nav-text">工程示例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c-测试框架catch使用"><span class="nav-number">1.</span> <span class="nav-text">C++ 测试框架Catch使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入方式"><span class="nav-number">1.1.</span> <span class="nav-text">引入方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程示例"><span class="nav-number">1.2.</span> <span class="nav-text">工程示例</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -510,16 +657,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
 
 
 
@@ -527,12 +678,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 
 
         
+
 
 
 
@@ -571,7 +723,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -591,16 +747,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -609,18 +755,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -628,48 +769,36 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -681,6 +810,23 @@
 
   
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
@@ -690,27 +836,18 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
+
+  
+  
+
+  
+
+  
+
+  
 
   
 

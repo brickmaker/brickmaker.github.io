@@ -2,15 +2,25 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="en">
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +48,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,46 +56,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M L光">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vim Cheatsheets">
-<meta property="og:url" content="http://yoursite.com/2018/06/28/2018-06-28/index.html">
-<meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M L光">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-30T13:03:53.898Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vim Cheatsheets">
-<meta name="twitter:description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M L光">
 
 
 
@@ -98,15 +83,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -118,12 +101,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c 删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G 跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim Cheatsheets">
+<meta property="og:url" content="http://yoursite.com/2018/06/28/2018-06-28/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c 删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G 跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-10T05:40:58.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim Cheatsheets">
+<meta name="twitter:description" content="作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。  c 删除并编辑，d用的很多，但是c却很少用，大多数都是d然后i，但这在运用.的时候，就会很低效 :&amp;lt;NUM&amp;gt; &amp;lt;NUM&amp;gt;G 跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过 H M">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/2018/06/28/2018-06-28/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Vim Cheatsheets | Xiaodong's Blog</title>
   
@@ -131,18 +139,37 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-108560624-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -162,19 +189,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaodong's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Coder love Design</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,35 +211,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -218,12 +257,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -236,6 +283,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -245,7 +294,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -258,11 +307,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vim Cheatsheets</h1>
+          <h1 class="post-title" itemprop="name headline">Vim Cheatsheets
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -270,16 +327,51 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T23:30:26+08:00">
-                2018-06-28
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-06-28 23:30:26" itemprop="dateCreated datePublished" datetime="2018-06-28T23:30:26+08:00">2018-06-28</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:40:58" itemprop="dateModified" datetime="2018-07-10T13:40:58+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Coding/" itemprop="url" rel="index"><span itemprop="name">Coding</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -310,15 +402,22 @@
       
         <p>作为接触vim已经有两年的人来说，自己对vim的使用还是属于比较肤浅的状态，虽然本着这类工具，够用就行，不要花过多时间，喧宾夺主，但是还是记一些自己用的不太多但是很有用的命令吧。</p>
 <hr>
-<h4 id="c"><a href="#c" class="headerlink" title="c"></a><code>c</code></h4><p>删除并编辑，<code>d</code>用的很多，但是<code>c</code>却很少用，大多数都是<code>d</code>然后<code>i</code>，但这在运用<code>.</code>的时候，就会很低效</p>
-<h4 id="lt-NUM-gt-lt-NUM-gt-G"><a href="#lt-NUM-gt-lt-NUM-gt-G" class="headerlink" title=":&lt;NUM&gt; &lt;NUM&gt;G"></a><code>:&lt;NUM&gt;</code> <code>&lt;NUM&gt;G</code></h4><p>跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过</p>
-<h4 id="H-M-L"><a href="#H-M-L" class="headerlink" title="H M L"></a><code>H</code> <code>M</code> <code>L</code></h4><p>光标跳转到屏幕顶、中、底<br>用到的比较少，但是想想也是很有用的</p>
-<h4 id="lt-gt"><a href="#lt-gt" class="headerlink" title="&lt; &gt;"></a><code>&lt;</code> <code>&gt;</code></h4><p>shift left/right 也就是可以调整代码缩进，这个以前都没发现啊</p>
+<h4 id="c"><code>c</code></h4>
+<p>删除并编辑，<code>d</code>用的很多，但是<code>c</code>却很少用，大多数都是<code>d</code>然后<code>i</code>，但这在运用<code>.</code>的时候，就会很低效</p>
+<h4 id="num-numg"><code>:&lt;NUM&gt;</code> <code>&lt;NUM&gt;G</code></h4>
+<p>跳转到指定行，这个是一个比较基本的功能，可是之前都没怎么用过</p>
+<h4 id="h-m-l"><code>H</code> <code>M</code> <code>L</code></h4>
+<p>光标跳转到屏幕顶、中、底 用到的比较少，但是想想也是很有用的</p>
+<h4 id="section"><code>&lt;</code> <code>&gt;</code></h4>
+<p>shift left/right 也就是可以调整代码缩进，这个以前都没发现啊</p>
 <p>以前自己加缩进：<code>&lt;C-Q&gt;jjjI&lt;Tab&gt;&lt;Esc&gt;</code> 现在看起来好傻</p>
-<p>需要制定区域，像<code>c</code>,<code>d</code>一样<br><code>&lt;&lt;</code> <code>&gt;&gt;</code> 对一行操作</p>
+<p>需要制定区域，像<code>c</code>,<code>d</code>一样 <code>&lt;&lt;</code> <code>&gt;&gt;</code> 对一行操作</p>
 
       
     </div>
+
+    
+
     
     
     
@@ -378,9 +477,6 @@
           </div>
           
 
-
-          
-
   
 
 
@@ -426,35 +522,87 @@
               <p class="site-description motion-element" itemprop="description">Coder love Design</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-            
-
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -470,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#c"><span class="nav-number">1.</span> <span class="nav-text">c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-NUM-gt-lt-NUM-gt-G"><span class="nav-number">2.</span> <span class="nav-text">:<NUM> <NUM>G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#H-M-L"><span class="nav-number">3.</span> <span class="nav-text">H M L</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-gt"><span class="nav-number">4.</span> <span class="nav-text">< ></span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#c"><span class="nav-number">1.</span> <span class="nav-text">c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#num-numg"><span class="nav-number">2.</span> <span class="nav-text">:<NUM> <NUM>G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#h-m-l"><span class="nav-number">3.</span> <span class="nav-text">H M L</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#section"><span class="nav-number">4.</span> <span class="nav-text">< ></span></a></li></ol></div>
             
 
           </div>
@@ -491,16 +639,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
 
 
 
@@ -508,12 +660,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 
 
         
+
 
 
 
@@ -552,7 +705,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -572,16 +729,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -590,18 +737,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -609,48 +751,36 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -662,6 +792,23 @@
 
   
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
@@ -671,27 +818,18 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
+
+  
+  
+
+  
+
+  
+
+  
 
   
 

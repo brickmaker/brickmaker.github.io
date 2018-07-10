@@ -2,15 +2,25 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="en">
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +48,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,46 +56,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
-<meta property="og:type" content="article">
-<meta property="og:title" content="First Look of Titanic Problem on Kaggle">
-<meta property="og:url" content="http://yoursite.com/2017/07/27/kaggle-first-look/index.html">
-<meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-26T15:10:06.937Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Look of Titanic Problem on Kaggle">
-<meta name="twitter:description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
 
 
 
@@ -98,15 +83,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -118,12 +101,37 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="Preface 用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程 按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="First Look of Titanic Problem on Kaggle">
+<meta property="og:url" content="http://yoursite.com/2017/07/27/kaggle-first-look/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="Preface 用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程 按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-10T05:22:17.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="First Look of Titanic Problem on Kaggle">
+<meta name="twitter:description" content="Preface 用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程 按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用">
+
+
+
+
+
 
   <link rel="canonical" href="http://yoursite.com/2017/07/27/kaggle-first-look/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>First Look of Titanic Problem on Kaggle | Xiaodong's Blog</title>
   
@@ -131,18 +139,37 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-108560624-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
 
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -162,19 +189,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Xiaodong's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Coder love Design</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -182,35 +211,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -218,12 +257,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -236,6 +283,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -245,7 +294,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Coder love Design">
       <meta itemprop="image" content="/images/pic_reverse.png">
     </span>
 
@@ -258,11 +307,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">First Look of Titanic Problem on Kaggle</h1>
+          <h1 class="post-title" itemprop="name headline">First Look of Titanic Problem on Kaggle
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -270,16 +327,51 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">
-                2017-07-27
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-07-27 22:12:27" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">2017-07-27</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:22:17" itemprop="dateModified" datetime="2018-07-10T13:22:17+08:00">2018-07-10</time>
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -308,56 +400,91 @@
       
 
       
-        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。</p>
-<h2 id="Titanic问题解决过程"><a href="#Titanic问题解决过程" class="headerlink" title="Titanic问题解决过程"></a>Titanic问题解决过程</h2><p>按照样例中的做法，结合自己的看法，重要的几步有：<strong>获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型进行学习和预测，得到结果</strong>。</p>
-<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>主要应用<code>pandas</code>进行操作，其中一个很关键的一点是其中的<code>DataFrame</code>类型的对象，是操作数据的载体，其拥有强大的一些函数，大大方便了对数据的感知，需要之后的进一步了解其特性。</p>
-<h3 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h3><p>分析数据大致分为三类，一个是用一些自带的函数作大致的信息查看；第二是提取一些feature的组合来看；三是用<code>matplotlib</code>或<code>seaborn</code>等可视化工具来可视化地查看一些属性。</p>
-<h4 id="整体大致查看"><a href="#整体大致查看" class="headerlink" title="整体大致查看"></a>整体大致查看</h4><p>用到的一些常用的函数有：</p>
+        <h2 id="preface">Preface</h2>
+<p>用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。</p>
+<h2 id="titanic问题解决过程">Titanic问题解决过程</h2>
+<p>按照样例中的做法，结合自己的看法，重要的几步有：<strong>获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型进行学习和预测，得到结果</strong>。</p>
+<h3 id="获取数据">获取数据</h3>
+<p>主要应用<code>pandas</code>进行操作，其中一个很关键的一点是其中的<code>DataFrame</code>类型的对象，是操作数据的载体，其拥有强大的一些函数，大大方便了对数据的感知，需要之后的进一步了解其特性。</p>
+<h3 id="分析数据">分析数据</h3>
+<p>分析数据大致分为三类，一个是用一些自带的函数作大致的信息查看；第二是提取一些feature的组合来看；三是用<code>matplotlib</code>或<code>seaborn</code>等可视化工具来可视化地查看一些属性。</p>
+<h4 id="整体大致查看">整体大致查看</h4>
+<p>用到的一些常用的函数有：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data_df.head() <span class="comment"># get first 5 element</span></div><div class="line">data_df.info()</div><div class="line">data_df.describe()</div><div class="line">data_df.shape()</div><div class="line">data_df.colums.values</div></pre></td></tr></table></figure>
-<h4 id="提取feature查看"><a href="#提取feature查看" class="headerlink" title="提取feature查看"></a>提取feature查看</h4><p>用一些组合与排序的方式达到目的，如：</p>
+<h4 id="提取feature查看">提取feature查看</h4>
+<p>用一些组合与排序的方式达到目的，如：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">train_df[[<span class="string">'Sex'</span>, <span class="string">'Survived'</span>]].groupby([<span class="string">'Sex'</span>], as_index=<span class="keyword">False</span>).mean().sort_values(by=<span class="string">'Sex'</span>)</div></pre></td></tr></table></figure>
 <table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Sex</th>
-      <th>Survived</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>female</td>
-      <td>0.742038</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>male</td>
-      <td>0.188908</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>
+</th>
+<th>
+Sex
+</th>
+<th>
+Survived
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+0
+</th>
+<td>
+female
+</td>
+<td>
+0.742038
+</td>
+</tr>
+<tr>
+<th>
+1
+</th>
+<td>
+male
+</td>
+<td>
+0.188908
+</td>
+</tr>
+</tbody>
 </table>
-
-<h4 id="可视化查看"><a href="#可视化查看" class="headerlink" title="可视化查看"></a>可视化查看</h4><p>这一方面，<code>matplotlib</code>及<code>seaborn</code>的函数众多，自己还需要进一步的了解，需要做到自如地处理数据，在不同的层面上比较。</p>
-<h3 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h3><h4 id="删除无用的数据"><a href="#删除无用的数据" class="headerlink" title="删除无用的数据"></a>删除无用的数据</h4><p><code>drop()</code>删除df中的无用数据：</p>
+<h4 id="可视化查看">可视化查看</h4>
+<p>这一方面，<code>matplotlib</code>及<code>seaborn</code>的函数众多，自己还需要进一步的了解，需要做到自如地处理数据，在不同的层面上比较。</p>
+<h3 id="处理数据">处理数据</h3>
+<h4 id="删除无用的数据">删除无用的数据</h4>
+<p><code>drop()</code>删除df中的无用数据：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train_df = train_df.drop([<span class="string">'Ticket'</span>, <span class="string">'Cabin'</span>], axis=<span class="number">1</span>)</div><div class="line">test_df = test_df.drop([<span class="string">'Ticket'</span>, <span class="string">'Cabin'</span>], axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
-<h4 id="在已有的基础上获取新数据"><a href="#在已有的基础上获取新数据" class="headerlink" title="在已有的基础上获取新数据"></a>在已有的基础上获取新数据</h4><p>进行计算或者组合等：</p>
+<h4 id="在已有的基础上获取新数据">在已有的基础上获取新数据</h4>
+<p>进行计算或者组合等：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> datasets <span class="keyword">in</span> combine:</div><div class="line">    datasets[<span class="string">'name_length'</span>] = datasets.Name.str.len()</div></pre></td></tr></table></figure>
-<h4 id="categorical-的数据到-ordinal的转化"><a href="#categorical-的数据到-ordinal的转化" class="headerlink" title="categorical 的数据到 ordinal的转化"></a>categorical 的数据到 ordinal的转化</h4><p>应用map将一些类型的数据，转化成数字型的，如：</p>
+<h4 id="categorical-的数据到-ordinal的转化">categorical 的数据到 ordinal的转化</h4>
+<p>应用map将一些类型的数据，转化成数字型的，如：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title_mapping = &#123;<span class="string">"Mr"</span>: <span class="number">1</span>, <span class="string">"Miss"</span>: <span class="number">2</span>, <span class="string">"Mrs"</span>: <span class="number">3</span>, <span class="string">"Master"</span>: <span class="number">4</span>, <span class="string">"Rare"</span>: <span class="number">5</span>&#125;</div><div class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</div><div class="line">    dataset[<span class="string">'Title'</span>] = dataset[<span class="string">'Title'</span>].map(title_mapping)</div><div class="line">    dataset[<span class="string">'Title'</span>] = dataset[<span class="string">'Title'</span>].fillna(<span class="number">0</span>)</div></pre></td></tr></table></figure>
-<h4 id="对null等非法值的处理"><a href="#对null等非法值的处理" class="headerlink" title="对null等非法值的处理"></a>对null等非法值的处理</h4><p>因为NaN，null等值会影响学习及预测，所以进行处理，有多种用其它数据替代的方式，也有好多trick，但是相对来说比较简单。</p>
+<h4 id="对null等非法值的处理">对null等非法值的处理</h4>
+<p>因为NaN，null等值会影响学习及预测，所以进行处理，有多种用其它数据替代的方式，也有好多trick，但是相对来说比较简单。</p>
 <p>如下，是采用有效值的平均进行替换：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">test_df[<span class="string">'Fare'</span>].fillna(test_df[<span class="string">'Fare'</span>].dropna().median(), inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<h4 id="对一些数值型的数据进行区间分类"><a href="#对一些数值型的数据进行区间分类" class="headerlink" title="对一些数值型的数据进行区间分类"></a>对一些数值型的数据进行区间分类</h4><p>先建立区间：</p>
+<h4 id="对一些数值型的数据进行区间分类">对一些数值型的数据进行区间分类</h4>
+<p>先建立区间：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train_df[<span class="string">'AgeBand'</span>] = pd.cut(train_df[<span class="string">'Age'</span>], <span class="number">5</span>)</div><div class="line">train_df[[<span class="string">'AgeBand'</span>, <span class="string">'Survived'</span>]].groupby([<span class="string">'AgeBand'</span>], as_index=<span class="keyword">False</span>).mean().sort_values(by=<span class="string">'AgeBand'</span>, ascending=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
 <p>再将原来的数值替换为区间代号：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:    </div><div class="line">    dataset.loc[ dataset[<span class="string">'Age'</span>] &lt;= <span class="number">16</span>, <span class="string">'Age'</span>] = <span class="number">0</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">16</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">32</span>), <span class="string">'Age'</span>] = <span class="number">1</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">32</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">48</span>), <span class="string">'Age'</span>] = <span class="number">2</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">48</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">64</span>), <span class="string">'Age'</span>] = <span class="number">3</span></div><div class="line">    dataset.loc[ dataset[<span class="string">'Age'</span>] &gt; <span class="number">64</span>, <span class="string">'Age'</span>] = <span class="number">4</span></div></pre></td></tr></table></figure>
-<h3 id="运用模型作学习与预测"><a href="#运用模型作学习与预测" class="headerlink" title="运用模型作学习与预测"></a>运用模型作学习与预测</h3><h4 id="选择模型进行学习-fit"><a href="#选择模型进行学习-fit" class="headerlink" title="选择模型进行学习 fit"></a>选择模型进行学习 <code>fit</code></h4><p>直接从<code>sklearn</code>中选择所需的模型，然后<code>fit</code>测试数据的X和Y：</p>
+<h3 id="运用模型作学习与预测">运用模型作学习与预测</h3>
+<h4 id="选择模型进行学习-fit">选择模型进行学习 <code>fit</code></h4>
+<p>直接从<code>sklearn</code>中选择所需的模型，然后<code>fit</code>测试数据的X和Y：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># SVM</span></div><div class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line">svc = SVC()</div><div class="line">svc.fit(X_train, Y_train)</div></pre></td></tr></table></figure>
-<h4 id="进行预测-predict"><a href="#进行预测-predict" class="headerlink" title="进行预测 predict"></a>进行预测 <code>predict</code></h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y_pred = svc.predict(X_test)</div></pre></td></tr></table></figure>
-<h4 id="评估-score"><a href="#评估-score" class="headerlink" title="评估 score"></a>评估 <code>score</code></h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">accurate_svc = svc.score(X_train, Y_train)</div></pre></td></tr></table></figure>
-<h4 id="选择最优的模型并计算出结果"><a href="#选择最优的模型并计算出结果" class="headerlink" title="选择最优的模型并计算出结果"></a>选择最优的模型并计算出结果</h4><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>作为机器学习，或者Kaggle的入门例子，这个例子看来来还是很明确的，也有几点记在了心中。</p>
-<ol>
+<h4 id="进行预测-predict">进行预测 <code>predict</code></h4>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y_pred = svc.predict(X_test)</div></pre></td></tr></table></figure>
+<h4 id="评估-score">评估 <code>score</code></h4>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">accurate_svc = svc.score(X_train, Y_train)</div></pre></td></tr></table></figure>
+<h4 id="选择最优的模型并计算出结果">选择最优的模型并计算出结果</h4>
+<h2 id="conclusion">Conclusion</h2>
+<p>作为机器学习，或者Kaggle的入门例子，这个例子看来来还是很明确的，也有几点记在了心中。</p>
+<ol type="1">
 <li>数据的处理太重要了，只要数据处理得好，用模型去训练和去预测不是问题。</li>
 <li>处理数据的时候一定要注意可能会影响结果的非法值，进行相关的预处理</li>
 <li>对于模型的一些实现细节可能不需要了解，但是要对他们是干什么的作一个了解吧，不然就是盲目地去根据问题的分类要试好多模型。</li>
@@ -367,6 +494,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -388,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/27/LeetCode198/" rel="next" title="198. House Robber">
-                <i class="fa fa-chevron-left"></i> 198. House Robber
+              <a href="/2017/07/27/event-reccomendation-data-processing/" rel="next" title="Event Recommendation data processing">
+                <i class="fa fa-chevron-left"></i> Event Recommendation data processing
               </a>
             
           </div>
@@ -398,8 +528,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/27/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/29/LeetCode319/" rel="prev" title="319. Bulb Switcher">
+                319. Bulb Switcher <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -424,9 +554,6 @@
 
 
           </div>
-          
-
-
           
 
   
@@ -474,35 +601,87 @@
               <p class="site-description motion-element" itemprop="description">Coder love Design</p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">56</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-            
-
-            
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -518,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Titanic问题解决过程"><span class="nav-number">2.</span> <span class="nav-text">Titanic问题解决过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数据"><span class="nav-number">2.1.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析数据"><span class="nav-number">2.2.</span> <span class="nav-text">分析数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体大致查看"><span class="nav-number">2.2.1.</span> <span class="nav-text">整体大致查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取feature查看"><span class="nav-number">2.2.2.</span> <span class="nav-text">提取feature查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化查看"><span class="nav-number">2.2.3.</span> <span class="nav-text">可视化查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理数据"><span class="nav-number">2.3.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除无用的数据"><span class="nav-number">2.3.1.</span> <span class="nav-text">删除无用的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在已有的基础上获取新数据"><span class="nav-number">2.3.2.</span> <span class="nav-text">在已有的基础上获取新数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#categorical-的数据到-ordinal的转化"><span class="nav-number">2.3.3.</span> <span class="nav-text">categorical 的数据到 ordinal的转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对null等非法值的处理"><span class="nav-number">2.3.4.</span> <span class="nav-text">对null等非法值的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对一些数值型的数据进行区间分类"><span class="nav-number">2.3.5.</span> <span class="nav-text">对一些数值型的数据进行区间分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用模型作学习与预测"><span class="nav-number">2.4.</span> <span class="nav-text">运用模型作学习与预测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择模型进行学习-fit"><span class="nav-number">2.4.1.</span> <span class="nav-text">选择模型进行学习 fit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行预测-predict"><span class="nav-number">2.4.2.</span> <span class="nav-text">进行预测 predict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估-score"><span class="nav-number">2.4.3.</span> <span class="nav-text">评估 score</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择最优的模型并计算出结果"><span class="nav-number">2.4.4.</span> <span class="nav-text">选择最优的模型并计算出结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#titanic问题解决过程"><span class="nav-number">2.</span> <span class="nav-text">Titanic问题解决过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数据"><span class="nav-number">2.1.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析数据"><span class="nav-number">2.2.</span> <span class="nav-text">分析数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体大致查看"><span class="nav-number">2.2.1.</span> <span class="nav-text">整体大致查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取feature查看"><span class="nav-number">2.2.2.</span> <span class="nav-text">提取feature查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化查看"><span class="nav-number">2.2.3.</span> <span class="nav-text">可视化查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理数据"><span class="nav-number">2.3.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除无用的数据"><span class="nav-number">2.3.1.</span> <span class="nav-text">删除无用的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在已有的基础上获取新数据"><span class="nav-number">2.3.2.</span> <span class="nav-text">在已有的基础上获取新数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#categorical-的数据到-ordinal的转化"><span class="nav-number">2.3.3.</span> <span class="nav-text">categorical 的数据到 ordinal的转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对null等非法值的处理"><span class="nav-number">2.3.4.</span> <span class="nav-text">对null等非法值的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对一些数值型的数据进行区间分类"><span class="nav-number">2.3.5.</span> <span class="nav-text">对一些数值型的数据进行区间分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用模型作学习与预测"><span class="nav-number">2.4.</span> <span class="nav-text">运用模型作学习与预测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择模型进行学习-fit"><span class="nav-number">2.4.1.</span> <span class="nav-text">选择模型进行学习 fit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行预测-predict"><span class="nav-number">2.4.2.</span> <span class="nav-text">进行预测 predict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估-score"><span class="nav-number">2.4.3.</span> <span class="nav-text">评估 score</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择最优的模型并计算出结果"><span class="nav-number">2.4.4.</span> <span class="nav-text">选择最优的模型并计算出结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
@@ -539,16 +718,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
 
 
 
@@ -556,12 +739,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
 
 
 
 
         
+
 
 
 
@@ -600,7 +784,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -620,16 +808,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -638,18 +816,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -657,48 +830,36 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -710,6 +871,23 @@
 
   
 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
@@ -719,27 +897,18 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
+
+  
+  
+
+  
+
+  
+
+  
 
   
 
