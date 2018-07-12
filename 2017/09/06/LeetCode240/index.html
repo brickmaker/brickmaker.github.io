@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法 对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列 不，并不对 对角线！ 二分查找： 0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案 1234567891011121314151617181920class Solution &amp;#1">
+  <meta name="description" content="题目https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列不，并不对 对角线！ 二分查找：0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案1234567891011121314151617181920class Solution &amp;#123;pu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="240. Search a 2D Matrix II">
 <meta property="og:url" content="http://yoursite.com/2017/09/06/LeetCode240/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法 对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列 不，并不对 对角线！ 二分查找： 0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案 1234567891011121314151617181920class Solution &amp;#1">
+<meta property="og:description" content="题目https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列不，并不对 对角线！ 二分查找：0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案1234567891011121314151617181920class Solution &amp;#123;pu">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15046799707349.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:34:26.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="240. Search a 2D Matrix II">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法 对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列 不，并不对 对角线！ 二分查找： 0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案 1234567891011121314151617181920class Solution &amp;#1">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/search-a-2d-matrix-ii/description/  想法对角线延伸？ 最直觉的是，扫一行，找到特定行再扫列不，并不对 对角线！ 二分查找：0, 1, 2, 3, 4, 5 看别人解答吧，感觉思路不够明确 答案1234567891011121314151617181920class Solution &amp;#123;pu">
 <meta name="twitter:image" content="http://yoursite.com/media/15046799707349.jpg">
 
 
@@ -421,20 +421,16 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/search-a-2d-matrix-ii/description/</p>
-<p><img src="/media/15046799707349.jpg"></p>
-<h2 id="想法">想法</h2>
-<p>对角线延伸？</p>
-<p>最直觉的是，扫一行，找到特定行再扫列 不，并不对</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/search-a-2d-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/search-a-2d-matrix-ii/description/</a></p>
+<p><img src="/media/15046799707349.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>对角线延伸？</p>
+<p>最直觉的是，扫一行，找到特定行再扫列<br>不，并不对</p>
 <p>对角线！</p>
-<p>二分查找： 0, 1, 2, 3, 4, 5</p>
+<p>二分查找：<br>0, 1, 2, 3, 4, 5</p>
 <p>看别人解答吧，感觉思路不够明确</p>
-<h2 id="答案">答案</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchMatrix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (matrix.size() == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> m = matrix.size();</div><div class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] == target)</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] &gt; target)</div><div class="line">                j--;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾">回顾</h2>
-<p>这算是一个经典的trick吧</p>
-<p>还是自己没能发现其中的性质 把向两边扩展转化为只向一边扩展，这真的很关键！！！</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchMatrix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (matrix.size() == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> m = matrix.size();</div><div class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] == target)</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] &gt; target)</div><div class="line">                j--;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这算是一个经典的trick吧</p>
+<p>还是自己没能发现其中的性质<br>把向两边扩展转化为只向一边扩展，这真的很关键！！！</p>
 <p>记住它吧！</p>
 
       
@@ -878,7 +874,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

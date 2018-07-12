@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/min-stack/description/  想法 比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案 1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;priva">
+  <meta name="description" content="题目https://leetcode.com/problems/min-stack/description/  想法比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;private:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="155. Min Stack">
 <meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode155/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/min-stack/description/  想法 比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案 1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;priva">
+<meta property="og:description" content="题目https://leetcode.com/problems/min-stack/description/  想法比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;private:">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15013120487290.png">
 <meta property="og:updated_time" content="2018-07-10T05:32:21.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="155. Min Stack">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/min-stack/description/  想法 比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案 1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;priva">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/min-stack/description/  想法比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。 答案1234567891011121314151617181920212223242526272829303132333435363738class MinStack &amp;#123;private:">
 <meta name="twitter:image" content="http://yoursite.com/media/15013120487290.png">
 
 
@@ -421,15 +421,11 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/min-stack/description/</p>
-<p><img src="/media/15013120487290.png"></p>
-<h2 id="想法">想法</h2>
-<p>比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。</p>
-<h2 id="答案">答案</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; minVal;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; myStack;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">/** initialize your data structure here. */</span></div><div class="line">    MinStack() &#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (minVal.empty() || x &lt;= getMin())</div><div class="line">            minVal.push(x);</div><div class="line">        myStack.push(x);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (myStack.top() == minVal.top())</div><div class="line">            minVal.pop();</div><div class="line">        myStack.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> myStack.top();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> minVal.top();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your MinStack object will be instantiated and called as such:</div><div class="line"> * MinStack obj = new MinStack();</div><div class="line"> * obj.push(x);</div><div class="line"> * obj.pop();</div><div class="line"> * int param_3 = obj.top();</div><div class="line"> * int param_4 = obj.getMin();</div><div class="line"> */</div></pre></td></tr></table></figure>
-<h2 id="感想">感想</h2>
-<p>自己想得有些多了。 其实本来只在push的时候判断下就可以了，因为如果没把第二小的push进去，第二小也会在最小之前pop，不会发生最小无法维护的情况。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/min-stack/description/" target="_blank" rel="external">https://leetcode.com/problems/min-stack/description/</a></p>
+<p><img src="/media/15013120487290.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; minVal;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; myStack;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">/** initialize your data structure here. */</span></div><div class="line">    MinStack() &#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (minVal.empty() || x &lt;= getMin())</div><div class="line">            minVal.push(x);</div><div class="line">        myStack.push(x);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (myStack.top() == minVal.top())</div><div class="line">            minVal.pop();</div><div class="line">        myStack.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> myStack.top();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> minVal.top();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your MinStack object will be instantiated and called as such:</div><div class="line"> * MinStack obj = new MinStack();</div><div class="line"> * obj.push(x);</div><div class="line"> * obj.pop();</div><div class="line"> * int param_3 = obj.top();</div><div class="line"> * int param_4 = obj.getMin();</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>自己想得有些多了。<br>其实本来只在push的时候判断下就可以了，因为如果没把第二小的push进去，第二小也会在最小之前pop，不会发生最小无法维护的情况。</p>
 
       
     </div>
@@ -872,7 +868,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

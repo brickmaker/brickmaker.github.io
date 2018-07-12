@@ -106,17 +106,17 @@
 
 
 
-  <meta name="description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+  <meta name="description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 编译内核及GRUB引导折腾记">
 <meta property="og:url" content="http://yoursite.com/2017/10/16/2017-10-16/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+<meta property="og:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-07-10T05:36:15.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 编译内核及GRUB引导折腾记">
-<meta name="twitter:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核 按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用 本来引导不会去折腾它">
+<meta name="twitter:description" content="对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。 编译内核按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。 每一步都比较清楚吧，1-11步走下来基本没有碰到问题。 唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。 GRUB相关使用本来引导不会去折腾它，但">
 
 
 
@@ -413,15 +413,12 @@
 
       
         <p>对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。</p>
-<h2 id="编译内核">编译内核</h2>
-<p>按照Ubuntu Documentation上走，https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。</p>
+<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><p>按照Ubuntu Documentation上走，<a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。" target="_blank" rel="external">https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。</a></p>
 <p>每一步都比较清楚吧，1-11步走下来基本没有碰到问题。</p>
 <p>唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。</p>
-<h2 id="grub相关使用">GRUB相关使用</h2>
-<p>本来引导不会去折腾它，但是装完的<code>Linux 4.14.0-rc5</code>似乎不支持IPV4，这很难过，想换回去。于是，去改grub。</p>
-<h3 id="grub配置方式">GRUB配置方式</h3>
-<p>https://help.ubuntu.com/community/Grub2/Setup</p>
-<p>https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2</p>
+<h2 id="GRUB相关使用"><a href="#GRUB相关使用" class="headerlink" title="GRUB相关使用"></a>GRUB相关使用</h2><p>本来引导不会去折腾它，但是装完的<code>Linux 4.14.0-rc5</code>似乎不支持IPV4，这很难过，想换回去。于是，去改grub。</p>
+<h3 id="GRUB配置方式"><a href="#GRUB配置方式" class="headerlink" title="GRUB配置方式"></a>GRUB配置方式</h3><p><a href="https://help.ubuntu.com/community/Grub2/Setup" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup</a></p>
+<p><a href="https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2</a></p>
 <p><strong>配置方式：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/default/grub</div><div class="line">sudo update-grub</div></pre></td></tr></table></figure>
 <p><strong>常用配置：</strong></p>
@@ -431,15 +428,14 @@
 </ul>
 <hr>
 <p>改完之后发现一个很严重的问题，不小心看错改成memtest了，很尴尬，而且，HIDDEN_TIMEOUT是0，都没机会弹出窗口，没办法，尝试LiveCD进入然后操作。</p>
-<h3 id="外部系统修复grub">外部系统修复GRUB</h3>
-<p>在PD的虚拟机配置里，添加CD镜像，然后进入：</p>
-<ol type="1">
+<h3 id="外部系统修复GRUB"><a href="#外部系统修复GRUB" class="headerlink" title="外部系统修复GRUB"></a>外部系统修复GRUB</h3><p>在PD的虚拟机配置里，添加CD镜像，然后进入：</p>
+<ol>
 <li>mount相应盘</li>
 <li>chroot</li>
 <li>进行更改</li>
 </ol>
 <p>自己之前遇到没办法update-grub的问题，在网上找到了如下解决方法：</p>
-<p>https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd</p>
+<p><a href="https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd" target="_blank" rel="external">https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd</a></p>
 <hr>
 <p>最后，更新grub引导之后终于正常，长舒一口气。</p>
 <p>还是需要学习一些知识啊。</p>
@@ -659,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译内核"><span class="nav-number">1.</span> <span class="nav-text">编译内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grub相关使用"><span class="nav-number">2.</span> <span class="nav-text">GRUB相关使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#grub配置方式"><span class="nav-number">2.1.</span> <span class="nav-text">GRUB配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部系统修复grub"><span class="nav-number">2.2.</span> <span class="nav-text">外部系统修复GRUB</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译内核"><span class="nav-number">1.</span> <span class="nav-text">编译内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRUB相关使用"><span class="nav-number">2.</span> <span class="nav-text">GRUB相关使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRUB配置方式"><span class="nav-number">2.1.</span> <span class="nav-text">GRUB配置方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部系统修复GRUB"><span class="nav-number">2.2.</span> <span class="nav-text">外部系统修复GRUB</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -885,7 +881,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

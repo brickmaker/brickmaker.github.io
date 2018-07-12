@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法 no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案 第一个AC的答案 噗，0.61% hhh 1234567891011121314151617181920212">
+  <meta name="description" content="题目https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案第一个AC的答案噗，0.61% hhh 12345678910111213141516171819202122232">
 <meta property="og:type" content="article">
 <meta property="og:title" content="442. Find All Duplicates in an Array">
 <meta property="og:url" content="http://yoursite.com/2017/08/30/LeetCode442/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法 no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案 第一个AC的答案 噗，0.61% hhh 1234567891011121314151617181920212">
+<meta property="og:description" content="题目https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案第一个AC的答案噗，0.61% hhh 12345678910111213141516171819202122232">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15040549865411.png">
 <meta property="og:updated_time" content="2018-07-10T05:34:03.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="442. Find All Duplicates in an Array">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法 no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案 第一个AC的答案 噗，0.61% hhh 1234567891011121314151617181920212">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/find-all-duplicates-in-an-array/description/  想法no extra space… 注意到 $ 1 &amp;lt;= a[i] &amp;lt;= n$ 用下标对应的关系应该就可以了吧 答案第一个AC的答案噗，0.61% hhh 12345678910111213141516171819202122232">
 <meta name="twitter:image" content="http://yoursite.com/media/15040549865411.png">
 
 
@@ -421,19 +421,15 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/find-all-duplicates-in-an-array/description/</p>
-<p><img src="/media/15040549865411.png"></p>
-<h2 id="想法">想法</h2>
-<p>no extra space…</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/description/" target="_blank" rel="external">https://leetcode.com/problems/find-all-duplicates-in-an-array/description/</a></p>
+<p><img src="/media/15040549865411.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>no extra space…</p>
 <p>注意到 $ 1 &lt;= a[i] &lt;= n$</p>
 <p>用下标对应的关系应该就可以了吧</p>
-<h2 id="答案">答案</h2>
-<p><strong>第一个AC的答案</strong> 噗，0.61% hhh</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p><strong>第一个AC的答案</strong><br>噗，0.61% hhh</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findDuplicates(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] != i+<span class="number">1</span> &amp;&amp; nums[nums[i] - <span class="number">1</span>] != nums[i]) &#123;</div><div class="line">                swap(nums[i], nums[nums[i] - <span class="number">1</span>]);</div><div class="line">                i--;                </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] == i+<span class="number">1</span>)</div><div class="line">                nums[i] = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</div><div class="line">                nums.erase(nums.begin() + i);</div><div class="line">                i--;                </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>尽管是O(n)，但是应该是做了好多无用的事</p>
-<h2 id="回顾">回顾</h2>
-<p>唔，看了别人的答案，只是觉得，想法基本上是一样的，只是without extra space，自己也没有新开一个vector来存结果</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>唔，看了别人的答案，只是觉得，想法基本上是一样的，只是without extra space，自己也没有新开一个vector来存结果</p>
 <p>有一些粗心，注意下标的一些获取！</p>
 
       
@@ -877,7 +873,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

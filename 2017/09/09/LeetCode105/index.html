@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法 经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案 123456789101112131415161718192021222324/** * Definition">
+  <meta name="description" content="题目https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案123456789101112131415161718192021222324/** * Definition fo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="105. Construct Binary Tree from Preorder and Inorder Traversal">
 <meta property="og:url" content="http://yoursite.com/2017/09/09/LeetCode105/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法 经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案 123456789101112131415161718192021222324/** * Definition">
+<meta property="og:description" content="题目https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案123456789101112131415161718192021222324/** * Definition fo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15049213069728.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:34:30.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="105. Construct Binary Tree from Preorder and Inorder Traversal">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法 经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案 123456789101112131415161718192021222324/** * Definition">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/  想法经典题目，思路是清楚的，就是具体怎么写需要想想 反正是建树，递归做 答案123456789101112131415161718192021222324/** * Definition fo">
 <meta name="twitter:image" content="http://yoursite.com/media/15049213069728.jpg">
 
 
@@ -421,17 +421,13 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/</p>
-<p><img src="/media/15049213069728.jpg"></p>
-<h2 id="想法">想法</h2>
-<p>经典题目，思路是清楚的，就是具体怎么写需要想想</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="external">https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/</a></p>
+<p><img src="/media/15049213069728.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>经典题目，思路是清楚的，就是具体怎么写需要想想</p>
 <p>反正是建树，递归做</p>
-<h2 id="答案">答案</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator prebegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator preend, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inbegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inend)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (prebegin == preend)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(*prebegin);</div><div class="line">        <span class="keyword">auto</span> inmid = <span class="built_in">std</span>::find(inbegin, inend, *prebegin);</div><div class="line">        root-&gt;left = helper(prebegin + <span class="number">1</span>, prebegin + (inmid - inbegin) + <span class="number">1</span>, inbegin, inmid);</div><div class="line">        root-&gt;right = helper(prebegin + (inmid - inbegin) + <span class="number">1</span>, preend , inmid + <span class="number">1</span>, inend);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾">回顾</h2>
-<p>一次AC</p>
-<p>这算是一次对C++的vector与iterator操作的熟悉吧，如何传递一个子的vector，需要iterator来帮助 如果用python做，肯定超省劲</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator prebegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator preend, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inbegin, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator inend)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (prebegin == preend)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        TreeNode *root = <span class="keyword">new</span> TreeNode(*prebegin);</div><div class="line">        <span class="keyword">auto</span> inmid = <span class="built_in">std</span>::find(inbegin, inend, *prebegin);</div><div class="line">        root-&gt;left = helper(prebegin + <span class="number">1</span>, prebegin + (inmid - inbegin) + <span class="number">1</span>, inbegin, inmid);</div><div class="line">        root-&gt;right = helper(prebegin + (inmid - inbegin) + <span class="number">1</span>, preend , inmid + <span class="number">1</span>, inend);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(preorder.begin(), preorder.end(), inorder.begin(), inorder.end());</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>一次AC</p>
+<p>这算是一次对C++的vector与iterator操作的熟悉吧，如何传递一个子的vector，需要iterator来帮助<br>如果用python做，肯定超省劲</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode(object):</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type preorder: List[int]</div><div class="line">        :type inorder: List[int]</div><div class="line">        :rtype: TreeNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> inorder:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        mid = preorder.pop(<span class="number">0</span>)</div><div class="line">        idx = inorder.index(mid)</div><div class="line">        root = TreeNode(mid)</div><div class="line">        root.left = self.buildTree(preorder, inorder[:idx])</div><div class="line">        root.right = self.buildTree(preorder, inorder[idx + <span class="number">1</span>:])</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
 
       
@@ -875,7 +871,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

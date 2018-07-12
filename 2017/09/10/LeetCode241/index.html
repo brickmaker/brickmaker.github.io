@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法 这个应该有多种解法吧 转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果… 这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组 不考虑，而且好像也不是那么回事 如果递归地遍历地话">
+  <meta name="description" content="题目https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法这个应该有多种解法吧转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组不考虑，而且好像也不是那么回事 如果递归地遍历地话，会不会超">
 <meta property="og:type" content="article">
 <meta property="og:title" content="241. Different Ways to Add Parentheses">
 <meta property="og:url" content="http://yoursite.com/2017/09/10/LeetCode241/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法 这个应该有多种解法吧 转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果… 这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组 不考虑，而且好像也不是那么回事 如果递归地遍历地话">
+<meta property="og:description" content="题目https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法这个应该有多种解法吧转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组不考虑，而且好像也不是那么回事 如果递归地遍历地话，会不会超">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15050249179021.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:34:36.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="241. Different Ways to Add Parentheses">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法 这个应该有多种解法吧 转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果… 这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组 不考虑，而且好像也不是那么回事 如果递归地遍历地话">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/different-ways-to-add-parentheses/description/  想法这个应该有多种解法吧转化为构建二叉树？ 反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组不考虑，而且好像也不是那么回事 如果递归地遍历地话，会不会超">
 <meta name="twitter:image" content="http://yoursite.com/media/15050249179021.jpg">
 
 
@@ -421,19 +421,15 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/different-ways-to-add-parentheses/description/</p>
-<p><img src="/media/15050249179021.jpg"></p>
-<h2 id="想法">想法</h2>
-<p>这个应该有多种解法吧 转化为构建二叉树？</p>
-<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果… 这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组 不考虑，而且好像也不是那么回事</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/description/" target="_blank" rel="external">https://leetcode.com/problems/different-ways-to-add-parentheses/description/</a></p>
+<p><img src="/media/15050249179021.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个应该有多种解法吧<br>转化为构建二叉树？</p>
+<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…<br>这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组<br>不考虑，而且好像也不是那么回事</p>
 <p>如果递归地遍历地话，会不会超时</p>
-<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式 这只是抽象出来了，如何写呢？</p>
+<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式<br>这只是抽象出来了，如何写呢？</p>
 <p>不会…</p>
-<h2 id="答案">答案</h2>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾">回顾</h2>
-<p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
 <p>我想应该有更好的方法，但是，不想了…</p>
 
       
@@ -877,7 +873,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

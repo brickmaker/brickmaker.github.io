@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/trapping-rain-water/description/  想法 每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 1234567891011121314151617181920212223242526272">
+  <meta name="description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
 <meta property="og:type" content="article">
 <meta property="og:title" content="42. Trapping Rain Water">
 <meta property="og:url" content="http://yoursite.com/2017/11/16/LeetCode42/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/trapping-rain-water/description/  想法 每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 1234567891011121314151617181920212223242526272">
+<meta property="og:description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15108105475270.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:38:24.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="42. Trapping Rain Water">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/trapping-rain-water/description/  想法 每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 1234567891011121314151617181920212223242526272">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
 <meta name="twitter:image" content="http://yoursite.com/media/15108105475270.jpg">
 
 
@@ -421,24 +421,20 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/trapping-rain-water/description/</p>
-<p><img src="/media/15108105475270.jpg"></p>
-<h2 id="想法">想法</h2>
-<p>每个块，直到遇到下一个&gt;=它的块，则存储确定…</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank" rel="external">https://leetcode.com/problems/trapping-rain-water/description/</a></p>
+<p><img src="/media/15108105475270.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>每个块，直到遇到下一个&gt;=它的块，则存储确定…</p>
 <p>每个块都假定能盛满，直到最后遇不到&gt;=自己的块</p>
 <p>从左往右扫一遍，记录valid和如果valid所装的容量：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Bar</span> &#123;</span></div><div class="line">        <span class="keyword">int</span> s;</div><div class="line">        <span class="keyword">bool</span> v;</div><div class="line">        Bar() : s(<span class="number">0</span>), v(<span class="literal">false</span>) &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;Bar&gt; content(height.size());</div><div class="line">        <span class="keyword">int</span> s = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = s; j &lt; i &amp;&amp; content[j].v == <span class="literal">false</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (height[j] &lt;= height[i]) &#123;</div><div class="line">                    content[j].v = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">if</span> (j == s)</div><div class="line">                        s = i;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    content[j].s += height[j] - height[i];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxHeight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; content.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (height[i] &gt;= maxHeight &amp;&amp; content[i].v) &#123;</div><div class="line">                maxHeight = height[i];</div><div class="line">                res += content[i].s;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>错误！！！ 都没有考虑最基础的情况： [4, 2, 3] 自己的答案在这个情况下，认为4没有找到&gt;=它的，所以invalid，也就没有后边的容量了</p>
+<p>错误！！！<br>都没有考虑最基础的情况： [4, 2, 3]<br>自己的答案在这个情况下，认为4没有找到&gt;=它的，所以invalid，也就没有后边的容量了</p>
 <hr>
 <p>看了discussion，发现自己还是没有想到简单解决问题的关键：</p>
 <blockquote>
-<p>Here is my idea: instead of calculating area by height*width, we can think it in a cumulative way. In other words, sum water amount of each bin(width=1). Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. Fix the higher one and flow water from the lower part. For example, if current height of left is lower, we fill water in the left bin. Until left meets right, we filled the whole container.</p>
+<p>Here is my idea: instead of calculating area by height*width, we can think it in a cumulative way. In other words, sum water amount of each bin(width=1).<br>Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. Fix the higher one and flow water from the lower part. For example, if current height of left is lower, we fill water in the left bin. Until left meets right, we filled the whole container.</p>
 </blockquote>
-<h2 id="答案">答案</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxRight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="keyword">if</span> (height[l] &lt;= height[r]) &#123;</div><div class="line">                <span class="keyword">if</span> (height[l] &gt;= maxLeft)</div><div class="line">                    maxLeft = height[l];</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    res += maxLeft - height[l];</div><div class="line">                l++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (height[r] &gt;= maxRight) &#123;</div><div class="line">                    maxRight = height[r];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    res += maxRight - height[r];</div><div class="line">                &#125;</div><div class="line">                r--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾">回顾</h2>
-<p>记录左右的最高值，只要比本侧的最高值低且比另一侧低，就肯定会被填满…</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxRight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="keyword">if</span> (height[l] &lt;= height[r]) &#123;</div><div class="line">                <span class="keyword">if</span> (height[l] &gt;= maxLeft)</div><div class="line">                    maxLeft = height[l];</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    res += maxLeft - height[l];</div><div class="line">                l++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (height[r] &gt;= maxRight) &#123;</div><div class="line">                    maxRight = height[r];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    res += maxRight - height[r];</div><div class="line">                &#125;</div><div class="line">                r--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>记录左右的最高值，只要比本侧的最高值低且比另一侧低，就肯定会被填满…</p>
 <p>抓住问题的管家哇，分析关系！</p>
 
       
@@ -882,7 +878,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

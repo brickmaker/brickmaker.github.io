@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/sum-of-two-integers/description/  想法 最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果 1234567891011121314151617181920class Solution &amp;#123;public:">
+  <meta name="description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="371. Sum of Two Integers">
 <meta property="og:url" content="http://yoursite.com/2017/08/02/LeetCode371/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/sum-of-two-integers/description/  想法 最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果 1234567891011121314151617181920class Solution &amp;#123;public:">
+<meta property="og:description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15016843861293.png">
 <meta property="og:updated_time" content="2018-07-10T05:32:36.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="371. Sum of Two Integers">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/sum-of-two-integers/description/  想法 最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果 1234567891011121314151617181920class Solution &amp;#123;public:">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
 <meta name="twitter:image" content="http://yoursite.com/media/15016843861293.png">
 
 
@@ -421,15 +421,11 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/sum-of-two-integers/description/</p>
-<p><img src="/media/15016843861293.png"></p>
-<h2 id="想法">想法</h2>
-<p>最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法</p>
-<h2 id="结果">结果</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> helper = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">8</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> aBit = a &amp; helper, bBit = b &amp; helper, cBit = c &amp; helper;</div><div class="line">            result |= (aBit ^ bBit ^ cBit);</div><div class="line">            <span class="keyword">if</span> (!!(aBit &amp; bBit | aBit &amp; cBit | bBit &amp; cBit))</div><div class="line">                c = (helper &lt;&lt; <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                c = <span class="number">0</span>;</div><div class="line">            helper &lt;&lt;= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!!c)</div><div class="line">            result |= c;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="感想">感想</h2>
-<p>虽然是一道Easy级的题目，但是自己也是花费了不小的功夫。 主要是调bug上，考虑不周，在进位的处理上有些考虑不全，WA了好几次。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="external">https://leetcode.com/problems/sum-of-two-integers/description/</a></p>
+<p><img src="/media/15016843861293.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> helper = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">8</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> aBit = a &amp; helper, bBit = b &amp; helper, cBit = c &amp; helper;</div><div class="line">            result |= (aBit ^ bBit ^ cBit);</div><div class="line">            <span class="keyword">if</span> (!!(aBit &amp; bBit | aBit &amp; cBit | bBit &amp; cBit))</div><div class="line">                c = (helper &lt;&lt; <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                c = <span class="number">0</span>;</div><div class="line">            helper &lt;&lt;= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!!c)</div><div class="line">            result |= c;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>虽然是一道Easy级的题目，但是自己也是花费了不小的功夫。<br>主要是调bug上，考虑不周，在进位的处理上有些考虑不全，WA了好几次。</p>
 <p>位操作还是值得学习一下的。</p>
 
       
@@ -873,7 +869,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="Ford-Fulkerson Algorithm 算法 123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度 \(O(FE)\) F: 最大流 E: 边数 实现 参考：h">
+  <meta name="description" content="Ford-Fulkerson Algorithm算法123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度$O(FE)$F: 最大流E: 边数 实现参考：https://w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图算法整理（二）：最大流">
 <meta property="og:url" content="http://yoursite.com/2018/04/27/2018-04-27/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Ford-Fulkerson Algorithm 算法 123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度 \(O(FE)\) F: 最大流 E: 边数 实现 参考：h">
+<meta property="og:description" content="Ford-Fulkerson Algorithm算法123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度$O(FE)$F: 最大流E: 边数 实现参考：https://w">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15248338296604.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:40:07.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图算法整理（二）：最大流">
-<meta name="twitter:description" content="Ford-Fulkerson Algorithm 算法 123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度 \(O(FE)\) F: 最大流 E: 边数 实现 参考：h">
+<meta name="twitter:description" content="Ford-Fulkerson Algorithm算法123456# Gr: residual graph; G: original graphGr = Gflow = 0while find a path in Gr:    augment = min(segments in path)    flow += augment 复杂度$O(FE)$F: 最大流E: 边数 实现参考：https://w">
 <meta name="twitter:image" content="http://yoursite.com/media/15248338296604.jpg">
 
 
@@ -414,15 +414,11 @@
       
 
       
-        <h2 id="ford-fulkerson-algorithm">Ford-Fulkerson Algorithm</h2>
-<h3 id="算法">算法</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Gr: residual graph; G: original graph</span></div><div class="line">Gr = G</div><div class="line">flow = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> find a path <span class="keyword">in</span> Gr:</div><div class="line">    augment = min(segments <span class="keyword">in</span> path)</div><div class="line">    flow += augment</div></pre></td></tr></table></figure>
-<h3 id="复杂度">复杂度</h3>
-<p><span class="math inline">\(O(FE)\)</span> F: 最大流 E: 边数</p>
-<h3 id="实现">实现</h3>
-<p>参考：https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/</p>
+        <h2 id="Ford-Fulkerson-Algorithm"><a href="#Ford-Fulkerson-Algorithm" class="headerlink" title="Ford-Fulkerson Algorithm"></a>Ford-Fulkerson Algorithm</h2><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Gr: residual graph; G: original graph</span></div><div class="line">Gr = G</div><div class="line">flow = <span class="number">0</span></div><div class="line"><span class="keyword">while</span> find a path <span class="keyword">in</span> Gr:</div><div class="line">    augment = min(segments <span class="keyword">in</span> path)</div><div class="line">    flow += augment</div></pre></td></tr></table></figure>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>$O(FE)$<br>F: 最大流<br>E: 边数</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>参考：<a href="https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/" target="_blank" rel="external">https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/</a></p>
 <p>示例图：</p>
-<p><img src="/media/15248338296604.jpg"></p>
+<p><img src="/media/15248338296604.jpg" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">findPath</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;G, <span class="keyword">int</span> src, <span class="keyword">int</span> dst, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;parent)</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(G.size(), <span class="literal">false</span>);</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">    q.push(src);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">        <span class="keyword">int</span> curr = q.front();</div><div class="line">        q.pop();</div><div class="line">        visited[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (G[curr][i] &gt; <span class="number">0</span> &amp;&amp; !visited[i]) &#123;</div><div class="line">                q.push(i);</div><div class="line">                parent[i] = curr;</div><div class="line">                visited[i] = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> visited[dst];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; G = &#123;</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">16</span>, <span class="number">13</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">10</span>, <span class="number">12</span>, <span class="number">0</span>,  <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">4</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">14</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">9</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">20</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">7</span>,  <span class="number">0</span>,  <span class="number">4</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent(G.size());</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">5</span>;</div><div class="line">    <span class="keyword">while</span> (findPath(G, start, end, parent)) &#123;</div><div class="line">        <span class="keyword">int</span> minFlow = INT_MAX;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = end; i != start; i = parent[i]) &#123;</div><div class="line">            minFlow = min(G[parent[i]][i], minFlow);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = end; i != start; i = parent[i]) &#123;</div><div class="line">            G[parent[i]][i] -= minFlow;</div><div class="line">            G[i][parent[i]] += minFlow;</div><div class="line">        &#125;</div><div class="line">        res += minFlow;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; res &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>注意点：</strong></p>
 <p><code>parent</code>数组的使用！BFS不像DFS可以记录一条路径，回退重新延伸，不过可以逆向思维，记录parent，这样倒着推也可以得到整条路径！！！</p>
@@ -642,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ford-fulkerson-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Ford-Fulkerson Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度"><span class="nav-number">1.2.</span> <span class="nav-text">复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ford-Fulkerson-Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Ford-Fulkerson Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度"><span class="nav-number">1.2.</span> <span class="nav-text">复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -868,7 +864,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

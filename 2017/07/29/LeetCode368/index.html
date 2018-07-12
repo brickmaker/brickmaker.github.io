@@ -106,12 +106,12 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/largest-divisible-subset/description/  想法 没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。 如果能任意地被整除，需要满足什么条件呢？ 每添加进一个，都可以被这个set中的每一个整除 这样一来，是个O(n^2 )的复杂度，可以吗？ 先试试吧 不对，不是O(n^2 )，排序需要nlo">
+  <meta name="description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
 <meta property="og:type" content="article">
 <meta property="og:title" content="368. Largest Divisible Subset">
 <meta property="og:url" content="http://yoursite.com/2017/07/29/LeetCode368/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/largest-divisible-subset/description/  想法 没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。 如果能任意地被整除，需要满足什么条件呢？ 每添加进一个，都可以被这个set中的每一个整除 这样一来，是个O(n^2 )的复杂度，可以吗？ 先试试吧 不对，不是O(n^2 )，排序需要nlo">
+<meta property="og:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15013367330825.png">
 <meta property="og:image" content="http://yoursite.com/media/15013385099186.png">
@@ -119,7 +119,7 @@
 <meta property="og:updated_time" content="2018-07-10T05:32:31.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="368. Largest Divisible Subset">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/largest-divisible-subset/description/  想法 没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。 如果能任意地被整除，需要满足什么条件呢？ 每添加进一个，都可以被这个set中的每一个整除 这样一来，是个O(n^2 )的复杂度，可以吗？ 先试试吧 不对，不是O(n^2 )，排序需要nlo">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法没有什么思路…或许贪心？ 不，应该可以从数学的角度上解决的。如果能任意地被整除，需要满足什么条件呢？每添加进一个，都可以被这个set中的每一个整除这样一来，是个O(n^2 )的复杂度，可以吗？先试试吧不对，不是O(n^2 )，排序需要nlog n，因为已">
 <meta name="twitter:image" content="http://yoursite.com/media/15013367330825.png">
 
 
@@ -423,21 +423,18 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/largest-divisible-subset/description/</p>
-<p><img src="/media/15013367330825.png"></p>
-<h2 id="想法">想法</h2>
-<p>没有什么思路…或许贪心？</p>
-<p>不，应该可以从数学的角度上解决的。 如果能任意地被整除，需要满足什么条件呢？ 每添加进一个，都可以被这个set中的每一个整除 这样一来，是个O(n^2 )的复杂度，可以吗？ 先试试吧 不对，不是O(n^2 )，排序需要n<em>log n，因为已经序的了，应该只用O(n </em> k)，k是set的数量</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-divisible-subset/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/description/</a></p>
+<p><img src="/media/15013367330825.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>没有什么思路…或许贪心？</p>
+<p>不，应该可以从数学的角度上解决的。<br>如果能任意地被整除，需要满足什么条件呢？<br>每添加进一个，都可以被这个set中的每一个整除<br>这样一来，是个O(n^2 )的复杂度，可以吗？<br>先试试吧<br>不对，不是O(n^2 )，排序需要n<em>log n，因为已经序的了，应该只用O(n </em> k)，k是set的数量</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; sets;</div><div class="line">        <span class="keyword">bool</span> inserted = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> maxSize = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> maxSizeIdx = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; sets.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] % sets[j][sets[j].size() - <span class="number">1</span>] == <span class="number">0</span>) &#123;</div><div class="line">                    sets[j].push_back(nums[i]);</div><div class="line">                    <span class="keyword">if</span> (maxSize &lt; sets[j].size()) &#123;</div><div class="line">                        maxSize = sets[j].size();</div><div class="line">                        maxSizeIdx = j;</div><div class="line">                    &#125;</div><div class="line">                    inserted = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (inserted == <span class="literal">false</span>) &#123;</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</div><div class="line">                sets.push_back(vec);</div><div class="line">                sets[sets.size() - <span class="number">1</span>].push_back(nums[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                inserted = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sets[maxSizeIdx];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>嗯，看来自己本来有一些Naive了 <img src="/media/15013385099186.png"> 没有考虑到这样的情况 那看来原来的想法是不行的 一个更明显的例子： <img src="/media/15013386806811.png"></p>
-<p><del>考虑用DP做</del> <del>因为，大数可以表示成因式的和</del></p>
-<p>看问题的样子，是很符合贪心的策略的，但是怎么用呢？ 唔，有必要补一补基础知识了，唉，先看下答案吧，不想想了orz</p>
-<p><strong>尝试建一个多叉树</strong> 做完之后，调了好多bug，却发现也同样没有考虑到那个问题，唉，本质上和原来是一样的</p>
+<p>嗯，看来自己本来有一些Naive了<br><img src="/media/15013385099186.png" alt=""><br>没有考虑到这样的情况<br>那看来原来的想法是不行的<br>一个更明显的例子：<br><img src="/media/15013386806811.png" alt=""></p>
+<p><del>考虑用DP做</del><br><del>因为，大数可以表示成因式的和</del></p>
+<p>看问题的样子，是很符合贪心的策略的，但是怎么用呢？<br>唔，有必要补一补基础知识了，唉，先看下答案吧，不想想了orz</p>
+<p><strong>尝试建一个多叉树</strong><br>做完之后，调了好多bug，却发现也同样没有考虑到那个问题，唉，本质上和原来是一样的</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2017/8/1.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> &#123;</span></div><div class="line">        <span class="keyword">int</span> val;</div><div class="line">        <span class="built_in">vector</span>&lt;TreeNode*&gt; children;</div><div class="line"></div><div class="line">        TreeNode(<span class="keyword">int</span> x) : val(x) &#123;&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; current;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(TreeNode *tree, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (num % tree-&gt;val != <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">bool</span> inserted = <span class="literal">false</span>;</div><div class="line">        current.push_back(tree-&gt;val);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tree-&gt;children.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (insert((tree-&gt;children)[i], num)) &#123;</div><div class="line">                inserted = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!inserted) &#123;</div><div class="line">            TreeNode *newNode = <span class="keyword">new</span> TreeNode(num);</div><div class="line">            (tree-&gt;children).push_back(newNode);</div><div class="line">            current.push_back(num);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (current.size() &gt; result.size())</div><div class="line">            result = current;</div><div class="line">        current = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;&#125;;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;nums[<span class="number">0</span>], &#125;;</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        TreeNode *tree = <span class="keyword">new</span> TreeNode(<span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            insert(tree, nums[i]);</div><div class="line">        &#125;</div><div class="line">        result.erase(result.begin());</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="参考答案">参考答案</h2>
-<p>哈？答案一票都是用DP的？？？</p>
-<p>https://discuss.leetcode.com/topic/49456/c-solution-with-explanations</p>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><p>哈？答案一票都是用DP的？？？</p>
+<p><a href="https://discuss.leetcode.com/topic/49456/c-solution-with-explanations" target="_blank" rel="external">https://discuss.leetcode.com/topic/49456/c-solution-with-explanations</a></p>
 <p>勉强看懂，看是不保证自己能写出来，这题就先放过吧，日后再做。</p>
 
       
@@ -881,7 +878,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   

@@ -106,18 +106,18 @@
 
 
 
-  <meta name="description" content="题目 https://leetcode.com/problems/jump-game-ii/description/  想法 贪心！ 首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def j">
+  <meta name="description" content="题目https://leetcode.com/problems/jump-game-ii/description/  想法贪心！首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def jump">
 <meta property="og:type" content="article">
 <meta property="og:title" content="45. Jump Game II">
 <meta property="og:url" content="http://yoursite.com/2017/09/10/LeetCode45/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目 https://leetcode.com/problems/jump-game-ii/description/  想法 贪心！ 首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def j">
+<meta property="og:description" content="题目https://leetcode.com/problems/jump-game-ii/description/  想法贪心！首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def jump">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/15050286053481.jpg">
 <meta property="og:updated_time" content="2018-07-10T05:34:39.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="45. Jump Game II">
-<meta name="twitter:description" content="题目 https://leetcode.com/problems/jump-game-ii/description/  想法 贪心！ 首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def j">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/jump-game-ii/description/  想法贪心！首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想… 其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了 遍历，更新，应该就是这样吧 123456789101112131415class Solution(object):    def jump">
 <meta name="twitter:image" content="http://yoursite.com/media/15050286053481.jpg">
 
 
@@ -421,22 +421,18 @@
       
 
       
-        <h2 id="题目">题目</h2>
-<p>https://leetcode.com/problems/jump-game-ii/description/</p>
-<p><img src="/media/15050286053481.jpg"></p>
-<h2 id="想法">想法</h2>
-<p>贪心！ 首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想…</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/jump-game-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/jump-game-ii/description/</a></p>
+<p><img src="/media/15050286053481.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>贪心！<br>首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想…</p>
 <p>其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了</p>
 <p>遍历，更新，应该就是这样吧</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        a = [sys.maxsize] * len(nums)</div><div class="line">        a[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> i + j &lt; len(a):</div><div class="line">                    a[i + j] = min(a[i + j], a[i] + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> a[<span class="number">-1</span>]</div></pre></td></tr></table></figure>
-<p>算是比较暴力的解决办法，不出所料，TLE… 毕竟是hard的题，不会那么简单吧</p>
+<p>算是比较暴力的解决办法，不出所料，TLE…<br>毕竟是hard的题，不会那么简单吧</p>
 <hr>
 <p>贪心，深度优先</p>
-<h2 id="答案">答案</h2>
-<p>参考一个人写的贪心的答案:</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>参考一个人写的贪心的答案:</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        ans = <span class="number">0</span></div><div class="line">        end = <span class="number">0</span></div><div class="line">        furthest = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums[:<span class="number">-1</span>]):</div><div class="line">            furthest = max(furthest, i + n)</div><div class="line">            <span class="keyword">if</span> i == end:</div><div class="line">                ans += <span class="number">1</span></div><div class="line">                end = furthest</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾">回顾</h2>
-<p>这个答案很精巧</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个答案很精巧</p>
 <p>贪心，抓住关键点：能通过一步，走到最远的地方</p>
 <p><strong>经典</strong></p>
 
@@ -881,7 +877,24 @@
         }
     });
 </script>
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
     
   
