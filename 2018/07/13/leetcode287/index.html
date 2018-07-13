@@ -106,24 +106,26 @@
 
 
 
-  <meta name="description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
+  <meta name="description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OJ中C++常用函数、数据结构使用">
-<meta property="og:url" content="http://yoursite.com/2018/02/26/2018-02-26-cpp-api/index.html">
+<meta property="og:title" content="287. Find the Duplicate Number">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/leetcode287/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
+<meta property="og:description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-10T05:39:36.979Z">
+<meta property="og:image" content="http://yoursite.com/media/15314626961572.jpg">
+<meta property="og:updated_time" content="2018-07-13T08:32:35.662Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OJ中C++常用函数、数据结构使用">
-<meta name="twitter:description" content="在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。 这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。  IO1. getline 读入一行到string12string s;getline(cin, s); 针对STDIO的优化12345static int ____ = []() &amp;#123;">
+<meta name="twitter:title" content="287. Find the Duplicate Number">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
+<meta name="twitter:image" content="http://yoursite.com/media/15314626961572.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/26/2018-02-26-cpp-api/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/leetcode287/"/>
 
 
 
@@ -133,7 +135,7 @@
   };
 </script>
 
-  <title>OJ中C++常用函数、数据结构使用 | Xiaodong's Blog</title>
+  <title>287. Find the Duplicate Number | Xiaodong's Blog</title>
   
 
 
@@ -290,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/2018-02-26-cpp-api/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/leetcode287/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -307,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OJ中C++常用函数、数据结构使用
+          <h1 class="post-title" itemprop="name headline">287. Find the Duplicate Number
               
             
           </h1>
@@ -332,24 +334,12 @@
                 
               
 
-              <time title="Created: 2018-02-26 21:24:26" itemprop="dateCreated datePublished" datetime="2018-02-26T21:24:26+08:00">2018-02-26</time>
+              <time title="Created: 2018-07-13 14:17:19 / Modified: 16:32:35" itemprop="dateCreated datePublished" datetime="2018-07-13T14:17:19+08:00">2018-07-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:39:36" itemprop="dateModified" datetime="2018-07-10T13:39:36+08:00">2018-07-10</time>
               
             
           </span>
@@ -370,6 +360,13 @@
 
                 
                 
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
               
             </span>
           
@@ -381,10 +378,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/26/2018-02-26-cpp-api/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/13/leetcode287/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/26/2018-02-26-cpp-api/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/13/leetcode287/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -412,14 +409,30 @@
       
 
       
-        <p>在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。</p>
-<p>这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-the-duplicate-number/description/" target="_blank" rel="external">https://leetcode.com/problems/find-the-duplicate-number/description/</a></p>
+<p><img src="/media/15314626961572.jpg" alt="-w960"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>一时没有想出解决办法..</p>
+<p>遍历然后二分查找嘛？不可行啊，乱序的</p>
+<p>好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用</p>
+<p>题目中强调了1-n，n+1个数，是不是可以利用？</p>
+<p>如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊</p>
+<p>不成，sort，nlogn，然后遍历？好傻，题目规定不能动数组</p>
 <hr>
-<h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><h4 id="1-getline-读入一行到string"><a href="#1-getline-读入一行到string" class="headerlink" title="1. getline 读入一行到string"></a>1. <code>getline</code> 读入一行到string</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div></pre></td></tr></table></figure>
-<h4 id="针对STDIO的优化"><a href="#针对STDIO的优化" class="headerlink" title="针对STDIO的优化"></a>针对STDIO的优化</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> ____ = []() &#123;</div><div class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
-<h4 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> input = <span class="string">"41 3.14 false hello world"</span>;</div><div class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">istringstream</span> <span class="title">stream</span><span class="params">(input)</span></span>;</div><div class="line"><span class="keyword">int</span> n;</div><div class="line">stream &gt;&gt; n;</div></pre></td></tr></table></figure>
-<h2 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h2><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">s.insert(<span class="number">3</span>);</div><div class="line">s.erase(itrator);</div><div class="line">s.find(<span class="number">5</span>) != s.end();</div><div class="line">s.count(<span class="number">5</span>) == <span class="number">1</span>;</div></pre></td></tr></table></figure>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h4 id="remove-if"><a href="#remove-if" class="headerlink" title="remove_if"></a><code>remove_if</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">str2.erase(<span class="built_in">std</span>::remove_if(str2.begin(), </div><div class="line">                          str2.end(),</div><div class="line">                          [](<span class="keyword">unsigned</span> <span class="keyword">char</span> x)&#123;<span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">isspace</span>(x);&#125;),</div><div class="line">            str2.end());</div></pre></td></tr></table></figure>
+<p><strong>Cycle detection</strong></p>
+<p>可以把问题归约到检测环的问题上！</p>
+<p>题目中强调了1 - n, n + 1个数，意思是数在数组的下标范围内。按照下标进行搜寻，如果有重复的值，便会出现环。</p>
+<p>检测环的方法，有多种，参见：<a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cycle_detection</a></p>
+<p><strong>Floyd’s Tortoise and Hare</strong></p>
+<p>思想大致是这样的：让龟兔从同一起点出发，但以不同的速度前进，如果路径没有环的话，那么当兔子走到尽头，龟兔是不会相遇的，如果相遇了，说明成环。</p>
+<hr>
+<p>所以这道题，用这样的方式就可以了~</p>
+<p>不过，判断除了相交的位置，并不能知道重复的在哪里。</p>
+<p>不过，这里不作过多的讨论，有另外的典型题目来讨论这个问题：<a href="https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description" target="_blank" rel="external">https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description</a></p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> tortoise = <span class="number">0</span>, hare = <span class="number">0</span>;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            tortoise = nums[tortoise];</div><div class="line">            hare = nums[nums[hare]];</div><div class="line">        &#125; <span class="keyword">while</span>(nums[tortoise] != nums[hare]);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = tortoise;</div><div class="line">        <span class="keyword">while</span> (nums[p1] != nums[p2]) &#123;</div><div class="line">            p1 = nums[p1];</div><div class="line">            p2 = nums[p2];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[p1];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>第一个循环，找到了相遇的点，第二个循环利用了<em>起点走到环起点=相遇点走到环起点</em>这一特性：</p>
+<blockquote>
+<p>It can be concluded that the distance between the head location and entry location is equal to the distance between the meeting location and the entry location along the direction of forward movement.</p>
+</blockquote>
 
       
     </div>
@@ -447,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/24/2018-02-24-heap/" rel="next" title="Heap(堆) 数据结构整理">
-                <i class="fa fa-chevron-left"></i> Heap(堆) 数据结构整理
+              <a href="/2018/07/12/balence_tree/" rel="next" title="平衡二叉树之AVL tree">
+                <i class="fa fa-chevron-left"></i> 平衡二叉树之AVL tree
               </a>
             
           </div>
@@ -457,8 +470,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/16/2018-04-16-graph-I/" rel="prev" title="图算法整理（一）：最短路径">
-                图算法整理（一）：最短路径 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/13/leetcode142/" rel="prev" title="142. Linked List Cycle II">
+                142. Linked List Cycle II <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO"><span class="nav-number">1.</span> <span class="nav-text">IO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-getline-读入一行到string"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. getline 读入一行到string</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对STDIO的优化"><span class="nav-number">1.0.2.</span> <span class="nav-text">针对STDIO的优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stringstream"><span class="nav-number">1.0.3.</span> <span class="nav-text">stringstream</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Structure"><span class="nav-number">2.</span> <span class="nav-text">Data Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">2.1.</span> <span class="nav-text">set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithms"><span class="nav-number">3.</span> <span class="nav-text">Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-if"><span class="nav-number">3.0.1.</span> <span class="nav-text">remove_if</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
             
 
           </div>
@@ -790,9 +803,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/02/26/2018-02-26-cpp-api/';
-        this.page.identifier = '2018/02/26/2018-02-26-cpp-api/';
-        this.page.title = 'OJ中C++常用函数、数据结构使用';
+        this.page.url = 'http://yoursite.com/2018/07/13/leetcode287/';
+        this.page.identifier = '2018/07/13/leetcode287/';
+        this.page.title = '287. Find the Duplicate Number';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
