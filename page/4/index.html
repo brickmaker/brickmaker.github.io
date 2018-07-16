@@ -290,6 +290,406 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode45/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/10/LeetCode45/" itemprop="url">
+                  45. Jump Game II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-10 15:29:17" itemprop="dateCreated datePublished" datetime="2017-09-10T15:29:17+08:00">2017-09-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:39" itemprop="dateModified" datetime="2018-07-10T13:34:39+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/LeetCode45/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/10/LeetCode45/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/jump-game-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/jump-game-ii/description/</a></p>
+<p><img src="/media/15050286053481.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>贪心！<br>首先想到的两个字，但是又不知道具体怎么用了，可能忘记了贪心的核心思想…</p>
+<p>其实也就是一张图，求最短路径，但是图相关的算法基本上全忘了</p>
+<p>遍历，更新，应该就是这样吧</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        a = [sys.maxsize] * len(nums)</div><div class="line">        a[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums):</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</div><div class="line">                <span class="keyword">if</span> i + j &lt; len(a):</div><div class="line">                    a[i + j] = min(a[i + j], a[i] + <span class="number">1</span>)</div><div class="line">        <span class="keyword">return</span> a[<span class="number">-1</span>]</div></pre></td></tr></table></figure>
+<p>算是比较暴力的解决办法，不出所料，TLE…<br>毕竟是hard的题，不会那么简单吧</p>
+<hr>
+<p>贪心，深度优先</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>参考一个人写的贪心的答案:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        ans = <span class="number">0</span></div><div class="line">        end = <span class="number">0</span></div><div class="line">        furthest = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i, n <span class="keyword">in</span> enumerate(nums[:<span class="number">-1</span>]):</div><div class="line">            furthest = max(furthest, i + n)</div><div class="line">            <span class="keyword">if</span> i == end:</div><div class="line">                ans += <span class="number">1</span></div><div class="line">                end = furthest</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这个答案很精巧</p>
+<p>贪心，抓住关键点：能通过一步，走到最远的地方</p>
+<p><strong>经典</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode241/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/10/LeetCode241/" itemprop="url">
+                  241. Different Ways to Add Parentheses
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-10 14:27:48" itemprop="dateCreated datePublished" datetime="2017-09-10T14:27:48+08:00">2017-09-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:36" itemprop="dateModified" datetime="2018-07-10T13:34:36+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/LeetCode241/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/10/LeetCode241/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/description/" target="_blank" rel="external">https://leetcode.com/problems/different-ways-to-add-parentheses/description/</a></p>
+<p><img src="/media/15050249179021.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个应该有多种解法吧<br>转化为构建二叉树？</p>
+<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…<br>这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组<br>不考虑，而且好像也不是那么回事</p>
+<p>如果递归地遍历地话，会不会超时</p>
+<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式<br>这只是抽象出来了，如何写呢？</p>
+<p>不会…</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
+<p>我想应该有更好的方法，但是，不想了…</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode221/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1836,409 +2236,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/03/LeetCode216/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/03/LeetCode216/" itemprop="url">
-                  Combination Sum III
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 13:39:57" itemprop="dateCreated datePublished" datetime="2017-09-03T13:39:57+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:34:08" itemprop="dateModified" datetime="2018-07-10T13:34:08+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/03/LeetCode216/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/03/LeetCode216/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/combination-sum-iii/description/" target="_blank" rel="external">https://leetcode.com/problems/combination-sum-iii/description/</a></p>
-<p><img src="/media/15044172721505.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>首先是unique的，其次所有的数的数量是定死的</p>
-<p>遍历应该是不行的，那样，简单的递归应该也不可以，</p>
-<p>用DP也不现实，会算好多没用的</p>
-<p>这样想，先分配：<br>1, 2, …, k<br>然后减去之后剩下的，问题变成了剩下的里边选几个再加<br>不好操作</p>
-<p>先分配：1, 1, 1, …, 1<br>然后变成剩下的用0-8来分<br>没有区别。。。</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>没有想出来，其它人的想法：</p>
-<p>backtracking!!!这应该是一个比较经典的backtracking的题目，只是自己不是很会backtracking罢了，趁机学习一下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">combination</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;vec, <span class="keyword">int</span> current_sum, <span class="keyword">int</span> start, <span class="keyword">int</span> k, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (k == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= <span class="number">9</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (current_sum + i == n &amp;&amp; k == <span class="number">1</span>) &#123;</div><div class="line">                vec.push_back(i);</div><div class="line">                ans.push_back(vec);</div><div class="line">                vec.pop_back();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current_sum + i &lt; n) &#123;</div><div class="line">                vec.push_back(i);</div><div class="line">                combination(vec, current_sum + i, i + <span class="number">1</span>, k - <span class="number">1</span>, n);</div><div class="line">                vec.pop_back();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</div><div class="line">        combination(vec, <span class="number">0</span>, <span class="number">1</span>, k, n);</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实自己一开始是这样想的，但是觉得这种递归是很低效的。但其实还是没有理解回溯的思想，没有条件反射地想到。</p>
-<p>回溯核心在于维护一个序列，当不满足条件时便退回，这个序列保证了不会做多余的工作，不像简单的递归一样！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/02/LeetCode239/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/02/LeetCode239/" itemprop="url">
-                  239. Sliding Window Maximum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-02 08:02:55" itemprop="dateCreated datePublished" datetime="2017-09-02T08:02:55+08:00">2017-09-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:34:06" itemprop="dateModified" datetime="2018-07-10T13:34:06+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/02/LeetCode239/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/02/LeetCode239/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sliding-window-maximum/description/" target="_blank" rel="external">https://leetcode.com/problems/sliding-window-maximum/description/</a></p>
-<p><img src="/media/15043106329725.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>初看觉得，直接扫一遍就好了，但是细想想，最大值是不断更新的，要各个状态下的最大值。</p>
-<p>记录下最大的两个值看怎么样，不行，还是会更新</p>
-<p>要不还是用DP试试，也不知道从何下手啊～</p>
-<p><strong>或许可以这样</strong> 先算出 1～k的最大值，再求2～k的是大值，再求2～k+1的最大值，再3～k+1最大值！<br>但是同样没有考虑重复，比如：5，3，3，2，2 (k = 3)</p>
-<p>额，没有思路，如果完全用DP做，算出各段的最大值，真的好傻啊<br>算了，先这样做吧</p>
-<p><strong>放弃，看答案吧</strong> 这应该是一个很经典的问题，就算是记也要住</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Monotonic Queue<br><a href="https://abitofcs.blogspot.com/2014/11/data-structure-sliding-window-minimum.html" target="_blank" rel="external">https://abitofcs.blogspot.com/2014/11/data-structure-sliding-window-minimum.html</a></p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>参考他人的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dq;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!dq.empty() &amp;&amp; dq.front() == i - k)</div><div class="line">                dq.pop_front();</div><div class="line">            <span class="keyword">while</span>(!dq.empty() &amp;&amp; nums[i] &gt; nums[dq.back()])</div><div class="line">                dq.pop_back();</div><div class="line">            dq.push_back(i);</div><div class="line">            <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>)</div><div class="line">                ans.push_back(nums[dq.front()]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>很经典的题目了</p>
-<p>deque运用，用deque存索引是我没有想到的，这是一个值得学习的地方</p>
-<p>还是注意分析表象背后的条件，一个个的往过移，那个一个较大的值出现，前边较小的就不再会成为最大值了，如代码中的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(!dq.empty() &amp;&amp; nums[i] &gt; nums[dq.back()])</div><div class="line">    dp.pop_back();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2290,7 +2287,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
