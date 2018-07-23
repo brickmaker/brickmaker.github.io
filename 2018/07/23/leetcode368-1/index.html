@@ -106,26 +106,26 @@
 
 
 
-  <meta name="description" content="题目https://leetcode.com/problems/merge-k-sorted-lists/description/  想法很经典的样子.. m个链表，每个链表长度为n数量级 循环找最小的，复杂度有O(m * n)  建堆可以做，但是怎么发挥排好序的是关键  两两合并也可以 TODO.. 答案">
+  <meta name="description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法排序 能整除集合中的最大的数，那么也会属于这个集合 直觉DP.. 遇到一个新数，从此数前一个开始判断，是否可以并入维护更新max 好像需要回溯来做，需要记录序列 backtracking回溯写了个，TLE 123456789101112131415161">
 <meta property="og:type" content="article">
-<meta property="og:title" content="23. Merge k Sorted Lists">
-<meta property="og:url" content="http://yoursite.com/2018/07/16/leetcode23/index.html">
+<meta property="og:title" content="368. Largest Divisible Subset">
+<meta property="og:url" content="http://yoursite.com/2018/07/23/leetcode368-1/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode.com/problems/merge-k-sorted-lists/description/  想法很经典的样子.. m个链表，每个链表长度为n数量级 循环找最小的，复杂度有O(m * n)  建堆可以做，但是怎么发挥排好序的是关键  两两合并也可以 TODO.. 答案">
+<meta property="og:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法排序 能整除集合中的最大的数，那么也会属于这个集合 直觉DP.. 遇到一个新数，从此数前一个开始判断，是否可以并入维护更新max 好像需要回溯来做，需要记录序列 backtracking回溯写了个，TLE 123456789101112131415161">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15317218457532.jpg">
-<meta property="og:updated_time" content="2018-07-16T06:41:25.840Z">
+<meta property="og:image" content="http://yoursite.com/media/15323551805486.jpg">
+<meta property="og:updated_time" content="2018-07-23T15:26:29.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="23. Merge k Sorted Lists">
-<meta name="twitter:description" content="题目https://leetcode.com/problems/merge-k-sorted-lists/description/  想法很经典的样子.. m个链表，每个链表长度为n数量级 循环找最小的，复杂度有O(m * n)  建堆可以做，但是怎么发挥排好序的是关键  两两合并也可以 TODO.. 答案">
-<meta name="twitter:image" content="http://yoursite.com/media/15317218457532.jpg">
+<meta name="twitter:title" content="368. Largest Divisible Subset">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/largest-divisible-subset/description/  想法排序 能整除集合中的最大的数，那么也会属于这个集合 直觉DP.. 遇到一个新数，从此数前一个开始判断，是否可以并入维护更新max 好像需要回溯来做，需要记录序列 backtracking回溯写了个，TLE 123456789101112131415161">
+<meta name="twitter:image" content="http://yoursite.com/media/15323551805486.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/16/leetcode23/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/23/leetcode368-1/"/>
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>23. Merge k Sorted Lists | Xiaodong's Blog</title>
+  <title>368. Largest Divisible Subset | Xiaodong's Blog</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/leetcode23/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/leetcode368-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">23. Merge k Sorted Lists
+          <h1 class="post-title" itemprop="name headline">368. Largest Divisible Subset
               
             
           </h1>
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="Created: 2018-07-16 14:16:43 / Modified: 14:41:25" itemprop="dateCreated datePublished" datetime="2018-07-16T14:16:43+08:00">2018-07-16</time>
+              <time title="Created: 2018-07-23 22:12:19 / Modified: 23:26:29" itemprop="dateCreated datePublished" datetime="2018-07-23T22:12:19+08:00">2018-07-23</time>
             
 
             
@@ -378,10 +378,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/16/leetcode23/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/23/leetcode368-1/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/16/leetcode23/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/23/leetcode368-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,17 +409,28 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="external">https://leetcode.com/problems/merge-k-sorted-lists/description/</a></p>
-<p><img src="/media/15317218457532.jpg" alt="-w958"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>很经典的样子..</p>
-<p>m个链表，每个链表长度为n数量级</p>
-<p>循环找最小的，复杂度有O(m * n)</p>
-<hr>
-<p>建堆可以做，但是怎么发挥排好序的是关键</p>
-<hr>
-<p>两两合并也可以</p>
-<p>TODO..</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-divisible-subset/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/description/</a></p>
+<p><img src="/media/15323551805486.jpg" alt="-w947"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>排序</p>
+<p>能整除集合中的最大的数，那么也会属于这个集合</p>
+<p>直觉DP..</p>
+<p>遇到一个新数，从此数前一个开始判断，是否可以并入<br>维护更新max</p>
+<p>好像需要回溯来做，需要记录序列</p>
+<h3 id="backtracking"><a href="#backtracking" class="headerlink" title="backtracking"></a>backtracking</h3><p>回溯写了个，TLE</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> idx)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (curr.empty() || nums[i] % curr[curr.size() - <span class="number">1</span>] == <span class="number">0</span>) &#123; <span class="comment">// #1</span></div><div class="line">                curr.push_back(nums[i]);</div><div class="line">                f(nums, i + <span class="number">1</span>);</div><div class="line">                curr.pop_back();</div><div class="line">            &#125;       </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (curr.size() &gt; res.size()) &#123;</div><div class="line">            res = curr;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        f(nums, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>感觉是剪枝做得不够充分..</p>
+<p>1 2 4</p>
+<p>1 2 之后，就不应该试1 4了，肯定比1 2..少<br>这个怎么剪呢？</p>
+<p>将上述代码中#1部分改动：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (curr.empty() || (find(res.begin(), res.end(), nums[i]) == res.end() &amp;&amp; nums[i] % curr[curr.size() - <span class="number">1</span>] == <span class="number">0</span>))</div></pre></td></tr></table></figure>
+<p>AC，但是时间是1540ms，显然勉强AC</p>
+<h3 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h3><p>if (nums[i] % nums[j] == 0)<br>    dp[i] = max(dp[j] + 1, dp[i])</p>
+<p>参考了<a href="https://leetcode.com/problems/largest-divisible-subset/discuss/83999/Easy-understood-Java-DP-solution-in-28ms-with-O(n2)-time" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/discuss/83999/Easy-understood-Java-DP-solution-in-28ms-with-O(n2)-time</a><br>虽然他的有bug</p>
+<p>最后运行16ms，还好</p>
+<p>这里关键的一点是选取最后的结果上，注意筛选方式：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (dp[i] == dp[idx] - res.size() &amp;&amp; prev % nums[i] == <span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size(), <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] % nums[j] == <span class="number">0</span>) &#123;</div><div class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> idx = distance(dp.begin(), max_element(dp.begin(), dp.end()));</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; idx;</div><div class="line">        <span class="keyword">int</span> prev = nums[idx];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span> (dp[i] == dp[idx] - res.size() &amp;&amp; prev % nums[i] == <span class="number">0</span>) &#123;</div><div class="line">                res.push_back(nums[i]);</div><div class="line">                prev = nums[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        reverse(res.begin(), res.end());</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -446,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/13/leetcode142/" rel="next" title="142. Linked List Cycle II">
-                <i class="fa fa-chevron-left"></i> 142. Linked List Cycle II
+              <a href="/2018/07/22/maximum-subsequence-sum/" rel="next" title="Maximum Subarray Sum">
+                <i class="fa fa-chevron-left"></i> Maximum Subarray Sum
               </a>
             
           </div>
@@ -455,10 +466,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/16/leetcode845/" rel="prev" title="845. Longest Mountain in Array">
-                845. Longest Mountain in Array <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -639,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backtracking"><span class="nav-number">2.1.</span> <span class="nav-text">backtracking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP"><span class="nav-number">2.2.</span> <span class="nav-text">DP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
             
 
           </div>
@@ -793,9 +800,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/07/16/leetcode23/';
-        this.page.identifier = '2018/07/16/leetcode23/';
-        this.page.title = '23. Merge k Sorted Lists';
+        this.page.url = 'http://yoursite.com/2018/07/23/leetcode368-1/';
+        this.page.identifier = '2018/07/23/leetcode368-1/';
+        this.page.title = '368. Largest Divisible Subset';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
