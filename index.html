@@ -290,6 +290,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/leetcode56/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/leetcode56/" itemprop="url">
+                  56. Merge Intervals
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-25 20:08:57 / Modified: 20:25:15" itemprop="dateCreated datePublished" datetime="2018-07-25T20:08:57+08:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/leetcode56/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/25/leetcode56/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/merge-intervals/description/" target="_blank" rel="external">https://leetcode.com/problems/merge-intervals/description/</a></p>
+<p><img src="/media/15325205764851.jpg" alt="-w948"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>先排序，按照第一个数升序<br>挨个看是否可以合并<br>这样真的可以嘛，感觉好简单的样子，与赞数不符啊</p>
+<p>咦，还真这样AC了，这水题，为什么900+的赞，不懂不懂</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for an interval.</div><div class="line"> * struct Interval &#123;</div><div class="line"> *     int start;</div><div class="line"> *     int end;</div><div class="line"> *     Interval() : start(0), end(0) &#123;&#125;</div><div class="line"> *     Interval(int s, int e) : start(s), end(e) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">auto</span> ____ = []()&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</div><div class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</div><div class="line">&#125;();</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;Interval&gt; merge(<span class="built_in">vector</span>&lt;Interval&gt;&amp; intervals) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;Interval&gt; res;</div><div class="line">        <span class="keyword">if</span> (intervals.empty())</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        sort(intervals.begin(), intervals.end(), [](Interval&amp; a, Interval&amp; b) &#123;</div><div class="line">            <span class="keyword">return</span> a.start &lt; b.start;</div><div class="line">        &#125;);</div><div class="line">        res.push_back(intervals[<span class="number">0</span>]);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) &#123;</div><div class="line">            Interval&amp; last = res[res.size() - <span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span> (intervals[i].start &lt;= last.end) &#123;</div><div class="line">                last.end = max(last.end, intervals[i].end);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                res.push_back(intervals[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/leetcode368-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2024,248 +2204,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/2018-06-30/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/30/2018-06-30/" itemprop="url">
-                  项目管理总结——记软件工程课
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-30 19:43:57" itemprop="dateCreated datePublished" datetime="2018-06-30T19:43:57+08:00">2018-06-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 14:03:51" itemprop="dateModified" datetime="2018-07-10T14:03:51+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">Software Engineering</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/30/2018-06-30/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/30/2018-06-30/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。</p>
-<hr>
-<h2 id="开始一个项目"><a href="#开始一个项目" class="headerlink" title="开始一个项目"></a>开始一个项目</h2><p>其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结构等等。</p>
-<p>所以，要做的第一件事，正确的事，就是建立一个repo，写清楚开发指导，让大家知道如何开始写，这一部分，需要注意，或者说必须要做到的几点：</p>
-<h4 id="1-一个工程"><a href="#1-一个工程" class="headerlink" title="1. 一个工程"></a>1. 一个工程</h4><p>说起来是一句废话，既然最终是完成一个项目，当然是在一个工程里边写了。可是我有点太想当然了，于是还是有因为有的模块用了其它的脚手架，有着差异很大的代码结构，导致了整合时花费了些力气的不愉快经历。</p>
-<p>如果是最终是一个整体的项目，一定要在一个工程里写，不要想着先各自写自己的子模块，最后写一个顶层的模块将他们捏合在一起，会很痛苦。</p>
-<p>当然，比如像一个网站采取前后端分离的架构，那么前后端两个工程，这是没有关系的。</p>
-<h4 id="2-模块之间的独立性"><a href="#2-模块之间的独立性" class="headerlink" title="2. 模块之间的独立性"></a>2. 模块之间的独立性</h4><p>所有人在一个工程里开发，如果不能有很好的独立性，每个人的开发或多或少都会受到拘束，这是我们不愿意看到的。所以在本次开发过程中，建立工程的同事，就需要规定好每个模块如何相互独立的开发。</p>
-<p>以本次工程为例，初始项目中，为6个模块分别在合适的地方建立6个目录，有一个必要的入口文件。比如：</p>
-<p><strong>后端：</strong>用了Django，那么<code>urls.py</code>里写好路由映射，路由到对应目录下的<code>urls.py</code>即可。</p>
-<p><strong>前端：</strong>用了React生态，需要处理的事情多一些。首先是前端路由，给每个模块的入口component创建路由；其次还有redux的配置，创建根store，让每个子模块创建自己的store并注册到根store中。</p>
-<p>这样，初期的开发，每个人在前端直接进入自己的路由，请求后端也全部请求自己子路由下的内容，可以做到相互独立的开发。</p>
-<h4 id="3-示例参考"><a href="#3-示例参考" class="headerlink" title="3. 示例参考"></a>3. 示例参考</h4><p>成员在开发完项目之后，肯定都对所用到的技术栈，一些best practice有或多或少的理解，但是在项目的开始并不是这样的，有许多成员不了解相关的库，框架，语言等。</p>
-<p>此时，光给tutorial，documentation等是不够的，成员去学这些东西刚开始需要一段上手时间，而这并不是一个短期一次性项目高效的做法。最直接的就是，写个参考的示例，让不熟悉的成员能够模仿着去写，这样在模仿中学习，能够比较快的掌握所用的知识，同时，也可以学到一些在文档中并不会出现的best practice。</p>
-<p>在本次项目的开发中，可以首先写个最简单的前后端交互的示例，有如下的功能：</p>
-<ul>
-<li>前端发送GET请求</li>
-<li>后端返回数据，比如Hello World</li>
-<li>前端redux相关的操作：触发action、reducer的行为、store的改动与视图的更新</li>
-<li>react组件书写的示例</li>
-</ul>
-<p>经过以上的几步，基本做好了项目起始的准备，每个人应该知道了在哪里开始写，怎么开始写这最基本的问题。</p>
-<h2 id="Git-amp-GitHub使用"><a href="#Git-amp-GitHub使用" class="headerlink" title="Git&amp;GitHub使用"></a>Git&amp;GitHub使用</h2><p>本项目的组织方式大致是这样的：</p>
-<ul>
-<li>所有代码放在一个repo中</li>
-<li>master放整合的代码，受保护</li>
-<li>每个子模块有自己的分支，该模块的小组成员在此单分支上工作</li>
-<li>子模块完成某个功能之后，提交PR，将子分支merge到master中</li>
-</ul>
-<p>就我个人理解，多人的开发，一般有两种模式，一种是多分支，分支之间PR；另一种是fork-PR。我在这次选择了前者，有几个考虑因素：</p>
-<ol>
-<li>我可以看到各个子模块的进度，不至于不提交PR我什么都不知道</li>
-<li>如果必要，我可以直接在某个分支上提交来修改一些代码</li>
-<li>子模块一个分支上操作足够了，一个子模块有四个人参与，单分支基本满足了要求</li>
-</ol>
-<h3 id="单分支多人开发"><a href="#单分支多人开发" class="headerlink" title="单分支多人开发"></a>单分支多人开发</h3><p>对于多人在单分支上开发，还是需要遵从一定的workflow才能保证不会出现一些不愉快的事情。比如现在多人开发的单分支为common，可以遵从一下的流程：</p>
-<ol>
-<li><code>git checkout -b local</code> 建立自己的本地分支</li>
-<li>coding..coding..</li>
-<li><code>git commit -a -m &#39;blabla&#39;</code> 在自己的分支上提交</li>
-<li><code>git checkout common</code> 切换到common分支</li>
-<li><code>git pull</code> 看看别人在这段时间有没有提交</li>
-<li><code>git checkout local</code></li>
-<li><code>git merge common</code> 在自己的分支上merge别人的提交，如果有冲突，解决</li>
-<li><code>git checkout common</code></li>
-<li><code>git merge local</code> 此时，merge 自己分支上的东西，是不会发生冲突的</li>
-<li><code>git push</code></li>
-<li><code>git checkout local</code> 切回自己的分支，保持idle状态在自己本地分支这个习惯</li>
-</ol>
-<h3 id="Pull-Request的使用"><a href="#Pull-Request的使用" class="headerlink" title="Pull Request的使用"></a>Pull Request的使用</h3><p>第一次使用Pull Request这个功能，有一些经验不足，导致自己的使用并不是很愉快。</p>
-<p>Review这个设计方式很好，在接受更改的时候，可以审核代码，防止不合理的代码污染共有的分支。以下是自己经过尝试之后的一些心得：</p>
-<ol>
-<li>提交PR之后，只是声明了一个分支到另一个分支的合并，并不是当前提交的状态到另一个分支的合并，所以，提交PR之后的commit，仍然会更新。所以，request change的时候，直接修改就好，不用关掉这个PR再开一个新的PR。</li>
-<li>提交PR的频率尽可能高，不要憋着一个很大的功能再提交，我的建议是，只要写完了一小块内容，而这块内容不至于编译不通过，运行不起来，就可以提交PR，这样逐渐增加master上的功能，不至于一次提交PR，需要审核好多代码。</li>
-</ol>
-<h3 id="blame"><a href="#blame" class="headerlink" title="blame"></a>blame</h3><p>之前只是注意到这个按钮，但是并没有细究过它的用处，不过，这次可真的是发现了它的用处哈哈。多人开发里边，真的是神器呀。</p>
-<p>blame的功能是可以显示文件中对应行是由谁改动的，并且可以查看历史记录，看起来跟blame没有直接的关系，但其实我用到的时候，恰恰就是blame的时候。</p>
-<blockquote>
-<p>-“这谁把我的代码改掉了？？？是你吗？”<br>-“不是我，我怎么可能去动你这部分的代码？？”<br>-“哦，是吗？我们来blame一下”<br>-“我错了orzorz”</p>
-</blockquote>
-<p>今后多人开发的时候可要善用这个功能。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2317,7 +2255,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
