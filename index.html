@@ -290,6 +290,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/leetcode59/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/leetcode59/" itemprop="url">
+                  59. Spiral Matrix II
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-25 21:07:55 / Modified: 21:09:13" itemprop="dateCreated datePublished" datetime="2018-07-25T21:07:55+08:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/leetcode59/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/25/leetcode59/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/spiral-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/spiral-matrix-ii/description/</a></p>
+<p><img src="/media/15325241019111.jpg" alt="-w951"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>其实就是考虑一些边界值，考虑的好，就写起来很简洁</p>
+<p>还有四个方向的变化，怎么统一起来，一点小trick</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generateMatrix(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>));</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; h&#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;;</div><div class="line">        <span class="keyword">int</span> d = <span class="number">0</span>;</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n * n; k++) &#123;</div><div class="line">            <span class="keyword">int</span> ti = i + v[d];</div><div class="line">            <span class="keyword">int</span> tj = j + h[d];</div><div class="line">            <span class="keyword">if</span> (!(ti &gt;= <span class="number">0</span> &amp;&amp; ti &lt; n &amp;&amp; tj &gt;= <span class="number">0</span> &amp;&amp; tj &lt; n &amp;&amp; res[ti][tj] == <span class="number">0</span>)) &#123;</div><div class="line">                d = (d + <span class="number">1</span>) % <span class="number">4</span>;</div><div class="line">            &#125;</div><div class="line">            i = i + v[d];</div><div class="line">            j = j + h[d];</div><div class="line">            res[i][j] = k;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/leetcode451/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1992,207 +2173,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/balence_tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/12/balence_tree/" itemprop="url">
-                  平衡二叉树之AVL tree
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-12 20:26:34 / Modified: 22:37:08" itemprop="dateCreated datePublished" datetime="2018-07-12T20:26:34+08:00">2018-07-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/12/balence_tree/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/12/balence_tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>AVL tree是一个BST对于每一个节点，左子树和右子树的高度差不超过1（空树高度为-1）</p>
-<p>这里需要明确，高度的定义：</p>
-<blockquote>
-<p>维基百科：<br><strong>Height of node</strong><br>The height of a node is the number of edges on the <strong>longest path</strong> between that node and a leaf.<br><strong>Height of tree</strong><br>The height of a tree is the height of its root node.</p>
-</blockquote>
-<h2 id="树的平衡维护"><a href="#树的平衡维护" class="headerlink" title="树的平衡维护"></a>树的平衡维护</h2><p>对一棵平衡的树，进行插入或删除可能改变树的平衡性，这里只考虑插入，删除类似（虽然稍微麻烦一点）。</p>
-<p>对于节点X，插入一个节点导致其不平衡，会有四种情况：</p>
-<ul>
-<li>新增加的节点是其左结点的左子树</li>
-<li>新增加的节点是其左结点的右子树</li>
-<li>新增加的节点是其右结点的右子树</li>
-<li>新增加的节点是其右结点的左子树</li>
-</ul>
-<p>后两种情况与前两种镜像，不作考虑，所以是由两种情况，称之为LL(Left-Left)问题和LR(Left-Right)问题</p>
-<h3 id="LL"><a href="#LL" class="headerlink" title="LL"></a>LL</h3><p><img src="/media/15314006884866.jpg" alt="-w635"></p>
-<p>当插入到X，导致$k_1$的的高度 &gt; Z的高度+2的时候，树不平衡！</p>
-<p>这时候要做的是想办法，把X提上去，把Z压下来，这里需要做的是从左图到右图的变形，这样的形变也叫做一次旋转。</p>
-<p>这里有一个动态演示的网站：<a href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html" target="_blank" rel="external">https://www.cs.usfca.edu/~galles/visualization/AVLtree.html</a> 显示了旋转的动画效果，非常直观</p>
-<p>初始：</p>
-<p><img src="/media/15314014858911.jpg" alt="-w599"></p>
-<p>插入2之后：</p>
-<p><img src="/media/15314015173193.jpg" alt="-w599"></p>
-<p>再次插入1之后：</p>
-<p><img src="/media/15314015451053.jpg" alt="-w602"></p>
-<p>这里树的结构变动比较大，因为不是3结点不平衡，而是根节点5不平衡，所以是5和3旋转，根节点发生改变。</p>
-<h3 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h3><p><img src="/media/15314018648019.jpg" alt="-w656"></p>
-<p>很巧妙的一个变形！</p>
-<p>在$k_1$的右子树中插入了东西，导致$k_3$不平衡，现在是要把$k_1$的右子树也就是$k_2$提上去，把D压下去，需要通过两次旋转，就是先$k_1$-$k_2$的一次RR旋转，再$k_2$-$k_3$的一次LL旋转，但是我通常都不想这样记，直接记住这个形式，下边那个从中间“穿过去”，然后原来的左右子树变为新的子树的右左子树。</p>
-<p>例子就不举了。</p>
-<h2 id="树的平衡化"><a href="#树的平衡化" class="headerlink" title="树的平衡化"></a>树的平衡化</h2><p>上述的两个旋转，是平衡化的两个基本操作，平衡化的变形肯定属于这两者。</p>
-<p>如果是新的节点插入一棵已经平衡的树的话，用递归的方式非常直观，大概：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(X, T)</span>:</span></div><div class="line">    <span class="keyword">if</span> T == null:</div><div class="line">        place here</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">if</span> X &lt; T.val:</div><div class="line">            insert(X, T.left)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> balence:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">is</span> LL:</div><div class="line">                    LLrotate</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    LRrotate</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            insert(X, T.right)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> balence:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">is</span> RR:</div><div class="line">                    RRrotate</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    RLrotate</div><div class="line">    update height <span class="comment"># don't forget, we use height to check balence</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2244,7 +2224,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

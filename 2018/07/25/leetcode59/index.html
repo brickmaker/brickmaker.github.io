@@ -106,24 +106,26 @@
 
 
 
-  <meta name="description" content="题目https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376 1003 Emergency (25)（25 分） As an emergency rescue team leader of a city, you are given a special map of your country. The">
+  <meta name="description" content="题目https://leetcode.com/problems/spiral-matrix-ii/description/  想法其实就是考虑一些边界值，考虑的好，就写起来很简洁 还有四个方向的变化，怎么统一起来，一点小trick 答案12345678910111213141516171819202122class Solution &amp;#123;public:    vector&amp;lt;vecto">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1003 Emergency">
-<meta property="og:url" content="http://yoursite.com/2018/07/17/PAT-A-1003/index.html">
+<meta property="og:title" content="59. Spiral Matrix II">
+<meta property="og:url" content="http://yoursite.com/2018/07/25/leetcode59/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376 1003 Emergency (25)（25 分） As an emergency rescue team leader of a city, you are given a special map of your country. The">
+<meta property="og:description" content="题目https://leetcode.com/problems/spiral-matrix-ii/description/  想法其实就是考虑一些边界值，考虑的好，就写起来很简洁 还有四个方向的变化，怎么统一起来，一点小trick 答案12345678910111213141516171819202122class Solution &amp;#123;public:    vector&amp;lt;vecto">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-17T08:53:51.409Z">
+<meta property="og:image" content="http://yoursite.com/media/15325241019111.jpg">
+<meta property="og:updated_time" content="2018-07-25T13:09:13.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1003 Emergency">
-<meta name="twitter:description" content="题目https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376 1003 Emergency (25)（25 分） As an emergency rescue team leader of a city, you are given a special map of your country. The">
+<meta name="twitter:title" content="59. Spiral Matrix II">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/spiral-matrix-ii/description/  想法其实就是考虑一些边界值，考虑的好，就写起来很简洁 还有四个方向的变化，怎么统一起来，一点小trick 答案12345678910111213141516171819202122class Solution &amp;#123;public:    vector&amp;lt;vecto">
+<meta name="twitter:image" content="http://yoursite.com/media/15325241019111.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/17/PAT-A-1003/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/25/leetcode59/"/>
 
 
 
@@ -133,7 +135,7 @@
   };
 </script>
 
-  <title>1003 Emergency | Xiaodong's Blog</title>
+  <title>59. Spiral Matrix II | Xiaodong's Blog</title>
   
 
 
@@ -290,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/PAT-A-1003/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/leetcode59/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -307,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1003 Emergency
+          <h1 class="post-title" itemprop="name headline">59. Spiral Matrix II
               
             
           </h1>
@@ -332,7 +334,7 @@
                 
               
 
-              <time title="Created: 2018-07-17 15:27:29 / Modified: 16:53:51" itemprop="dateCreated datePublished" datetime="2018-07-17T15:27:29+08:00">2018-07-17</time>
+              <time title="Created: 2018-07-25 21:07:55 / Modified: 21:09:13" itemprop="dateCreated datePublished" datetime="2018-07-25T21:07:55+08:00">2018-07-25</time>
             
 
             
@@ -361,7 +363,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
 
                 
                 
@@ -376,10 +378,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/17/PAT-A-1003/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/25/leetcode59/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/17/PAT-A-1003/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/25/leetcode59/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -407,20 +409,12 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376</a></p>
-<p><strong>1003 Emergency (25)（25 分）</strong></p>
-<p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
-<p><strong>Input</strong></p>
-<p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: N (&lt;= 500) - the number of cities (and the cities are numbered from 0 to N-1), M - the number of roads, C1 and C2 - the cities that you are currently in and that you must save, respectively. The next line contains N integers, where the i-th integer is the number of rescue teams in the i-th city. Then M lines follow, each describes a road with three integers c1, c2 and L, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from C1 to C2.</p>
-<p><strong>Output</strong></p>
-<p>For each test case, print in one line two numbers: the number of different shortest paths between C1 and C2, and the maximum amount of rescue teams you can possibly gather.\ All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
-<p><strong>Sample Input</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">5 6 0 2</div><div class="line">1 2 1 5 3</div><div class="line">0 1 1</div><div class="line">0 2 2</div><div class="line">0 3 1</div><div class="line">1 2 1</div><div class="line">2 4 1</div><div class="line">3 4 1</div></pre></td></tr></table></figure>
-<p><strong>Sample Output</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2 4</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>记下这道题，只是想熟悉一下，PAT中图的表示方式和处理。</p>
-<p>这道题，还需要记录最短路径的数量，这一点需要注意！</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/7/17.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, M, C1, C2;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M &gt;&gt; C1 &gt;&gt; C2;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; teams(N, <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; teams[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="keyword">int</span> a, b, l;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; l;</div><div class="line">        g[a][b] = g[b][a] = l;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; paths(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxTeam(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; know(N, <span class="literal">false</span>);</div><div class="line"></div><div class="line">    dist[C1] = <span class="number">0</span>;</div><div class="line">    paths[C1] = <span class="number">1</span>;</div><div class="line">    maxTeam[C1] = teams[C1];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> minDist = INT_MAX;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; minDist &gt; dist[j]) &#123;</div><div class="line">                curr = j;</div><div class="line">                minDist = dist[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        know[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; g[curr][j] &lt; INT_MAX &amp;&amp; g[curr][j] + dist[curr] &lt;= dist[j]) &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][j] + dist[curr] &lt; dist[j]) &#123;</div><div class="line">                    dist[j] = g[curr][j] + dist[curr];</div><div class="line">                    paths[j] = paths[curr];</div><div class="line">                    maxTeam[j] = teams[j] + maxTeam[curr];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    paths[j] += paths[curr];</div><div class="line">                    maxTeam[j] = max(maxTeam[curr] + teams[j], maxTeam[j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; paths[C2] &lt;&lt; <span class="string">" "</span> &lt;&lt; maxTeam[C2];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/spiral-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/spiral-matrix-ii/description/</a></p>
+<p><img src="/media/15325241019111.jpg" alt="-w951"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>其实就是考虑一些边界值，考虑的好，就写起来很简洁</p>
+<p>还有四个方向的变化，怎么统一起来，一点小trick</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generateMatrix(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>));</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; h&#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;;</div><div class="line">        <span class="keyword">int</span> d = <span class="number">0</span>;</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n * n; k++) &#123;</div><div class="line">            <span class="keyword">int</span> ti = i + v[d];</div><div class="line">            <span class="keyword">int</span> tj = j + h[d];</div><div class="line">            <span class="keyword">if</span> (!(ti &gt;= <span class="number">0</span> &amp;&amp; ti &lt; n &amp;&amp; tj &gt;= <span class="number">0</span> &amp;&amp; tj &lt; n &amp;&amp; res[ti][tj] == <span class="number">0</span>)) &#123;</div><div class="line">                d = (d + <span class="number">1</span>) % <span class="number">4</span>;</div><div class="line">            &#125;</div><div class="line">            i = i + v[d];</div><div class="line">            j = j + h[d];</div><div class="line">            res[i][j] = k;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -447,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/16/leetcode845/" rel="next" title="845. Longest Mountain in Array">
-                <i class="fa fa-chevron-left"></i> 845. Longest Mountain in Array
+              <a href="/2018/07/25/leetcode451/" rel="next" title="451. Sort Characters By Frequency">
+                <i class="fa fa-chevron-left"></i> 451. Sort Characters By Frequency
               </a>
             
           </div>
@@ -456,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/22/maximum-subsequence-sum/" rel="prev" title="Maximum Subarray Sum">
-                Maximum Subarray Sum <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -794,9 +784,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/07/17/PAT-A-1003/';
-        this.page.identifier = '2018/07/17/PAT-A-1003/';
-        this.page.title = '1003 Emergency';
+        this.page.url = 'http://yoursite.com/2018/07/25/leetcode59/';
+        this.page.identifier = '2018/07/25/leetcode59/';
+        this.page.title = '59. Spiral Matrix II';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
