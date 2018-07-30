@@ -290,6 +290,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/leetcode287/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/13/leetcode287/" itemprop="url">
+                  287. Find the Duplicate Number
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-13 14:17:19 / Modified: 16:32:35" itemprop="dateCreated datePublished" datetime="2018-07-13T14:17:19+08:00">2018-07-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/13/leetcode287/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/13/leetcode287/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-the-duplicate-number/description/" target="_blank" rel="external">https://leetcode.com/problems/find-the-duplicate-number/description/</a></p>
+<p><img src="/media/15314626961572.jpg" alt="-w960"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>一时没有想出解决办法..</p>
+<p>遍历然后二分查找嘛？不可行啊，乱序的</p>
+<p>好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用</p>
+<p>题目中强调了1-n，n+1个数，是不是可以利用？</p>
+<p>如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊</p>
+<p>不成，sort，nlogn，然后遍历？好傻，题目规定不能动数组</p>
+<hr>
+<p><strong>Cycle detection</strong></p>
+<p>可以把问题归约到检测环的问题上！</p>
+<p>题目中强调了1 - n, n + 1个数，意思是数在数组的下标范围内。按照下标进行搜寻，如果有重复的值，便会出现环。</p>
+<p>检测环的方法，有多种，参见：<a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cycle_detection</a></p>
+<p><strong>Floyd’s Tortoise and Hare</strong></p>
+<p>思想大致是这样的：让龟兔从同一起点出发，但以不同的速度前进，如果路径没有环的话，那么当兔子走到尽头，龟兔是不会相遇的，如果相遇了，说明成环。</p>
+<hr>
+<p>所以这道题，用这样的方式就可以了~</p>
+<p>不过，判断除了相交的位置，并不能知道重复的在哪里。</p>
+<p>不过，这里不作过多的讨论，有另外的典型题目来讨论这个问题：<a href="https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description" target="_blank" rel="external">https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description</a></p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> tortoise = <span class="number">0</span>, hare = <span class="number">0</span>;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            tortoise = nums[tortoise];</div><div class="line">            hare = nums[nums[hare]];</div><div class="line">        &#125; <span class="keyword">while</span>(nums[tortoise] != nums[hare]);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = tortoise;</div><div class="line">        <span class="keyword">while</span> (nums[p1] != nums[p2]) &#123;</div><div class="line">            p1 = nums[p1];</div><div class="line">            p2 = nums[p2];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[p1];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>第一个循环，找到了相遇的点，第二个循环利用了<em>起点走到环起点=相遇点走到环起点</em>这一特性：</p>
+<blockquote>
+<p>It can be concluded that the distance between the head location and entry location is equal to the distance between the meeting location and the entry location along the direction of forward movement.</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/balence_tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2075,222 +2275,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/2018-02-24-heap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/24/2018-02-24-heap/" itemprop="url">
-                  Heap(堆) 数据结构整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-24 08:17:58" itemprop="dateCreated datePublished" datetime="2018-02-24T08:17:58+08:00">2018-02-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-12 23:14:41" itemprop="dateModified" datetime="2018-07-12T23:14:41+08:00">2018-07-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/24/2018-02-24-heap/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/24/2018-02-24-heap/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>又一基础数据结构的整理，知识需要不停的回顾与学习。</p>
-<p>（此处的heap指binary heap, 且是最小堆）</p>
-<hr>
-<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="structure"><a href="#structure" class="headerlink" title="structure"></a>structure</h3><p>complete binary tree</p>
-<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>根节点的值 &lt;= 叶节点的值</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>数组实现（完全二叉树的表示方式）</p>
-<ul>
-<li>根节点放在A[1] (A[0]不使用)</li>
-<li>A[x]的子节点为A[2x]以及A[2x + 1]</li>
-</ul>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="Insert-O-logN"><a href="#Insert-O-logN" class="headerlink" title="Insert O(logN)"></a>Insert O(logN)</h3><p>从最后向上找，找到适合放入插入值的位置放入。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap, <span class="keyword">int</span> val)</span> </span>&#123;</div><div class="line">    heap.push_back(val);</div><div class="line">    <span class="keyword">int</span> idx = heap.size() - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (idx &gt; <span class="number">1</span> &amp;&amp; heap[idx / <span class="number">2</span>] &gt; val) &#123;</div><div class="line">        heap[idx] = heap[idx / <span class="number">2</span>]; <span class="comment">// percolate up</span></div><div class="line">        idx /= <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = val;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="DeleteMin-O-logN"><a href="#DeleteMin-O-logN" class="headerlink" title="DeleteMin O(logN)"></a>DeleteMin O(logN)</h3><p>从根节点出发，找到适合放入最后一个元素的位置放入。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">delete_min</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> idx = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> ret = heap[idx];</div><div class="line">    <span class="keyword">int</span> last = heap.back();</div><div class="line">    <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">        <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">        <span class="keyword">if</span> (child &lt; heap.size() - <span class="number">1</span> &amp;&amp; heap[child + <span class="number">1</span>] &lt; heap[child])</div><div class="line">            child++; <span class="comment">// 找到更小的child</span></div><div class="line">        <span class="keyword">if</span> (last &gt; heap[child])</div><div class="line">            heap[idx] = heap[child]; <span class="comment">// percolate down</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">break</span>; <span class="comment">// 找到最后一个元素插入的合适位置！！！</span></div><div class="line">        idx = child;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = last;</div><div class="line">    heap.pop_back();</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><h4 id="Naive-O-NlogN"><a href="#Naive-O-NlogN" class="headerlink" title="Naive O(NlogN)"></a>Naive O(NlogN)</h4><p>做n次插入操作</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> arr:</div><div class="line">    insert(heap, x)</div></pre></td></tr></table></figure>
-<h4 id="O-N"><a href="#O-N" class="headerlink" title="O(N)"></a>O(N)</h4><p>由下向上，依次进行heapify操作。</p>
-<p>时间复杂度分析：</p>
-<ul>
-<li>对于高度为h的heapify操作：O(h)</li>
-<li>每一层高度为h的最多的节点：$\lceil\frac{n}{2^{h + 1}}\rceil$</li>
-<li>两者相乘累加</li>
-</ul>
-<script type="math/tex; mode=display">\begin{aligned}\sum _{h=0}^{\lfloor \log n\rfloor }{\frac {n}{2^{h}}}O(h)&=O\left(n\sum _{h=0}^{\lfloor \log n\rfloor }{\frac {h}{2^{h}}}\right)\\&=O\left(n\sum _{h=0}^{\infty }{\frac {h}{2^{h}}}\right)\\&=O(n)\end{aligned}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">build_heap(heap):</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">from</span> heap_size / <span class="number">2</span> to <span class="number">1</span>:</div><div class="line">        heapify(heap, i)</div></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">percolate_down</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap, <span class="keyword">int</span> idx)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> val = heap[idx];</div><div class="line">    <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">        <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">        <span class="keyword">if</span> (child &lt; heap.size() - <span class="number">1</span> &amp;&amp; heap[child + <span class="number">1</span>] &lt; heap[child])</div><div class="line">            child++;</div><div class="line">        <span class="keyword">if</span> (val &gt; heap[child])</div><div class="line">            heap[idx] = heap[child];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        idx = child;</div><div class="line">    &#125;</div><div class="line">    heap[idx] = val;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">build_min_heap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;heap)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = heap.size() / <span class="number">2</span>; i &gt; <span class="number">0</span>; --i) &#123;</div><div class="line">        percolate_down(heap, i);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h3><p>放到一起，build heap…</p>
-<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><h3 id="K-th-largest-element-problem"><a href="#K-th-largest-element-problem" class="headerlink" title="K-th largest element problem"></a>K-th largest element problem</h3><p><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/description/" target="_blank" rel="external">LeetCode 215. Kth Largest Element in an Array</a></p>
-<p>很经典的题目，用heap可以做，也可以用类似快排那样划分的方式做，似乎有更好的表现，因为每次只用考虑一般，是O(N)的时间复杂度。<br><strong>Heap Method:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">makeHeap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; heap)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = heap.size() / <span class="number">2</span>; i &gt; <span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">int</span> idx = i;</div><div class="line">            <span class="keyword">int</span> val = heap[idx];</div><div class="line">            <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">                <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">                <span class="keyword">if</span> (child + <span class="number">1</span> &lt; heap.size() &amp;&amp; heap[child + <span class="number">1</span>] &gt; heap[child])</div><div class="line">                    child++;</div><div class="line">                <span class="keyword">if</span> (val &lt; heap[child])</div><div class="line">                    heap[idx] = heap[child];</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                idx = child;</div><div class="line">            &#125;</div><div class="line">            heap[idx] = val;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; heap)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ret = heap[<span class="number">1</span>];</div><div class="line">        <span class="keyword">int</span> idx = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> last = heap.back();</div><div class="line">        <span class="keyword">while</span> (<span class="number">2</span> * idx &lt; heap.size()) &#123;</div><div class="line">            <span class="keyword">int</span> child = <span class="number">2</span> * idx;</div><div class="line">            <span class="keyword">if</span> (<span class="number">2</span> * idx + <span class="number">1</span> &lt; heap.size() &amp;&amp; heap[<span class="number">2</span> * idx + <span class="number">1</span>] &gt; heap[<span class="number">2</span> * idx])</div><div class="line">                child++;</div><div class="line">            <span class="keyword">if</span> (last &lt; heap[child])</div><div class="line">                heap[idx] = heap[child];</div><div class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">            idx = child;</div><div class="line">        &#125;</div><div class="line">        heap[idx] = last;</div><div class="line">        heap.pop_back();</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        nums.insert(nums.begin(), <span class="number">0</span>);</div><div class="line">        makeHeap(nums);</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++)</div><div class="line">            deleteMax(nums);</div><div class="line">        <span class="keyword">return</span> deleteMax(nums);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><strong>Partition Method:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pivot = nums[left];</div><div class="line">        <span class="keyword">int</span> l = left + <span class="number">1</span>, r = right;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[l] &lt; pivot &amp;&amp; nums[r] &gt; pivot)</div><div class="line">                swap(nums[l++], nums[r--]);</div><div class="line">            <span class="keyword">if</span> (nums[l] &gt;= pivot)</div><div class="line">                l++;</div><div class="line">            <span class="keyword">if</span> (nums[r] &lt;= pivot)</div><div class="line">                r--;</div><div class="line">        &#125;</div><div class="line">        swap(nums[left], nums[r]); <span class="comment">// 注意与nums[r]交换</span></div><div class="line">        <span class="keyword">return</span> r;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">            <span class="keyword">int</span> mid = partition(nums, left, right);</div><div class="line">            <span class="keyword">if</span> (mid == k - <span class="number">1</span>)</div><div class="line">                <span class="keyword">return</span> nums[mid];</div><div class="line">            <span class="keyword">if</span> (mid &lt; k - <span class="number">1</span>)</div><div class="line">                left = mid + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                right = mid - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="Top-K-Frequent"><a href="#Top-K-Frequent" class="headerlink" title="Top K Frequent"></a>Top K Frequent</h3><p><a href="https://leetcode.com/problems/top-k-frequent-words/description/" target="_blank" rel="external">LeetCode 692. Top K Frequent Words</a></p>
-<p>这个题，题目一般，不够经典，但是记下来用于回顾<strong>cpp标准库中的<code>priority_queue</code>的使用</strong>，包括自己写comparator等。</p>
-<p>注意些comparator时判断的符号！！！<br>记住，默认排序的时候，排升序，默认用小于号比较，其它的基于这个可以推出。<br>比如这道题，是最大堆，所以应该是”排降序“，用大于号。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; topKFrequent(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; words, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">string</span> word : words)</div><div class="line">            m[word]++;</div><div class="line">        <span class="keyword">auto</span> comp = [](<span class="keyword">const</span> pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;&amp; p1, <span class="keyword">const</span> pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;&amp; p2) &#123;</div><div class="line">            <span class="keyword">if</span> (p1.second == p2.second)</div><div class="line">                <span class="keyword">return</span> p1.first &gt; p2.first;</div><div class="line">            <span class="keyword">return</span> p1.second &lt; p2.second;</div><div class="line">        &#125;;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</div><div class="line">        priority_queue&lt; pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;, <span class="built_in">vector</span>&lt;pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt;&gt;, <span class="keyword">decltype</span>(comp) &gt; q(comp);</div><div class="line">        <span class="keyword">for</span> (pair&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; p : m) &#123;</div><div class="line">            q.push(p);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</div><div class="line">            res.push_back(q.top().first);</div><div class="line">            q.pop();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2342,7 +2326,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
