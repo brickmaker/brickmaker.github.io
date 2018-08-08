@@ -290,6 +290,394 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode621/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode621/" itemprop="url">
+                  621. Task Scheduler
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-29 15:17:37" itemprop="dateCreated datePublished" datetime="2017-07-29T15:17:37+08:00">2017-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:24" itemprop="dateModified" datetime="2018-07-10T13:32:24+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/29/LeetCode621/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/29/LeetCode621/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="external">https://leetcode.com/problems/task-scheduler/description/</a></p>
+<p><img src="/media/15013127240073.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>第一眼，感觉是Greedy</p>
+<p>算了，想了半天，还是没有什么头绪<br>看答案吧</p>
+<p>（LeetCode有答案好，也不好orz）</p>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; <span class="built_in">map</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : tasks) &#123;</div><div class="line">            <span class="built_in">map</span>[t]++;</div><div class="line">            count = max(count, <span class="built_in">map</span>[t]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num = (n + <span class="number">1</span>) * (count - <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : <span class="built_in">map</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (t.second == count)</div><div class="line">                num++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>)tasks.size(), num);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>自己本来的思路跟这个类似，就选择这个作为答案了<br>先找到最大的，然后拉一个框：<code>(n+1)*(count-1)</code>,如果有超出的（最大的），刚+1<br>另外还要考虑task大，n小，框框放不下的情况，这样需要<code>max(task.size(), num)</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode155/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode155/" itemprop="url">
+                  155. Min Stack
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-29 15:06:32" itemprop="dateCreated datePublished" datetime="2017-07-29T15:06:32+08:00">2017-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:21" itemprop="dateModified" datetime="2018-07-10T13:32:21+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/29/LeetCode155/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/29/LeetCode155/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/min-stack/description/" target="_blank" rel="external">https://leetcode.com/problems/min-stack/description/</a></p>
+<p><img src="/media/15013120487290.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>比较简单，就用一个栈来记录原栈底到当前顶的最小值，每次push的时候决定是否放进栈里。</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; minVal;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; myStack;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="comment">/** initialize your data structure here. */</span></div><div class="line">    MinStack() &#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (minVal.empty() || x &lt;= getMin())</div><div class="line">            minVal.push(x);</div><div class="line">        myStack.push(x);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (myStack.top() == minVal.top())</div><div class="line">            minVal.pop();</div><div class="line">        myStack.pop();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> myStack.top();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> minVal.top();</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Your MinStack object will be instantiated and called as such:</div><div class="line"> * MinStack obj = new MinStack();</div><div class="line"> * obj.push(x);</div><div class="line"> * obj.pop();</div><div class="line"> * int param_3 = obj.top();</div><div class="line"> * int param_4 = obj.getMin();</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>自己想得有些多了。<br>其实本来只在push的时候判断下就可以了，因为如果没把第二小的push进去，第二小也会在最小之前pop，不会发生最小无法维护的情况。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode319/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -712,198 +1100,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/27/LeetCode198/" itemprop="url">
-                  198. House Robber
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-07-27 22:12:27" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">2017-07-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:31:47" itemprop="dateModified" datetime="2018-07-10T13:31:47+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/27/LeetCode198/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/27/LeetCode198/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://leetcode.com/problems/house-robber/tabs/description/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/tabs/description/</a><br><img src="/media/15011598519407.png" alt=""></p>
-<p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
-<p>比较轻松地做出来：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode518/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1047,6 +1243,198 @@
 <p>更好的想法是，<strong>如果有一个k面值的coin，那么，n处的可能数就多了n-k个</strong><br>另外，还要搞清楚的一点是，dp[0] == 1，这是dp的初始条件！</p>
 <p><strong>AC的解法，3ms</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> amount, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (amount == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (coins.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(amount + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; coins.size(); ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = coins[i]; j &lt;= amount; ++j) &#123;</div><div class="line">                dp[j] += dp[j - coins[i]];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[amount];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/LeetCode198/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/27/LeetCode198/" itemprop="url">
+                  198. House Robber
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-27 22:12:27" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">2017-07-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:31:47" itemprop="dateModified" datetime="2018-07-10T13:31:47+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/27/LeetCode198/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/27/LeetCode198/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://leetcode.com/problems/house-robber/tabs/description/" target="_blank" rel="external">https://leetcode.com/problems/house-robber/tabs/description/</a><br><img src="/media/15011598519407.png" alt=""></p>
+<p>一个比较明显的动态规划的题，虽然也有更好的解法，但是DP是比较容易想到，而且效率还比较高的那种。</p>
+<p>比较轻松地做出来：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size() + <span class="number">1</span>);</div><div class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">2</span>; i &lt;= nums.size(); i++) &#123;</div><div class="line">            dp[i] = <span class="built_in">std</span>::max(dp[i<span class="number">-1</span>], nums[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[nums.size()];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
           
         
@@ -1571,7 +1959,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1831,6 +2219,10 @@
 
   
   
+    
+      
+    
+      
     
       
     
