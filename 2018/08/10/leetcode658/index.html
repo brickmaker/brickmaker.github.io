@@ -106,26 +106,26 @@
 
 
 
-  <meta name="description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
+  <meta name="description" content="题目https://leetcode.com/problems/find-k-closest-elements/description/  想法既然是排序好的，肯定要用到二分查找 找到与x距离最近，&amp;lt;=x的，然后开始拓展开来 嗯，一开始还是欠考虑了，找到&amp;lt;=x的最近元素之后，要向两边挨个比较，最后得到需要的值 这里有一个api还是查阅了下，记下备忘： 1vec.insert(vec.b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="371. Sum of Two Integers">
-<meta property="og:url" content="http://yoursite.com/2017/08/02/LeetCode371/index.html">
+<meta property="og:title" content="368. Largest Divisible Subset">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/leetcode658/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
+<meta property="og:description" content="题目https://leetcode.com/problems/find-k-closest-elements/description/  想法既然是排序好的，肯定要用到二分查找 找到与x距离最近，&amp;lt;=x的，然后开始拓展开来 嗯，一开始还是欠考虑了，找到&amp;lt;=x的最近元素之后，要向两边挨个比较，最后得到需要的值 这里有一个api还是查阅了下，记下备忘： 1vec.insert(vec.b">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15016843861293.png">
-<meta property="og:updated_time" content="2018-07-10T05:32:36.306Z">
+<meta property="og:image" content="http://yoursite.com/media/15339094167313.jpg">
+<meta property="og:updated_time" content="2018-08-10T14:27:57.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="371. Sum of Two Integers">
-<meta name="twitter:description" content="题目https://leetcode.com/problems/sum-of-two-integers/description/  想法最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法 结果1234567891011121314151617181920class Solution &amp;#123;public:    int">
-<meta name="twitter:image" content="http://yoursite.com/media/15016843861293.png">
+<meta name="twitter:title" content="368. Largest Divisible Subset">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/find-k-closest-elements/description/  想法既然是排序好的，肯定要用到二分查找 找到与x距离最近，&amp;lt;=x的，然后开始拓展开来 嗯，一开始还是欠考虑了，找到&amp;lt;=x的最近元素之后，要向两边挨个比较，最后得到需要的值 这里有一个api还是查阅了下，记下备忘： 1vec.insert(vec.b">
+<meta name="twitter:image" content="http://yoursite.com/media/15339094167313.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/02/LeetCode371/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/10/leetcode658/"/>
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>371. Sum of Two Integers | Xiaodong's Blog</title>
+  <title>368. Largest Divisible Subset | Xiaodong's Blog</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/LeetCode371/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/leetcode658/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">371. Sum of Two Integers
+          <h1 class="post-title" itemprop="name headline">368. Largest Divisible Subset
               
             
           </h1>
@@ -334,24 +334,12 @@
                 
               
 
-              <time title="Created: 2017-08-02 22:32:02" itemprop="dateCreated datePublished" datetime="2017-08-02T22:32:02+08:00">2017-08-02</time>
+              <time title="Created: 2018-08-10 21:56:18 / Modified: 22:27:57" itemprop="dateCreated datePublished" datetime="2018-08-10T21:56:18+08:00">2018-08-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:32:36" itemprop="dateModified" datetime="2018-07-10T13:32:36+08:00">2018-07-10</time>
               
             
           </span>
@@ -390,10 +378,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/02/LeetCode371/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/10/leetcode658/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/02/LeetCode371/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/10/leetcode658/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -421,13 +409,14 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="external">https://leetcode.com/problems/sum-of-two-integers/description/</a></p>
-<p><img src="/media/15016843861293.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> helper = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">8</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> aBit = a &amp; helper, bBit = b &amp; helper, cBit = c &amp; helper;</div><div class="line">            result |= (aBit ^ bBit ^ cBit);</div><div class="line">            <span class="keyword">if</span> (!!(aBit &amp; bBit | aBit &amp; cBit | bBit &amp; cBit))</div><div class="line">                c = (helper &lt;&lt; <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                c = <span class="number">0</span>;</div><div class="line">            helper &lt;&lt;= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!!c)</div><div class="line">            result |= c;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>虽然是一道Easy级的题目，但是自己也是花费了不小的功夫。<br>主要是调bug上，考虑不周，在进位的处理上有些考虑不全，WA了好几次。</p>
-<p>位操作还是值得学习一下的。</p>
-
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-k-closest-elements/description/" target="_blank" rel="external">https://leetcode.com/problems/find-k-closest-elements/description/</a></p>
+<p><img src="/media/15339094167313.jpg" alt="-w947"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>既然是排序好的，肯定要用到二分查找</p>
+<p>找到与x距离最近，&lt;=x的，然后开始拓展开来</p>
+<p>嗯，一开始还是欠考虑了，找到&lt;=x的最近元素之后，要向两边挨个比较，最后得到需要的值</p>
+<p>这里有一个api还是查阅了下，记下备忘：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vec.insert(vec.begin(), <span class="number">47</span>); <span class="comment">// vector头插入一个元素</span></div></pre></td></tr></table></figure>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findClosestElements(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr, <span class="keyword">int</span> k, <span class="keyword">int</span> x) &#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = arr.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> mid;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            mid = (l + r) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span> (arr[mid] &gt; x) &#123;</div><div class="line">                r = mid - <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] == x) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (mid == l) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    l = mid + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// cout &lt;&lt; mid;</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">        l = mid, r = mid + <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> cnt = <span class="number">0</span>; cnt &lt; k; cnt++) &#123;</div><div class="line">            <span class="keyword">if</span> (l &lt; <span class="number">0</span>) &#123;</div><div class="line">                res.push_back(arr[r]);</div><div class="line">                r++;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (r &gt;= arr.size()) &#123;</div><div class="line">                res.insert(res.begin(), arr[l]);</div><div class="line">                l--;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">abs</span>(arr[r] - x) &lt; <span class="built_in">abs</span>(arr[l] - x)) &#123;</div><div class="line">                res.push_back(arr[r]);</div><div class="line">                r++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                res.insert(res.begin(), arr[l]);</div><div class="line">                l--;  </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -454,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/29/LeetCode368/" rel="next" title="368. Largest Divisible Subset">
-                <i class="fa fa-chevron-left"></i> 368. Largest Divisible Subset
+              <a href="/2018/08/07/PAT-A-1029/" rel="next" title="1029 Median">
+                <i class="fa fa-chevron-left"></i> 1029 Median
               </a>
             
           </div>
@@ -463,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/17/LeetCode19/" rel="prev" title="19. Remove Nth Node From End of List">
-                19. Remove Nth Node From End of List <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -647,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">3.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">4.</span> <span class="nav-text">感想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
             
 
           </div>
@@ -801,9 +786,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/08/02/LeetCode371/';
-        this.page.identifier = '2017/08/02/LeetCode371/';
-        this.page.title = '371. Sum of Two Integers';
+        this.page.url = 'http://yoursite.com/2018/08/10/leetcode658/';
+        this.page.identifier = '2018/08/10/leetcode658/';
+        this.page.title = '368. Largest Divisible Subset';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
