@@ -290,6 +290,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/11/LeetCode49/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/11/LeetCode49/" itemprop="url">
+                  49. Group Anagrams
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-11 16:15:22" itemprop="dateCreated datePublished" datetime="2017-09-11T16:15:22+08:00">2017-09-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:34:44" itemprop="dateModified" datetime="2018-07-10T13:34:44+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/11/LeetCode49/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/11/LeetCode49/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/group-anagrams/description/" target="_blank" rel="external">https://leetcode.com/problems/group-anagrams/description/</a></p>
+<p><img src="/media/15051177753190.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个题实际上想法应该就是那样的吧，遍历，然后维护一个个的集合，hash到相应的集合中</p>
+<p>用python做了下，主要的时间花在了研究python的语法上</p>
+<p>这道题用C/C++还真要花点功夫</p>
+<p>自己最先想的是把一个字符串hash到一个独立的数上，就是只要字母相同，顺序不同是一个hash，但是没有找到这样的一个hash函数</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</div><div class="line">            inserted = <span class="keyword">False</span></div><div class="line">            tmp = <span class="string">''</span>.join(sorted(str))</div><div class="line">            <span class="keyword">if</span> tmp <span class="keyword">in</span> m:</div><div class="line">                m[tmp].append(str)</div><div class="line">                inserted = <span class="keyword">True</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[tmp] = [str]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>高级语言一些封装好的东西，真的是太方便了</p>
+<p>看了别人的解答，有这样的一个hash函数而自己没有想到</p>
+<p>用素数！<br>每个字母用一个素数表示<br>于是，一个str用每个字母的乘积表示，这不会重复！！！</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: List[List[str]]</div><div class="line">        """</div><div class="line">        prime = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>, <span class="number">101</span>]</div><div class="line">        m = &#123;&#125;</div><div class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> strs:</div><div class="line">            <span class="comment"># v = reduce(lambda x, y: prime[ord(x) - 97] * prime[ord(y) - 97], s)</span></div><div class="line">            v = <span class="number">1</span></div><div class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> s:</div><div class="line">                v *= prime[ord(c) - <span class="number">97</span>]</div><div class="line">            <span class="keyword">if</span> v <span class="keyword">in</span> m:</div><div class="line">                m[v].append(s)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                m[v] = [s]</div><div class="line">        <span class="keyword">return</span> list(m.values())</div></pre></td></tr></table></figure>
+<p>用py写了下，本以为会beat &gt;90%，没想到不快反慢了，这可能是python的原因吧，或者python本身的dictionary很高效</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode45/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2043,199 +2243,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/03/LeetCode24/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/03/LeetCode24/" itemprop="url">
-                  24. Swap Nodes in Pairs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-03 15:06:17" itemprop="dateCreated datePublished" datetime="2017-09-03T15:06:17+08:00">2017-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:34:12" itemprop="dateModified" datetime="2018-07-10T13:34:12+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/03/LeetCode24/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/03/LeetCode24/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/swap-nodes-in-pairs/description/" target="_blank" rel="external">https://leetcode.com/problems/swap-nodes-in-pairs/description/</a></p>
-<p><img src="/media/15044224299658.png" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>比较简单，虽然没啥意思，但还是做一下</p>
-<p>考虑头的变化，以及尾就没有问题了</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * struct ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     ListNode *next;</div><div class="line"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</div><div class="line">        ListNode *p = head;</div><div class="line">        <span class="keyword">if</span> (p == <span class="literal">NULL</span> || p-&gt;next == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span> p;</div><div class="line">        p = head;</div><div class="line">        ListNode *q = head-&gt;next-&gt;next;</div><div class="line">        head = head-&gt;next;</div><div class="line">        head-&gt;next = p;</div><div class="line">        p-&gt;next = q;</div><div class="line">        <span class="keyword">while</span>(q != <span class="literal">NULL</span> &amp;&amp; q-&gt;next != <span class="literal">NULL</span>) &#123;</div><div class="line">            p-&gt;next = q-&gt;next;</div><div class="line">            ListNode *tmp = q-&gt;next-&gt;next;</div><div class="line">            q-&gt;next = tmp;</div><div class="line">            p = p-&gt;next-&gt;next;</div><div class="line">            q = q-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> head;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2287,7 +2294,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

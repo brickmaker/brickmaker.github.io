@@ -290,6 +290,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/PAT-A-1003/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/17/PAT-A-1003/" itemprop="url">
+                  1003 Emergency
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-17 15:27:29 / Modified: 16:53:51" itemprop="dateCreated datePublished" datetime="2018-07-17T15:27:29+08:00">2018-07-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/17/PAT-A-1003/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/17/PAT-A-1003/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376</a></p>
+<p><strong>1003 Emergency (25)（25 分）</strong></p>
+<p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
+<p><strong>Input</strong></p>
+<p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: N (&lt;= 500) - the number of cities (and the cities are numbered from 0 to N-1), M - the number of roads, C1 and C2 - the cities that you are currently in and that you must save, respectively. The next line contains N integers, where the i-th integer is the number of rescue teams in the i-th city. Then M lines follow, each describes a road with three integers c1, c2 and L, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from C1 to C2.</p>
+<p><strong>Output</strong></p>
+<p>For each test case, print in one line two numbers: the number of different shortest paths between C1 and C2, and the maximum amount of rescue teams you can possibly gather.\ All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
+<p><strong>Sample Input</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">5 6 0 2</div><div class="line">1 2 1 5 3</div><div class="line">0 1 1</div><div class="line">0 2 2</div><div class="line">0 3 1</div><div class="line">1 2 1</div><div class="line">2 4 1</div><div class="line">3 4 1</div></pre></td></tr></table></figure>
+<p><strong>Sample Output</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2 4</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>记下这道题，只是想熟悉一下，PAT中图的表示方式和处理。</p>
+<p>这道题，还需要记录最短路径的数量，这一点需要注意！</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/7/17.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, M, C1, C2;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M &gt;&gt; C1 &gt;&gt; C2;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; teams(N, <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; teams[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="keyword">int</span> a, b, l;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; l;</div><div class="line">        g[a][b] = g[b][a] = l;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; paths(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxTeam(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; know(N, <span class="literal">false</span>);</div><div class="line"></div><div class="line">    dist[C1] = <span class="number">0</span>;</div><div class="line">    paths[C1] = <span class="number">1</span>;</div><div class="line">    maxTeam[C1] = teams[C1];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> minDist = INT_MAX;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; minDist &gt; dist[j]) &#123;</div><div class="line">                curr = j;</div><div class="line">                minDist = dist[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        know[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; g[curr][j] &lt; INT_MAX &amp;&amp; g[curr][j] + dist[curr] &lt;= dist[j]) &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][j] + dist[curr] &lt; dist[j]) &#123;</div><div class="line">                    dist[j] = g[curr][j] + dist[curr];</div><div class="line">                    paths[j] = paths[curr];</div><div class="line">                    maxTeam[j] = teams[j] + maxTeam[curr];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    paths[j] += paths[curr];</div><div class="line">                    maxTeam[j] = max(maxTeam[curr] + teams[j], maxTeam[j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; paths[C2] &lt;&lt; <span class="string">" "</span> &lt;&lt; maxTeam[C2];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/leetcode845/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2056,200 +2245,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/19/2018-05-19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/19/2018-05-19/" itemprop="url">
-                  图算法整理（三）：拓扑排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-19 15:09:15" itemprop="dateCreated datePublished" datetime="2018-05-19T15:09:15+08:00">2018-05-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:40:12" itemprop="dateModified" datetime="2018-07-10T13:40:12+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/19/2018-05-19/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/19/2018-05-19/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有些算法，自己觉得也就是那么回事，特别简单，但是想清楚每个细节怎么做，有什么小技巧，把它快速的实现出来，并不是那么容易。从想法到实现，总是有差距的。</p>
-<hr>
-<h2 id="经典问题：Course-Schedule"><a href="#经典问题：Course-Schedule" class="headerlink" title="经典问题：Course Schedule"></a>经典问题：Course Schedule</h2><p>LeetCode 207. Course Schedule<br><a href="https://leetcode.com/problems/course-schedule/description/" target="_blank" rel="external">https://leetcode.com/problems/course-schedule/description/</a></p>
-<p>There are a total of n courses you have to take, labeled from 0 to n-1.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]</p>
-<p>Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: 2, [[1,0]] </div><div class="line">Output: true</div><div class="line">Explanation: There are a total of 2 courses to take. </div><div class="line">             To take course 1 you should have finished course 0. So it is possible.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: 2, [[1,0],[0,1]]</div><div class="line">Output: false</div><div class="line">Explanation: There are a total of 2 courses to take. </div><div class="line">             To take course 1 you should have finished course 0, and to take course 0 you should</div><div class="line">             also have finished course 1. So it is impossible.</div></pre></td></tr></table></figure>
-<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">calculate inDegree <span class="comment"># 入度，有多少边到当前结点</span></div><div class="line">queue q</div><div class="line">counter = <span class="number">0</span> <span class="comment"># 用于最后检查是不是所有的点都visited</span></div><div class="line"><span class="keyword">for</span> each v <span class="keyword">with</span> inDegree[v] == <span class="number">0</span>:</div><div class="line">    q.push(v)</div><div class="line"><span class="keyword">while</span> !q.empty():</div><div class="line">    v = q.pop()</div><div class="line">    counter++</div><div class="line">    <span class="keyword">for</span> each w adjacent v:</div><div class="line">        inDegree[v]-- <span class="comment"># 关键！当一个点visit之后，减小所有其指向点的入度</span></div><div class="line">        <span class="keyword">if</span> inDegree[v] == <span class="number">0</span>:</div><div class="line">            q.push(v)</div><div class="line">check counter == vertexNum</div></pre></td></tr></table></figure>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> N, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&amp; P)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; g(N, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(N, <span class="literal">false</span>));</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> p : P) &#123;</div><div class="line">            g[p.first][p.second] = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inDegree(N, <span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (g[j][i] == <span class="literal">true</span>) &#123;</div><div class="line">                    inDegree[i]++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (inDegree[i] == <span class="number">0</span>)</div><div class="line">                q.push(i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">            <span class="keyword">int</span> t = q.front();</div><div class="line">            q.pop();</div><div class="line">            num++;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (g[t][i]) &#123;</div><div class="line">                    inDegree[i]--;</div><div class="line">                    <span class="keyword">if</span> (inDegree[i] == <span class="number">0</span>)</div><div class="line">                        q.push(i);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> num == N;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><p>TODO..</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2301,7 +2296,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

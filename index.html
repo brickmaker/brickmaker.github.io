@@ -290,6 +290,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/pat-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/11/pat-tips/" itemprop="url">
+                  PAT 注意事项
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-11 22:41:36" itemprop="dateCreated datePublished" datetime="2018-08-11T22:41:36+08:00">2018-08-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-12 08:42:40" itemprop="dateModified" datetime="2018-08-12T08:42:40+08:00">2018-08-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/11/pat-tips/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/11/pat-tips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>唉，这个OJ，不是很友好。</p>
+<p>谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。</p>
+<hr>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="cin，cout慢"><a href="#cin，cout慢" class="headerlink" title="cin，cout慢"></a><code>cin</code>，<code>cout</code>慢</h4><p>可用的解决方法有：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ios::sync_with_stdio(<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<p>这一句可以提高一些速度，但是这样，<code>cin</code>，<code>cout</code>就不能与<code>scanf</code>，<code>printf</code>混用。</p>
+<hr>
+<p>用<code>scanf</code>，很不好的就是不能读入到<code>string</code>，很难过。cstring和std::string转换如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *c_s = <span class="string">"hello"</span>;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s = c_s;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%s"</span>, s.c_str());</div></pre></td></tr></table></figure>
+<p>另外，不要用<code>endl</code>，真的很慢很慢，用<code>&quot;\n&quot;</code></p>
+<hr>
+<p>但是，很遗憾的是，<code>std::string</code>某些情况下，也很慢</p>
+<h3 id="std-string慢"><a href="#std-string慢" class="headerlink" title="std::string慢"></a><code>std::string</code>慢</h3><p>如果输入限定了长度，尽量用<code>reserve</code>控制下，这样会快不少</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line">s.reserve(N);</div></pre></td></tr></table></figure>
+<h3 id="map，set等慢"><a href="#map，set等慢" class="headerlink" title="map，set等慢"></a><code>map</code>，<code>set</code>等慢</h3><p>不要管什么优雅，政治正确，做对题是硬道理。PAT一般对空间复杂度要求不高，一些用到<code>map</code>之类的，可以考虑开一个很大的数组直接存。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>能全局就全局，省得传参</li>
+<li>看空间要求，如果没有特别限制，能全开就全开，5w的数组都没有问题</li>
+<li>不要用<code>endl</code></li>
+<li><code>ios::sync_with_stdio(false); cin.tie(nullptr);</code></li>
+<li>用<code>string</code>的时候，如果没有变长要求，用<code>reserve</code>，可以省不少时间</li>
+<li>如果输出有较复杂格式要求，<code>iomanip</code>写不来，那就不要用<code>cin</code>、<code>cout</code>，否则可能超时</li>
+<li><code>scanf</code>不支持<code>std::string</code>，考虑读到<code>char*</code>里，然后两者相互转换</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/leetcode658/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2026,195 +2238,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/PAT-A-1003/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/PAT-A-1003/" itemprop="url">
-                  1003 Emergency
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-17 15:27:29 / Modified: 16:53:51" itemprop="dateCreated datePublished" datetime="2018-07-17T15:27:29+08:00">2018-07-17</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/17/PAT-A-1003/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/17/PAT-A-1003/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376</a></p>
-<p><strong>1003 Emergency (25)（25 分）</strong></p>
-<p>As an emergency rescue team leader of a city, you are given a special map of your country. The map shows several scattered cities connected by some roads. Amount of rescue teams in each city and the length of each road between any pair of cities are marked on the map. When there is an emergency call to you from some other city, your job is to lead your men to the place as quickly as possible, and at the mean time, call up as many hands on the way as possible.</p>
-<p><strong>Input</strong></p>
-<p>Each input file contains one test case. For each test case, the first line contains 4 positive integers: N (&lt;= 500) - the number of cities (and the cities are numbered from 0 to N-1), M - the number of roads, C1 and C2 - the cities that you are currently in and that you must save, respectively. The next line contains N integers, where the i-th integer is the number of rescue teams in the i-th city. Then M lines follow, each describes a road with three integers c1, c2 and L, which are the pair of cities connected by a road and the length of that road, respectively. It is guaranteed that there exists at least one path from C1 to C2.</p>
-<p><strong>Output</strong></p>
-<p>For each test case, print in one line two numbers: the number of different shortest paths between C1 and C2, and the maximum amount of rescue teams you can possibly gather.\ All the numbers in a line must be separated by exactly one space, and there is no extra space allowed at the end of a line.</p>
-<p><strong>Sample Input</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">5 6 0 2</div><div class="line">1 2 1 5 3</div><div class="line">0 1 1</div><div class="line">0 2 2</div><div class="line">0 3 1</div><div class="line">1 2 1</div><div class="line">2 4 1</div><div class="line">3 4 1</div></pre></td></tr></table></figure>
-<p><strong>Sample Output</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2 4</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>记下这道题，只是想熟悉一下，PAT中图的表示方式和处理。</p>
-<p>这道题，还需要记录最短路径的数量，这一点需要注意！</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/7/17.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, M, C1, C2;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M &gt;&gt; C1 &gt;&gt; C2;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; teams(N, <span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; teams[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="keyword">int</span> a, b, l;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; l;</div><div class="line">        g[a][b] = g[b][a] = l;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; paths(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxTeam(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; know(N, <span class="literal">false</span>);</div><div class="line"></div><div class="line">    dist[C1] = <span class="number">0</span>;</div><div class="line">    paths[C1] = <span class="number">1</span>;</div><div class="line">    maxTeam[C1] = teams[C1];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> minDist = INT_MAX;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; minDist &gt; dist[j]) &#123;</div><div class="line">                curr = j;</div><div class="line">                minDist = dist[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        know[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!know[j] &amp;&amp; g[curr][j] &lt; INT_MAX &amp;&amp; g[curr][j] + dist[curr] &lt;= dist[j]) &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][j] + dist[curr] &lt; dist[j]) &#123;</div><div class="line">                    dist[j] = g[curr][j] + dist[curr];</div><div class="line">                    paths[j] = paths[curr];</div><div class="line">                    maxTeam[j] = teams[j] + maxTeam[curr];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    paths[j] += paths[curr];</div><div class="line">                    maxTeam[j] = max(maxTeam[curr] + teams[j], maxTeam[j]);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; paths[C2] &lt;&lt; <span class="string">" "</span> &lt;&lt; maxTeam[C2];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2266,7 +2289,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-count">70</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
