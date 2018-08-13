@@ -106,24 +106,23 @@
 
 
 
-  <meta name="description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
-<meta property="og:type" content="article">
-<meta property="og:title" content="First Look of Titanic Problem on Kaggle">
-<meta property="og:url" content="http://yoursite.com/2017/07/27/kaggle-first-look/index.html">
+  <meta name="description" content="Coder love Design">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xiaodong&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/8/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
+<meta property="og:description" content="Coder love Design">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-10T05:22:17.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Look of Titanic Problem on Kaggle">
-<meta name="twitter:description" content="Preface用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。 Titanic问题解决过程按照样例中的做法，结合自己的看法，重要的几步有：获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型">
+<meta name="twitter:title" content="Xiaodong&#39;s Blog">
+<meta name="twitter:description" content="Coder love Design">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/27/kaggle-first-look/"/>
+  <link rel="canonical" href="http://yoursite.com/page/8/"/>
 
 
 
@@ -133,7 +132,7 @@
   };
 </script>
 
-  <title>First Look of Titanic Problem on Kaggle | Xiaodong's Blog</title>
+  <title>Xiaodong's Blog</title>
   
 
 
@@ -180,7 +179,8 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,9 +273,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -307,7 +307,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">First Look of Titanic Problem on Kaggle
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/27/kaggle-first-look/" itemprop="url">
+                  First Look of Titanic Problem on Kaggle
+                </a>
               
             
           </h1>
@@ -412,7 +416,9 @@
       
 
       
-        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。</p>
+        
+          
+            <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。</p>
 <h2 id="Titanic问题解决过程"><a href="#Titanic问题解决过程" class="headerlink" title="Titanic问题解决过程"></a>Titanic问题解决过程</h2><p>按照样例中的做法，结合自己的看法，重要的几步有：<strong>获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型进行学习和预测，得到结果</strong>。</p>
 <h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>主要应用<code>pandas</code>进行操作，其中一个很关键的一点是其中的<code>DataFrame</code>类型的对象，是操作数据的载体，其拥有强大的一些函数，大大方便了对数据的感知，需要之后的进一步了解其特性。</p>
 <h3 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h3><p>分析数据大致分为三类，一个是用一些自带的函数作大致的信息查看；第二是提取一些feature的组合来看；三是用<code>matplotlib</code>或<code>seaborn</code>等可视化工具来可视化地查看一些属性。</p>
@@ -469,6 +475,8 @@
 <p>然而，竞赛毕竟是竞赛，有着明确的dataset和明确的目的性，而且很专一地可以用机器学习去解决。而在现实生活中，有两个问题摆在机器学习的要前，一个是没有条理的数据集，二是不是那么明了的一个题目，更加的杂。这给用机器学习解决实际问题增添了一些困难。</p>
 <p>不过，练习这些毕竟也是好的！</p>
 
+          
+        
       
     </div>
 
@@ -488,28 +496,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/27/LeetCode67/" rel="prev" title="67. Add binary">
-                67. Add binary <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -519,29 +511,18 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -562,17 +543,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -674,22 +646,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Titanic问题解决过程"><span class="nav-number">2.</span> <span class="nav-text">Titanic问题解决过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取数据"><span class="nav-number">2.1.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析数据"><span class="nav-number">2.2.</span> <span class="nav-text">分析数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体大致查看"><span class="nav-number">2.2.1.</span> <span class="nav-text">整体大致查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取feature查看"><span class="nav-number">2.2.2.</span> <span class="nav-text">提取feature查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化查看"><span class="nav-number">2.2.3.</span> <span class="nav-text">可视化查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理数据"><span class="nav-number">2.3.</span> <span class="nav-text">处理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除无用的数据"><span class="nav-number">2.3.1.</span> <span class="nav-text">删除无用的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在已有的基础上获取新数据"><span class="nav-number">2.3.2.</span> <span class="nav-text">在已有的基础上获取新数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#categorical-的数据到-ordinal的转化"><span class="nav-number">2.3.3.</span> <span class="nav-text">categorical 的数据到 ordinal的转化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对null等非法值的处理"><span class="nav-number">2.3.4.</span> <span class="nav-text">对null等非法值的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对一些数值型的数据进行区间分类"><span class="nav-number">2.3.5.</span> <span class="nav-text">对一些数值型的数据进行区间分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用模型作学习与预测"><span class="nav-number">2.4.</span> <span class="nav-text">运用模型作学习与预测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择模型进行学习-fit"><span class="nav-number">2.4.1.</span> <span class="nav-text">选择模型进行学习 fit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行预测-predict"><span class="nav-number">2.4.2.</span> <span class="nav-text">进行预测 predict</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估-score"><span class="nav-number">2.4.3.</span> <span class="nav-text">评估 score</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择最优的模型并计算出结果"><span class="nav-number">2.4.4.</span> <span class="nav-text">选择最优的模型并计算出结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -817,10 +773,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
-
-
 
   
 
@@ -836,57 +788,44 @@
   
 
   
-    <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/07/27/kaggle-first-look/';
-        this.page.identifier = '2017/07/27/kaggle-first-look/';
-        this.page.title = 'First Look of Titanic Problem on Kaggle';
-        };
-      function loadComments () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://brickmaker.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      }
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    
       
-        loadComments();
-      
-    </script>
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
+    
   
 
   
