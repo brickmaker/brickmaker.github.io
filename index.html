@@ -290,6 +290,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/PAT-A-1087/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/14/PAT-A-1087/" itemprop="url">
+                  1087 All Roads Lead to Rome
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-14 21:51:11 / Modified: 22:51:19" itemprop="dateCreated datePublished" datetime="2018-08-14T21:51:11+08:00">2018-08-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/14/PAT-A-1087/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/14/PAT-A-1087/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="1087-All-Roads-Lead-to-Rome-30-（30-分）"><a href="#1087-All-Roads-Lead-to-Rome-30-（30-分）" class="headerlink" title="1087 All Roads Lead to Rome (30)（30 分）"></a>1087 All Roads Lead to Rome (30)（30 分）</h3><p>Indeed there are many different tourist routes from our city to Rome. You are supposed to find your clients the route with the least cost while gaining the most happiness.</p>
+<p><strong>Input Specification:</strong></p>
+<p>Each input file contains one test case. For each case, the first line contains 2 positive integers N (2&lt;=N&lt;=200), the number of cities, and K, the total number of routes between pairs of cities; followed by the name of the starting city. The next N-1 lines each gives the name of a city and an integer that represents the happiness one can gain from that city, except the starting city. Then K lines follow, each describes a route between two cities in the format “City1 City2 Cost”. Here the name of a city is a string of 3 capital English letters, and the destination is always ROM which represents Rome.</p>
+<p><strong>Output Specification:</strong></p>
+<p>For each test case, we are supposed to find the route with the least cost. If such a route is not unique, the one with the maximum happiness will be recommended. If such a route is still not unique, then we output the one with the maximum average happiness — it is guaranteed by the judge that such a solution exists and is unique.</p>
+<p>Hence in the first line of output, you must print 4 numbers: the number of different routes with the least cost, the cost, the happiness, and the average happiness (take the integer part only) of the recommended route. Then in the next line, you are supposed to print the route in the format “City1-&gt;City2-&gt;…-&gt;ROM”.</p>
+<p><strong>Sample Input:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">6 7 HZH</div><div class="line">ROM 100</div><div class="line">PKN 40</div><div class="line">GDN 55</div><div class="line">PRS 95</div><div class="line">BLN 80</div><div class="line">ROM GDN 1</div><div class="line">BLN ROM 1</div><div class="line">HZH PKN 1</div><div class="line">PRS ROM 2</div><div class="line">BLN HZH 2</div><div class="line">PKN GDN 1</div><div class="line">HZH PRS 1</div></pre></td></tr></table></figure>
+<p><strong>Sample Output:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">3 3 195 97</div><div class="line">HZH-&gt;PRS-&gt;ROM</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>很经典的一道最短路径的题目</p>
+<p>由于加入了场景，字符串的处理等，稍微烦一点</p>
+<p>需要记录的东西比较多，需要记录路径、cost、happiness、经过的节点数</p>
+<p>路径可以记录前驱</p>
+<hr>
+<p>费了好大劲，处理完各种各样的要求：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/14.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, K;</div><div class="line">    <span class="built_in">string</span> start;</div><div class="line">    start.reserve(<span class="number">3</span>);</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; K &gt;&gt; start;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; name(N);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; happy(N);</div><div class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; id;</div><div class="line">    name[<span class="number">0</span>] = start;</div><div class="line">    id[start] = <span class="number">0</span>;</div><div class="line">    happy[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">string</span> s;</div><div class="line">        s.reserve(<span class="number">3</span>);</div><div class="line">        <span class="keyword">int</span> h;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; s &gt;&gt; h;</div><div class="line">        name[i] = s;</div><div class="line">        id[s] = i;</div><div class="line">        happy[i] = h;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; m(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</div><div class="line">        <span class="built_in">string</span> a, b;</div><div class="line">        a.reserve(<span class="number">3</span>);</div><div class="line">        b.reserve(<span class="number">3</span>);</div><div class="line">        <span class="keyword">int</span> cost;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; cost;</div><div class="line">        m[id[a]][id[b]] = m[id[b]][id[a]] = cost;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(N, <span class="literal">false</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prev(N, <span class="number">-1</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cost(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; hop(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; selections(N, <span class="number">0</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; happiness(N, <span class="number">0</span>);</div><div class="line">    selections[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    cost[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">    hop[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; N; k++) &#123;</div><div class="line">        <span class="keyword">int</span> minCost = INT_MAX;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!visited[j] &amp;&amp; cost[j] &lt; minCost) &#123;</div><div class="line">                minCost = cost[j];</div><div class="line">                curr = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        visited[curr] = <span class="literal">true</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!visited[i] &amp;&amp; m[curr][i] &lt; INT_MAX) &#123;</div><div class="line">                <span class="keyword">if</span> (selections[i] == <span class="number">0</span> || cost[i] == m[curr][i] + cost[curr]) &#123;</div><div class="line">                    selections[i] += selections[curr];</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (cost[i] &gt; m[curr][i] + cost[curr] ||</div><div class="line">                    (cost[i] == m[curr][i] + cost[curr] &amp;&amp; happiness[i] &lt; happy[i] + happiness[curr]) ||</div><div class="line">                    (cost[i] == m[curr][i] + cost[curr] &amp;&amp; happiness[i] == happy[i] + happiness[curr] &amp;&amp;</div><div class="line">                     hop[i] &gt; hop[curr] + <span class="number">1</span>)</div><div class="line">                        ) &#123;</div><div class="line">                    prev[i] = curr;</div><div class="line">                    cost[i] = m[curr][i] + cost[curr];</div><div class="line">                    happiness[i] = happy[i] + happiness[curr];</div><div class="line">                    hop[i] = hop[curr] + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> endIdx = id[<span class="string">"ROM"</span>];</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prevChain;</div><div class="line">    <span class="keyword">int</span> p = endIdx;</div><div class="line">    <span class="keyword">while</span> (prev[p] &gt;= <span class="number">0</span>) &#123;</div><div class="line">        prevChain.push_back(prev[p]);</div><div class="line">        p = prev[p];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    reverse(prevChain.begin(), prevChain.end());</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; selections[endIdx] &lt;&lt; <span class="string">" "</span> &lt;&lt; cost[endIdx] &lt;&lt; <span class="string">" "</span> &lt;&lt; happiness[endIdx] &lt;&lt; <span class="string">" "</span></div><div class="line">         &lt;&lt; (happiness[endIdx] == <span class="number">0</span> ? <span class="number">0</span> : ((<span class="keyword">int</span>) ((<span class="keyword">double</span>) happiness[endIdx] / hop[endIdx]))) &lt;&lt; <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prevChain.size(); i++) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; name[prevChain[i]] &lt;&lt; <span class="string">"-&gt;"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"ROM"</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还有一个测试点没有过！！</p>
+<p>不解。</p>
+<p>TODO..</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/PAT-A-1057/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2042,203 +2238,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/leetcode368-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/leetcode368-1/" itemprop="url">
-                  368. Largest Divisible Subset
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-23 22:12:19 / Modified: 23:26:29" itemprop="dateCreated datePublished" datetime="2018-07-23T22:12:19+08:00">2018-07-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/23/leetcode368-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/23/leetcode368-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-divisible-subset/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/description/</a></p>
-<p><img src="/media/15323551805486.jpg" alt="-w947"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>排序</p>
-<p>能整除集合中的最大的数，那么也会属于这个集合</p>
-<p>直觉DP..</p>
-<p>遇到一个新数，从此数前一个开始判断，是否可以并入<br>维护更新max</p>
-<p>好像需要回溯来做，需要记录序列</p>
-<h3 id="backtracking"><a href="#backtracking" class="headerlink" title="backtracking"></a>backtracking</h3><p>回溯写了个，TLE</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> idx)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (curr.empty() || nums[i] % curr[curr.size() - <span class="number">1</span>] == <span class="number">0</span>) &#123; <span class="comment">// #1</span></div><div class="line">                curr.push_back(nums[i]);</div><div class="line">                f(nums, i + <span class="number">1</span>);</div><div class="line">                curr.pop_back();</div><div class="line">            &#125;       </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (curr.size() &gt; res.size()) &#123;</div><div class="line">            res = curr;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        f(nums, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>感觉是剪枝做得不够充分..</p>
-<p>1 2 4</p>
-<p>1 2 之后，就不应该试1 4了，肯定比1 2..少<br>这个怎么剪呢？</p>
-<p>将上述代码中#1部分改动：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (curr.empty() || (find(res.begin(), res.end(), nums[i]) == res.end() &amp;&amp; nums[i] % curr[curr.size() - <span class="number">1</span>] == <span class="number">0</span>))</div></pre></td></tr></table></figure>
-<p>AC，但是时间是1540ms，显然勉强AC</p>
-<h3 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h3><p>if (nums[i] % nums[j] == 0)<br>    dp[i] = max(dp[j] + 1, dp[i])</p>
-<p>参考了<a href="https://leetcode.com/problems/largest-divisible-subset/discuss/83999/Easy-understood-Java-DP-solution-in-28ms-with-O(n2)-time" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/discuss/83999/Easy-understood-Java-DP-solution-in-28ms-with-O(n2)-time</a><br>虽然他的有bug</p>
-<p>最后运行16ms，还好</p>
-<p>这里关键的一点是选取最后的结果上，注意筛选方式：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (dp[i] == dp[idx] - res.size() &amp;&amp; prev % nums[i] == <span class="number">0</span>)</div></pre></td></tr></table></figure>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size(), <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] % nums[j] == <span class="number">0</span>) &#123;</div><div class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> idx = distance(dp.begin(), max_element(dp.begin(), dp.end()));</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; idx;</div><div class="line">        <span class="keyword">int</span> prev = nums[idx];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">            <span class="keyword">if</span> (dp[i] == dp[idx] - res.size() &amp;&amp; prev % nums[i] == <span class="number">0</span>) &#123;</div><div class="line">                res.push_back(nums[i]);</div><div class="line">                prev = nums[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        reverse(res.begin(), res.end());</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2290,7 +2289,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">72</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
