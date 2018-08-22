@@ -106,26 +106,26 @@
 
 
 
-  <meta name="description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
+  <meta name="description" content="题目https://leetcode.com/problems/kth-largest-element-in-an-array/description/  想法可以说是非常经典的题目了。 基本是，快排的划分思想，但是，不用全拍完，判断与k的大小关系，选择性的排一边就好，所以时间复杂度应该是O(n)，空间复杂度为O(1). 答案123456789101112131415161718192021222">
 <meta property="og:type" content="article">
-<meta property="og:title" content="287. Find the Duplicate Number">
-<meta property="og:url" content="http://yoursite.com/2018/07/13/leetcode287/index.html">
+<meta property="og:title" content="K-th largest element in array">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/K-th-largest-element/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
+<meta property="og:description" content="题目https://leetcode.com/problems/kth-largest-element-in-an-array/description/  想法可以说是非常经典的题目了。 基本是，快排的划分思想，但是，不用全拍完，判断与k的大小关系，选择性的排一边就好，所以时间复杂度应该是O(n)，空间复杂度为O(1). 答案123456789101112131415161718192021222">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15314626961572.jpg">
-<meta property="og:updated_time" content="2018-07-13T08:32:35.662Z">
+<meta property="og:image" content="http://yoursite.com/media/15349063055167.jpg">
+<meta property="og:updated_time" content="2018-08-22T03:07:48.362Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="287. Find the Duplicate Number">
-<meta name="twitter:description" content="题目https://leetcode.com/problems/find-the-duplicate-number/description/  想法一时没有想出解决办法.. 遍历然后二分查找嘛？不可行啊，乱序的 好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用 题目中强调了1-n，n+1个数，是不是可以利用？ 如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊 不成，so">
-<meta name="twitter:image" content="http://yoursite.com/media/15314626961572.jpg">
+<meta name="twitter:title" content="K-th largest element in array">
+<meta name="twitter:description" content="题目https://leetcode.com/problems/kth-largest-element-in-an-array/description/  想法可以说是非常经典的题目了。 基本是，快排的划分思想，但是，不用全拍完，判断与k的大小关系，选择性的排一边就好，所以时间复杂度应该是O(n)，空间复杂度为O(1). 答案123456789101112131415161718192021222">
+<meta name="twitter:image" content="http://yoursite.com/media/15349063055167.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/13/leetcode287/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/K-th-largest-element/"/>
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>287. Find the Duplicate Number | Xiaodong's Blog</title>
+  <title>K-th largest element in array | Xiaodong's Blog</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/leetcode287/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/K-th-largest-element/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">287. Find the Duplicate Number
+          <h1 class="post-title" itemprop="name headline">K-th largest element in array
               
             
           </h1>
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="Created: 2018-07-13 14:17:19 / Modified: 16:32:35" itemprop="dateCreated datePublished" datetime="2018-07-13T14:17:19+08:00">2018-07-13</time>
+              <time title="Created: 2018-08-22 10:51:02 / Modified: 11:07:48" itemprop="dateCreated datePublished" datetime="2018-08-22T10:51:02+08:00">2018-08-22</time>
             
 
             
@@ -363,7 +363,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
 
                 
                 
@@ -378,10 +378,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/13/leetcode287/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/22/K-th-largest-element/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/13/leetcode287/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/22/K-th-largest-element/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,31 +409,11 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-the-duplicate-number/description/" target="_blank" rel="external">https://leetcode.com/problems/find-the-duplicate-number/description/</a></p>
-<p><img src="/media/15314626961572.jpg" alt="-w960"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>一时没有想出解决办法..</p>
-<p>遍历然后二分查找嘛？不可行啊，乱序的</p>
-<p>好像xor有用，相同的数xor之后是0，重复次数不定，好像也不好用</p>
-<p>题目中强调了1-n，n+1个数，是不是可以利用？</p>
-<p>如果分治的话，一侧相同的，左右存在相同的，关键是怎么判断啊</p>
-<p>不成，sort，nlogn，然后遍历？好傻，题目规定不能动数组</p>
-<hr>
-<p><strong>Cycle detection</strong></p>
-<p>可以把问题归约到检测环的问题上！</p>
-<p>题目中强调了1 - n, n + 1个数，意思是数在数组的下标范围内。按照下标进行搜寻，如果有重复的值，便会出现环。</p>
-<p>检测环的方法，有多种，参见：<a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cycle_detection</a></p>
-<p><strong>Floyd’s Tortoise and Hare</strong></p>
-<p>思想大致是这样的：让龟兔从同一起点出发，但以不同的速度前进，如果路径没有环的话，那么当兔子走到尽头，龟兔是不会相遇的，如果相遇了，说明成环。</p>
-<hr>
-<p>所以这道题，用这样的方式就可以了~</p>
-<p>不过，判断除了相交的位置，并不能知道重复的在哪里。</p>
-<p>不过，这里不作过多的讨论，有另外的典型题目来讨论这个问题：<a href="https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description" target="_blank" rel="external">https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C++-with-Detailed-Alogrithm-Description</a></p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> tortoise = <span class="number">0</span>, hare = <span class="number">0</span>;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            tortoise = nums[tortoise];</div><div class="line">            hare = nums[nums[hare]];</div><div class="line">        &#125; <span class="keyword">while</span>(nums[tortoise] != nums[hare]);</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = tortoise;</div><div class="line">        <span class="keyword">while</span> (nums[p1] != nums[p2]) &#123;</div><div class="line">            p1 = nums[p1];</div><div class="line">            p2 = nums[p2];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> nums[p1];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>第一个循环，找到了相遇的点，第二个循环利用了<em>起点走到环起点=相遇点走到环起点</em>这一特性：</p>
-<blockquote>
-<p>It can be concluded that the distance between the head location and entry location is equal to the distance between the meeting location and the entry location along the direction of forward movement.</p>
-</blockquote>
-
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/description/" target="_blank" rel="external">https://leetcode.com/problems/kth-largest-element-in-an-array/description/</a></p>
+<p><img src="/media/15349063055167.jpg" alt="-w950"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>可以说是非常经典的题目了。</p>
+<p>基本是，快排的划分思想，但是，不用全拍完，判断与k的大小关系，选择性的排一边就好，所以时间复杂度应该是O(n)，空间复杂度为O(1).</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pivot = nums[l];</div><div class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">            <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] &lt;= pivot)</div><div class="line">                r--;</div><div class="line">            nums[l] = nums[r];</div><div class="line">            <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] &gt;= pivot)</div><div class="line">                l++;</div><div class="line">            nums[r] = nums[l];</div><div class="line">        &#125;</div><div class="line">        nums[l] = pivot;</div><div class="line">        <span class="keyword">return</span> l;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">            <span class="keyword">int</span> mid = partition(nums, left, right);</div><div class="line">            <span class="keyword">if</span> (mid == k - <span class="number">1</span>)</div><div class="line">                <span class="keyword">return</span> nums[mid];</div><div class="line">            <span class="keyword">if</span> (mid &lt; k - <span class="number">1</span>)</div><div class="line">                left = mid + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                right = mid - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -460,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/12/balence_tree/" rel="next" title="平衡二叉树之AVL tree">
-                <i class="fa fa-chevron-left"></i> 平衡二叉树之AVL tree
+              <a href="/2018/08/19/kmp/" rel="next" title="KMP String Pattern Matching">
+                <i class="fa fa-chevron-left"></i> KMP String Pattern Matching
               </a>
             
           </div>
@@ -469,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/13/leetcode142/" rel="prev" title="142. Linked List Cycle II">
-                142. Linked List Cycle II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -807,9 +783,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/07/13/leetcode287/';
-        this.page.identifier = '2018/07/13/leetcode287/';
-        this.page.title = '287. Find the Duplicate Number';
+        this.page.url = 'http://yoursite.com/2018/08/22/K-th-largest-element/';
+        this.page.identifier = '2018/08/22/K-th-largest-element/';
+        this.page.title = 'K-th largest element in array';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
