@@ -106,24 +106,24 @@
 
 
 
-  <meta name="description" content="前言唉，这个OJ，不是很友好。 谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。  注意事项cin，cout慢可用的解决方法有： 1ios::sync_with_stdio(false); 这一句可以提高一些速度，但是这样，cin，cout就不能与scanf，printf混用。  用scanf，很不好的就是不能读入到string，很难过。cstring和std::string转">
+  <meta name="description" content="前言学数据结构的时候，就没有真正的手写过快排，思想是简单，但是算法思想和实现上，还是有一定的差距的，这中间的差距，可能就是所谓的编程能力吧。 这里整理下快排的实现，包括递归方式，非递归方式，pivot不同选取方式等的实现。  基本思想基本思想描述起来还是很简单的，找到一个pivot元素，每趟把所有元素中，小于的放到左边，大于的放到右边，然后递归的进行就好了。 具体怎么放，就是两边向中间扫，碰到不合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PAT 注意事项">
-<meta property="og:url" content="http://yoursite.com/2018/08/11/pat-tips/index.html">
+<meta property="og:title" content="Quicksort(快排) 算法整理">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/quicksort/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="前言唉，这个OJ，不是很友好。 谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。  注意事项cin，cout慢可用的解决方法有： 1ios::sync_with_stdio(false); 这一句可以提高一些速度，但是这样，cin，cout就不能与scanf，printf混用。  用scanf，很不好的就是不能读入到string，很难过。cstring和std::string转">
+<meta property="og:description" content="前言学数据结构的时候，就没有真正的手写过快排，思想是简单，但是算法思想和实现上，还是有一定的差距的，这中间的差距，可能就是所谓的编程能力吧。 这里整理下快排的实现，包括递归方式，非递归方式，pivot不同选取方式等的实现。  基本思想基本思想描述起来还是很简单的，找到一个pivot元素，每趟把所有元素中，小于的放到左边，大于的放到右边，然后递归的进行就好了。 具体怎么放，就是两边向中间扫，碰到不合">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-12T00:42:40.772Z">
+<meta property="og:updated_time" content="2018-08-22T06:35:50.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PAT 注意事项">
-<meta name="twitter:description" content="前言唉，这个OJ，不是很友好。 谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。  注意事项cin，cout慢可用的解决方法有： 1ios::sync_with_stdio(false); 这一句可以提高一些速度，但是这样，cin，cout就不能与scanf，printf混用。  用scanf，很不好的就是不能读入到string，很难过。cstring和std::string转">
+<meta name="twitter:title" content="Quicksort(快排) 算法整理">
+<meta name="twitter:description" content="前言学数据结构的时候，就没有真正的手写过快排，思想是简单，但是算法思想和实现上，还是有一定的差距的，这中间的差距，可能就是所谓的编程能力吧。 这里整理下快排的实现，包括递归方式，非递归方式，pivot不同选取方式等的实现。  基本思想基本思想描述起来还是很简单的，找到一个pivot元素，每趟把所有元素中，小于的放到左边，大于的放到右边，然后递归的进行就好了。 具体怎么放，就是两边向中间扫，碰到不合">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/11/pat-tips/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/quicksort/"/>
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>PAT 注意事项 | Xiaodong's Blog</title>
+  <title>Quicksort(快排) 算法整理 | Xiaodong's Blog</title>
   
 
 
@@ -290,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/pat-tips/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/quicksort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -307,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PAT 注意事项
+          <h1 class="post-title" itemprop="name headline">Quicksort(快排) 算法整理
               
             
           </h1>
@@ -332,24 +332,12 @@
                 
               
 
-              <time title="Created: 2018-08-11 22:41:36" itemprop="dateCreated datePublished" datetime="2018-08-11T22:41:36+08:00">2018-08-11</time>
+              <time title="Created: 2018-08-22 11:13:53 / Modified: 14:35:50" itemprop="dateCreated datePublished" datetime="2018-08-22T11:13:53+08:00">2018-08-22</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-12 08:42:40" itemprop="dateModified" datetime="2018-08-12T08:42:40+08:00">2018-08-12</time>
               
             
           </span>
@@ -366,14 +354,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -388,10 +369,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/11/pat-tips/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/22/quicksort/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/11/pat-tips/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/22/quicksort/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -419,30 +400,23 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>唉，这个OJ，不是很友好。</p>
-<p>谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学数据结构的时候，就没有真正的手写过快排，思想是简单，但是算法思想和实现上，还是有一定的差距的，这中间的差距，可能就是所谓的编程能力吧。</p>
+<p>这里整理下快排的实现，包括递归方式，非递归方式，pivot不同选取方式等的实现。</p>
 <hr>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="cin，cout慢"><a href="#cin，cout慢" class="headerlink" title="cin，cout慢"></a><code>cin</code>，<code>cout</code>慢</h4><p>可用的解决方法有：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ios::sync_with_stdio(<span class="literal">false</span>);</div></pre></td></tr></table></figure>
-<p>这一句可以提高一些速度，但是这样，<code>cin</code>，<code>cout</code>就不能与<code>scanf</code>，<code>printf</code>混用。</p>
-<hr>
-<p>用<code>scanf</code>，很不好的就是不能读入到<code>string</code>，很难过。cstring和std::string转换如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *c_s = <span class="string">"hello"</span>;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s = c_s;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%s"</span>, s.c_str());</div></pre></td></tr></table></figure>
-<p>另外，不要用<code>endl</code>，真的很慢很慢，用<code>&quot;\n&quot;</code></p>
-<hr>
-<p>但是，很遗憾的是，<code>std::string</code>某些情况下，也很慢</p>
-<h3 id="std-string慢"><a href="#std-string慢" class="headerlink" title="std::string慢"></a><code>std::string</code>慢</h3><p>如果输入限定了长度，尽量用<code>reserve</code>控制下，这样会快不少</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line">s.reserve(N);</div></pre></td></tr></table></figure>
-<h3 id="map，set等慢"><a href="#map，set等慢" class="headerlink" title="map，set等慢"></a><code>map</code>，<code>set</code>等慢</h3><p>不要管什么优雅，政治正确，做对题是硬道理。PAT一般对空间复杂度要求不高，一些用到<code>map</code>之类的，可以考虑开一个很大的数组直接存。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>能全局就全局，省得传参</li>
-<li>看空间要求，如果没有特别限制，能全开就全开，5w的数组都没有问题</li>
-<li>不要用<code>endl</code></li>
-<li><code>ios::sync_with_stdio(false); cin.tie(nullptr);</code></li>
-<li>用<code>string</code>的时候，如果没有变长要求，用<code>reserve</code>，可以省不少时间</li>
-<li>如果输出有较复杂格式要求，<code>iomanip</code>写不来，那就不要用<code>cin</code>、<code>cout</code>，否则可能超时</li>
-<li><code>scanf</code>不支持<code>std::string</code>，考虑读到<code>char*</code>里，然后两者相互转换</li>
-</ol>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>基本思想描述起来还是很简单的，找到一个pivot元素，每趟把所有元素中，小于的放到左边，大于的放到右边，然后递归的进行就好了。</p>
+<p>具体怎么放，就是两边向中间扫，碰到不合适的，就swap。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><p>这里pivot选取的是第一个元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> pivot = a[l];</div><div class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">        <span class="keyword">while</span> (l &lt; r &amp;&amp; a[r] &gt;= pivot)</div><div class="line">            r--;</div><div class="line">        a[l] = a[r];</div><div class="line">        <span class="keyword">while</span> (l &lt; r &amp;&amp; a[l] &lt;= pivot)</div><div class="line">            l++;</div><div class="line">        a[r] = a[l];</div><div class="line">    &#125;</div><div class="line">    a[l] = pivot;</div><div class="line">    <span class="keyword">return</span> l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (l &gt;= r)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> pivot = partition(a, l, r);</div><div class="line">    quicksort(a, l, pivot);</div><div class="line">    quicksort(a, pivot + <span class="number">1</span>, r);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里其实还是很精巧的，简洁对称，在partition的<code>while</code>循环中。</p>
+<p>两个<code>while</code>，让l和r运作到指定的位置，但两者并不是同时到达，然后进行swap，而是利用<code>a[0]</code>当做pivot之后，位置空出，正好借此达成互换的目的：先把<code>a[r]</code>放到原来pivot的位置，然后把<code>a[l]</code>放到上一步的<code>a[r]</code>位置，这样，<code>a[l]</code>再一次空出，可以重复这个过程。</p>
+<h3 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h3><p>非递归的实现，主要是分治的时候，记录当前的l,r位置，这里用栈来存储：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksortIterative</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (l &gt;= r)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">    s.push(l);</div><div class="line">    s.push(r);</div><div class="line">    <span class="keyword">int</span> pivot;</div><div class="line">    <span class="keyword">while</span> (!s.empty()) &#123;</div><div class="line">        r = s.top();</div><div class="line">        s.pop();</div><div class="line">        l = s.top();</div><div class="line">        s.pop();</div><div class="line">        pivot = partition(a, l, r);</div><div class="line">        <span class="keyword">if</span> (l &lt; pivot - <span class="number">1</span>) &#123;</div><div class="line">            s.push(l);</div><div class="line">            s.push(pivot - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (pivot + <span class="number">1</span> &lt; r) &#123;</div><div class="line">            s.push(pivot + <span class="number">1</span>);</div><div class="line">            s.push(r);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="pivot选取非0位置元素"><a href="#pivot选取非0位置元素" class="headerlink" title="pivot选取非0位置元素"></a>pivot选取非0位置元素</h3><p>这里不讨论如何选取这个pivot，有各种选取方式，什么第一个，最后一个，中间的，三个里边的中间值，随机选等等。</p>
+<p>其实这些都是大同小异，只不过，上边用<code>a[0]</code>的时候，有一些小trick，如果用其它的话，就不能用哪个trick了，这里自己再单独实现以下。</p>
+<p>啊，我好傻啊，干嘛那么想不开，既然不是第一个，换到第一个就对了嘛，还想那么多干嘛…</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">int partitionRandomPivot(vector&lt;int&gt; &amp;a, int l, int r) &#123;</div><div class="line">    random_device rd;</div><div class="line">    mt19937 gen(rd());</div><div class="line">    uniform_int_distribution&lt;int&gt; distribution(l, r);</div><div class="line">    int pivotIdx = distribution(gen);</div><div class="line">    int pivot = a[pivotIdx];</div><div class="line">    a[pivotIdx] = a[l];</div><div class="line">    // below is the same</div><div class="line">    while (l &lt; r) &#123;</div><div class="line">        while (l &lt; r &amp;&amp; a[r] &gt;= pivot)</div><div class="line">            r--;</div><div class="line">        a[l] = a[r];</div><div class="line">        while (l &lt; r &amp;&amp; a[l] &lt;= pivot)</div><div class="line">            l++;</div><div class="line">        a[r] = a[l];</div><div class="line">    &#125;</div><div class="line">    a[l] = pivot;</div><div class="line">    return l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>算了，权当是，学习一下modern c++中，随机数的用法吧hhh</p>
 
       
     </div>
@@ -470,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/10/leetcode658/" rel="next" title="368. Largest Divisible Subset">
-                <i class="fa fa-chevron-left"></i> 368. Largest Divisible Subset
+              <a href="/2018/08/22/K-th-largest-element/" rel="next" title="K-th largest element in array">
+                <i class="fa fa-chevron-left"></i> K-th largest element in array
               </a>
             
           </div>
@@ -479,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/13/PAT-A-1057/" rel="prev" title="1057 Stack">
-                1057 Stack <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.1.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cin，cout慢"><span class="nav-number">1.1.1.</span> <span class="nav-text">cin，cout慢</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#std-string慢"><span class="nav-number">1.2.</span> <span class="nav-text">std::string慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map，set等慢"><span class="nav-number">1.3.</span> <span class="nav-text">map，set等慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想"><span class="nav-number">2.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归实现"><span class="nav-number">3.1.</span> <span class="nav-text">递归实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非递归实现"><span class="nav-number">3.2.</span> <span class="nav-text">非递归实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pivot选取非0位置元素"><span class="nav-number">3.3.</span> <span class="nav-text">pivot选取非0位置元素</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -817,9 +787,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/08/11/pat-tips/';
-        this.page.identifier = '2018/08/11/pat-tips/';
-        this.page.title = 'PAT 注意事项';
+        this.page.url = 'http://yoursite.com/2018/08/22/quicksort/';
+        this.page.identifier = '2018/08/22/quicksort/';
+        this.page.title = 'Quicksort(快排) 算法整理';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
