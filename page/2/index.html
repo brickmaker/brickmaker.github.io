@@ -290,6 +290,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/PAT-A-1029/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/07/PAT-A-1029/" itemprop="url">
+                  1029 Median
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-07 22:18:24" itemprop="dateCreated datePublished" datetime="2018-08-07T22:18:24+08:00">2018-08-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-08 21:27:35" itemprop="dateModified" datetime="2018-08-08T21:27:35+08:00">2018-08-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/07/PAT-A-1029/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/07/PAT-A-1029/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an increasing sequence S of N integers, the median is the number at the middle position. For example, the median of S1 = { 11, 12, 13, 14 } is 12, and the median of S2 = { 9, 10, 15, 16, 17 } is 15. The median of two sequences is defined to be the median of the nondecreasing sequence which contains all the elements of both sequences. For example, the median of S1 and S2 is 13.</p>
+<p>Given two increasing sequences of integers, you are asked to find their median.</p>
+<p><strong>Input Specification:</strong><br>Each input file contains one test case. Each case occupies 2 lines, each gives the information of a sequence. For each sequence, the first positive integer N (≤2×10^5)is the size of that sequence. Then N integers follow, separated by a space. It is guaranteed that all the integers are in the range of long int.</p>
+<p><strong>Output Specification:</strong><br>For each test case you should output the median of the two given sequences in a line.</p>
+<p><strong>Sample Input:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4 11 12 13 14</div><div class="line">5 9 10 15 16 17</div></pre></td></tr></table></figure>
+<p><strong>Sample Output:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">13</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>把两个数组分成两个部分，得到中位数</p>
+<p>要考虑时间复杂度和空间复杂度</p>
+<hr>
+<p>emm 先写一个普通的版本：</p>
+<p>将两个数组存下来，然后从头开始遍历，两个指针比较着向前走，直到到达一半为止</p>
+<p>实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(N);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v2[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= v1.size()) &#123;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">            p2++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= v2.size()) &#123;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">            p1++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (v1[p1] &lt; v2[p2]) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">                p2++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? v1[p1 - <span class="number">1</span>] : v2[p2 - <span class="number">1</span>]);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>十分干净简单，但是最后一个测试点内存超限，而且，最后一个测试点10分，占了2/5的分数。</p>
+<hr>
+<p>用的空间，也就存两个输入的数组，没有其它的空间了<br>这都内存超限的话，看来，不能把数据都存下来。</p>
+<p>肯定要存输入的第一个数组。<br>对于第二个，必须边读入，边处理。</p>
+<p>不存第二个，不就对了。</p>
+<p>改进之后的版本：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> num1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> num2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; v2Buffer;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= M) &#123;</div><div class="line">            <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">            p2++;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= N) &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            p1++;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            <span class="keyword">if</span> (v2Buffer.empty()) &#123;</div><div class="line">                <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">                v2Buffer.push(num2);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                num2 = v2Buffer.front();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (num1 &lt; num2) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p2++;</div><div class="line">                v2Buffer.pop();</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? num1 : num2);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用了一个buffer来存比较之后，并没有用num2的情况下的num2.</p>
+<p>内存超限没有了，不过还有个测试点没过，而且也是10分！！！<br>问题出在哪里呢？？？</p>
+<p>不解，实在想不到..</p>
+<p>看来，还是，考虑的不周到，没有玄学，只是问题不明显而已，buffer没有考虑全。</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> num1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">long</span> num2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="keyword">int</span> v2Buffer;</div><div class="line">    <span class="keyword">bool</span> hasBuffer = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (!hasBuffer) &#123;</div><div class="line">            <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">            hasBuffer = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= M) &#123;</div><div class="line">            p2++;</div><div class="line">            hasBuffer = <span class="literal">false</span>;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= N) &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            p1++;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            <span class="keyword">if</span> (num1 &lt; num2) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p2++;</div><div class="line">                hasBuffer = <span class="literal">false</span>;</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? num1 : num2);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><ol>
+<li>找问题，仔细找，用到每个“变”量，都要审核是否符合条件</li>
+<li>PAT更新后的分数好迷</li>
+<li><code>ios::sync_with_stdio(false)</code>大法好，应该不用担心cin超时了hhh</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/median-of-two-sorted-array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1995,192 +2215,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/16/leetcode23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/16/leetcode23/" itemprop="url">
-                  23. Merge k Sorted Lists
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-16 14:16:43 / Modified: 14:41:25" itemprop="dateCreated datePublished" datetime="2018-07-16T14:16:43+08:00">2018-07-16</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/16/leetcode23/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/16/leetcode23/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="external">https://leetcode.com/problems/merge-k-sorted-lists/description/</a></p>
-<p><img src="/media/15317218457532.jpg" alt="-w958"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>很经典的样子..</p>
-<p>m个链表，每个链表长度为n数量级</p>
-<p>循环找最小的，复杂度有O(m * n)</p>
-<hr>
-<p>建堆可以做，但是怎么发挥排好序的是关键</p>
-<hr>
-<p>两两合并也可以</p>
-<p>TODO..</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2232,7 +2266,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">77</span>
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
