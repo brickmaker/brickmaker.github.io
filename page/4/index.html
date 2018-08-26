@@ -1110,7 +1110,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-26 19:19:21" itemprop="dateModified" datetime="2018-08-26T19:19:21+08:00">2018-08-26</time>
+                <time title="Modified: 2018-08-26 19:21:12" itemprop="dateModified" datetime="2018-08-26T19:21:12+08:00">2018-08-26</time>
               
             
           </span>
@@ -1213,7 +1213,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 2 3 1 3 6 5</div></pre></td></tr></table></figure>
 <h2 id="All-pair-Shortest-Path"><a href="#All-pair-Shortest-Path" class="headerlink" title="All-pair Shortest Path"></a>All-pair Shortest Path</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>动态规划。</p>
 <p>D_k,i,j: 从i到j，只用v_1到v_k做中继节点</p>
-<p>$D<em>{k, i, j} = min{D</em>{k - 1, i, j}, D<em>{k - 1, i, k} + D</em>{k - 1, k, j}}$</p>
+<p>$D<em>{k, i, j} = min({D</em>{k - 1, i, j}, D<em>{k - 1, i, k} + D</em>{k - 1, k, j}})$</p>
 <p>意思就是说：从i到j，加入一个中间节点v_k，如果路径里加了这个节点之后，使路径变短，那就更新路径！</p>
 <p>pseudocode：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">for i, j:</div><div class="line">    D[i][j] = hasEdge(i, j) ? weight[i][j] : inf</div><div class="line"></div><div class="line">for k 1..N:</div><div class="line">    for i 1..N:</div><div class="line">        for j 1..N:</div><div class="line">            if D[i][k] + D[k][j] &lt; D[i][j]:</div><div class="line">                D[i][j] = D[i][k] + D[k][j]</div></pre></td></tr></table></figure>
