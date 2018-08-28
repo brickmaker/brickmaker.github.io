@@ -290,6 +290,214 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/2017-10-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/16/2017-10-16/" itemprop="url">
+                  Ubuntu 编译内核及GRUB引导折腾记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-16 23:40:33" itemprop="dateCreated datePublished" datetime="2017-10-16T23:40:33+08:00">2017-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:36:15" itemprop="dateModified" datetime="2018-07-10T13:36:15+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/16/2017-10-16/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/16/2017-10-16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对Linux的引导方式等不是很了解，终于还是付出了一晚上折腾的代价。</p>
+<h2 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h2><p>按照Ubuntu Documentation上走，<a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。" target="_blank" rel="external">https://wiki.ubuntu.com/KernelTeam/GitKernelBuild。</a></p>
+<p>每一步都比较清楚吧，1-11步走下来基本没有碰到问题。</p>
+<p>唯一一个问题在于，make时，选核的数量2、3都不可以，这一点还是不解。</p>
+<h2 id="GRUB相关使用"><a href="#GRUB相关使用" class="headerlink" title="GRUB相关使用"></a>GRUB相关使用</h2><p>本来引导不会去折腾它，但是装完的<code>Linux 4.14.0-rc5</code>似乎不支持IPV4，这很难过，想换回去。于是，去改grub。</p>
+<h3 id="GRUB配置方式"><a href="#GRUB配置方式" class="headerlink" title="GRUB配置方式"></a>GRUB配置方式</h3><p><a href="https://help.ubuntu.com/community/Grub2/Setup" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup</a></p>
+<p><a href="https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2" target="_blank" rel="external">https://help.ubuntu.com/community/Grub2/Setup#Configuring_GRUB_2</a></p>
+<p><strong>配置方式：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/default/grub</div><div class="line">sudo update-grub</div></pre></td></tr></table></figure>
+<p><strong>常用配置：</strong></p>
+<ul>
+<li><strong>GRUB_DEFAULT:</strong> 0, “…”, saved</li>
+<li><strong>GRUB_SAVEDEFAULT:</strong> true</li>
+</ul>
+<hr>
+<p>改完之后发现一个很严重的问题，不小心看错改成memtest了，很尴尬，而且，HIDDEN_TIMEOUT是0，都没机会弹出窗口，没办法，尝试LiveCD进入然后操作。</p>
+<h3 id="外部系统修复GRUB"><a href="#外部系统修复GRUB" class="headerlink" title="外部系统修复GRUB"></a>外部系统修复GRUB</h3><p>在PD的虚拟机配置里，添加CD镜像，然后进入：</p>
+<ol>
+<li>mount相应盘</li>
+<li>chroot</li>
+<li>进行更改</li>
+</ol>
+<p>自己之前遇到没办法update-grub的问题，在网上找到了如下解决方法：</p>
+<p><a href="https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd" target="_blank" rel="external">https://askubuntu.com/questions/145241/how-do-i-run-update-grub-from-a-livecd</a></p>
+<hr>
+<p>最后，更新grub引导之后终于正常，长舒一口气。</p>
+<p>还是需要学习一些知识啊。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/2017-10-08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2034,205 +2242,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/LeetCode240/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/06/LeetCode240/" itemprop="url">
-                  240. Search a 2D Matrix II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-06 14:38:48" itemprop="dateCreated datePublished" datetime="2017-09-06T14:38:48+08:00">2017-09-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:34:26" itemprop="dateModified" datetime="2018-07-10T13:34:26+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/06/LeetCode240/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/06/LeetCode240/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/search-a-2d-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/search-a-2d-matrix-ii/description/</a></p>
-<p><img src="/media/15046799707349.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>对角线延伸？</p>
-<p>最直觉的是，扫一行，找到特定行再扫列<br>不，并不对</p>
-<p>对角线！</p>
-<p>二分查找：<br>0, 1, 2, 3, 4, 5</p>
-<p>看别人解答吧，感觉思路不够明确</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">searchMatrix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;matrix, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (matrix.size() == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> m = matrix.size();</div><div class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].size();</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (i &lt; m &amp;&amp; j &gt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] == target)</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span> (matrix[i][j] &gt; target)</div><div class="line">                j--;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>这算是一个经典的trick吧</p>
-<p>还是自己没能发现其中的性质<br>把向两边扩展转化为只向一边扩展，这真的很关键！！！</p>
-<p>记住它吧！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2284,7 +2293,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">84</span>
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
