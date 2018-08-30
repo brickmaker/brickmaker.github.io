@@ -290,6 +290,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/count-one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/30/count-one/" itemprop="url">
+                  Count Digit One
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-30 14:33:01 / Modified: 14:52:43" itemprop="dateCreated datePublished" datetime="2018-08-30T14:33:01+08:00">2018-08-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/count-one/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/30/count-one/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/number-of-digit-one/description/" target="_blank" rel="external">https://leetcode.com/problems/number-of-digit-one/description/</a></p>
+<p><img src="/media/15356108245191.jpg" alt="-w956"></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这道题的解法有多种，看discussion就会知道花样百出。</p>
+<p>一开始想的是，9，99，999…之间的递推关系，但是，这并不好表示一个不整的数，discussion中也有类似的解答，但是一下子也没有看明白。</p>
+<hr>
+<p>换了思路之后，参考了 <a href="https://leetcode.com/problems/number-of-digit-one/discuss/64382/JavaPython-one-pass-solution-easy-to-understand" target="_blank" rel="external">https://leetcode.com/problems/number-of-digit-one/discuss/64382/JavaPython-one-pass-solution-easy-to-understand</a> 这个解法。</p>
+<p><strong>计算在某一位1出现的次数，累加起来</strong></p>
+<p>而某一位出现1的次数分为3中情况：</p>
+<p>对于数<code>AxB</code>，其中<code>A</code>表示x之前的数，<code>B</code>表示x之后的数，例如<code>123456</code>，x为4的话，A = 123，B = 56.<br>以下假设B有2位：</p>
+<h3 id="三种情况"><a href="#三种情况" class="headerlink" title="三种情况"></a>三种情况</h3><ol>
+<li>x == 0: A <em> 100<br>先看前半部分：<code>Ax</code>，如果递减此数，那么，A每减1，x都会出现0-9中的数，那么也就是说，A减到0，减了A次，x处就出现了A次1.<br>然后看后半部分，因为高位减下来的，低位肯定会有00-99，也就是100个，组合以下，就是A</em>100了</li>
+<li>x &gt; 1: A * 100 + 100<br>按照上边的情况，还多了不用减A部分，直接减x到1，又有100</li>
+<li>x == 1: A * 100 + B + 1<br>这种情况比较复杂，除了第一种情况之外，还有当<code>Ax</code>不变的时候，可能的情况。此时，低位可以从0数到B，总共B+1次，所以加上B+1</li>
+</ol>
+<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><p>如果x是最低位：<br>对应的乘的系数是1，B为0，符合条件</p>
+<p>如果x为最高位：<br>A为0，三种情况都符合</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现的代码还是很精巧的，如何计算A和B，都有很好的处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> origin = n;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="keyword">int</span> r = n % <span class="number">10</span>;</div><div class="line">            n /= <span class="number">10</span>;</div><div class="line">            res += n * x;</div><div class="line">            <span class="keyword">if</span> (r == <span class="number">1</span>) &#123;</div><div class="line">                res += origin % x + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (r &gt; <span class="number">1</span>) &#123;</div><div class="line">                res += x;</div><div class="line">            &#125;</div><div class="line">            x *= <span class="number">10</span>;</div><div class="line">        &#125; <span class="keyword">while</span> (n &gt; <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/3-Sum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1981,188 +2174,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/leetcode148/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/22/leetcode148/" itemprop="url">
-                  148. Sort List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-22 16:38:35 / Modified: 16:40:26" itemprop="dateCreated datePublished" datetime="2018-08-22T16:38:35+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/22/leetcode148/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/22/leetcode148/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sort-list/description/" target="_blank" rel="external">https://leetcode.com/problems/sort-list/description/</a></p>
-<p><img src="/media/15349271523625.jpg" alt="-w956"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>归并排序</p>
-<p>链表操作比较烦</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>自己写的一个归并排序，好多地方应该可以优化，不过AC了，就不说什么了：</p>
-<p>不过用了递归，这个空间复杂度，恐怕不是O(1)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function">ListNode *<span class="title">mergeSort</span><span class="params">(ListNode *head, <span class="keyword">int</span> len)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</div><div class="line">            head-&gt;next = <span class="literal">NULL</span>;</div><div class="line">            <span class="keyword">return</span> head;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (len == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (head-&gt;val &lt;= head-&gt;next-&gt;val) &#123;</div><div class="line">                head-&gt;next-&gt;next = <span class="literal">NULL</span>;</div><div class="line">                <span class="keyword">return</span> head;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                ListNode *newHead = head-&gt;next;</div><div class="line">                newHead-&gt;next = head;</div><div class="line">                newHead-&gt;next-&gt;next = <span class="literal">NULL</span>;</div><div class="line">                <span class="keyword">return</span> newHead;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> mid = len / <span class="number">2</span>;</div><div class="line">        ListNode *p = head;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mid; i++) &#123;</div><div class="line">            p = p-&gt;next;</div><div class="line">        &#125;</div><div class="line">        ListNode *headL = mergeSort(head, mid);</div><div class="line">        ListNode *headR = mergeSort(p, len - mid);</div><div class="line">        <span class="function">ListNode <span class="title">dummy</span><span class="params">(<span class="number">0</span>)</span></span>;</div><div class="line">        p = &amp;dummy;</div><div class="line">        <span class="keyword">while</span> (headL &amp;&amp; headR) &#123;</div><div class="line">            <span class="keyword">if</span> (headL-&gt;val &lt;= headR-&gt;val) &#123;</div><div class="line">                p-&gt;next = headL;</div><div class="line">                headL = headL-&gt;next;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p-&gt;next = headR;</div><div class="line">                headR = headR-&gt;next;</div><div class="line">            &#125;</div><div class="line">            p = p-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (headL) &#123;</div><div class="line">            p-&gt;next = headL;</div><div class="line">            headL = headL-&gt;next;</div><div class="line">            p = p-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (headR) &#123;</div><div class="line">            p-&gt;next = headR;</div><div class="line">            headR = headR-&gt;next;</div><div class="line">            p = p-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dummy.next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">ListNode *<span class="title">sortList</span><span class="params">(ListNode *head)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!head)</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">        ListNode *p = head;</div><div class="line">        <span class="keyword">while</span> (p) &#123;</div><div class="line">            len++;</div><div class="line">            p = p-&gt;next;</div><div class="line">        &#125;</div><div class="line">        ListNode *ret = mergeSort(head, len);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2214,7 +2225,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
