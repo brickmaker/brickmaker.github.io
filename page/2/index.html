@@ -290,6 +290,779 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/26/2018-08-26-graph-IV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/26/2018-08-26-graph-IV/" itemprop="url">
+                  图算法整理（四）：最小生成树
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-26 14:43:28 / Modified: 17:58:30" itemprop="dateCreated datePublished" datetime="2018-08-26T14:43:28+08:00">2018-08-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/26/2018-08-26-graph-IV/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/26/2018-08-26-graph-IV/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>所有的基础算法，还是要自己再过一遍才放心。</p>
+<hr>
+<p>最小生成树的算法过程，既然是最小，自然是一个贪心的过程。</p>
+<p>首先明确的一个性质：<strong>最小生成树中，边数 = 点数-1</strong></p>
+<p>所以，边数是固定的，算法要做的事，找到合法范围内，权值最小的边。</p>
+<h2 id="Prim-Algorithm"><a href="#Prim-Algorithm" class="headerlink" title="Prim Algorithm"></a>Prim Algorithm</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>跟Dijkstra很像，维护是否确定<code>known</code>，同时不断更新未知点与已知点集的最短距离，选择距离最短的，加入到已知点集中。</p>
+<p>pseudocode:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, V):</div><div class="line">    known[i] = false</div><div class="line">    dist[i] = inf</div><div class="line">dist[x] = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, V):</div><div class="line">    curr = min dist unkonwn vertex</div><div class="line">    known[curr] = true</div><div class="line">    <span class="keyword">for</span> each unknown vertex k:</div><div class="line">        <span class="keyword">if</span> hasEdge(curr, k) &amp;&amp; dist[curr] + weight(curr, k) &lt; dist[k]:</div><div class="line">            dist[k] = dist[curr] + weight(curr, k)</div></pre></td></tr></table></figure>
+<h3 id="CPP实现"><a href="#CPP实现" class="headerlink" title="CPP实现"></a>CPP实现</h3><p>用的示例是书本上的：</p>
+<p><img src="/media/15352704444322.jpg" alt="-w700"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/26.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> k;</div><div class="line">    <span class="built_in">vector</span>&lt;Node *&gt; children;</div><div class="line"></div><div class="line">    Node(<span class="keyword">int</span> key) : k(key) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">createNode</span><span class="params">(<span class="keyword">int</span> i, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;parent, <span class="built_in">vector</span>&lt;Node *&gt; &amp;nodeP)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (nodeP[i])</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    nodeP[i] = <span class="keyword">new</span> Node(i);</div><div class="line">    <span class="keyword">if</span> (parent[i] != <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (!nodeP[parent[i]])</div><div class="line">            createNode(parent[i], parent, nodeP);</div><div class="line">        nodeP[parent[i]]-&gt;children.push_back(nodeP[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">constructTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;parent)</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;Node *&gt; nodeP(parent.size(), <span class="literal">nullptr</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parent.size(); i++) &#123;</div><div class="line">        createNode(i, parent, nodeP);</div><div class="line">    &#125;</div><div class="line">    Node *root = <span class="literal">nullptr</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parent.size(); i++) &#123;</div><div class="line">        <span class="keyword">if</span> (parent[i] == <span class="number">-1</span>)</div><div class="line">            root = nodeP[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">levelPrint</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!root)</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"NULL"</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">queue</span>&lt;Node *&gt; q;</div><div class="line">        Node *marker = <span class="literal">nullptr</span>;</div><div class="line">        q.push(root);</div><div class="line">        q.push(marker);</div><div class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">            <span class="keyword">while</span> (q.front()) &#123;</div><div class="line">                Node *node = q.front();</div><div class="line">                q.pop();</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; node-&gt;k &lt;&lt; <span class="string">" "</span>;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> child : node-&gt;children)</div><div class="line">                    q.push(child);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">            q.pop();</div><div class="line">            <span class="keyword">if</span> (!q.empty())</div><div class="line">                q.push(marker);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/////////////////////</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">primMST</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;g, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;parent)</span> </span>&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; known(g.size(), <span class="literal">false</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(g.size(), INT_MAX);</div><div class="line">    dist[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; g.size(); i++) &#123;</div><div class="line">        <span class="keyword">int</span> minD = INT_MAX;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; g.size(); j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!known[j] &amp;&amp; dist[j] &lt; minD) &#123;</div><div class="line">                minD = dist[j];</div><div class="line">                curr = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        known[curr] = <span class="literal">true</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; g.size(); k++) &#123;</div><div class="line">            <span class="keyword">if</span> (!known[k] &amp;&amp; g[curr][k] != <span class="number">0</span> &amp;&amp; g[curr][k] &lt; dist[k]) &#123;</div><div class="line">                dist[k] = g[curr][k]; <span class="comment">// 更新距离</span></div><div class="line">                parent[k] = curr;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/////////////////////</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N = <span class="number">7</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g = &#123;</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">2</span>,  <span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">2</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">4</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>,  <span class="number">5</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">1</span>, <span class="number">3</span>,  <span class="number">2</span>, <span class="number">0</span>, <span class="number">7</span>,  <span class="number">8</span>, <span class="number">4</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">6</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">5</span>, <span class="number">8</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">1</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">0</span>,  <span class="number">0</span>, <span class="number">4</span>, <span class="number">6</span>,  <span class="number">1</span>, <span class="number">0</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent(N, <span class="number">-1</span>);</div><div class="line"></div><div class="line">    primMST(g, parent);</div><div class="line"></div><div class="line">    Node *root = constructTree(parent);</div><div class="line">    levelPrint(root);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>时间复杂度：O( N^2 )</p>
+<p>适合边稠密的图，跟稠密程度无关</p>
+<h2 id="Kruskal-Algorithm"><a href="#Kruskal-Algorithm" class="headerlink" title="Kruskal Algorithm"></a>Kruskal Algorithm</h2><h3 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h3><p>不是从点出发，不断加入新的点，而是从边的角度看，不断加入新的合法的weight最小的边</p>
+<p>边用堆来维护，这样可以每次取出最小的边<br>同一颗树内的节点，用并查集来维护，方便判断两个点是不是在一棵树内</p>
+<p>从零散的N各点，也就是N棵树出发，找到最小的边，如果边所在的两个点不在一棵树，那么加入这条边，然后合并这两个点集；否则这条边不应该出现在最终的生成树种</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/26.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; setInit(<span class="keyword">int</span> size) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(size, <span class="number">-1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setFind</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;s, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (s[k] &lt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> k;</div><div class="line">    <span class="keyword">return</span> s[k] = setFind(s, s[k]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setUnion</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;s, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> ra = setFind(s, a);</div><div class="line">    <span class="keyword">int</span> rb = setFind(s, b);</div><div class="line">    <span class="keyword">if</span> (ra == rb)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (s[ra] &lt;= s[rb]) &#123;</div><div class="line">        s[ra] += s[rb];</div><div class="line">        s[rb] = ra;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        s[rb] += s[ra];</div><div class="line">        s[ra] = rb;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N = <span class="number">7</span>;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; edges = &#123;</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>&#125;,</div><div class="line">            &#123;<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>&#125;,</div><div class="line">            &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>&#125;,</div><div class="line">            &#123;<span class="number">1</span>, <span class="number">4</span>, <span class="number">10</span>&#125;,</div><div class="line">            &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>&#125;,</div><div class="line">            &#123;<span class="number">2</span>, <span class="number">5</span>, <span class="number">5</span>&#125;,</div><div class="line">            &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>&#125;,</div><div class="line">            &#123;<span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>&#125;,</div><div class="line">            &#123;<span class="number">3</span>, <span class="number">6</span>, <span class="number">4</span>&#125;,</div><div class="line">            &#123;<span class="number">4</span>, <span class="number">6</span>, <span class="number">6</span>&#125;,</div><div class="line">            &#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">1</span>&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">auto</span> cmp = [](<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;b) &#123;</div><div class="line">        <span class="keyword">return</span> a[<span class="number">2</span>] &gt; b[<span class="number">2</span>];</div><div class="line">    &#125;;</div><div class="line">    make_heap(edges.begin(), edges.end(), cmp);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vertSet = setInit(N);</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; resEdges;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> addedEdge = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (addedEdge &lt; N - <span class="number">1</span>) &#123;</div><div class="line">        pop_heap(edges.begin(), edges.end(), cmp);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; e = edges.back();</div><div class="line">        edges.pop_back();</div><div class="line">        <span class="keyword">auto</span> ra = setFind(vertSet, e[<span class="number">0</span>]);</div><div class="line">        <span class="keyword">auto</span> rb = setFind(vertSet, e[<span class="number">1</span>]);</div><div class="line">        <span class="keyword">if</span> (ra != rb) &#123;</div><div class="line">            setUnion(vertSet, ra, rb);</div><div class="line">            resEdges.push_back(e);</div><div class="line">            addedEdge++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;e : resEdges) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; e[<span class="number">0</span>] &lt;&lt; <span class="string">"-&gt;"</span> &lt;&lt; e[<span class="number">1</span>] &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意CPP标准库中的堆的使用！</p>
+<h3 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h3><p>E次堆的删除操作，O(ElogE)</p>
+<p>适合边稀少的图</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PAT-A-1072/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/PAT-A-1072/" itemprop="url">
+                  1072. Gas Station
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-24 14:50:47 / Modified: 15:53:24" itemprop="dateCreated datePublished" datetime="2018-08-24T14:50:47+08:00">2018-08-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/24/PAT-A-1072/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/24/PAT-A-1072/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805396953219072" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805396953219072</a></p>
+<p><strong>1072 Gas Station（30 分）</strong><br>A gas station has to be built at such a location that the minimum distance between the station and any of the residential housing is as far away as possible. However it must guarantee that all the houses are in its service range.</p>
+<p>Now given the map of the city and several candidate locations for the gas station, you are supposed to give the best recommendation. If there are more than one solution, output the one with the smallest average distance to all the houses. If such a solution is still not unique, output the one with the smallest index number.</p>
+<p><strong>Input Specification:</strong><br>Each input file contains one test case. For each case, the first line contains 4 positive integers: N ( ≤10^3 ), the total number of houses; M ( ≤10 ), the total number of the candidate locations for the gas stations; K ( ≤10^4 ), the number of roads connecting the houses and the gas stations; and D_S, the maximum service range of the gas station. It is hence assumed that all the houses are numbered from 1 to N, and all the candidate locations are numbered from G1 to GM.</p>
+<p>Then K lines follow, each describes a road in the format</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P1 P2 Dist</div></pre></td></tr></table></figure>
+<p>where P1 and P2 are the two ends of a road which can be either house numbers or gas station numbers, and Dist is the integer length of the road.</p>
+<p><strong>Output Specification:</strong><br>For each test case, print in the first line the index number of the best location. In the next line, print the minimum and the average distances between the solution and all the houses. The numbers in a line must be separated by a space and be accurate up to 1 decimal place. If the solution does not exist, simply output No Solution.</p>
+<p><strong>Sample Input 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">4 3 11 5</div><div class="line">1 2 2</div><div class="line">1 4 2</div><div class="line">1 G1 4</div><div class="line">1 G2 3</div><div class="line">2 3 2</div><div class="line">2 G2 1</div><div class="line">3 4 2</div><div class="line">3 G3 2</div><div class="line">4 G1 3</div><div class="line">G2 G1 1</div><div class="line">G3 G2 2</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">G1</div><div class="line">2.0 3.3</div></pre></td></tr></table></figure>
+<p><strong>Sample Input 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2 1 2 10</div><div class="line">1 G1 9</div><div class="line">2 G1 20</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">No Solution</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>找的距离最近house最远的比较容易</p>
+<p>找距离最远的house最近的话，需要遍历</p>
+<p>还要计算平均距离，那么肯定要遍历一遍了</p>
+<p>又是Dijkstra，加一堆麻烦的东西，唉，这种题要写很久orz</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/24.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, M, K, D;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>, &amp;N, &amp;M, &amp;K, &amp;D);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(M + N + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(M + N + <span class="number">1</span>, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</div><div class="line">        <span class="keyword">char</span> p1[<span class="number">10</span>];</div><div class="line">        <span class="keyword">char</span> p2[<span class="number">10</span>];</div><div class="line">        <span class="keyword">int</span> dist;</div><div class="line">        <span class="keyword">int</span> pi1, pi2;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s %s %d"</span>, &amp;p1, &amp;p2, &amp;dist);</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(p1[<span class="number">0</span>])) &#123;</div><div class="line">            pi1 = stoi(p1);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            pi1 = stoi(p1 + <span class="number">1</span>) + N;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(p2[<span class="number">0</span>])) &#123;</div><div class="line">            pi2 = stoi(p2);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            pi2 = stoi(p2 + <span class="number">1</span>) + N;</div><div class="line">        &#125;</div><div class="line">        g[pi1][pi2] = g[pi2][pi1] = dist;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> bestGS = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">double</span> maxMinDist = <span class="number">-1.0</span>;</div><div class="line">    <span class="keyword">double</span> minAvgDist = <span class="number">1000000000</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> gs = N + <span class="number">1</span>; gs &lt;= N + M; gs++) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(N + M + <span class="number">1</span>, INT_MAX);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; done(N + M + <span class="number">1</span>, <span class="literal">false</span>);</div><div class="line">        dist[gs] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N + M + <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> minD = INT_MAX;</div><div class="line">            <span class="keyword">int</span> curr = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; N + M + <span class="number">1</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (!done[j] &amp;&amp; dist[j] &lt; minD) &#123;</div><div class="line">                    minD = dist[j];</div><div class="line">                    curr = j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            done[curr] = <span class="literal">true</span>;</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; N + M + <span class="number">1</span>; k++) &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][k] != INT_MAX &amp;&amp; dist[curr] + g[curr][k] &lt; dist[k]) &#123;</div><div class="line">                    dist[k] = dist[curr] + g[curr][k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> totalDist = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> minDist = INT_MAX;</div><div class="line">        <span class="keyword">bool</span> isValid = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N + <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (dist[i] &gt; D) &#123;</div><div class="line">                isValid = <span class="literal">false</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            totalDist += dist[i];</div><div class="line">            <span class="keyword">if</span> (dist[i] &lt; minDist)</div><div class="line">                minDist = dist[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (isValid) &#123;</div><div class="line">            <span class="keyword">if</span> (minDist &gt; maxMinDist) &#123;</div><div class="line">                maxMinDist = minDist;</div><div class="line">                bestGS = gs - N;</div><div class="line">                minAvgDist = <span class="number">1.0</span> * totalDist / N;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (minDist == maxMinDist) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="number">1.0</span> * totalDist / N &lt; minAvgDist) &#123;</div><div class="line">                    bestGS = gs - N;</div><div class="line">                    minAvgDist = <span class="number">1.0</span> * totalDist / N;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (bestGS != <span class="number">-1</span>) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"G%d\n"</span>, bestGS);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.1f %.1f"</span>, maxMinDist, minAvgDist);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"No Solution"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PAT-A-1030/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/PAT-A-1030/" itemprop="url">
+                  1030. Travel Plan
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-24 12:14:10 / Modified: 12:16:50" itemprop="dateCreated datePublished" datetime="2018-08-24T12:14:10+08:00">2018-08-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/24/PAT-A-1030/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/24/PAT-A-1030/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805464397627392" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805464397627392</a></p>
+<p><strong>1030 Travel Plan (30)（30 分）</strong><br>A traveler’s map gives the distances between cities along the highways, together with the cost of each highway. Now you are supposed to write a program to help a traveler to decide the shortest path between his/her starting city and the destination. If such a shortest path is not unique, you are supposed to output the one with the minimum cost, which is guaranteed to be unique.</p>
+<p><strong>Input Specification:</strong></p>
+<p>Each input file contains one test case. Each case starts with a line containing 4 positive integers N, M, S, and D, where N (&lt;=500) is the number of cities (and hence the cities are numbered from 0 to N-1); M is the number of highways; S and D are the starting and the destination cities, respectively. Then M lines follow, each provides the information of a highway, in the format:</p>
+<p>City1 City2 Distance Cost</p>
+<p>where the numbers are all integers no more than 500, and are separated by a space.</p>
+<p><strong>Output Specification:</strong></p>
+<p>For each test case, print in one line the cities along the shortest path from the starting point to the destination, followed by the total distance and the total cost of the path. The numbers must be separated by a space and there must be no extra space at the end of output.</p>
+<p><strong>Sample Input</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">4 5 0 3</div><div class="line">0 1 1 20</div><div class="line">1 3 2 30</div><div class="line">0 3 4 10</div><div class="line">0 2 2 20</div><div class="line">2 3 1 20</div></pre></td></tr></table></figure>
+<p><strong>Sample Output</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 2 3 3 40</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>很经典的一道题</p>
+<p>Dijkstra，需要记录路径，distance+cost</p>
+<p>记下可以时常温习</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/24.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> N, M, start, dst;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M &gt;&gt; start &gt;&gt; dst;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; cost(N, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="keyword">int</span> c1, c2, dist, c;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; c1 &gt;&gt; c2 &gt;&gt; dist &gt;&gt; c;</div><div class="line">        g[c1][c2] = g[c2][c1] = dist;</div><div class="line">        cost[c1][c2] = cost[c2][c1] = c;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; done(N, <span class="literal">false</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prev(N, <span class="number">-1</span>);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; minDist(N, INT_MAX);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; minCost(N, INT_MAX);</div><div class="line">    minDist[start] = <span class="number">0</span>;</div><div class="line">    minCost[start] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">int</span> minD = INT_MAX;</div><div class="line">        <span class="keyword">int</span> curr = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (!done[i] &amp;&amp; minDist[i] &lt; minD) &#123;</div><div class="line">                minD = minDist[i];</div><div class="line">                curr = i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        done[curr] = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">if</span> (done[dst])</div><div class="line">            <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (g[curr][i] == INT_MAX)</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][i] + minDist[curr] &lt; minDist[i]) &#123;</div><div class="line">                    minDist[i] = g[curr][i] + minDist[curr];</div><div class="line">                    prev[i] = curr;</div><div class="line">                    minCost[i] = minCost[curr] + cost[curr][i];</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (g[curr][i] + minDist[curr] == minDist[i]) &#123;</div><div class="line">                    <span class="keyword">if</span> (minCost[curr] + cost[curr][i] &lt; minCost[i]) &#123;</div><div class="line">                        prev[i] = curr;</div><div class="line">                        minCost[i] = minCost[curr] + cost[curr][i];</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; path;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = dst; p != start; p = prev[p]) &#123;</div><div class="line">        path.push_back(p);</div><div class="line">    &#125;</div><div class="line">    path.push_back(start);</div><div class="line"></div><div class="line">    reverse(path.begin(), path.end());</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; path[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; path.size(); i++) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; path[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; minDist[dst] &lt;&lt; <span class="string">" "</span> &lt;&lt; minCost[dst];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/23/PAT-A-1068/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/PAT-A-1068/" itemprop="url">
+                  1068. Find More Coins
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-23 22:04:17 / Modified: 22:48:35" itemprop="dateCreated datePublished" datetime="2018-08-23T22:04:17+08:00">2018-08-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/23/PAT-A-1068/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/23/PAT-A-1068/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805402305150976" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805402305150976</a></p>
+<p><strong>1068 Find More Coins（30 分）</strong></p>
+<p>Eva loves to collect coins from all over the universe, including some other planets like Mars. One day she visited a universal shopping mall which could accept all kinds of coins as payments. However, there was a special requirement of the payment: for each bill, she must pay the exact amount. Since she has as many as 10^4 coins with her, she definitely needs your help. You are supposed to tell her, for any given amount of money, whether or not she can find some coins to pay for it.</p>
+<p><strong>Input Specification:</strong><br>Each input file contains one test case. For each case, the first line contains 2 positive numbers: N (≤10^4 , the total number of coins) and M (≤10^2 , the amount of money Eva has to pay). The second line contains N face values of the coins, which are all positive numbers. All the numbers in a line are separated by a space.</p>
+<p>Output Specification:<br>For each test case, print in one line the face values V<em>1 ≤ V</em>​2 ≤ ⋯ ≤ V_k such that V_1 + V_2 + ⋯ + V_k = M. All the numbers must be separated by a space, and there must be no extra space at the end of the line. If such a solution is not unique, output the smallest sequence. If there is no solution, output “No Solution” instead.</p>
+<p>Note: sequence {A[1], A[2], …} is said to be “smaller” than sequence {B[1], B[2], …} if there exists k≥1 such that A[i]=B[i] for all i&lt;k, and A[k] &lt; B[k].</p>
+<p><strong>Sample Input 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">8 9</div><div class="line">5 9 8 7 2 3 4 1</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1 3 5</div></pre></td></tr></table></figure>
+<p><strong>Sample Input 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4 8</div><div class="line">7 2 4 3</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">No Solution</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>先排序 肯定的</p>
+<p>backtracking？感觉是</p>
+<p>写了一个递归的版本，超时了一个点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/23.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> N, M;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</div><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (sum == M)</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; N; i++) &#123;</div><div class="line">        s.push_back(a[i]);</div><div class="line">        sum += a[i];</div><div class="line">        <span class="keyword">if</span> (sum == M)</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; M) &#123;</div><div class="line">            sum -= a[i];</div><div class="line">            s.pop_back();</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">bool</span> res = f(i + <span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span> (res) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        sum -= a[i];</div><div class="line">        s.pop_back();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</div><div class="line"></div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N &gt;&gt; M;</div><div class="line">    a = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(N);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; a[i];</div><div class="line">    &#125;</div><div class="line">    sort(a.begin(), a.end());</div><div class="line"></div><div class="line">    <span class="keyword">bool</span> res = f(<span class="number">0</span>);</div><div class="line">    <span class="keyword">if</span> (res) &#123;</div><div class="line">        <span class="keyword">if</span> (!s.empty()) &#123;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; s[<span class="number">0</span>];</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.size(); i++) &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; s[i];</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"No Solution"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有没有可以优化的地方？</p>
+<p>TODO..</p>
+<p>或许应该用DP吧</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/23/PAT-A-1067/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1432,825 +2205,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/PAT-A-1057/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/13/PAT-A-1057/" itemprop="url">
-                  1057 Stack
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-13 21:58:29 / Modified: 22:56:36" itemprop="dateCreated datePublished" datetime="2018-08-13T21:58:29+08:00">2018-08-13</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/13/PAT-A-1057/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/13/PAT-A-1057/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="1057-Stack-30-（30-分）"><a href="#1057-Stack-30-（30-分）" class="headerlink" title="1057 Stack (30)（30 分）"></a>1057 Stack (30)（30 分）</h3><p>Stack is one of the most fundamental data structures, which is based on the principle of Last In First Out (LIFO). The basic operations include Push (inserting an element onto the top position) and Pop (deleting the top element). Now you are supposed to implement a stack with an extra operation: PeekMedian — return the median value of all the elements in the stack. With N elements, the median value is defined to be the (N/2)-th smallest element if N is even, or ((N+1)/2)-th if N is odd.</p>
-<p><strong>Input Specification:</strong></p>
-<p>Each input file contains one test case. For each case, the first line contains a positive integer N (&lt;= 10^5^). Then N lines follow, each contains a command in one of the following 3 formats:</p>
-<p>Push key\ Pop\ PeekMedian</p>
-<p>where key is a positive integer no more than 10^5^.</p>
-<p><strong>Output Specification:</strong></p>
-<p>For each Push command, insert key into the stack and output nothing. For each Pop or PeekMedian command, print in a line the corresponding returned value. If the command is invalid, print “Invalid” instead.</p>
-<p><strong>Sample Input:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">17</div><div class="line">Pop</div><div class="line">PeekMedian</div><div class="line">Push 3</div><div class="line">PeekMedian</div><div class="line">Push 2</div><div class="line">PeekMedian</div><div class="line">Push 1</div><div class="line">PeekMedian</div><div class="line">Pop</div><div class="line">Pop</div><div class="line">Push 5</div><div class="line">Push 4</div><div class="line">PeekMedian</div><div class="line">Pop</div><div class="line">Pop</div><div class="line">Pop</div><div class="line">Pop</div></pre></td></tr></table></figure>
-<p><strong>Sample Output:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Invalid</div><div class="line">Invalid</div><div class="line">3</div><div class="line">2</div><div class="line">2</div><div class="line">1</div><div class="line">2</div><div class="line">4</div><div class="line">4</div><div class="line">5</div><div class="line">3</div><div class="line">Invalid</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>最傻的办法，就用一个数组，当栈维护<br>要找中位数的时候，复制一份sort一下<br>这样肯定是会超时的</p>
-<p>怎么维护这个大小信息呢？是个关键<br>两个信息需要维护，一个是顺序信息，一个是大小信息<br>顺序信息用位置来表示，那么大小信息呢？开个链表来存吗？不是很合理。</p>
-<hr>
-<p>参考了这位：<a href="https://blog.csdn.net/frozenshore/article/details/47836935" target="_blank" rel="external">https://blog.csdn.net/frozenshore/article/details/47836935</a> 的解法，可以用set，set自带排序</p>
-<p>维护两个set，A和B，保证A中元素都小于等于B，且A.size() == B.size() || A.size() - 1 == B.size()</p>
-<p>push或pop之后，要更新这两个set来保持正确性</p>
-<p>学习了，学习了！</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/13.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">    <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; A, B;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">string</span> op;</div><div class="line">        op.reserve(<span class="number">20</span>);</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; op;</div><div class="line">        <span class="keyword">if</span> (op == <span class="string">"Pop"</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (s.empty()) &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"Invalid\n"</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">int</span> num = s.top();</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; num &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">                s.pop();</div><div class="line">                <span class="keyword">if</span> (num &gt; *A.rbegin()) &#123;</div><div class="line">                    B.erase(B.find(num));</div><div class="line">                    <span class="keyword">if</span> (A.size() &gt; B.size() + <span class="number">1</span>) &#123;</div><div class="line">                        B.insert(*A.rbegin());</div><div class="line">                        A.erase((--A.end()));</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    A.erase(A.find(num));</div><div class="line">                    <span class="keyword">if</span> (B.size() &gt; A.size()) &#123;</div><div class="line">                        A.insert(*B.begin());</div><div class="line">                        B.erase(B.begin());</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op == <span class="string">"Push"</span>) &#123;</div><div class="line">            <span class="keyword">int</span> num;</div><div class="line">            <span class="built_in">cin</span> &gt;&gt; num;</div><div class="line">            s.push(num);</div><div class="line">            <span class="keyword">if</span> (A.empty()) &#123;</div><div class="line">                A.insert(num);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (num &gt; *A.rbegin()) &#123;</div><div class="line">                    B.insert(num);</div><div class="line">                    <span class="keyword">if</span> (B.size() &gt; A.size()) &#123;</div><div class="line">                        A.insert(*B.begin());</div><div class="line">                        B.erase(B.begin());</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    A.insert(num);</div><div class="line">                    <span class="keyword">if</span> (A.size() &gt; B.size() + <span class="number">1</span>) &#123;</div><div class="line">                        B.insert(*A.rbegin());</div><div class="line">                        A.erase((--A.end()));</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (A.empty()) &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"Invalid\n"</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">cout</span> &lt;&lt; *A.rbegin() &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用了<code>multi_set</code></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>借用STL中的东西来方便自己，尽管是大材小用。</p>
-<p>set自带排序，也可以自己指定<code>Compare</code>方法。</p>
-<p>顺便复习下set的使用方法：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> cmp = [](<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123; <span class="keyword">return</span> ... &#125;;</div><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>, <span class="keyword">decltype</span>(cmp)&gt; s(cmp);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/pat-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/11/pat-tips/" itemprop="url">
-                  PAT 注意事项
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-11 22:41:36" itemprop="dateCreated datePublished" datetime="2018-08-11T22:41:36+08:00">2018-08-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-12 08:42:40" itemprop="dateModified" datetime="2018-08-12T08:42:40+08:00">2018-08-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/11/pat-tips/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/11/pat-tips/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>唉，这个OJ，不是很友好。</p>
-<p>谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。</p>
-<hr>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="cin，cout慢"><a href="#cin，cout慢" class="headerlink" title="cin，cout慢"></a><code>cin</code>，<code>cout</code>慢</h4><p>可用的解决方法有：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ios::sync_with_stdio(<span class="literal">false</span>);</div></pre></td></tr></table></figure>
-<p>这一句可以提高一些速度，但是这样，<code>cin</code>，<code>cout</code>就不能与<code>scanf</code>，<code>printf</code>混用。</p>
-<hr>
-<p>用<code>scanf</code>，很不好的就是不能读入到<code>string</code>，很难过。cstring和std::string转换如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> *c_s = <span class="string">"hello"</span>;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s = c_s;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"%s"</span>, s.c_str());</div></pre></td></tr></table></figure>
-<p>另外，不要用<code>endl</code>，真的很慢很慢，用<code>&quot;\n&quot;</code></p>
-<hr>
-<p>但是，很遗憾的是，<code>std::string</code>某些情况下，也很慢</p>
-<h3 id="std-string慢"><a href="#std-string慢" class="headerlink" title="std::string慢"></a><code>std::string</code>慢</h3><p>如果输入限定了长度，尽量用<code>reserve</code>控制下，这样会快不少</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line">s.reserve(N);</div></pre></td></tr></table></figure>
-<h3 id="map，set等慢"><a href="#map，set等慢" class="headerlink" title="map，set等慢"></a><code>map</code>，<code>set</code>等慢</h3><p>不要管什么优雅，政治正确，做对题是硬道理。PAT一般对空间复杂度要求不高，一些用到<code>map</code>之类的，可以考虑开一个很大的数组直接存。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>能全局就全局，省得传参</li>
-<li>看空间要求，如果没有特别限制，能全开就全开，5w的数组都没有问题</li>
-<li>不要用<code>endl</code></li>
-<li><code>ios::sync_with_stdio(false); cin.tie(nullptr);</code></li>
-<li>用<code>string</code>的时候，如果没有变长要求，用<code>reserve</code>，可以省不少时间</li>
-<li>如果输出有较复杂格式要求，<code>iomanip</code>写不来，那就不要用<code>cin</code>、<code>cout</code>，否则可能超时</li>
-<li><code>scanf</code>不支持<code>std::string</code>，考虑读到<code>char*</code>里，然后两者相互转换</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/leetcode658/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/leetcode658/" itemprop="url">
-                  368. Largest Divisible Subset
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-10 21:56:18 / Modified: 22:27:57" itemprop="dateCreated datePublished" datetime="2018-08-10T21:56:18+08:00">2018-08-10</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/10/leetcode658/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/10/leetcode658/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-k-closest-elements/description/" target="_blank" rel="external">https://leetcode.com/problems/find-k-closest-elements/description/</a></p>
-<p><img src="/media/15339094167313.jpg" alt="-w947"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>既然是排序好的，肯定要用到二分查找</p>
-<p>找到与x距离最近，&lt;=x的，然后开始拓展开来</p>
-<p>嗯，一开始还是欠考虑了，找到&lt;=x的最近元素之后，要向两边挨个比较，最后得到需要的值</p>
-<p>这里有一个api还是查阅了下，记下备忘：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vec.insert(vec.begin(), <span class="number">47</span>); <span class="comment">// vector头插入一个元素</span></div></pre></td></tr></table></figure>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findClosestElements(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr, <span class="keyword">int</span> k, <span class="keyword">int</span> x) &#123;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = arr.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> mid;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            mid = (l + r) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span> (arr[mid] &gt; x) &#123;</div><div class="line">                r = mid - <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] == x) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (mid == l) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    l = mid + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// cout &lt;&lt; mid;</span></div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">        l = mid, r = mid + <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> cnt = <span class="number">0</span>; cnt &lt; k; cnt++) &#123;</div><div class="line">            <span class="keyword">if</span> (l &lt; <span class="number">0</span>) &#123;</div><div class="line">                res.push_back(arr[r]);</div><div class="line">                r++;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (r &gt;= arr.size()) &#123;</div><div class="line">                res.insert(res.begin(), arr[l]);</div><div class="line">                l--;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">abs</span>(arr[r] - x) &lt; <span class="built_in">abs</span>(arr[l] - x)) &#123;</div><div class="line">                res.push_back(arr[r]);</div><div class="line">                r++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                res.insert(res.begin(), arr[l]);</div><div class="line">                l--;  </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/07/PAT-A-1029/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/07/PAT-A-1029/" itemprop="url">
-                  1029 Median
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-07 22:18:24" itemprop="dateCreated datePublished" datetime="2018-08-07T22:18:24+08:00">2018-08-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-08 21:27:35" itemprop="dateModified" datetime="2018-08-08T21:27:35+08:00">2018-08-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/07/PAT-A-1029/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/07/PAT-A-1029/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an increasing sequence S of N integers, the median is the number at the middle position. For example, the median of S1 = { 11, 12, 13, 14 } is 12, and the median of S2 = { 9, 10, 15, 16, 17 } is 15. The median of two sequences is defined to be the median of the nondecreasing sequence which contains all the elements of both sequences. For example, the median of S1 and S2 is 13.</p>
-<p>Given two increasing sequences of integers, you are asked to find their median.</p>
-<p><strong>Input Specification:</strong><br>Each input file contains one test case. Each case occupies 2 lines, each gives the information of a sequence. For each sequence, the first positive integer N (≤2×10^5)is the size of that sequence. Then N integers follow, separated by a space. It is guaranteed that all the integers are in the range of long int.</p>
-<p><strong>Output Specification:</strong><br>For each test case you should output the median of the two given sequences in a line.</p>
-<p><strong>Sample Input:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4 11 12 13 14</div><div class="line">5 9 10 15 16 17</div></pre></td></tr></table></figure>
-<p><strong>Sample Output:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">13</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>把两个数组分成两个部分，得到中位数</p>
-<p>要考虑时间复杂度和空间复杂度</p>
-<hr>
-<p>emm 先写一个普通的版本：</p>
-<p>将两个数组存下来，然后从头开始遍历，两个指针比较着向前走，直到到达一半为止</p>
-<p>实现如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(N);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v2[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= v1.size()) &#123;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">            p2++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= v2.size()) &#123;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">            p1++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (v1[p1] &lt; v2[p2]) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">                p2++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? v1[p1 - <span class="number">1</span>] : v2[p2 - <span class="number">1</span>]);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>十分干净简单，但是最后一个测试点内存超限，而且，最后一个测试点10分，占了2/5的分数。</p>
-<hr>
-<p>用的空间，也就存两个输入的数组，没有其它的空间了<br>这都内存超限的话，看来，不能把数据都存下来。</p>
-<p>肯定要存输入的第一个数组。<br>对于第二个，必须边读入，边处理。</p>
-<p>不存第二个，不就对了。</p>
-<p>改进之后的版本：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> num1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> num2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; v2Buffer;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= M) &#123;</div><div class="line">            <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">            p2++;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= N) &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            p1++;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            <span class="keyword">if</span> (v2Buffer.empty()) &#123;</div><div class="line">                <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">                v2Buffer.push(num2);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                num2 = v2Buffer.front();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (num1 &lt; num2) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p2++;</div><div class="line">                v2Buffer.pop();</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? num1 : num2);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用了一个buffer来存比较之后，并没有用num2的情况下的num2.</p>
-<p>内存超限没有了，不过还有个测试点没过，而且也是10分！！！<br>问题出在哪里呢？？？</p>
-<p>不解，实在想不到..</p>
-<p>看来，还是，考虑的不周到，没有玄学，只是问题不明显而已，buffer没有考虑全。</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/7.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="keyword">int</span> M, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; M;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(M);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v1[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum = M + N;</div><div class="line">    <span class="keyword">int</span> half = (sum - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> num1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">long</span> num2 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> isV1 = !v1.empty();</div><div class="line">    <span class="keyword">int</span> v2Buffer;</div><div class="line">    <span class="keyword">bool</span> hasBuffer = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= half; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (!hasBuffer) &#123;</div><div class="line">            <span class="built_in">cin</span> &gt;&gt; num2;</div><div class="line">            hasBuffer = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (p1 &gt;= M) &#123;</div><div class="line">            p2++;</div><div class="line">            hasBuffer = <span class="literal">false</span>;</div><div class="line">            isV1 = <span class="literal">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p2 &gt;= N) &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            p1++;</div><div class="line">            isV1 = <span class="literal">true</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            num1 = v1[p1];</div><div class="line">            <span class="keyword">if</span> (num1 &lt; num2) &#123;</div><div class="line">                p1++;</div><div class="line">                isV1 = <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p2++;</div><div class="line">                hasBuffer = <span class="literal">false</span>;</div><div class="line">                isV1 = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; (isV1 ? num1 : num2);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><ol>
-<li>找问题，仔细找，用到每个“变”量，都要审核是否符合条件</li>
-<li>PAT更新后的分数好迷</li>
-<li><code>ios::sync_with_stdio(false)</code>大法好，应该不用担心cin超时了hhh</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2297,7 +2256,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

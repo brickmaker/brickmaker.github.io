@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
 <meta property="og:description" content="前言唉，这个OJ，不是很友好。 谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。  注意事项cin，cout慢可用的解决方法有： 1ios::sync_with_stdio(false); 这一句可以提高一些速度，但是这样，cin，cout就不能与scanf，printf混用。  用scanf，很不好的就是不能读入到string，很难过。cstring和std::string转">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-12T00:42:40.772Z">
+<meta property="og:updated_time" content="2018-09-07T08:17:30.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PAT 注意事项">
 <meta name="twitter:description" content="前言唉，这个OJ，不是很友好。 谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。  注意事项cin，cout慢可用的解决方法有： 1ios::sync_with_stdio(false); 这一句可以提高一些速度，但是这样，cin，cout就不能与scanf，printf混用。  用scanf，很不好的就是不能读入到string，很难过。cstring和std::string转">
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-12 08:42:40" itemprop="dateModified" datetime="2018-08-12T08:42:40+08:00">2018-08-12</time>
+                <time title="Modified: 2018-09-07 16:17:30" itemprop="dateModified" datetime="2018-09-07T16:17:30+08:00">2018-09-07</time>
               
             
           </span>
@@ -422,7 +422,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>唉，这个OJ，不是很友好。</p>
 <p>谨记下自己做题过程中的一些坑，既然改变不了这个OJ，只能改变自己了。</p>
 <hr>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="cin，cout慢"><a href="#cin，cout慢" class="headerlink" title="cin，cout慢"></a><code>cin</code>，<code>cout</code>慢</h4><p>可用的解决方法有：</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="cin，cout慢"><a href="#cin，cout慢" class="headerlink" title="cin，cout慢"></a><code>cin</code>，<code>cout</code>慢</h3><p>可用的解决方法有：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ios::sync_with_stdio(<span class="literal">false</span>);</div></pre></td></tr></table></figure>
 <p>这一句可以提高一些速度，但是这样，<code>cin</code>，<code>cout</code>就不能与<code>scanf</code>，<code>printf</code>混用。</p>
 <hr>
@@ -434,6 +434,8 @@
 <h3 id="std-string慢"><a href="#std-string慢" class="headerlink" title="std::string慢"></a><code>std::string</code>慢</h3><p>如果输入限定了长度，尽量用<code>reserve</code>控制下，这样会快不少</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line">s.reserve(N);</div></pre></td></tr></table></figure>
 <h3 id="map，set等慢"><a href="#map，set等慢" class="headerlink" title="map，set等慢"></a><code>map</code>，<code>set</code>等慢</h3><p>不要管什么优雅，政治正确，做对题是硬道理。PAT一般对空间复杂度要求不高，一些用到<code>map</code>之类的，可以考虑开一个很大的数组直接存。</p>
+<h3 id="getline"><a href="#getline" class="headerlink" title="getline()"></a><code>getline()</code></h3><p>注意如果之前cin读入一个数，后边还有换行，记得先<code>getchar()</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cin</span> &gt;&gt; N;</div><div class="line">getchar();</div><div class="line">getline(<span class="built_in">cin</span>, s);</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>能全局就全局，省得传参</li>
 <li>看空间要求，如果没有特别限制，能全开就全开，5w的数组都没有问题</li>
@@ -442,6 +444,7 @@
 <li>用<code>string</code>的时候，如果没有变长要求，用<code>reserve</code>，可以省不少时间</li>
 <li>如果输出有较复杂格式要求，<code>iomanip</code>写不来，那就不要用<code>cin</code>、<code>cout</code>，否则可能超时</li>
 <li><code>scanf</code>不支持<code>std::string</code>，考虑读到<code>char*</code>里，然后两者相互转换</li>
+<li>如果遇到多个测试点没有过，多半是题意理解有问题，先不要找着一些奇奇怪怪的边界条件BUG</li>
 </ol>
 
       
@@ -570,7 +573,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -663,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.1.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cin，cout慢"><span class="nav-number">1.1.1.</span> <span class="nav-text">cin，cout慢</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#std-string慢"><span class="nav-number">1.2.</span> <span class="nav-text">std::string慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map，set等慢"><span class="nav-number">1.3.</span> <span class="nav-text">map，set等慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cin，cout慢"><span class="nav-number">2.1.</span> <span class="nav-text">cin，cout慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#std-string慢"><span class="nav-number">2.2.</span> <span class="nav-text">std::string慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map，set等慢"><span class="nav-number">2.3.</span> <span class="nav-text">map，set等慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getline"><span class="nav-number">2.4.</span> <span class="nav-text">getline()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

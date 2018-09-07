@@ -290,6 +290,790 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/LeetCode371/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/02/LeetCode371/" itemprop="url">
+                  371. Sum of Two Integers
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-02 22:32:02" itemprop="dateCreated datePublished" datetime="2017-08-02T22:32:02+08:00">2017-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:36" itemprop="dateModified" datetime="2018-07-10T13:32:36+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/02/LeetCode371/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/02/LeetCode371/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="external">https://leetcode.com/problems/sum-of-two-integers/description/</a></p>
+<p><img src="/media/15016843861293.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>最初想的是用CLA的方式，但是发现用位运算并不好算p_i，遂放弃，后选择用密码学课上学到的提取单个位的方法进行处理，做位的加法</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> helper = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">8</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> aBit = a &amp; helper, bBit = b &amp; helper, cBit = c &amp; helper;</div><div class="line">            result |= (aBit ^ bBit ^ cBit);</div><div class="line">            <span class="keyword">if</span> (!!(aBit &amp; bBit | aBit &amp; cBit | bBit &amp; cBit))</div><div class="line">                c = (helper &lt;&lt; <span class="number">1</span>);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                c = <span class="number">0</span>;</div><div class="line">            helper &lt;&lt;= <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!!c)</div><div class="line">            result |= c;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>虽然是一道Easy级的题目，但是自己也是花费了不小的功夫。<br>主要是调bug上，考虑不周，在进位的处理上有些考虑不全，WA了好几次。</p>
+<p>位操作还是值得学习一下的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode368/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode368/" itemprop="url">
+                  368. Largest Divisible Subset
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-29 21:58:03" itemprop="dateCreated datePublished" datetime="2017-07-29T21:58:03+08:00">2017-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:31" itemprop="dateModified" datetime="2018-07-10T13:32:31+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/29/LeetCode368/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/29/LeetCode368/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/largest-divisible-subset/description/" target="_blank" rel="external">https://leetcode.com/problems/largest-divisible-subset/description/</a></p>
+<p><img src="/media/15013367330825.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>没有什么思路…或许贪心？</p>
+<p>不，应该可以从数学的角度上解决的。<br>如果能任意地被整除，需要满足什么条件呢？<br>每添加进一个，都可以被这个set中的每一个整除<br>这样一来，是个O(n^2 )的复杂度，可以吗？<br>先试试吧<br>不对，不是O(n^2 )，排序需要n<em>log n，因为已经序的了，应该只用O(n </em> k)，k是set的数量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; sets;</div><div class="line">        <span class="keyword">bool</span> inserted = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">int</span> maxSize = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> maxSizeIdx = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; sets.size(); ++j) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[i] % sets[j][sets[j].size() - <span class="number">1</span>] == <span class="number">0</span>) &#123;</div><div class="line">                    sets[j].push_back(nums[i]);</div><div class="line">                    <span class="keyword">if</span> (maxSize &lt; sets[j].size()) &#123;</div><div class="line">                        maxSize = sets[j].size();</div><div class="line">                        maxSizeIdx = j;</div><div class="line">                    &#125;</div><div class="line">                    inserted = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (inserted == <span class="literal">false</span>) &#123;</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</div><div class="line">                sets.push_back(vec);</div><div class="line">                sets[sets.size() - <span class="number">1</span>].push_back(nums[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                inserted = <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sets[maxSizeIdx];</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>嗯，看来自己本来有一些Naive了<br><img src="/media/15013385099186.png" alt=""><br>没有考虑到这样的情况<br>那看来原来的想法是不行的<br>一个更明显的例子：<br><img src="/media/15013386806811.png" alt=""></p>
+<p><del>考虑用DP做</del><br><del>因为，大数可以表示成因式的和</del></p>
+<p>看问题的样子，是很符合贪心的策略的，但是怎么用呢？<br>唔，有必要补一补基础知识了，唉，先看下答案吧，不想想了orz</p>
+<p><strong>尝试建一个多叉树</strong><br>做完之后，调了好多bug，却发现也同样没有考虑到那个问题，唉，本质上和原来是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2017/8/1.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> &#123;</span></div><div class="line">        <span class="keyword">int</span> val;</div><div class="line">        <span class="built_in">vector</span>&lt;TreeNode*&gt; children;</div><div class="line"></div><div class="line">        TreeNode(<span class="keyword">int</span> x) : val(x) &#123;&#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; current;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(TreeNode *tree, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (num % tree-&gt;val != <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">bool</span> inserted = <span class="literal">false</span>;</div><div class="line">        current.push_back(tree-&gt;val);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tree-&gt;children.size(); ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (insert((tree-&gt;children)[i], num)) &#123;</div><div class="line">                inserted = <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!inserted) &#123;</div><div class="line">            TreeNode *newNode = <span class="keyword">new</span> TreeNode(num);</div><div class="line">            (tree-&gt;children).push_back(newNode);</div><div class="line">            current.push_back(num);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (current.size() &gt; result.size())</div><div class="line">            result = current;</div><div class="line">        current = <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;&#125;;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestDivisibleSubset(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;();</div><div class="line">        <span class="keyword">if</span> (nums.size() == <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;nums[<span class="number">0</span>], &#125;;</div><div class="line">        <span class="built_in">std</span>::sort(nums.begin(), nums.end());</div><div class="line">        TreeNode *tree = <span class="keyword">new</span> TreeNode(<span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</div><div class="line">            insert(tree, nums[i]);</div><div class="line">        &#125;</div><div class="line">        result.erase(result.begin());</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><p>哈？答案一票都是用DP的？？？</p>
+<p><a href="https://discuss.leetcode.com/topic/49456/c-solution-with-explanations" target="_blank" rel="external">https://discuss.leetcode.com/topic/49456/c-solution-with-explanations</a></p>
+<p>勉强看懂，看是不保证自己能写出来，这题就先放过吧，日后再做。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode515/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode515/" itemprop="url">
+                  515. Find Largest Value in Each Tree Row
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-29 21:19:14" itemprop="dateCreated datePublished" datetime="2017-07-29T21:19:14+08:00">2017-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:28" itemprop="dateModified" datetime="2018-07-10T13:32:28+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/29/LeetCode515/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/29/LeetCode515/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/" target="_blank" rel="external">https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/</a></p>
+<p><img src="/media/15013344250877.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>嗯，有一个vector来记录每一层的最大值，然后搜一遍树，更新最大值就可以了，应该就是这样</p>
+<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><p>一次AC了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxVal;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; largestValues(TreeNode* root) &#123;</div><div class="line">        travel(root, <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> maxVal;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode* node, <span class="keyword">int</span> level)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (node == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span> (maxVal.size() &lt; level)</div><div class="line">            maxVal.push_back(node-&gt;val);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (node-&gt;val &gt; maxVal[level - <span class="number">1</span>])</div><div class="line">            maxVal[level - <span class="number">1</span>] = node-&gt;val;</div><div class="line">        travel(node-&gt;left, level + <span class="number">1</span>);</div><div class="line">        travel(node-&gt;right, level + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>比较明确，比较简单吧。<br>不做多余的事，更新最大值就好了，难得有一题如此轻松地AC哈哈。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode621/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/29/LeetCode621/" itemprop="url">
+                  621. Task Scheduler
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-29 15:17:37" itemprop="dateCreated datePublished" datetime="2017-07-29T15:17:37+08:00">2017-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:32:24" itemprop="dateModified" datetime="2018-07-10T13:32:24+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/29/LeetCode621/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/29/LeetCode621/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/task-scheduler/description/" target="_blank" rel="external">https://leetcode.com/problems/task-scheduler/description/</a></p>
+<p><img src="/media/15013127240073.png" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>第一眼，感觉是Greedy</p>
+<p>算了，想了半天，还是没有什么头绪<br>看答案吧</p>
+<p>（LeetCode有答案好，也不好orz）</p>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&amp; tasks, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; <span class="built_in">map</span>;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : tasks) &#123;</div><div class="line">            <span class="built_in">map</span>[t]++;</div><div class="line">            count = max(count, <span class="built_in">map</span>[t]);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num = (n + <span class="number">1</span>) * (count - <span class="number">1</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : <span class="built_in">map</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (t.second == count)</div><div class="line">                num++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> max((<span class="keyword">int</span>)tasks.size(), num);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>自己本来的思路跟这个类似，就选择这个作为答案了<br>先找到最大的，然后拉一个框：<code>(n+1)*(count-1)</code>,如果有超出的（最大的），刚+1<br>另外还要考虑task大，n小，框框放不下的情况，这样需要<code>max(task.size(), num)</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/LeetCode155/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1476,248 +2260,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/27/kaggle-first-look/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/27/kaggle-first-look/" itemprop="url">
-                  First Look of Titanic Problem on Kaggle
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-07-27 22:12:27" itemprop="dateCreated datePublished" datetime="2017-07-27T22:12:27+08:00">2017-07-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:22:17" itemprop="dateModified" datetime="2018-07-10T13:22:17+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/27/kaggle-first-look/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/27/kaggle-first-look/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>用了两天的一些空闲时间，看完并自己跟着敲完了上边的代码自己亲自试了试。整体地走了一个用机器学习解决问题的流程，总得来说也是有一个较为清楚的认识吧，现就一些想法与笔记记录下来。</p>
-<h2 id="Titanic问题解决过程"><a href="#Titanic问题解决过程" class="headerlink" title="Titanic问题解决过程"></a>Titanic问题解决过程</h2><p>按照样例中的做法，结合自己的看法，重要的几步有：<strong>获取数据，分析数据，处理数据（对null值的处理，删除无关紧要的数据，从已有的数据中通过组合与计算等获取新的有意义的特征数据），选用模型进行学习和预测，得到结果</strong>。</p>
-<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>主要应用<code>pandas</code>进行操作，其中一个很关键的一点是其中的<code>DataFrame</code>类型的对象，是操作数据的载体，其拥有强大的一些函数，大大方便了对数据的感知，需要之后的进一步了解其特性。</p>
-<h3 id="分析数据"><a href="#分析数据" class="headerlink" title="分析数据"></a>分析数据</h3><p>分析数据大致分为三类，一个是用一些自带的函数作大致的信息查看；第二是提取一些feature的组合来看；三是用<code>matplotlib</code>或<code>seaborn</code>等可视化工具来可视化地查看一些属性。</p>
-<h4 id="整体大致查看"><a href="#整体大致查看" class="headerlink" title="整体大致查看"></a>整体大致查看</h4><p>用到的一些常用的函数有：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data_df.head() <span class="comment"># get first 5 element</span></div><div class="line">data_df.info()</div><div class="line">data_df.describe()</div><div class="line">data_df.shape()</div><div class="line">data_df.colums.values</div></pre></td></tr></table></figure>
-<h4 id="提取feature查看"><a href="#提取feature查看" class="headerlink" title="提取feature查看"></a>提取feature查看</h4><p>用一些组合与排序的方式达到目的，如：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">train_df[[<span class="string">'Sex'</span>, <span class="string">'Survived'</span>]].groupby([<span class="string">'Sex'</span>], as_index=<span class="keyword">False</span>).mean().sort_values(by=<span class="string">'Sex'</span>)</div></pre></td></tr></table></figure>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Sex</th>
-      <th>Survived</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>female</td>
-      <td>0.742038</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>male</td>
-      <td>0.188908</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="可视化查看"><a href="#可视化查看" class="headerlink" title="可视化查看"></a>可视化查看</h4><p>这一方面，<code>matplotlib</code>及<code>seaborn</code>的函数众多，自己还需要进一步的了解，需要做到自如地处理数据，在不同的层面上比较。</p>
-<h3 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h3><h4 id="删除无用的数据"><a href="#删除无用的数据" class="headerlink" title="删除无用的数据"></a>删除无用的数据</h4><p><code>drop()</code>删除df中的无用数据：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train_df = train_df.drop([<span class="string">'Ticket'</span>, <span class="string">'Cabin'</span>], axis=<span class="number">1</span>)</div><div class="line">test_df = test_df.drop([<span class="string">'Ticket'</span>, <span class="string">'Cabin'</span>], axis=<span class="number">1</span>)</div></pre></td></tr></table></figure>
-<h4 id="在已有的基础上获取新数据"><a href="#在已有的基础上获取新数据" class="headerlink" title="在已有的基础上获取新数据"></a>在已有的基础上获取新数据</h4><p>进行计算或者组合等：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> datasets <span class="keyword">in</span> combine:</div><div class="line">    datasets[<span class="string">'name_length'</span>] = datasets.Name.str.len()</div></pre></td></tr></table></figure>
-<h4 id="categorical-的数据到-ordinal的转化"><a href="#categorical-的数据到-ordinal的转化" class="headerlink" title="categorical 的数据到 ordinal的转化"></a>categorical 的数据到 ordinal的转化</h4><p>应用map将一些类型的数据，转化成数字型的，如：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title_mapping = &#123;<span class="string">"Mr"</span>: <span class="number">1</span>, <span class="string">"Miss"</span>: <span class="number">2</span>, <span class="string">"Mrs"</span>: <span class="number">3</span>, <span class="string">"Master"</span>: <span class="number">4</span>, <span class="string">"Rare"</span>: <span class="number">5</span>&#125;</div><div class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</div><div class="line">    dataset[<span class="string">'Title'</span>] = dataset[<span class="string">'Title'</span>].map(title_mapping)</div><div class="line">    dataset[<span class="string">'Title'</span>] = dataset[<span class="string">'Title'</span>].fillna(<span class="number">0</span>)</div></pre></td></tr></table></figure>
-<h4 id="对null等非法值的处理"><a href="#对null等非法值的处理" class="headerlink" title="对null等非法值的处理"></a>对null等非法值的处理</h4><p>因为NaN，null等值会影响学习及预测，所以进行处理，有多种用其它数据替代的方式，也有好多trick，但是相对来说比较简单。</p>
-<p>如下，是采用有效值的平均进行替换：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">test_df[<span class="string">'Fare'</span>].fillna(test_df[<span class="string">'Fare'</span>].dropna().median(), inplace=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<h4 id="对一些数值型的数据进行区间分类"><a href="#对一些数值型的数据进行区间分类" class="headerlink" title="对一些数值型的数据进行区间分类"></a>对一些数值型的数据进行区间分类</h4><p>先建立区间：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">train_df[<span class="string">'AgeBand'</span>] = pd.cut(train_df[<span class="string">'Age'</span>], <span class="number">5</span>)</div><div class="line">train_df[[<span class="string">'AgeBand'</span>, <span class="string">'Survived'</span>]].groupby([<span class="string">'AgeBand'</span>], as_index=<span class="keyword">False</span>).mean().sort_values(by=<span class="string">'AgeBand'</span>, ascending=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
-<p>再将原来的数值替换为区间代号：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:    </div><div class="line">    dataset.loc[ dataset[<span class="string">'Age'</span>] &lt;= <span class="number">16</span>, <span class="string">'Age'</span>] = <span class="number">0</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">16</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">32</span>), <span class="string">'Age'</span>] = <span class="number">1</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">32</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">48</span>), <span class="string">'Age'</span>] = <span class="number">2</span></div><div class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>] &gt; <span class="number">48</span>) &amp; (dataset[<span class="string">'Age'</span>] &lt;= <span class="number">64</span>), <span class="string">'Age'</span>] = <span class="number">3</span></div><div class="line">    dataset.loc[ dataset[<span class="string">'Age'</span>] &gt; <span class="number">64</span>, <span class="string">'Age'</span>] = <span class="number">4</span></div></pre></td></tr></table></figure>
-<h3 id="运用模型作学习与预测"><a href="#运用模型作学习与预测" class="headerlink" title="运用模型作学习与预测"></a>运用模型作学习与预测</h3><h4 id="选择模型进行学习-fit"><a href="#选择模型进行学习-fit" class="headerlink" title="选择模型进行学习 fit"></a>选择模型进行学习 <code>fit</code></h4><p>直接从<code>sklearn</code>中选择所需的模型，然后<code>fit</code>测试数据的X和Y：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># SVM</span></div><div class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line">svc = SVC()</div><div class="line">svc.fit(X_train, Y_train)</div></pre></td></tr></table></figure>
-<h4 id="进行预测-predict"><a href="#进行预测-predict" class="headerlink" title="进行预测 predict"></a>进行预测 <code>predict</code></h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y_pred = svc.predict(X_test)</div></pre></td></tr></table></figure>
-<h4 id="评估-score"><a href="#评估-score" class="headerlink" title="评估 score"></a>评估 <code>score</code></h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">accurate_svc = svc.score(X_train, Y_train)</div></pre></td></tr></table></figure>
-<h4 id="选择最优的模型并计算出结果"><a href="#选择最优的模型并计算出结果" class="headerlink" title="选择最优的模型并计算出结果"></a>选择最优的模型并计算出结果</h4><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>作为机器学习，或者Kaggle的入门例子，这个例子看来来还是很明确的，也有几点记在了心中。</p>
-<ol>
-<li>数据的处理太重要了，只要数据处理得好，用模型去训练和去预测不是问题。</li>
-<li>处理数据的时候一定要注意可能会影响结果的非法值，进行相关的预处理</li>
-<li>对于模型的一些实现细节可能不需要了解，但是要对他们是干什么的作一个了解吧，不然就是盲目地去根据问题的分类要试好多模型。</li>
-</ol>
-<p>然而，竞赛毕竟是竞赛，有着明确的dataset和明确的目的性，而且很专一地可以用机器学习去解决。而在现实生活中，有两个问题摆在机器学习的要前，一个是没有条理的数据集，二是不是那么明了的一个题目，更加的杂。这给用机器学习解决实际问题增添了一些困难。</p>
-<p>不过，练习这些毕竟也是好的！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1764,7 +2311,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2024,6 +2571,12 @@
 
   
   
+    
+      
+    
+      
+    
+      
     
       
     
