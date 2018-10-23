@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写… 可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！  浏览">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 Module学习">
+<meta property="og:url" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写… 可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！  浏览">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402210302711.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402635006564.jpg">
+<meta property="og:updated_time" content="2018-10-23T03:11:11.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 Module学习">
+<meta name="twitter:description" content="一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写… 可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！  浏览">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402210302711.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ES6 Module学习 | Xiaodong's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6 Module学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-23 11:09:23 / Modified: 11:11:11" itemprop="dateCreated datePublished" datetime="2018-10-23T11:09:23+08:00">2018-10-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Frontend/" itemprop="url" rel="index"><span itemprop="name">Frontend</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/23/ES6-module-2018-10-23/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/23/ES6-module-2018-10-23/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…<br>一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…<br>一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写…</p>
+<p>可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！</p>
+<hr>
+<h2 id="浏览器-lt-script-type-39-module-39"><a href="#浏览器-lt-script-type-39-module-39" class="headerlink" title="浏览器&lt;script type=&#39;module&#39;..."></a>浏览器<code>&lt;script type=&#39;module&#39;...</code></h2><p>好吧，我以前只知道<code>script</code>标签是把<code>src</code>中指的文件复制过来，现在发现自己已经火星了，去年chrome就支持了引入module，好吧，这样看来，如果就自己用新版的Chrome的话，一切变得简单起来~</p>
+<p>写一个最简单的demo，虽然很直白，但毕竟纪念一下自己第一次使用module:</p>
+<p>index.html:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  hello world</div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">'./a.js'</span></div><div class="line"><span class="built_in">console</span>.log(a.aaa)</div></pre></td></tr></table></figure>
+<p>a.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> aaa = <span class="number">3</span></div></pre></td></tr></table></figure>
+<p>console:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
+<p>可以看出，如果浏览器支持的话，只要加个<code>type=&#39;module&#39;</code>就可以，不用什么编译工具呀，打包工具呀之类的。</p>
+<h2 id="Module怎么用？？？"><a href="#Module怎么用？？？" class="headerlink" title="Module怎么用？？？"></a>Module怎么用？？？</h2><p>其实目前自己对module的理解就是很不具体，可能就是能分成好多个文件写，避免一个文件写的太长；把一些公用的东西提出来，比如config、常数之类的供复用；隔离作用域之类的…</p>
+<p>这些应该都是没有错的，可是真正让自己用的时候，就觉得，没那么简单，它到底是干什么用的？什么时候该用？什么时候不该用？有什么范式嘛？有什么best practice吗？</p>
+<p>这些可能需要长期使用后才有体会吧，目前自己可以先学习一点..</p>
+<p>这里，我觉得讲了一点比较具体的东西，感觉应该值得一看，这本书好像都挺不错的样子：<br><a href="http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript</a><br><a href="http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules</a></p>
+<p>具体的，就不再说了，毕竟没有什么使用经验，以后可以补上…</p>
+<h2 id="编译与打包"><a href="#编译与打包" class="headerlink" title="编译与打包"></a>编译与打包</h2><p>前边提到的是直接浏览器标签<code>type=&#39;module&#39;</code>来让js引入module。</p>
+<ol>
+<li>如果要给用户用呢？用户的浏览器可是无法预知的..</li>
+<li>标签引入是不是不怎么好呀，如果不是http/2的话，是不是还是打包下比较好？</li>
+</ol>
+<p>自己虽然不懂第二点，但是目前这前端形势，第一条就决定了你除非是自己写着玩玩，否则必须使用编译到ES5以及打包的工具..</p>
+<p>于是，自己要接触自己之前恐惧的名词了：Babel，Browsify，Rollup，Webpack…</p>
+<p>这里自己看了一篇文风非常impressive的文章..感觉对新手来说还是很友好的：<br><a href="https://blessing.studio/how-could-i-use-es6-modules-in-production/" target="_blank" rel="external">https://blessing.studio/how-could-i-use-es6-modules-in-production/</a></p>
+<p>其中这张图片比较好的说明了问题：</p>
+<p><img src="media/15402155935799/15402210302711.png" alt=""></p>
+<h3 id="Babel转译工具"><a href="#Babel转译工具" class="headerlink" title="Babel转译工具"></a>Babel转译工具</h3><p>如果单纯的来说的话，Babel就是一个转译工具，把原来用ES6+的语法变成ES5的或者其它的，可是自己不解的地方在于，ES6支持的module，Babel是怎么变的？转译之后，又该如何使用呢？？</p>
+<p>了解了一下，发现它好像是把module转换成CommonJS的规范，所以也不能直接<code>script</code>标签引入完事，而是要用一定的库，比如RequireJS，这个自己之后有时间再看吧，毕竟有了现成的打包工具把它变成一个bundle.js，我为何还要煞费苦心的处理这心转译之后的文件呢？还是看看一些打包工具吧。</p>
+<h3 id="Webpack打包工具"><a href="#Webpack打包工具" class="headerlink" title="Webpack打包工具"></a>Webpack打包工具</h3><p>如果用一句话解释，就是官网上的slogan：</p>
+<blockquote>
+<p>bundle your scripts<br>bundle your styles<br>bundle your assets<br>bundle your images</p>
+</blockquote>
+<p>或者官网这张图：</p>
+<p><img src="media/15402155935799/15402635006564.jpg" alt="-w1131"></p>
+<p>把有依赖的各种资源编程静态的assets，让我们不用考虑依赖之类的。</p>
+<p>具体的如何整理依赖，tree-shaking什么的就先不管了，反正，最后给我一个<code>bundle.js</code>直接script引入就很合适~</p>
+<p>具体的使用之后再补充吧。</p>
+<h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p>其实，我一直以为TypeScript和Babel是两个完全不相干的东西，也以为两者一般要同时使用，但后来经过了解发现，反着这俩都能够转换到ES5，所以用TS也不一定要用Babel~</p>
+<p>那么就来入坑TS吧，配一个TypeScript+Webpack的前端项目环境吧，这样就可以优雅的支持Module了~~~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/07/kSum/" rel="next" title="K-Sum">
+                <i class="fa fa-chevron-left"></i> K-Sum
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pic_reverse.png"
+                alt="Xiaodong Zhao" />
+            
+              <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器-lt-script-type-39-module-39"><span class="nav-number">1.</span> <span class="nav-text">浏览器<script type='module'...</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module怎么用？？？"><span class="nav-number">2.</span> <span class="nav-text">Module怎么用？？？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译与打包"><span class="nav-number">3.</span> <span class="nav-text">编译与打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel转译工具"><span class="nav-number">3.1.</span> <span class="nav-text">Babel转译工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webpack打包工具"><span class="nav-number">3.2.</span> <span class="nav-text">Webpack打包工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeScript"><span class="nav-number">3.3.</span> <span class="nav-text">TypeScript</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://brickmaker.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/10/23/ES6-module-2018-10-23/';
+        this.page.identifier = '2018/10/23/ES6-module-2018-10-23/';
+        this.page.title = 'ES6 Module学习';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://brickmaker.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

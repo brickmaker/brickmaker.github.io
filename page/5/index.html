@@ -290,6 +290,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/2018-06-30/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/2018-06-30/" itemprop="url">
+                  项目管理总结——记软件工程课
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-30 19:43:57" itemprop="dateCreated datePublished" datetime="2018-06-30T19:43:57+08:00">2018-06-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 14:03:51" itemprop="dateModified" datetime="2018-07-10T14:03:51+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Software-Engineering/" itemprop="url" rel="index"><span itemprop="name">Software Engineering</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/30/2018-06-30/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/30/2018-06-30/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>软件工程课程，24个人合作开发一个网站，虽然功能并不是特别的复杂，但是，多人的开发，增添了许多奇奇怪怪的问题，不管怎么说，这门课算是相对圆满的结束了，而作为这24人组织领导者的我也从其中学到了一些项目管理的经验，记下，一来可以回忆，二来可用于今后参考。</p>
+<hr>
+<h2 id="开始一个项目"><a href="#开始一个项目" class="headerlink" title="开始一个项目"></a>开始一个项目</h2><p>其实，所谓的分模块各自独立开发，完全分离是不可能的。每个人都build from scratch，最后肯定是各自有各自奇怪的接口、结构等等。</p>
+<p>所以，要做的第一件事，正确的事，就是建立一个repo，写清楚开发指导，让大家知道如何开始写，这一部分，需要注意，或者说必须要做到的几点：</p>
+<h4 id="1-一个工程"><a href="#1-一个工程" class="headerlink" title="1. 一个工程"></a>1. 一个工程</h4><p>说起来是一句废话，既然最终是完成一个项目，当然是在一个工程里边写了。可是我有点太想当然了，于是还是有因为有的模块用了其它的脚手架，有着差异很大的代码结构，导致了整合时花费了些力气的不愉快经历。</p>
+<p>如果是最终是一个整体的项目，一定要在一个工程里写，不要想着先各自写自己的子模块，最后写一个顶层的模块将他们捏合在一起，会很痛苦。</p>
+<p>当然，比如像一个网站采取前后端分离的架构，那么前后端两个工程，这是没有关系的。</p>
+<h4 id="2-模块之间的独立性"><a href="#2-模块之间的独立性" class="headerlink" title="2. 模块之间的独立性"></a>2. 模块之间的独立性</h4><p>所有人在一个工程里开发，如果不能有很好的独立性，每个人的开发或多或少都会受到拘束，这是我们不愿意看到的。所以在本次开发过程中，建立工程的同事，就需要规定好每个模块如何相互独立的开发。</p>
+<p>以本次工程为例，初始项目中，为6个模块分别在合适的地方建立6个目录，有一个必要的入口文件。比如：</p>
+<p><strong>后端：</strong>用了Django，那么<code>urls.py</code>里写好路由映射，路由到对应目录下的<code>urls.py</code>即可。</p>
+<p><strong>前端：</strong>用了React生态，需要处理的事情多一些。首先是前端路由，给每个模块的入口component创建路由；其次还有redux的配置，创建根store，让每个子模块创建自己的store并注册到根store中。</p>
+<p>这样，初期的开发，每个人在前端直接进入自己的路由，请求后端也全部请求自己子路由下的内容，可以做到相互独立的开发。</p>
+<h4 id="3-示例参考"><a href="#3-示例参考" class="headerlink" title="3. 示例参考"></a>3. 示例参考</h4><p>成员在开发完项目之后，肯定都对所用到的技术栈，一些best practice有或多或少的理解，但是在项目的开始并不是这样的，有许多成员不了解相关的库，框架，语言等。</p>
+<p>此时，光给tutorial，documentation等是不够的，成员去学这些东西刚开始需要一段上手时间，而这并不是一个短期一次性项目高效的做法。最直接的就是，写个参考的示例，让不熟悉的成员能够模仿着去写，这样在模仿中学习，能够比较快的掌握所用的知识，同时，也可以学到一些在文档中并不会出现的best practice。</p>
+<p>在本次项目的开发中，可以首先写个最简单的前后端交互的示例，有如下的功能：</p>
+<ul>
+<li>前端发送GET请求</li>
+<li>后端返回数据，比如Hello World</li>
+<li>前端redux相关的操作：触发action、reducer的行为、store的改动与视图的更新</li>
+<li>react组件书写的示例</li>
+</ul>
+<p>经过以上的几步，基本做好了项目起始的准备，每个人应该知道了在哪里开始写，怎么开始写这最基本的问题。</p>
+<h2 id="Git-amp-GitHub使用"><a href="#Git-amp-GitHub使用" class="headerlink" title="Git&amp;GitHub使用"></a>Git&amp;GitHub使用</h2><p>本项目的组织方式大致是这样的：</p>
+<ul>
+<li>所有代码放在一个repo中</li>
+<li>master放整合的代码，受保护</li>
+<li>每个子模块有自己的分支，该模块的小组成员在此单分支上工作</li>
+<li>子模块完成某个功能之后，提交PR，将子分支merge到master中</li>
+</ul>
+<p>就我个人理解，多人的开发，一般有两种模式，一种是多分支，分支之间PR；另一种是fork-PR。我在这次选择了前者，有几个考虑因素：</p>
+<ol>
+<li>我可以看到各个子模块的进度，不至于不提交PR我什么都不知道</li>
+<li>如果必要，我可以直接在某个分支上提交来修改一些代码</li>
+<li>子模块一个分支上操作足够了，一个子模块有四个人参与，单分支基本满足了要求</li>
+</ol>
+<h3 id="单分支多人开发"><a href="#单分支多人开发" class="headerlink" title="单分支多人开发"></a>单分支多人开发</h3><p>对于多人在单分支上开发，还是需要遵从一定的workflow才能保证不会出现一些不愉快的事情。比如现在多人开发的单分支为common，可以遵从一下的流程：</p>
+<ol>
+<li><code>git checkout -b local</code> 建立自己的本地分支</li>
+<li>coding..coding..</li>
+<li><code>git commit -a -m &#39;blabla&#39;</code> 在自己的分支上提交</li>
+<li><code>git checkout common</code> 切换到common分支</li>
+<li><code>git pull</code> 看看别人在这段时间有没有提交</li>
+<li><code>git checkout local</code></li>
+<li><code>git merge common</code> 在自己的分支上merge别人的提交，如果有冲突，解决</li>
+<li><code>git checkout common</code></li>
+<li><code>git merge local</code> 此时，merge 自己分支上的东西，是不会发生冲突的</li>
+<li><code>git push</code></li>
+<li><code>git checkout local</code> 切回自己的分支，保持idle状态在自己本地分支这个习惯</li>
+</ol>
+<h3 id="Pull-Request的使用"><a href="#Pull-Request的使用" class="headerlink" title="Pull Request的使用"></a>Pull Request的使用</h3><p>第一次使用Pull Request这个功能，有一些经验不足，导致自己的使用并不是很愉快。</p>
+<p>Review这个设计方式很好，在接受更改的时候，可以审核代码，防止不合理的代码污染共有的分支。以下是自己经过尝试之后的一些心得：</p>
+<ol>
+<li>提交PR之后，只是声明了一个分支到另一个分支的合并，并不是当前提交的状态到另一个分支的合并，所以，提交PR之后的commit，仍然会更新。所以，request change的时候，直接修改就好，不用关掉这个PR再开一个新的PR。</li>
+<li>提交PR的频率尽可能高，不要憋着一个很大的功能再提交，我的建议是，只要写完了一小块内容，而这块内容不至于编译不通过，运行不起来，就可以提交PR，这样逐渐增加master上的功能，不至于一次提交PR，需要审核好多代码。</li>
+</ol>
+<h3 id="blame"><a href="#blame" class="headerlink" title="blame"></a>blame</h3><p>之前只是注意到这个按钮，但是并没有细究过它的用处，不过，这次可真的是发现了它的用处哈哈。多人开发里边，真的是神器呀。</p>
+<p>blame的功能是可以显示文件中对应行是由谁改动的，并且可以查看历史记录，看起来跟blame没有直接的关系，但其实我用到的时候，恰恰就是blame的时候。</p>
+<blockquote>
+<p>-“这谁把我的代码改掉了？？？是你吗？”<br>-“不是我，我怎么可能去动你这部分的代码？？”<br>-“哦，是吗？我们来blame一下”<br>-“我错了orzorz”</p>
+</blockquote>
+<p>今后多人开发的时候可要善用这个功能。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/vscode_cheatsheet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2086,270 +2328,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/2018-02-01-binary-tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/2018-02-01-binary-tree/" itemprop="url">
-                  Binary Search Tree 相关算法总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-01 10:10:46" itemprop="dateCreated datePublished" datetime="2018-02-01T10:10:46+08:00">2018-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:38:50" itemprop="dateModified" datetime="2018-07-10T13:38:50+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/01/2018-02-01-binary-tree/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/01/2018-02-01-binary-tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这些基础总是学了，长时间不看又忘了，这次写一篇文章记录下来，供日后回顾复习。</p>
-<hr>
-<h2 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h2><p>首先是一个二叉树，数据结构：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    Node *left;</div><div class="line">    Node *right;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>作为搜索树的性质：左子树节点的值 &lt;= 根节点的值 &lt;= 右子树节点的值</p>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>对于二叉搜索树来说，中序遍历输出的就是从小到大的顺序。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">inorder_walk(node):</div><div class="line">    <span class="keyword">if</span> node != nil</div><div class="line">        inorder_walk(node.left)</div><div class="line">        <span class="keyword">print</span> node.val</div><div class="line">        inorder_walk(node.right)</div></pre></td></tr></table></figure>
-<p>CPP实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_walk</span><span class="params">(Node * node)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (node) &#123;</div><div class="line">        inorder_walk(node-&gt;left);</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; node-&gt;val &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">        inorder_walk(node-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>遍历的话，用递归的方式都很直观，但如果用迭代的方式，就稍微有些麻烦，借助栈可以记录之前遍历的状态，进而实现中序遍历：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">inorder_walk(node):</div><div class="line">    stack s</div><div class="line">    root = node</div><div class="line">    <span class="keyword">while</span> !(s.empty() <span class="keyword">and</span> root == nil) <span class="comment"># 结束的状态需要两个条件！！！</span></div><div class="line">        <span class="keyword">while</span> root != nil</div><div class="line">            s.push(root) <span class="comment"># 先把所有的左节点进栈</span></div><div class="line">            root = root.left</div><div class="line">        </div><div class="line">        root = s.top()</div><div class="line">        <span class="keyword">print</span> root.val</div><div class="line">        s.pop()</div><div class="line">        root = root.right</div></pre></td></tr></table></figure>
-<p>CPP的实现，这里LeetCode上的题<a href="https://leetcode.com/problems/binary-tree-inorder-traversal/description/" target="_blank" rel="external">94. Binary Tree Inorder Traversal</a>正好可以用以验证，就直接复制自己的答案了：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderTraversal(TreeNode* root) &#123;</div><div class="line">    <span class="built_in">stack</span>&lt;TreeNode *&gt; s;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">    <span class="keyword">while</span> (!(root == <span class="literal">NULL</span> &amp;&amp; s.empty())) &#123;</div><div class="line">        <span class="keyword">while</span> (root != <span class="literal">NULL</span>) &#123;</div><div class="line">            s.push(root);</div><div class="line">            root = root-&gt;left;</div><div class="line">        &#125;</div><div class="line">        root = s.top();</div><div class="line">        res.push_back(root-&gt;val);</div><div class="line">        s.pop();</div><div class="line">        root = root-&gt;right;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><p>先输出根的值，再输出左右的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">preorder_walk(node):</div><div class="line">    <span class="keyword">if</span> node != nil</div><div class="line">        <span class="keyword">print</span> node.val</div><div class="line">        preorder_walk(node.left)</div><div class="line">        preorder_walk(node.right)</div></pre></td></tr></table></figure>
-<p>非递归可以用中序同样的方式来遍历，但是输出的时机不同应该就可以了。<br><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/description/" target="_blank" rel="external">144. Binary Tree Preorder Traversal
-</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) &#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line">    <span class="built_in">stack</span>&lt;TreeNode *&gt; s;</div><div class="line">    <span class="keyword">while</span> (!(root == <span class="literal">NULL</span> &amp;&amp; s.empty())) &#123;</div><div class="line">        <span class="keyword">while</span> (root != <span class="literal">NULL</span>) &#123;</div><div class="line">            res.push_back(root-&gt;val);</div><div class="line">            s.push(root);</div><div class="line">            root = root-&gt;left;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        root = s.top();</div><div class="line">        root = root-&gt;right;</div><div class="line">        s.pop();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其实在遍历过程中时使用迭代时，同样有递归的思想在里边，将root调整到右节点上，便相当于把右子树当做一个新的二叉树来进行处理，这种思想在构造迭代的时候还是很有用的。</p>
-<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>先输出孩子的值，再输出根的值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">postorder_walk(node):</div><div class="line">    <span class="keyword">if</span> node != nil</div><div class="line">        postorder_walk(node.left)</div><div class="line">        postorder_walk(node.right)</div><div class="line">        <span class="keyword">print</span> node.val</div></pre></td></tr></table></figure>
-<p>非递归的算法自己还的确没有想出来，不过看了LeetCode上的Discussion：<a href="https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551" target="_blank" rel="external">Preorder, Inorder, and Postorder Iteratively Summarization</a>. 哇，的确没有注意到这一个性质。</p>
-<p><strong>前序遍历的时候，最先输出的是从根节点一直到最左叶节点的一列；而后序遍历的时候，最后输出的，就是从最右叶节点到根节点的最后一列！</strong>如图所示：</p>
-<p><img src="/media/15174591717184.jpg" alt=""></p>
-<p>左为前序遍历，右为后序遍历，可以清楚的看到这个遍历顺序的性质！！</p>
-<p>这样在实现的时候，便可以参照前序遍历，相反对称操作下，可以得到后序遍历的结果！</p>
-<p>CPP的实现：<a href="https://leetcode.com/problems/binary-tree-postorder-traversal/description/" target="_blank" rel="external">LeetCode 145. Binary Tree Postorder Traversal</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) &#123;</div><div class="line">    <span class="built_in">stack</span>&lt;TreeNode *&gt; s;</div><div class="line">    <span class="keyword">while</span> (!(root == <span class="literal">NULL</span> &amp;&amp; s.empty())) &#123;</div><div class="line">        <span class="keyword">while</span> (root != <span class="literal">NULL</span>) &#123;</div><div class="line">            res.push_back(root-&gt;val);</div><div class="line">            s.push(root);</div><div class="line">            root = root-&gt;right;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        root = s.top();</div><div class="line">        root = root-&gt;left;</div><div class="line">        s.pop();</div><div class="line">    &#125;</div><div class="line">    reverse(res.begin(), res.end());</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="层级遍历"><a href="#层级遍历" class="headerlink" title="层级遍历"></a>层级遍历</h3><p>层级遍历的话，用一个队列来存储每个节点，当出队列时，把它的两个孩子入队列，直到队列为空。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">levelorder_walk(root):</div><div class="line">    <span class="keyword">if</span> root == nil</div><div class="line">        <span class="keyword">return</span></div><div class="line">    queue q</div><div class="line">    q.push(root)</div><div class="line">    <span class="keyword">while</span> q <span class="keyword">not</span> empty</div><div class="line">        node = q.front()</div><div class="line">        <span class="keyword">print</span> node.val</div><div class="line">        q.pop()</div><div class="line">        <span class="keyword">if</span> node.left != nil</div><div class="line">            q.push(node.left)</div><div class="line">        <span class="keyword">if</span> node.right != nil</div><div class="line">            q.push(node.right)</div></pre></td></tr></table></figure>
-<p>CPP实现，<a href="https://leetcode.com/problems/binary-tree-level-order-traversal/description/" target="_blank" rel="external">LeetCode 102. Binary Tree Level Order Traversal</a><br>由于这道题要求区分每一层，所以用了两个不同的queue来记录每一层的节点，不过思想大致相同。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</div><div class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q1, q2;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        q1.push(root);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vals;</div><div class="line">        <span class="keyword">while</span> (!q1.empty()) &#123;</div><div class="line">            TreeNode* node = q1.front();</div><div class="line">            q1.pop();</div><div class="line">            vals.push_back(node-&gt;val);</div><div class="line">            <span class="keyword">if</span> (node-&gt;left)</div><div class="line">                q2.push(node-&gt;left);</div><div class="line">            <span class="keyword">if</span> (node-&gt;right)</div><div class="line">                q2.push(node-&gt;right);</div><div class="line">            <span class="keyword">if</span> (q1.empty()) &#123;</div><div class="line">                res.push_back(vals);</div><div class="line">                <span class="keyword">if</span> (!q2.empty()) &#123;</div><div class="line">                    vals.clear();</div><div class="line">                    <span class="keyword">while</span>(!q2.empty()) &#123;</div><div class="line">                        q1.push(q2.front());</div><div class="line">                        q2.pop();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h3><p>深度遍历是最普通最直观的二叉树遍历，其一般都结合具体的需求使用，比如查找，确定高度等等。</p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>利用搜索树的性质，查找很直观：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">search(root, key):</div><div class="line">    <span class="keyword">if</span> root == nil <span class="keyword">or</span> key == root.val</div><div class="line">        <span class="keyword">return</span> root</div><div class="line">    <span class="keyword">if</span> key &lt; root.val</div><div class="line">        <span class="keyword">return</span> search(root.left, key)</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> search(root.right, key)</div></pre></td></tr></table></figure>
-<p>非递归的方式也很直观，因为上述的递归是尾递归：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">search(root, key):</div><div class="line">    <span class="keyword">while</span> root != nil <span class="keyword">and</span> key != root.val</div><div class="line">        <span class="keyword">if</span> key &lt; root.val</div><div class="line">            root = root.left</div><div class="line">        <span class="keyword">else</span></div><div class="line">            root = root.right</div><div class="line">    <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
-<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>二叉搜索树的插入只是在查找的基础上做一点微小的改动。因为查找已经找到了对应的位置，只要在找到的位置上放上新的值即可。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>BST的删除需要考虑几个情况：</p>
-<ol>
-<li>叶节点：直接删掉</li>
-<li>只有一个子节点：删掉，子节点顶替删除的节点的位置</li>
-<li>有两个孩子：删掉，用左子树的最大节点或右子树的最小节点顶替</li>
-</ol>
-<p>描述起来很清楚，但是真正写起来，需要考虑具体的一些细节，比如根节点的情况，比如如何去做“顶替”这一操作</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">delete(root, key):</div><div class="line">    <span class="keyword">if</span> root == nil</div><div class="line">        <span class="keyword">return</span> nil</div><div class="line">    <span class="keyword">if</span> key &lt; root.val</div><div class="line">        root = delete(root.left, key)</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> key &gt; root.val</div><div class="line">        root = delete(root.right, key)</div><div class="line">    <span class="keyword">else</span> <span class="comment"># find node to delete</span></div><div class="line">        <span class="comment"># 以下的两种情况涵盖了都是nil的情况，这是实践中的一点小小的hack吧</span></div><div class="line">        <span class="keyword">if</span> root.left == nil</div><div class="line">            <span class="keyword">return</span> root.right</div><div class="line">        <span class="keyword">if</span> root.right == nil</div><div class="line">            <span class="keyword">return</span> root.left</div><div class="line">        right_min = find_min(root.right)</div><div class="line">        root.val = right_min.val</div><div class="line">        root.right = delete(root.right, root.val) <span class="comment"># 注意，更新的这一点，要考虑各种情况，而不能只是将它变为nil</span></div><div class="line">    <span class="keyword">return</span> root</div><div class="line"></div><div class="line">find_min(root):</div><div class="line">    <span class="keyword">while</span> root != nil <span class="keyword">and</span> root.left != nil</div><div class="line">        root = root.left</div><div class="line">    <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
-<p>CPP实现，<a href="https://leetcode.com/problems/delete-node-in-a-bst/description/" target="_blank" rel="external">LeetCode 450. Delete Node in a BST</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">findMin</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (root != <span class="literal">NULL</span> &amp;&amp; root-&gt;left != <span class="literal">NULL</span>)</div><div class="line">            root = root-&gt;left;</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">deleteNode</span><span class="params">(TreeNode* root, <span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>)</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        <span class="keyword">if</span> (key &lt; root-&gt;val)</div><div class="line">            root-&gt;left = deleteNode(root-&gt;left, key);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (key &gt; root-&gt;val)</div><div class="line">            root-&gt;right = deleteNode(root-&gt;right, key);</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (root-&gt;left == <span class="literal">NULL</span>)</div><div class="line">                <span class="keyword">return</span> root-&gt;right;</div><div class="line">            <span class="keyword">if</span> (root-&gt;right == <span class="literal">NULL</span>)</div><div class="line">                <span class="keyword">return</span> root-&gt;left;</div><div class="line">            TreeNode* rightMin = findMin(root-&gt;right);</div><div class="line">            root-&gt;val = rightMin-&gt;val;</div><div class="line">            root-&gt;right = deleteNode(root-&gt;right, root-&gt;val);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>关于迭代的方式去实现删除的话，可能要比递归考虑更多的东西，但是想法的话还是很直观的，遍历查找要删除的节点时，始终记得记录其父节点。具体的删除过程与上述的大同小异，可能会有好多边界需要考虑。</p>
-<h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><h3 id="从数组"><a href="#从数组" class="headerlink" title="从数组"></a>从数组</h3><h4 id="给定结构"><a href="#给定结构" class="headerlink" title="给定结构"></a>给定结构</h4><p>确定一个二叉树，有两个要素，一个是二叉树的结构，另一个是各个节点的值，给定的数组确定了BST的值，但结构是未定的，根据给定的结构，可以构建一个确定的BST。</p>
-<p><a href="https://www.patest.cn/contests/pat-a-practise/1099" target="_blank" rel="external">PAT 1099. Build A Binary Search Tree</a></p>
-<p>根据二叉树的性质：<strong>中序遍历的输出顺序为升序</strong>。<br>先建立了二叉树结构之后，再进行中序遍历填入值就可以了。</p>
-<p>以下为自己的代码，但是<strong>部分正确，有段错误！！！</strong>自己还没有找到错误所在。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;stack&gt;</div><div class="line">#include &lt;algorithm&gt;</div><div class="line">#include &lt;queue&gt;</div><div class="line">#include &lt;vector&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">struct Node &#123;</div><div class="line">    int val;</div><div class="line">    Node *left;</div><div class="line">    Node *right;</div><div class="line"></div><div class="line">    Node() : val(0), left(NULL), right(NULL) &#123;&#125;</div><div class="line"></div><div class="line">    explicit Node(int val) : val(val), left(NULL), right(NULL) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">void printTree(Node *root, int level) &#123;</div><div class="line">    if (root != NULL) &#123;</div><div class="line">        cout &lt;&lt; root-&gt;val &lt;&lt; endl;</div><div class="line">        if (!(root-&gt;left == NULL &amp;&amp; root-&gt;right == NULL)) &#123;</div><div class="line">            for (int i = 0; i &lt; level + 1; ++i) &#123;</div><div class="line">                cout &lt;&lt; "   ";</div><div class="line">            &#125;</div><div class="line">            cout &lt;&lt; "L-&gt;";</div><div class="line">            printTree(root-&gt;left, level + 1);</div><div class="line">            for (int i = 0; i &lt; level + 1; ++i) &#123;</div><div class="line">                cout &lt;&lt; "   ";</div><div class="line">            &#125;</div><div class="line">            cout &lt;&lt; "R-&gt;";</div><div class="line">            printTree(root-&gt;right, level + 1);</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        cout &lt;&lt; "NULL" &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void levelOrderTravel(Node *root) &#123;</div><div class="line">    if (!root)</div><div class="line">        return;</div><div class="line">    cout &lt;&lt; root-&gt;val;</div><div class="line">    queue&lt;Node *&gt; q;</div><div class="line">    if (root-&gt;left)</div><div class="line">        q.push(root-&gt;left);</div><div class="line">    if (root-&gt;right)</div><div class="line">        q.push(root-&gt;right);</div><div class="line">    while (!q.empty()) &#123;</div><div class="line">        Node *node = q.front();</div><div class="line">        q.pop();</div><div class="line">        cout &lt;&lt; " " &lt;&lt; node-&gt;val;</div><div class="line">        if (node-&gt;left)</div><div class="line">            q.push(node-&gt;left);</div><div class="line">        if (node-&gt;right)</div><div class="line">            q.push(node-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">    Node *root = new Node(0);</div><div class="line">    int nodeNum;</div><div class="line">    cin &gt;&gt; nodeNum;</div><div class="line">    if (nodeNum == 0)</div><div class="line">        return 0;</div><div class="line">    stack&lt;Node *&gt; s;</div><div class="line">    s.push(root);</div><div class="line">    for (int i = 0; i &lt; nodeNum; ++i) &#123;</div><div class="line">        int l, r;</div><div class="line">        cin &gt;&gt; l &gt;&gt; r;</div><div class="line">        Node *node = s.top();</div><div class="line">        s.pop();</div><div class="line">        if (r != -1) &#123;</div><div class="line">            node-&gt;right = new Node(r);</div><div class="line">            s.push(node-&gt;right);</div><div class="line">        &#125;</div><div class="line">        if (l != -1) &#123;</div><div class="line">            node-&gt;left = new Node(l);</div><div class="line">            s.push(node-&gt;left);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    vector&lt;int&gt; vals;</div><div class="line">    for (int i = 0; i &lt; nodeNum; ++i) &#123;</div><div class="line">        int v;</div><div class="line">        cin &gt;&gt; v;</div><div class="line">        vals.push_back(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(vals.begin(), vals.end());</div><div class="line"></div><div class="line">//    printTree(root, 0);</div><div class="line"></div><div class="line">    vector&lt;Node *&gt; nodes;</div><div class="line">    stack&lt;Node *&gt; s1;</div><div class="line"></div><div class="line">    Node *curr = root;</div><div class="line"></div><div class="line">    while (!s1.empty() || curr != NULL) &#123;</div><div class="line">        while (curr != NULL) &#123;</div><div class="line">            s1.push(curr);</div><div class="line">            curr = curr-&gt;left;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        curr = s1.top();</div><div class="line">        s1.pop();</div><div class="line">        nodes.push_back(curr);</div><div class="line">        curr = curr-&gt;right;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    for (int i = 0; i &lt; nodes.size(); ++i) &#123;</div><div class="line">        nodes[i]-&gt;val = vals[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    levelOrderTravel(root);</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h4><p>如果限定是生成一个平衡二叉树的话，需要保证两边的相对均衡，将数组排序之后，每次取中点就可以做到：</p>
-<p><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/" target="_blank" rel="external">LeetCode 108. Convert Sorted Array to Binary Search Tree</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">sortedArrayToBST</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">int</span> midIdx = nums.size() / <span class="number">2</span>;</div><div class="line">        TreeNode *node = <span class="keyword">new</span> TreeNode(nums[midIdx]);</div><div class="line">        <span class="keyword">if</span> (midIdx == <span class="number">0</span>) &#123;</div><div class="line">            node-&gt;left = <span class="literal">NULL</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left(nums.begin(), nums.begin() + midIdx);</div><div class="line">            node-&gt;left = sortedArrayToBST(left);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (midIdx == nums.size() - <span class="number">1</span>) &#123;</div><div class="line">            node-&gt;right = <span class="literal">NULL</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right(nums.begin() + midIdx + <span class="number">1</span>, nums.end());</div><div class="line">            node-&gt;right = sortedArrayToBST(right);            </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>完全二叉树的结构是确定的，所以仍然可以采用从给定结构构建二叉树的方法：</p>
-<p><a href="https://www.patest.cn/contests/pat-a-practise/1064" target="_blank" rel="external">PAT 1064. Complete Binary Search Tree</a></p>
-<p>我在PAT上的解答，<strong>部分正确！！有内存超限的错误！！！</strong>唔，怎么在PAT上做的这两道题，都有各种各样奇怪的错误，唉，有时间再看吧。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/2/1.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    Node *left;</div><div class="line">    Node *right;</div><div class="line"></div><div class="line">    Node() : val(<span class="number">0</span>), left(<span class="literal">NULL</span>), right(<span class="literal">NULL</span>) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">levelOrderTravel</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!root)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; root-&gt;val;</div><div class="line">    <span class="built_in">queue</span>&lt;Node *&gt; q;</div><div class="line">    <span class="keyword">if</span> (root-&gt;left)</div><div class="line">        q.push(root-&gt;left);</div><div class="line">    <span class="keyword">if</span> (root-&gt;right)</div><div class="line">        q.push(root-&gt;right);</div><div class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</div><div class="line">        Node *node = q.front();</div><div class="line">        q.pop();</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; node-&gt;val;</div><div class="line">        <span class="keyword">if</span> (node-&gt;left)</div><div class="line">            q.push(node-&gt;left);</div><div class="line">        <span class="keyword">if</span> (node-&gt;right)</div><div class="line">            q.push(node-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> size;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; size;</div><div class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vals;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</div><div class="line">        <span class="keyword">int</span> v;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v;</div><div class="line">        vals.push_back(v);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sort(vals.begin(), vals.end());</div><div class="line"></div><div class="line">    Node *root = <span class="keyword">new</span> Node();</div><div class="line"></div><div class="line">    <span class="built_in">queue</span>&lt;Node *&gt; q;</div><div class="line">    q.push(root);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> nodeNum = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        Node *node = q.front();</div><div class="line">        q.pop();</div><div class="line">        node-&gt;left = <span class="keyword">new</span> Node();</div><div class="line">        nodeNum++;</div><div class="line">        <span class="keyword">if</span> (nodeNum == size)</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        node-&gt;right = <span class="keyword">new</span> Node();</div><div class="line">        nodeNum++;</div><div class="line">        <span class="keyword">if</span> (nodeNum == size)</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        q.push(node-&gt;left);</div><div class="line">        q.push(node-&gt;right);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;Node *&gt; nodes;</div><div class="line">    <span class="built_in">stack</span>&lt;Node *&gt; s1;</div><div class="line"></div><div class="line">    Node *curr = root;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (!s1.empty() || curr != <span class="literal">NULL</span>) &#123;</div><div class="line">        <span class="keyword">while</span> (curr != <span class="literal">NULL</span>) &#123;</div><div class="line">            s1.push(curr);</div><div class="line">            curr = curr-&gt;left;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        curr = s1.top();</div><div class="line">        s1.pop();</div><div class="line">        nodes.push_back(curr);</div><div class="line">        curr = curr-&gt;right;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes.size(); ++i) &#123;</div><div class="line">        nodes[i]-&gt;val = vals[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    levelOrderTravel(root);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>参考了网上某篇博文的这道题的答案，发现自己这样写有点傻，利用性质完全二叉树的相关性质，可以更加简便和巧妙的完成这道题。</p>
-<p>因为最后要求层级遍历，而完全二叉树的层级遍历有个性质可以利用：<br><strong>按层遍历的输出顺序，就是用表示完全二叉树的数组中的顺序</strong></p>
-<p>这看起来并没有什么，但和我们知道的一个完全二叉树非常熟悉的性质：<br><strong>leftIndex = 2 x rootIndex, rightIndex = 2 x rootIndex + 1</strong></p>
-<p>这样一来，便可以用下表来定位某个元素，而用数组的数据结构存储二叉树，其实遍历的行为更加简单，比如本题中用到的中序遍历：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorderTravel</span><span class="params">(<span class="keyword">int</span> root)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (root &gt; size)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    inorderTravel(root * <span class="number">2</span>);</div><div class="line">    inorderNodes.push_back(root);</div><div class="line">    inorderTravel(root * <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>完整解答：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/2/2.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> size;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderNodes;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorderTravel</span><span class="params">(<span class="keyword">int</span> root)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (root &gt; size)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    inorderTravel(root * <span class="number">2</span>);</div><div class="line">    inorderNodes.push_back(root);</div><div class="line">    inorderTravel(root * <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; size;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vals;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</div><div class="line">        <span class="keyword">int</span> v;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; v;</div><div class="line">        vals.push_back(v);</div><div class="line">    &#125;</div><div class="line">    sort(vals.begin(), vals.end());</div><div class="line"></div><div class="line">    inorderTravel(<span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tree(MAX + <span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</div><div class="line">        tree[inorderNodes[i]] = vals[i];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; ++i) &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; tree[i] &lt;&lt; <span class="string">" "</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; tree[size];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="从序列"><a href="#从序列" class="headerlink" title="从序列"></a>从序列</h3><h4 id="从前序中序构建"><a href="#从前序中序构建" class="headerlink" title="从前序中序构建"></a>从前序中序构建</h4><p>前序中找到第一个节点，即为根节点，在中序中找到，中序的左侧就是左子树，右侧为右子树；得到左右子树的节点数量之后，可以将前序数组剩下的元素分成左右子树，进而递归的做下去。</p>
-<p><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="external">LeetCode 105. Construct Binary Tree from Preorder and Inorder Traversal</a></p>
-<p>（发现自己之前CPP和Python都AC过，python似乎看起来更简洁，要不以后做OJ都用PY？）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode:</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type preorder: List[int]</div><div class="line">        :type inorder: List[int]</div><div class="line">        :rtype: TreeNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> inorder:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        root_val = preorder.pop(<span class="number">0</span>)</div><div class="line">        root_idx = inorder.index(root_val)</div><div class="line">        root = TreeNode(root_val)</div><div class="line">        root.left = self.buildTree(preorder, inorder[<span class="number">0</span>:root_idx])</div><div class="line">        root.right = self.buildTree(preorder, inorder[root_idx + <span class="number">1</span>:])</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
-<h4 id="从后序中序构建"><a href="#从后序中序构建" class="headerlink" title="从后序中序构建"></a>从后序中序构建</h4><p>与从前中构建很类似，做一个镜像即可：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Definition for a binary tree node.</span></div><div class="line"><span class="comment"># class TreeNode:</span></div><div class="line"><span class="comment">#     def __init__(self, x):</span></div><div class="line"><span class="comment">#         self.val = x</span></div><div class="line"><span class="comment">#         self.left = None</span></div><div class="line"><span class="comment">#         self.right = None</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, inorder, postorder)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type inorder: List[int]</div><div class="line">        :type postorder: List[int]</div><div class="line">        :rtype: TreeNode</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> inorder:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        val = postorder.pop()</div><div class="line">        idx = inorder.index(val)</div><div class="line">        root = TreeNode(val)</div><div class="line">        root.right = self.buildTree(inorder[idx + <span class="number">1</span>:], postorder)</div><div class="line">        root.left = self.buildTree(inorder[:idx], postorder)</div><div class="line">        <span class="keyword">return</span> root</div></pre></td></tr></table></figure>
-<h4 id="前中转后与后中转前"><a href="#前中转后与后中转前" class="headerlink" title="前中转后与后中转前"></a>前中转后与后中转前</h4><p>有的时候，只要求通过前中序列写出后序，或者后中序列，写出前序，而不要求构建BST，这个时候可以更简便的完成而不用做多余的工作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pre_in_to_post</span><span class="params">(preorder, inorder)</span>:</span></div><div class="line">    postorder = []</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> preorder <span class="keyword">or</span> <span class="keyword">not</span> inorder:</div><div class="line">        <span class="keyword">return</span> postorder</div><div class="line">    val = preorder[<span class="number">0</span>]</div><div class="line">    idx = inorder.index(val)</div><div class="line">    postorder += pre_in_to_post(preorder[<span class="number">1</span>:<span class="number">1</span> + idx], inorder[:idx])</div><div class="line">    postorder += pre_in_to_post(preorder[<span class="number">1</span> + idx:], inorder[idx + <span class="number">1</span>:])</div><div class="line">    postorder += [val]</div><div class="line">    <span class="keyword">return</span> postorder</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_in_to_pre</span><span class="params">(postorder, inorder)</span>:</span></div><div class="line">    preorder = []</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> postorder <span class="keyword">or</span> <span class="keyword">not</span> inorder:</div><div class="line">        <span class="keyword">return</span> preorder</div><div class="line">    val = postorder[<span class="number">-1</span>]</div><div class="line">    idx = inorder.index(val)</div><div class="line">    preorder += [val]</div><div class="line">    preorder += post_in_to_pre(postorder[:idx], inorder[:idx])</div><div class="line">    preorder += post_in_to_pre(postorder[idx:<span class="number">-1</span>], inorder[idx + <span class="number">1</span>:])</div><div class="line">    <span class="keyword">return</span> preorder</div><div class="line"></div><div class="line"></div><div class="line">preorder = [<span class="number">3</span>, <span class="number">9</span>, <span class="number">20</span>, <span class="number">15</span>, <span class="number">7</span>]</div><div class="line">inorder = [<span class="number">9</span>, <span class="number">3</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">7</span>]</div><div class="line">postorder = [<span class="number">9</span>, <span class="number">15</span>, <span class="number">7</span>, <span class="number">20</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line">print(pre_in_to_post(preorder, inorder))</div><div class="line">print(post_in_to_pre(postorder, inorder))</div></pre></td></tr></table></figure>
-<p>output:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[9, 15, 7, 20, 3]</div><div class="line">[3, 9, 20, 15, 7]</div></pre></td></tr></table></figure>
-<hr>
-<p>参考：</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/simple_the_best/article/details/52713491" target="_blank" rel="external">http://blog.csdn.net/simple_the_best/article/details/52713491</a><br><a href="http://www.cnblogs.com/jackwang822/p/4749965.html" target="_blank" rel="external">http://www.cnblogs.com/jackwang822/p/4749965.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2401,7 +2379,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
