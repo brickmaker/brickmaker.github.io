@@ -113,13 +113,13 @@
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
 <meta property="og:description" content="一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写… 可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！  浏览">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402210302711.png">
-<meta property="og:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402635006564.jpg">
-<meta property="og:updated_time" content="2018-10-23T03:11:11.138Z">
+<meta property="og:image" content="http://yoursite.com/media/15402643340461.jpg">
+<meta property="og:image" content="http://yoursite.com/media/15402643469502.jpg">
+<meta property="og:updated_time" content="2018-10-23T03:12:28.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6 Module学习">
 <meta name="twitter:description" content="一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写… 可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！  浏览">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/media/15402155935799/15402210302711.png">
+<meta name="twitter:image" content="http://yoursite.com/media/15402643340461.jpg">
 
 
 
@@ -335,7 +335,7 @@
                 
               
 
-              <time title="Created: 2018-10-23 11:09:23 / Modified: 11:11:11" itemprop="dateCreated datePublished" datetime="2018-10-23T11:09:23+08:00">2018-10-23</time>
+              <time title="Created: 2018-10-23 11:09:23 / Modified: 11:12:28" itemprop="dateCreated datePublished" datetime="2018-10-23T11:09:23+08:00">2018-10-23</time>
             
 
             
@@ -431,7 +431,7 @@
 <p>于是，自己要接触自己之前恐惧的名词了：Babel，Browsify，Rollup，Webpack…</p>
 <p>这里自己看了一篇文风非常impressive的文章..感觉对新手来说还是很友好的：<br><a href="https://blessing.studio/how-could-i-use-es6-modules-in-production/" target="_blank" rel="external">https://blessing.studio/how-could-i-use-es6-modules-in-production/</a></p>
 <p>其中这张图片比较好的说明了问题：</p>
-<p><img src="media/15402155935799/15402210302711.png" alt=""></p>
+<p><img src="/media/15402643340461.jpg" alt=""></p>
 <h3 id="Babel转译工具"><a href="#Babel转译工具" class="headerlink" title="Babel转译工具"></a>Babel转译工具</h3><p>如果单纯的来说的话，Babel就是一个转译工具，把原来用ES6+的语法变成ES5的或者其它的，可是自己不解的地方在于，ES6支持的module，Babel是怎么变的？转译之后，又该如何使用呢？？</p>
 <p>了解了一下，发现它好像是把module转换成CommonJS的规范，所以也不能直接<code>script</code>标签引入完事，而是要用一定的库，比如RequireJS，这个自己之后有时间再看吧，毕竟有了现成的打包工具把它变成一个bundle.js，我为何还要煞费苦心的处理这心转译之后的文件呢？还是看看一些打包工具吧。</p>
 <h3 id="Webpack打包工具"><a href="#Webpack打包工具" class="headerlink" title="Webpack打包工具"></a>Webpack打包工具</h3><p>如果用一句话解释，就是官网上的slogan：</p>
@@ -439,7 +439,7 @@
 <p>bundle your scripts<br>bundle your styles<br>bundle your assets<br>bundle your images</p>
 </blockquote>
 <p>或者官网这张图：</p>
-<p><img src="media/15402155935799/15402635006564.jpg" alt="-w1131"></p>
+<p><img src="/media/15402643469502.jpg" alt="-w1131"></p>
 <p>把有依赖的各种资源编程静态的assets，让我们不用考虑依赖之类的。</p>
 <p>具体的如何整理依赖，tree-shaking什么的就先不管了，反正，最后给我一个<code>bundle.js</code>直接script引入就很合适~</p>
 <p>具体的使用之后再补充吧。</p>
