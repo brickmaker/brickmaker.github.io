@@ -290,6 +290,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/balence_tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/12/balence_tree/" itemprop="url">
+                  平衡二叉树之AVL tree
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-12 20:26:34" itemprop="dateCreated datePublished" datetime="2018-07-12T20:26:34+08:00">2018-07-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-22 22:36:49" itemprop="dateModified" datetime="2018-08-22T22:36:49+08:00">2018-08-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/12/balence_tree/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/12/balence_tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>AVL tree是一个BST对于每一个节点，左子树和右子树的高度差不超过1（空树高度为-1）</p>
+<p>这里需要明确，高度的定义：</p>
+<blockquote>
+<p>维基百科：<br><strong>Height of node</strong><br>The height of a node is the number of edges on the <strong>longest path</strong> between that node and a leaf.<br><strong>Height of tree</strong><br>The height of a tree is the height of its root node.</p>
+</blockquote>
+<h2 id="树的平衡维护"><a href="#树的平衡维护" class="headerlink" title="树的平衡维护"></a>树的平衡维护</h2><p>对一棵平衡的树，进行插入或删除可能改变树的平衡性，这里只考虑插入，删除类似（虽然稍微麻烦一点）。</p>
+<p>对于节点X，插入一个节点导致其不平衡，会有四种情况：</p>
+<ul>
+<li>新增加的节点是其左结点的左子树</li>
+<li>新增加的节点是其左结点的右子树</li>
+<li>新增加的节点是其右结点的右子树</li>
+<li>新增加的节点是其右结点的左子树</li>
+</ul>
+<p>后两种情况与前两种镜像，不作考虑，所以是由两种情况，称之为LL(Left-Left)问题和LR(Left-Right)问题</p>
+<h3 id="LL"><a href="#LL" class="headerlink" title="LL"></a>LL</h3><p><img src="/media/15314006884866.jpg" alt="-w635"></p>
+<p>当插入到X，导致$k_1$的的高度 &gt; Z的高度+2的时候，树不平衡！</p>
+<p>这时候要做的是想办法，把X提上去，把Z压下来，这里需要做的是从左图到右图的变形，这样的形变也叫做一次旋转。</p>
+<p>这里有一个动态演示的网站：<a href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html" target="_blank" rel="external">https://www.cs.usfca.edu/~galles/visualization/AVLtree.html</a> 显示了旋转的动画效果，非常直观</p>
+<p>初始：</p>
+<p><img src="/media/15314014858911.jpg" alt="-w599"></p>
+<p>插入2之后：</p>
+<p><img src="/media/15314015173193.jpg" alt="-w599"></p>
+<p>再次插入1之后：</p>
+<p><img src="/media/15314015451053.jpg" alt="-w602"></p>
+<p>这里树的结构变动比较大，因为不是3结点不平衡，而是根节点5不平衡，所以是5和3旋转，根节点发生改变。</p>
+<h3 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h3><p><img src="/media/15314018648019.jpg" alt="-w656"></p>
+<p>很巧妙的一个变形！</p>
+<p>在$k_1$的右子树中插入了东西，导致$k_3$不平衡，现在是要把$k_1$的右子树也就是$k_2$提上去，把D压下去，需要通过两次旋转，就是先$k_1$-$k_2$的一次RR旋转，再$k_2$-$k_3$的一次LL旋转，但是我通常都不想这样记，直接记住这个形式，下边那个从中间“穿过去”，然后原来的左右子树变为新的子树的右左子树。</p>
+<p>例子就不举了。</p>
+<h2 id="树的平衡化"><a href="#树的平衡化" class="headerlink" title="树的平衡化"></a>树的平衡化</h2><p>上述的两个旋转，是平衡化的两个基本操作，平衡化的变形肯定属于这两者。</p>
+<p>如果是新的节点插入一棵已经平衡的树的话，用递归的方式非常直观，大概：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(X, T)</span>:</span></div><div class="line">    <span class="keyword">if</span> T == null:</div><div class="line">        place here</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">if</span> X &lt; T.val:</div><div class="line">            insert(X, T.left)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> balence:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">is</span> LL:</div><div class="line">                    LLrotate</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    LRrotate</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            insert(X, T.right)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> balence:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">is</span> RR:</div><div class="line">                    RRrotate</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    RLrotate</div><div class="line">    update height <span class="comment"># don't forget, we use height to check balence</span></div></pre></td></tr></table></figure>
+<h2 id="插入操作的实现"><a href="#插入操作的实现" class="headerlink" title="插入操作的实现"></a>插入操作的实现</h2><p>PAT-A 1066 Root of AVL Tree</p>
+<p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805404939173888" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805404939173888</a></p>
+<p><img src="/media/15349485021368.jpg" alt="-w975"></p>
+<p><img src="/media/15349485156994.jpg" alt="-w990"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/22.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    Node *left;</div><div class="line">    Node *right;</div><div class="line">    <span class="keyword">int</span> height;</div><div class="line"></div><div class="line">    Node(<span class="keyword">int</span> val) : val(val), left(<span class="literal">nullptr</span>), right(<span class="literal">nullptr</span>) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!root)</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    <span class="keyword">return</span> root-&gt;height;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">llRotate</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    Node *newRoot = root-&gt;left;</div><div class="line">    root-&gt;left = newRoot-&gt;right;</div><div class="line">    newRoot-&gt;right = root;</div><div class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;left), getHeight(newRoot-&gt;right)) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> newRoot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">rrRotate</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    Node *newRoot = root-&gt;right;</div><div class="line">    root-&gt;right = newRoot-&gt;left;</div><div class="line">    newRoot-&gt;left = root;</div><div class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;left), getHeight(newRoot-&gt;right)) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> newRoot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">lrRotate</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    Node *newRoot = root-&gt;left-&gt;right;</div><div class="line">    root-&gt;left-&gt;right = newRoot-&gt;left;</div><div class="line">    newRoot-&gt;left = root-&gt;left;</div><div class="line">    root-&gt;left = newRoot-&gt;right;</div><div class="line">    newRoot-&gt;right = root;</div><div class="line"></div><div class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;left-&gt;height = max(getHeight(newRoot-&gt;left-&gt;left), getHeight(newRoot-&gt;left-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;left), getHeight(newRoot-&gt;right)) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> newRoot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">rlRotate</span><span class="params">(Node *root)</span> </span>&#123;</div><div class="line">    Node *newRoot = root-&gt;right-&gt;left;</div><div class="line">    root-&gt;right-&gt;left = newRoot-&gt;right;</div><div class="line">    newRoot-&gt;right = root-&gt;right;</div><div class="line">    root-&gt;right = newRoot-&gt;left;</div><div class="line">    newRoot-&gt;left = root;</div><div class="line"></div><div class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;right-&gt;height = max(getHeight(newRoot-&gt;right-&gt;left), getHeight(newRoot-&gt;right-&gt;right)) + <span class="number">1</span>;</div><div class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;left), getHeight(newRoot-&gt;right)) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> newRoot;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">Node *<span class="title">insert</span><span class="params">(Node *root, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!root) &#123;</div><div class="line">        Node *node = <span class="keyword">new</span> Node(k);</div><div class="line">        node-&gt;height = <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (k &lt; root-&gt;val) &#123;</div><div class="line">        root-&gt;left = insert(root-&gt;left, k);</div><div class="line">        <span class="keyword">if</span> (getHeight(root-&gt;left) - getHeight(root-&gt;right) == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (k &lt; root-&gt;left-&gt;val)</div><div class="line">                root = llRotate(root);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                root = lrRotate(root);</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        root-&gt;right = insert(root-&gt;right, k);</div><div class="line">        <span class="keyword">if</span> (getHeight(root-&gt;right) - getHeight(root-&gt;left) == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (k &lt; root-&gt;right-&gt;val)</div><div class="line">                root = rlRotate(root);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                root = rrRotate(root);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; N;</div><div class="line"></div><div class="line">    Node *root = <span class="literal">nullptr</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="keyword">int</span> k;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; k;</div><div class="line">        root = insert(root, k);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span> &lt;&lt; root-&gt;val;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>不要眼高手低啊！！！算法思想，和实现出来，中间的差距，就是你想要提高的所谓的编程能力，或者码力！如果眼高手低，总觉得自己肯定能实现出来，一定会吃亏的！！！</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/leetcode109/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2097,209 +2316,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/2018-02-20-back-tracking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/20/2018-02-20-back-tracking/" itemprop="url">
-                  Back Tracking（回溯）相关算法与经典问题整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-20 16:38:27" itemprop="dateCreated datePublished" datetime="2018-02-20T16:38:27+08:00">2018-02-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:39:05" itemprop="dateModified" datetime="2018-07-10T13:39:05+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/20/2018-02-20-back-tracking/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/20/2018-02-20-back-tracking/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我理解的回溯法，简单来说，就是遍历，就是DFS！</p>
-<p>其它的都是想想都知道的：谁不知道碰到走不下去的就回去，谁不知道碰到走不下去退回到上一步，而不是退到初始的地方。</p>
-<hr>
-<h2 id="基本解决思想"><a href="#基本解决思想" class="headerlink" title="基本解决思想"></a>基本解决思想</h2><p>记录之前的操作，这样可以退回到上一步的操作，进而进行下一个candidate的试探。</p>
-<h2 id="考虑要点"><a href="#考虑要点" class="headerlink" title="考虑要点"></a>考虑要点</h2><h4 id="1-非法结束"><a href="#1-非法结束" class="headerlink" title="1. 非法结束"></a>1. 非法结束</h4><p>当进入非法的状态的时候，执行怎样的操作，通常在递归的过程中，直接return结束即可，如果有特殊的操作，需要进行特殊的处理。</p>
-<h4 id="2-满足条件"><a href="#2-满足条件" class="headerlink" title="2. 满足条件"></a>2. 满足条件</h4><p>满足条件的情况下，需要进行怎样的操作，比如将正确的值记录下来，返回成功的状态等。</p>
-<h4 id="3-遍历试探"><a href="#3-遍历试探" class="headerlink" title="3. 遍历试探"></a>3. 遍历试探</h4><p>这一步是最重要的一步，也是最繁琐的一步。</p>
-<p>需要遍历所有可能的选择，往前“走一步”，在“走了一步”的状态下进行新的一轮操作。<strong>操作完成之后，需要“回退一步“到原来的状态</strong>。</p>
-<p>这个遍历可能出现的情况有：二维地图的上下左右遍历，找数组满足条件的值得遍历数组等。</p>
-<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>以下问题都能够或多或少体现上述的三个要点。</p>
-<h3 id="subset-problem"><a href="#subset-problem" class="headerlink" title="subset problem"></a>subset problem</h3><p><a href="https://leetcode.com/problems/subsets/description/" target="_blank" rel="external">LeetCode 78. Subsets</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; curr, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start_idx)</span> </span>&#123;</div><div class="line">        res.push_back(curr);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start_idx; i &lt; nums.size(); i++) &#123;</div><div class="line">            curr.push_back(nums[i]);</div><div class="line">            backtrack(res, curr, nums, i + <span class="number">1</span>);</div><div class="line">            curr.pop_back();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; subsets(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr;</div><div class="line">        backtrack(res, curr, nums, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><a href="https://leetcode.com/problems/subsets-ii/description/" target="_blank" rel="external">LeetCode 90. Subsets II</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; curr, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start_idx)</span> </span>&#123;</div><div class="line">        res.push_back(curr);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start_idx; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &gt; start_idx &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="comment">// 注意如何跳过重复！！！</span></div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            curr.push_back(nums[i]);</div><div class="line">            backtrack(res, curr, nums, i + <span class="number">1</span>);</div><div class="line">            curr.pop_back();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; subsetsWithDup(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curr;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        backtrack(res, curr, nums, <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="N-Queen"><a href="#N-Queen" class="headerlink" title="N-Queen"></a>N-Queen</h3><p><a href="https://leetcode.com/problems/n-queens/description/" target="_blank" rel="external">LeetCode 51. N-Queens</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; curr, <span class="keyword">int</span> r, <span class="keyword">int</span> c, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= r; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (c - i &gt;= <span class="number">0</span> &amp;&amp; curr[r - i][c - i] == <span class="string">'Q'</span> ||</div><div class="line">               curr[r - i][c] == <span class="string">'Q'</span> ||</div><div class="line">               c + i &lt; n &amp;&amp; curr[r - i][c + i] == <span class="string">'Q'</span>)</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;&amp; res, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; curr, <span class="keyword">int</span> row, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (row &gt;= n) &#123;</div><div class="line">            res.push_back(curr);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (check(curr, row, i, n)) &#123;</div><div class="line">                curr[row][i] = <span class="string">'Q'</span>;</div><div class="line">                fill(res, curr, row + <span class="number">1</span>, n);</div><div class="line">                curr[row][i] = <span class="string">'.'</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; solveNQueens(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; res;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; curr;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(n, <span class="string">'.'</span>)</span></span>;</div><div class="line">            curr.push_back(s);</div><div class="line">        &#125;</div><div class="line">        fill(res, curr, <span class="number">0</span>, n);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="Sudoku"><a href="#Sudoku" class="headerlink" title="Sudoku"></a>Sudoku</h3><p><a href="https://leetcode.com/problems/sudoku-solver/description/" target="_blank" rel="external">LeetCode 37. Sudoku Solver</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i != r &amp;&amp; board[i][c] == board[r][c])</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</div><div class="line">            <span class="keyword">if</span> (j != c &amp;&amp; board[r][j] == board[r][c])</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> r_div = r / <span class="number">3</span>;</div><div class="line">        <span class="keyword">int</span> c_div = c / <span class="number">3</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = r_div * <span class="number">3</span>; i &lt; (r_div + <span class="number">1</span>) * <span class="number">3</span>; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = c_div * <span class="number">3</span>; j &lt; (c_div + <span class="number">1</span>) * <span class="number">3</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> ((i != r || j != c) &amp;&amp; board[i][j] == board[r][c])</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">fill</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i, j;</div><div class="line">        <span class="keyword">bool</span> found_next = <span class="literal">false</span>;</div><div class="line">        <span class="keyword">for</span> (i = r; i &lt; <span class="number">9</span>; i++) &#123;</div><div class="line">            <span class="keyword">for</span> (j = c; j &lt; <span class="number">9</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (board[i][j] == <span class="string">'.'</span>) &#123;                    </div><div class="line">                    found_next = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (found_next)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            j = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">9</span>)</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> k = <span class="string">'1'</span>; k &lt;= <span class="string">'9'</span>; k++) &#123;</div><div class="line">            board[i][j] = k;</div><div class="line">            <span class="keyword">if</span> (check(board, i, j)) &#123;</div><div class="line">                <span class="keyword">if</span> (fill(board, r, c))</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            board[i][j] = <span class="string">'.'</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solveSudoku</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</div><div class="line">        fill(board, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a href="https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning" target="_blank" rel="external">https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning</a>)</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2351,7 +2367,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-count">95</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2363,6 +2379,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
