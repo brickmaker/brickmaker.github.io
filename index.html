@@ -290,6 +290,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/koa-learn-0-2018-12-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/26/koa-learn-0-2018-12-26/" itemprop="url">
+                  Koa源码学习（0）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-26 14:42:48 / Modified: 14:44:06" itemprop="dateCreated datePublished" datetime="2018-12-26T14:42:48+08:00">2018-12-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/26/koa-learn-0-2018-12-26/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/26/koa-learn-0-2018-12-26/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一直想看点库的源码，后来发现，Koa好像只有几千行，那就拿它开刀啦~</p>
+<p>现场clone，版本应该是<code>2.6.2</code>，2018-10-6的</p>
+<hr>
+<h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><p>也算是学习一下一个开源项目如何组织吧…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── .editorconfig</div><div class="line">├── .eslintrc.yml</div><div class="line">├── .git</div><div class="line">├── .gitignore</div><div class="line">├── .mailmap</div><div class="line">├── .npmrc</div><div class="line">├── .travis.yml</div><div class="line">├── AUTHORS</div><div class="line">├── CODE_OF_CONDUCT.md</div><div class="line">├── History.md</div><div class="line">├── LICENSE</div><div class="line">├── Readme.md</div><div class="line">├── /benchmarks</div><div class="line">├── /docs</div><div class="line">├── /lib</div><div class="line">├── package.json</div><div class="line">└── /test</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Readme.md</code>: 不解释，字面意思</li>
+<li><code>LICENSE</code>: 开源项目的license，目前自己不太懂，有空了解一下，先不管，跟代码无关</li>
+<li><code>History.md</code>: 记录项目时间线，嗯，很有必要，似乎部分还是自动生成的，像GitHub的issue，PR等等还是需要进一步的学习</li>
+<li><code>CODE_OF_CONDUCT.md</code>: 有趣，行为守则声明，原来开源项目还有这个</li>
+<li><code>AUTHORS</code>: 不解释</li>
+<li><code>.git</code>, <code>.gitignore</code>: 不解释</li>
+<li><code>.mailmap</code>: 可能是一个author-mail的对应吧，不过里边只有一个名字，很奇怪</li>
+<li><code>.editorconfig</code>: 一个更改Editor/IDE编辑器的设置工具，读取文件，然后改变IDE/Editor的设置，高级啊！！！<a href="https://editorconfig.org/" target="_blank" rel="external">https://editorconfig.org/</a></li>
+<li><code>.eslintrc.yml</code>: eslint的配置，eslint自己也需要进一步的学习</li>
+<li><code>.npmrc</code>: npm的配置，加一句<code>package-lock=false</code>就可以不生成<code>package-lock.json</code>，学习到了</li>
+<li><code>.travis.yml</code>: TravisCI相关的东西，等看它测试的时候再说吧</li>
+<li><code>package.json</code>: npm的dependency、scripts等配置，入口！第一个与代码相关的文件</li>
+<li><code>lib</code>: 源码</li>
+<li><code>test</code>: 测试代码，测试需要好好学习一下</li>
+<li><code>docs</code>: 文档</li>
+<li><code>benchmarks</code>: 性能测试</li>
+</ul>
+<h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h2><p>读所有node项目源码的第一步…</p>
+<p>npm官方文档关于<code>package.json</code>的：<a href="https://docs.npmjs.com/files/package.json" target="_blank" rel="external">https://docs.npmjs.com/files/package.json</a></p>
+<ul>
+<li><code>name</code>, <code>version</code>: 必须，用于identify一个npm包</li>
+<li><code>description</code>, <code>keywords</code>: optional 用于npm serach的时候</li>
+<li><code>license</code>: 暂不解释</li>
+</ul>
+<h3 id="main"><a href="#main" class="headerlink" title="main"></a><code>main</code></h3><blockquote>
+<p>The main field is a module ID that is the primary entry point to your program. That is, if your package is named foo, and a user installs it, and then does require(“foo”), then your main module’s exports object will be returned.</p>
+</blockquote>
+<p>之前一直觉得没啥用，原来这么关键，就是require的时候，返回的对象</p>
+<h3 id="files"><a href="#files" class="headerlink" title="files"></a><code>files</code></h3><blockquote>
+<p>The optional files field is an array of file patterns that describes the entries to be included when your package is installed as a dependency.</p>
+</blockquote>
+<p>也很有用，当别人依赖这个包的时候，不是装所有的包，而是只装所包含的文件</p>
+<p>所谓<code>npm install</code>，其实就是把文件下载下来放到node_modules里，没啥神奇的</p>
+<h3 id="repository"><a href="#repository" class="headerlink" title="repository"></a><code>repository</code></h3><p>repo的位置，默认GitHub，加上后边的路径，所以就是<code>koajs/koa</code>了</p>
+<h3 id="engines"><a href="#engines" class="headerlink" title="engines"></a><code>engines</code></h3><p>声明node版本吧</p>
+<h3 id="jest"><a href="#jest" class="headerlink" title="jest"></a><code>jest</code></h3><p>jest的配置，感觉放在<code>package.json</code>里不如放在<code>jest.config.js</code>里，这个日后再看</p>
+<h3 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a><code>dependencies</code></h3><p>依赖，如果<code>npm -i -s</code>的话，会自动加进去</p>
+<h3 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a><code>devDependencies</code></h3><p>开发时候的依赖，如果这个项目运行的时候不需要的依赖，那就放在这里边</p>
+<h3 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a><code>scripts</code></h3><p>执行脚本，<code>npm run xxx</code></p>
+<hr>
+<p>OK，所有的term都看过了，接下来，<code>npm install</code>吧</p>
+<p>跑一跑<code>scripts</code>里边的几个命令，注意bench的时候，没有安装<code>wrk</code>，先装一下</p>
+<h2 id="第一个Koa应用"><a href="#第一个Koa应用" class="headerlink" title="第一个Koa应用"></a>第一个Koa应用</h2><p>官方的tutorial:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'../koa'</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"></div><div class="line"><span class="comment">// response</span></div><div class="line">app.use(<span class="function"><span class="params">ctx</span> =&gt;</span> &#123;</div><div class="line">  ctx.body = <span class="string">'Hello Koa'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><p>现在有个问题是，如何调试，node应用，如何打断点，单步运行呢？</p>
+<p>先看一看官方的guide吧：<a href="https://nodejs.org/en/docs/guides/debugging-getting-started/" target="_blank" rel="external">https://nodejs.org/en/docs/guides/debugging-getting-started/</a></p>
+<p>官方指引的Debug NodeJS in Chrome: <a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" target="_blank" rel="external">https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27</a></p>
+<p>发现新大陆啊！！！</p>
+<p>嗯嗯，vscode的配置也很简单，甚至帮你自动完成！</p>
+<p>自此，准备工作结束，开始源码之旅~</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/nodejs-real-time-application-2018-12-22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2299,199 +2524,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/count-one/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/30/count-one/" itemprop="url">
-                  Count Digit One
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-30 14:33:01 / Modified: 14:52:43" itemprop="dateCreated datePublished" datetime="2018-08-30T14:33:01+08:00">2018-08-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/30/count-one/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/30/count-one/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/number-of-digit-one/description/" target="_blank" rel="external">https://leetcode.com/problems/number-of-digit-one/description/</a></p>
-<p><img src="/media/15356108245191.jpg" alt="-w956"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这道题的解法有多种，看discussion就会知道花样百出。</p>
-<p>一开始想的是，9，99，999…之间的递推关系，但是，这并不好表示一个不整的数，discussion中也有类似的解答，但是一下子也没有看明白。</p>
-<hr>
-<p>换了思路之后，参考了 <a href="https://leetcode.com/problems/number-of-digit-one/discuss/64382/JavaPython-one-pass-solution-easy-to-understand" target="_blank" rel="external">https://leetcode.com/problems/number-of-digit-one/discuss/64382/JavaPython-one-pass-solution-easy-to-understand</a> 这个解法。</p>
-<p><strong>计算在某一位1出现的次数，累加起来</strong></p>
-<p>而某一位出现1的次数分为3中情况：</p>
-<p>对于数<code>AxB</code>，其中<code>A</code>表示x之前的数，<code>B</code>表示x之后的数，例如<code>123456</code>，x为4的话，A = 123，B = 56.<br>以下假设B有2位：</p>
-<h3 id="三种情况"><a href="#三种情况" class="headerlink" title="三种情况"></a>三种情况</h3><ol>
-<li>x == 0: A <em> 100<br>先看前半部分：<code>Ax</code>，如果递减此数，那么，A每减1，x都会出现0-9中的数，那么也就是说，A减到0，减了A次，x处就出现了A次1.<br>然后看后半部分，因为高位减下来的，低位肯定会有00-99，也就是100个，组合以下，就是A</em>100了</li>
-<li>x &gt; 1: A * 100 + 100<br>按照上边的情况，还多了不用减A部分，直接减x到1，又有100</li>
-<li>x == 1: A * 100 + B + 1<br>这种情况比较复杂，除了第一种情况之外，还有当<code>Ax</code>不变的时候，可能的情况。此时，低位可以从0数到B，总共B+1次，所以加上B+1</li>
-</ol>
-<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><p>如果x是最低位：<br>对应的乘的系数是1，B为0，符合条件</p>
-<p>如果x为最高位：<br>A为0，三种情况都符合</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现的代码还是很精巧的，如何计算A和B，都有很好的处理。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> x = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> origin = n;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="keyword">int</span> r = n % <span class="number">10</span>;</div><div class="line">            n /= <span class="number">10</span>;</div><div class="line">            res += n * x;</div><div class="line">            <span class="keyword">if</span> (r == <span class="number">1</span>) &#123;</div><div class="line">                res += origin % x + <span class="number">1</span>;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (r &gt; <span class="number">1</span>) &#123;</div><div class="line">                res += x;</div><div class="line">            &#125;</div><div class="line">            x *= <span class="number">10</span>;</div><div class="line">        &#125; <span class="keyword">while</span> (n &gt; <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2543,7 +2575,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">95</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
