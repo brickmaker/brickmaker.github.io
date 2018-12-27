@@ -290,6 +290,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/27/koa-learn-12018-12-27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/27/koa-learn-12018-12-27/" itemprop="url">
+                  Koa源码学习（1）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-27 14:34:17 / Modified: 14:34:42" itemprop="dateCreated datePublished" datetime="2018-12-27T14:34:17+08:00">2018-12-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/27/koa-learn-12018-12-27/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/27/koa-learn-12018-12-27/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>感觉代码不多，就生看代码了，从<code>application.js</code>开始。</p>
+<h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a><code>debug</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> debug = <span class="built_in">require</span>(<span class="string">'debug'</span>)(<span class="string">'koa:application'</span>); <span class="comment">// &gt;&gt;: debug usage, brilliant</span></div></pre></td></tr></table></figure>
+<p>这个库的使用，看起来还是很不错的，可以控制输出哪些debug信息，以后项目中可以用下</p>
+<h3 id="customize打印application对象"><a href="#customize打印application对象" class="headerlink" title="customize打印application对象"></a>customize打印application对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (util.inspect.custom) &#123; <span class="comment">// &gt;&gt;: inspect</span></div><div class="line">  <span class="keyword">this</span>[util.inspect.custom] = <span class="keyword">this</span>.inspect;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Return JSON representation.</div><div class="line"> * We only bother showing settings.</div><div class="line"> *</div><div class="line"> * @return &#123;Object&#125;</div><div class="line"> * @api public</div><div class="line"> */</div><div class="line"></div><div class="line">toJSON() &#123;</div><div class="line">  <span class="keyword">return</span> only(<span class="keyword">this</span>, [</div><div class="line">    <span class="string">'subdomainOffset'</span>,</div><div class="line">    <span class="string">'proxy'</span>,</div><div class="line">    <span class="string">'env'</span></div><div class="line">  ]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Inspect implementation.</div><div class="line"> *</div><div class="line"> * @return &#123;Object&#125;</div><div class="line"> * @api public</div><div class="line"> */</div><div class="line"></div><div class="line">inspect() &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.toJSON();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为还有<code>context</code>,<code>request</code>,<code>response</code>等对象，可能并没有toString的方法，就不输出它们，这里定制的方式值得学习一下：<code>this[util.inspect.custom] = this.inspect</code></p>
+<h3 id="use"><a href="#use" class="headerlink" title="use()"></a><code>use()</code></h3><p>就是简单的把中间件放到自己的<code>middleware</code>中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.middleware.push(fn);</div></pre></td></tr></table></figure>
+<h3 id="callback"><a href="#callback" class="headerlink" title="callback()"></a><code>callback()</code></h3><p>koa的listen其实就是：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> server = http.createServer(<span class="keyword">this</span>.callback());</div><div class="line"><span class="keyword">return</span> server.listen(...args);</div></pre></td></tr></table></figure>
+<p>自己的东西的注入，都是在<code>callback()</code>里完成的</p>
+<p>node文档：</p>
+<blockquote>
+<p>http.createServer([options][, requestListener])<br>The requestListener is a function which is automatically added to the <code>&#39;request&#39;</code> event.</p>
+</blockquote>
+<p>意思大概就是，每次有request时间，都会调用这个函数吧。</p>
+<p>在里边封装了自己的处理方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> handleRequest = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> ctx = <span class="keyword">this</span>.createContext(req, res);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.handleRequest(ctx, fn);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">return</span> handleRequest;</div></pre></td></tr></table></figure>
+<h3 id="compose"><a href="#compose" class="headerlink" title="compose()"></a><code>compose()</code></h3><p>嗯，其实就是把所有的中间件串起来，<code>Promise</code>的使用，自己还是需要学习啊</p>
+<h3 id="createContext-req-res"><a href="#createContext-req-res" class="headerlink" title="createContext(req, res)"></a><code>createContext(req, res)</code></h3><p>对原来的<code>request</code>和<code>response</code>的一个封装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">createContext(req, res) &#123;</div><div class="line">  <span class="keyword">const</span> context = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.context);</div><div class="line">  <span class="keyword">const</span> request = context.request = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.request);</div><div class="line">  <span class="keyword">const</span> response = context.response = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.response);</div><div class="line">  context.app = request.app = response.app = <span class="keyword">this</span>;</div><div class="line">  context.req = request.req = response.req = req;</div><div class="line">  context.res = request.res = response.res = res;</div><div class="line">  request.ctx = response.ctx = context;</div><div class="line">  request.response = response;</div><div class="line">  response.request = request;</div><div class="line">  context.originalUrl = request.originalUrl = req.url;</div><div class="line">  context.state = &#123;&#125;;</div><div class="line">  <span class="keyword">return</span> context;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实还是很简单的，就主要是几个绑定，互相绑一绑，然后和node原来的req, res绑一绑</p>
+<h3 id="handleRequest-ctx-fn"><a href="#handleRequest-ctx-fn" class="headerlink" title="handleRequest(ctx, fn)"></a><code>handleRequest(ctx, fn)</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">handleRequest(ctx, fnMiddleware) &#123;</div><div class="line">  <span class="keyword">const</span> res = ctx.res;</div><div class="line">  res.statusCode = <span class="number">404</span>;</div><div class="line">  <span class="keyword">const</span> onerror = <span class="function"><span class="params">err</span> =&gt;</span> ctx.onerror(err);</div><div class="line">  <span class="keyword">const</span> handleResponse = <span class="function"><span class="params">()</span> =&gt;</span> respond(ctx);</div><div class="line">  onFinished(res, onerror);</div><div class="line">  <span class="keyword">return</span> fnMiddleware(ctx).then(handleResponse).catch(onerror);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实有些看不太懂…</p>
+<p>为什么，要用<code>handleResponse</code>而不直接用<code>respond</code>，为什么用ctx，而不用middleware处理之后的ctx</p>
+<p>为什么要有<code>onFinish()</code>，感觉并不会有什么用</p>
+<h4 id="respond"><a href="#respond" class="headerlink" title="respond"></a><code>respond</code></h4><p>这个helper function，里边就是各种对不同情况的处理，这个看具体response的源码的时候再说吧</p>
+<hr>
+<p>嗯，感觉看完<code>application.js</code>，也就那么回事，就是处理中间件，而已，可能这就是Koa有趣的地方吧，精简的核心，统一的接口，无限可能的拓展。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/koa-learn-0-2018-12-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2343,187 +2541,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/Longest Increasing Subsequence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/30/Longest Increasing Subsequence/" itemprop="url">
-                  Longest Increasing Subsequence
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-30 15:50:03 / Modified: 15:58:23" itemprop="dateCreated datePublished" datetime="2018-08-30T15:50:03+08:00">2018-08-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/30/Longest Increasing Subsequence/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/30/Longest Increasing Subsequence/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/longest-increasing-subsequence/description/" target="_blank" rel="external">https://leetcode.com/problems/longest-increasing-subsequence/description/</a></p>
-<p><img src="/media/15356154692100.jpg" alt="-w948"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>LIS</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dp[N] = &#123;<span class="number">1</span>,&#125;</div><div class="line"><span class="keyword">for</span> i <span class="number">0.</span>.N:</div><div class="line">    <span class="keyword">for</span> j <span class="number">0.</span>.i:</div><div class="line">        <span class="keyword">if</span> num[j] &lt; num[i]:</div><div class="line">            dp[i] = max(dp[i], dp[j] + <span class="number">1</span>)</div></pre></td></tr></table></figure>
-<p>很经典的DP，唉，DP就是这样，没想到的时候，怎么也觉得不顺，想到了，好优雅的设计<br>这是O( N^2 )的解法，还有O( NlogN )的解法，有时间再看</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size(), <span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i])</div><div class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">            res = max(res, dp[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2575,7 +2592,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

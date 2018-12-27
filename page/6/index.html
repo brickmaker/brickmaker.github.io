@@ -290,6 +290,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/2018-02-26-cpp-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/26/2018-02-26-cpp-api/" itemprop="url">
+                  OJ中C++常用函数、数据结构使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-26 21:24:26" itemprop="dateCreated datePublished" datetime="2018-02-26T21:24:26+08:00">2018-02-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-18 21:58:07" itemprop="dateModified" datetime="2018-07-18T21:58:07+08:00">2018-07-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/26/2018-02-26-cpp-api/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/26/2018-02-26-cpp-api/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在一些OJ中，经常会需要调用一些语言的库函数，但是大多数情况下，自己需要查各种文档，这如果是考试或者是在平时些程序的过程中，是很不流畅的。</p>
+<p>这里记下自己每次遇到过需要查文档的相关使用，以便日后复习回顾。</p>
+<hr>
+<h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><h4 id="1-getline-读入一行到string"><a href="#1-getline-读入一行到string" class="headerlink" title="1. getline 读入一行到string"></a>1. <code>getline</code> 读入一行到string</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div></pre></td></tr></table></figure>
+<h4 id="针对STDIO的优化"><a href="#针对STDIO的优化" class="headerlink" title="针对STDIO的优化"></a>针对STDIO的优化</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">int</span> ____ = []() &#123;</div><div class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<h4 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">string</span> input = <span class="string">"41 3.14 false hello world"</span>;</div><div class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">istringstream</span> <span class="title">stream</span><span class="params">(input)</span></span>;</div><div class="line"><span class="keyword">int</span> n;</div><div class="line">stream &gt;&gt; n;</div></pre></td></tr></table></figure>
+<h2 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h2><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">s.insert(<span class="number">3</span>);</div><div class="line">s.erase(itrator);</div><div class="line">s.find(<span class="number">5</span>) != s.end();</div><div class="line">s.count(<span class="number">5</span>) == <span class="number">1</span>;</div><div class="line"><span class="built_in">vector</span>&lt;T&gt;(s.begin(), s.end()); <span class="comment">// set to vector</span></div></pre></td></tr></table></figure>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h4 id="remove-if"><a href="#remove-if" class="headerlink" title="remove_if"></a><code>remove_if</code></h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">str2.erase(<span class="built_in">std</span>::remove_if(str2.begin(), </div><div class="line">                          str2.end(),</div><div class="line">                          [](<span class="keyword">unsigned</span> <span class="keyword">char</span> x)&#123;<span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">isspace</span>(x);&#125;),</div><div class="line">            str2.end());</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/2018-02-24-heap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2170,282 +2359,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/os_assignment_5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/22/os_assignment_5/" itemprop="url">
-                  OS course assignment 5 Question 1&2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-10-22 16:26:37" itemprop="dateCreated datePublished" datetime="2017-10-22T16:26:37+08:00">2017-10-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:38:15" itemprop="dateModified" datetime="2018-07-10T13:38:15+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/22/os_assignment_5/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/os_assignment_5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>Consider the following set of processes, with the length of the CPU-burst time given in milliseconds:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Process</th>
-<th>Burst Time</th>
-<th>Priority</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>P1</td>
-<td>10</td>
-<td>3</td>
-</tr>
-<tr>
-<td>P2</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>P3</td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>P4</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>P5</td>
-<td>5</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>The processes are assumed to have arrived in the order P1, P2, P3, P4, P5, all at time 0.<br>a. Draw four Gantt charts illustrating the execution of these processes . using FCFS, SJF, a nonpreemptive priority (a smaller priority number implies a higher priority), and RR (quantum = 1) scheduling.<br>b. What is the turnaround time of each process for each of the scheduling algorithms in part a?<br>c. What is the waiting time of each process for each of the scheduling algorithms in part a?<br>d. Which of the schedules in part a results in the minimal average waiting time (over all processes)?</p>
-<hr>
-<h4 id="a"><a href="#a" class="headerlink" title="a."></a>a.</h4><p><img src="/media/15086608517485.jpg" alt=""></p>
-<h4 id="b"><a href="#b" class="headerlink" title="b."></a>b.</h4><p>Turnaround time:<br><strong>FCFS:</strong> 10, 11, 13, 14, 19<br><strong>SJF:</strong> 19, 1, 4, 2, 9<br><strong>nonpreemptive priority:</strong> 16, 1, 18, 19, 6<br><strong>RR:</strong> 19, 2, 7, 4, 14</p>
-<h4 id="c"><a href="#c" class="headerlink" title="c."></a>c.</h4><p>Waiting time:<br><strong>FCFS:</strong> 0, 10, 11, 13, 14<br><strong>SJF:</strong> 9, 0, 2, 1, 4<br><strong>nonpreemptive priority:</strong> 6, 0, 16, 18, 1<br><strong>RR:</strong> 9, 1, 5, 3, 9</p>
-<h4 id="d"><a href="#d" class="headerlink" title="d."></a>d.</h4><p>Average waiting time:<br><strong>FCFS:</strong> 9.6<br><strong>SJF:</strong> 3.2<br><strong>nonpreemptive priority:</strong> 8.2<br><strong>RR:</strong> 5.4</p>
-<p>SJF has minimal average waiting time.</p>
-<h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><p>Assume three processes P1, P2, and P3:<br>P1 consists of one thread T11<br>P2 consists of three threads T21, T22, and T23<br>P3 consists of two threads T31 and T32.<br>The following are the CPU bursts for these processes and their threads:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>process</th>
-<th>thread</th>
-<th>cpu burst</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>P1</td>
-<td>T11</td>
-<td>7</td>
-</tr>
-<tr>
-<td>P2</td>
-<td>T21</td>
-<td>4</td>
-</tr>
-<tr>
-<td></td>
-<td>T22</td>
-<td>2</td>
-</tr>
-<tr>
-<td></td>
-<td>T23</td>
-<td>4</td>
-</tr>
-<tr>
-<td>P3</td>
-<td>T31</td>
-<td>6</td>
-</tr>
-<tr>
-<td></td>
-<td>T32</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Assume that all threads arrive at the same time 0.<br>Show in gantt charts the execution of these processes using Round-Robin scheduler and Tq=5 time units:<br>(1) If the threads are user-level threads<br>(2) If the threads are kernel (OS) supported threads.<br>Calculate the waiting times (Tw) and turnaround times (Ttr) for each process and their average values for both cases (1) and (2).</p>
-<hr>
-<h4 id="Gantt-charts"><a href="#Gantt-charts" class="headerlink" title="Gantt charts:"></a>Gantt charts:</h4><p><img src="/media/15086608662569.jpg" alt=""></p>
-<h4 id="Waiting-time"><a href="#Waiting-time" class="headerlink" title="Waiting time:"></a>Waiting time:</h4><p>(1):<br>P1: 15 - 5 = 10<br>P2: 5 + 17 - 10 = 12<br>P3: 10 + 22 - 15 = 17<br>average: 13<br>(2):<br>P1: 23 - 5 = 18<br>P2: 5<br>P3: 15 + 25 - 23 = 17<br>average: 13.3</p>
-<h4 id="Turnaround-time"><a href="#Turnaround-time" class="headerlink" title="Turnaround time:"></a>Turnaround time:</h4><p>(1):<br>P1: 17<br>P2: 22<br>P3: 26<br>average: 65 / 3 = 21.7<br>(2):<br>P1: 25<br>P2: 15<br>P3: 25<br>average: 65 / 3 = 21.7</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2497,7 +2410,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
