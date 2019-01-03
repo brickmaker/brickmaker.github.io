@@ -290,6 +290,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/14/LeetCode373/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/14/LeetCode373/" itemprop="url">
+                  373.Find K Pairs with Smallest Sums
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-14 09:40:42" itemprop="dateCreated datePublished" datetime="2017-11-14T09:40:42+08:00">2017-11-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-07-10 13:38:21" itemprop="dateModified" datetime="2018-07-10T13:38:21+08:00">2018-07-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/14/LeetCode373/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/14/LeetCode373/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/" target="_blank" rel="external">https://leetcode.com/problems/find-k-pairs-with-smallest-sums/description/</a></p>
+<p><img src="/media/15106236843191.jpg" alt=""></p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>一开始没有明确的想法，看了别人的思路之后明白…<br>用堆来实现，找最小值！<br>关键在于如何确定下一个可能的最小值！</p>
+<ol>
+<li>先把(0,0), (1,0), …, (n,0)放进去</li>
+<li>从heap中不断pop最小</li>
+<li>最小(i,j)的下一个候选是(i, j+1), <strong>关键</strong></li>
+<li>把下一个候选push进去就可以了</li>
+</ol>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; kSmallestPairs(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2, <span class="keyword">int</span> k) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="keyword">if</span> (nums1.empty() || nums2.empty() || k == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">auto</span> comp = [nums1, nums2](pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; x, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; y) &#123;<span class="keyword">return</span> nums1[x.first] + nums2[x.second] &gt; nums1[y.first] + nums2[y.second];&#125;;</div><div class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;, <span class="keyword">decltype</span>(comp)&gt; q(comp);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums1.size(); i++) &#123;</div><div class="line">            q.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, <span class="number">0</span>));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</div><div class="line">            pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; p = q.top();</div><div class="line">            q.pop();</div><div class="line">            res.push_back(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(nums1[p.first], nums2[p.second]));</div><div class="line">            <span class="keyword">if</span> (p.first == nums1.size() - <span class="number">1</span> &amp;&amp; p.second == nums2.size() - <span class="number">1</span>)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">if</span> (p.second &lt; nums2.size() - <span class="number">1</span>)</div><div class="line">                q.push(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(p.first, p.second+<span class="number">1</span>));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><ol>
+<li>找准关系，如何能确定下一个和当前最小值的比较</li>
+<li>C++ priority_queue的使用</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/os_assignment_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2140,204 +2342,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/LeetCode241/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/10/LeetCode241/" itemprop="url">
-                  241. Different Ways to Add Parentheses
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-10 14:27:48" itemprop="dateCreated datePublished" datetime="2017-09-10T14:27:48+08:00">2017-09-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:34:36" itemprop="dateModified" datetime="2018-07-10T13:34:36+08:00">2018-07-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/10/LeetCode241/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/10/LeetCode241/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/description/" target="_blank" rel="external">https://leetcode.com/problems/different-ways-to-add-parentheses/description/</a></p>
-<p><img src="/media/15050249179021.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这个应该有多种解法吧<br>转化为构建二叉树？</p>
-<p>反正图省事，先用DP做一下，基本上就是算出每两个元素间可能的结果…<br>这样的话，要开一个三维的数组，因为dp[i][j]位置要存的是一个数组<br>不考虑，而且好像也不是那么回事</p>
-<p>如果递归地遍历地话，会不会超时</p>
-<p>其实，运算符就是一个二叉树的非叶结点，其有多少种组合，就会有多少种运算方式<br>这只是抽象出来了，如何写呢？</p>
-<p>不会…</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diffWaysToCompute</span><span class="params">(self, input)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type input: str</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> enumerate(input):</div><div class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> <span class="string">'+-*'</span>:</div><div class="line">                <span class="keyword">for</span> x <span class="keyword">in</span> self.diffWaysToCompute(input[:i]):</div><div class="line">                    <span class="keyword">for</span> y <span class="keyword">in</span> self.diffWaysToCompute(input[i + <span class="number">1</span>:]):</div><div class="line">                        ans.append(eval(`x` + c + `y`))</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> ans:</div><div class="line">            <span class="keyword">return</span> [int(input)]</div><div class="line">        <span class="keyword">return</span> ans</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>其实，简单的递归，就可以了，想的太多而没有动手去写</p>
-<p>我想应该有更好的方法，但是，不想了…</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2389,7 +2393,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-count">98</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2490,7 +2494,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

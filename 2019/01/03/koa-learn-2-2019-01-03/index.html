@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="context.js这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的request和response两个对象合到一个context里边，同时加了一些错误处理的便捷方式。 delegation123456789delegate(proto, &apos;response&apos;)  .method(&apos;attachment&apos;)  .method(&apos;redirect&apos;)  ...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Koa源码学习（2）">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/koa-learn-2-2019-01-03/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="context.js这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的request和response两个对象合到一个context里边，同时加了一些错误处理的便捷方式。 delegation123456789delegate(proto, &apos;response&apos;)  .method(&apos;attachment&apos;)  .method(&apos;redirect&apos;)  ...">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-03T13:19:30.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Koa源码学习（2）">
+<meta name="twitter:description" content="context.js这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的request和response两个对象合到一个context里边，同时加了一些错误处理的便捷方式。 delegation123456789delegate(proto, &apos;response&apos;)  .method(&apos;attachment&apos;)  .method(&apos;redirect&apos;)  ...">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/03/koa-learn-2-2019-01-03/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Koa源码学习（2） | Xiaodong's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/koa-learn-2-2019-01-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Koa源码学习（2）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-03 21:19:08 / Modified: 21:19:30" itemprop="dateCreated datePublished" datetime="2019-01-03T21:19:08+08:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/03/koa-learn-2-2019-01-03/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/03/koa-learn-2-2019-01-03/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="context-js"><a href="#context-js" class="headerlink" title="context.js"></a><code>context.js</code></h2><p>这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的<code>request</code>和<code>response</code>两个对象合到一个<code>context</code>里边，同时加了一些错误处理的便捷方式。</p>
+<h3 id="delegation"><a href="#delegation" class="headerlink" title="delegation"></a>delegation</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">delegate(proto, <span class="string">'response'</span>)</div><div class="line">  .method(<span class="string">'attachment'</span>)</div><div class="line">  .method(<span class="string">'redirect'</span>)</div><div class="line">  ...</div><div class="line">  </div><div class="line">delegate(proto, <span class="string">'request'</span>)</div><div class="line">  .method(<span class="string">'acceptsLanguages'</span>)</div><div class="line">  .method(<span class="string">'acceptsEncodings'</span>)</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>最后这一部分代码，就是让<code>ctx</code>可以方便的使用<code>response</code>和<code>request</code>里的东西，做了一个delegate，本来需要：<code>ctx.response.attachment()</code>，这样只需要：<code>ctx.attachment()</code>.</p>
+<h3 id="异常-错误处理"><a href="#异常-错误处理" class="headerlink" title="异常/错误处理"></a>异常/错误处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">assert: httpAssert, <span class="comment">// &gt;&gt;: wrap http-assert into context</span></div><div class="line"></div><div class="line"><span class="keyword">throw</span>(...args) &#123; <span class="comment">// &gt;&gt;: wrap throw function</span></div><div class="line">  <span class="keyword">throw</span> createError(...args);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>用的分别是<code>http-assert</code>和<code>http-errors</code>来进行assert和error处理</p>
+<h4 id="this-onerror-error-的处理："><a href="#this-onerror-error-的处理：" class="headerlink" title="this.onerror(error){...}的处理："></a><code>this.onerror(error){...}</code>的处理：</h4><p>TODO..</p>
+<h3 id="Cookies处理"><a href="#Cookies处理" class="headerlink" title="Cookies处理"></a>Cookies处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> COOKIES = <span class="built_in">Symbol</span>(<span class="string">'context#cookies'</span>);</div></pre></td></tr></table></figure>
+<p>生成一个唯一的symbol</p>
+<p>get和set分别是这样的操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">get cookies() &#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>[COOKIES]) &#123;</div><div class="line">    <span class="keyword">this</span>[COOKIES] = <span class="keyword">new</span> Cookies(<span class="keyword">this</span>.req, <span class="keyword">this</span>.res, &#123;</div><div class="line">      <span class="attr">keys</span>: <span class="keyword">this</span>.app.keys,</div><div class="line">      <span class="attr">secure</span>: <span class="keyword">this</span>.request.secure</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>[COOKIES];</div><div class="line">&#125;,</div><div class="line"></div><div class="line">set cookies(_cookies) &#123;</div><div class="line">  <span class="keyword">this</span>[COOKIES] = _cookies;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>判断如果cookie不存在的话，生成之。</p>
+<p>OK，以上就是<code>context</code>的全部内容，主要的工作，还是把<code>request</code>和<code>response</code>合成一个。</p>
+<h2 id="request-js"><a href="#request-js" class="headerlink" title="request.js"></a><code>request.js</code></h2><p>700+ line的文件，其实，比较容易看懂，绝大部分的内容，都是对node原有的req的封装和简易处理。</p>
+<p><code>inspect()</code>, <code>toJSON()</code>和之前的没有太大的区别。</p>
+<p>大量的内容，都是对原来的<code>req</code>的封装，好奇这里为什么不用delegate直接写完，非要写这么多的代码。</p>
+<h3 id="原模原样access的有："><a href="#原模原样access的有：" class="headerlink" title="原模原样access的有："></a>原模原样access的有：</h3><ul>
+<li>header/headers: 请求头</li>
+<li>url</li>
+<li>method: 请求方法，比如<code>GET</code></li>
+<li>socket</li>
+</ul>
+<h3 id="添加处理的："><a href="#添加处理的：" class="headerlink" title="添加处理的："></a>添加处理的：</h3><ul>
+<li>origin: protocol://host</li>
+<li>href: href</li>
+<li>host: 获取host</li>
+<li>hostname: 获取hostname</li>
+<li>URL: 返回URL对象，lazy生成</li>
+<li>fresh: last-modified/etag 是否匹配</li>
+<li>stale: !fresh，已经修改了，需要重新获取</li>
+<li>idempotent: 看请求方法是不是安全的</li>
+<li>charset: content-type里的charset</li>
+<li>length: content-length</li>
+<li>protocol: 使用的协议，http/https等</li>
+<li>ips: 当proxy存在的时候，得到ip list</li>
+<li>ip: remote address</li>
+<li>subdomains: 获取subdomain数组</li>
+<li>secure: 判断是不是https</li>
+<li>path: path</li>
+<li>query: 路径里的query信息</li>
+<li>querystring</li>
+<li>search: querystring带前边的问号</li>
+</ul>
+<h3 id="其它一些method-property"><a href="#其它一些method-property" class="headerlink" title="其它一些method/property:"></a>其它一些method/property:</h3><p><code>accept</code>, <code>acceptsEncodings</code>, <code>acceptsCharsets</code>, <code>acceptsLanguages</code>:</p>
+<p>判断请求是否accept对应的类型，用的<code>accepts</code></p>
+<p><code>is</code>:</p>
+<p>判断请求的content-type是不是自己想要的，用的<code>type-is</code></p>
+<p><code>type</code>:</p>
+<p>返回MIME类型</p>
+<p><code>get</code>:</p>
+<p>get对应的header内容，这里还处理了<code>referer</code>的拼写错误，自己也是第一次注意到。</p>
+<p>总结来看，<code>request</code>部分做的，就是对于node的<code>req</code>的封装，同时添加了一些helper方法，比如<code>accept</code>，<code>is</code>等。</p>
+<h2 id="response-js"><a href="#response-js" class="headerlink" title="response.js"></a><code>response.js</code></h2><p>不出意外的话，Response也是对Node的<code>res</code>的封装，看一看有什么值得看的地方。</p>
+<h3 id="access原来Node的res"><a href="#access原来Node的res" class="headerlink" title="access原来Node的res"></a>access原来Node的<code>res</code></h3><ul>
+<li>socket</li>
+<li>status</li>
+<li>statusMessage</li>
+<li>statusMessage=</li>
+<li>headers</li>
+<li>length=: content-length</li>
+<li>headerSent</li>
+<li>etag=</li>
+<li>flushHeaders</li>
+</ul>
+<h3 id="添加处理的"><a href="#添加处理的" class="headerlink" title="添加处理的"></a>添加处理的</h3><ul>
+<li>status=: 加入了一些验证，以及对body的处理（如果对应的status body为空，需要设置）</li>
+<li>length: content-length，如果没有的话，自己需要得到body的长度</li>
+<li>type=: 设置content-type，有一定判断</li>
+<li>lastModified: 有一个时间的转换</li>
+<li>lastModified=</li>
+<li>etag: 考虑了ETag的两种格式</li>
+<li>type: content-type，去除了后边诸如<code>charset</code>之类的东西</li>
+<li>header处理：<ul>
+<li><code>get</code>: 获取header</li>
+<li><code>set</code>: setHeader的封装，支持多种方式</li>
+<li><code>append</code>: append header</li>
+<li><code>remove</code>: remove header</li>
+</ul>
+</li>
+<li>writable: 是否可写，<code>socket.writable</code>，如果已经完成不可写</li>
+</ul>
+<h3 id="自己的property-method"><a href="#自己的property-method" class="headerlink" title="自己的property/method"></a>自己的property/method</h3><p><code>body</code>:</p>
+<p>操作http的body，需要进行不同情况的处理</p>
+<ul>
+<li>内容为null: 204</li>
+<li>如果没有设定过status，设为200</li>
+<li>没有设置<code>content-type</code>，需要进行设定</li>
+<li>对于不同类型的数据：<ul>
+<li>string: 设定length, type</li>
+<li>buffer: type设为<code>bin</code></li>
+<li>stream:</li>
+<li>json: 设定type，remove <code>content-type</code></li>
+</ul>
+</li>
+</ul>
+<p><code>vary</code>:</p>
+<p>设置<code>Vary</code>header</p>
+<p><code>redirect</code>:</p>
+<p>重定向！<br>-如果参数是back: 回到上一页面<br>-设置status为302<br>-说明这在redirect</p>
+<p><code>attachment</code>:</p>
+<p>当有附加文件的时候，设置<code>Content-Disposition</code> header，同时设置<code>Content-Type</code>，用到了<code>content-disposition</code>包</p>
+<p><code>is</code>:</p>
+<p>判断type是否满足，类似<code>request</code>的</p>
+<p>总体来看，<code>response</code>和<code>request</code>非常相似，封装<code>res</code>，方便处理Node Response的header和body等</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/koa-learn-12018-12-27/" rel="next" title="Koa源码学习（1）">
+                <i class="fa fa-chevron-left"></i> Koa源码学习（1）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pic_reverse.png"
+                alt="Xiaodong Zhao" />
+            
+              <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#context-js"><span class="nav-number">1.</span> <span class="nav-text">context.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#delegation"><span class="nav-number">1.1.</span> <span class="nav-text">delegation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常-错误处理"><span class="nav-number">1.2.</span> <span class="nav-text">异常/错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this-onerror-error-的处理："><span class="nav-number">1.2.1.</span> <span class="nav-text">this.onerror(error){...}的处理：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookies处理"><span class="nav-number">1.3.</span> <span class="nav-text">Cookies处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#request-js"><span class="nav-number">2.</span> <span class="nav-text">request.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原模原样access的有："><span class="nav-number">2.1.</span> <span class="nav-text">原模原样access的有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加处理的："><span class="nav-number">2.2.</span> <span class="nav-text">添加处理的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它一些method-property"><span class="nav-number">2.3.</span> <span class="nav-text">其它一些method/property:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#response-js"><span class="nav-number">3.</span> <span class="nav-text">response.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#access原来Node的res"><span class="nav-number">3.1.</span> <span class="nav-text">access原来Node的res</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加处理的"><span class="nav-number">3.2.</span> <span class="nav-text">添加处理的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的property-method"><span class="nav-number">3.3.</span> <span class="nav-text">自己的property/method</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://brickmaker.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/01/03/koa-learn-2-2019-01-03/';
+        this.page.identifier = '2019/01/03/koa-learn-2-2019-01-03/';
+        this.page.title = 'Koa源码学习（2）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://brickmaker.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
