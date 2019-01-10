@@ -106,26 +106,24 @@
 
 
 
-  <meta name="description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
+  <meta name="description" content="看完了大体的内容，对一些细枝末节再看一下，最后看一下test和benchmark的代码，并作出一个总结。  一些细节error handlingKoa的error处理的函数有两个，一个是在application.js中的app.onerror，一个是context.js中的ctx.onerror. 前者，是一个默认的错误处理函数，如果用户设置了自己的错误处理： 1app.on(&apos;error&apos;, (">
 <meta property="og:type" content="article">
-<meta property="og:title" content="42. Trapping Rain Water">
-<meta property="og:url" content="http://yoursite.com/2017/11/16/LeetCode42/index.html">
+<meta property="og:title" content="Koa源码学习（3）">
+<meta property="og:url" content="http://yoursite.com/2019/01/10/koa-learn-3-2019-01-10/index.html">
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
-<meta property="og:description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
+<meta property="og:description" content="看完了大体的内容，对一些细枝末节再看一下，最后看一下test和benchmark的代码，并作出一个总结。  一些细节error handlingKoa的error处理的函数有两个，一个是在application.js中的app.onerror，一个是context.js中的ctx.onerror. 前者，是一个默认的错误处理函数，如果用户设置了自己的错误处理： 1app.on(&apos;error&apos;, (">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/media/15108105475270.jpg">
-<meta property="og:updated_time" content="2018-07-10T05:38:24.264Z">
+<meta property="og:updated_time" content="2019-01-10T02:08:15.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="42. Trapping Rain Water">
-<meta name="twitter:description" content="题目https://leetcode.com/problems/trapping-rain-water/description/  想法每个块，直到遇到下一个&amp;gt;=它的块，则存储确定… 每个块都假定能盛满，直到最后遇不到&amp;gt;=自己的块 从左往右扫一遍，记录valid和如果valid所装的容量： 123456789101112131415161718192021222324252627282">
-<meta name="twitter:image" content="http://yoursite.com/media/15108105475270.jpg">
+<meta name="twitter:title" content="Koa源码学习（3）">
+<meta name="twitter:description" content="看完了大体的内容，对一些细枝末节再看一下，最后看一下test和benchmark的代码，并作出一个总结。  一些细节error handlingKoa的error处理的函数有两个，一个是在application.js中的app.onerror，一个是context.js中的ctx.onerror. 前者，是一个默认的错误处理函数，如果用户设置了自己的错误处理： 1app.on(&apos;error&apos;, (">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/16/LeetCode42/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/10/koa-learn-3-2019-01-10/"/>
 
 
 
@@ -135,7 +133,7 @@
   };
 </script>
 
-  <title>42. Trapping Rain Water | Xiaodong's Blog</title>
+  <title>Koa源码学习（3） | Xiaodong's Blog</title>
   
 
 
@@ -292,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/LeetCode42/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/koa-learn-3-2019-01-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaodong Zhao">
@@ -309,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">42. Trapping Rain Water
+          <h1 class="post-title" itemprop="name headline">Koa源码学习（3）
               
             
           </h1>
@@ -334,24 +332,12 @@
                 
               
 
-              <time title="Created: 2017-11-16 13:35:00" itemprop="dateCreated datePublished" datetime="2017-11-16T13:35:00+08:00">2017-11-16</time>
+              <time title="Created: 2019-01-10 10:07:44 / Modified: 10:08:15" itemprop="dateCreated datePublished" datetime="2019-01-10T10:07:44+08:00">2019-01-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-07-10 13:38:24" itemprop="dateModified" datetime="2018-07-10T13:38:24+08:00">2018-07-10</time>
               
             
           </span>
@@ -368,14 +354,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
 
                 
                 
@@ -390,10 +369,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/16/LeetCode42/#comments" itemprop="discussionUrl">
+                <a href="/2019/01/10/koa-learn-3-2019-01-10/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/16/LeetCode42/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/01/10/koa-learn-3-2019-01-10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -421,22 +400,15 @@
       
 
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank" rel="external">https://leetcode.com/problems/trapping-rain-water/description/</a></p>
-<p><img src="/media/15108105475270.jpg" alt=""></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>每个块，直到遇到下一个&gt;=它的块，则存储确定…</p>
-<p>每个块都假定能盛满，直到最后遇不到&gt;=自己的块</p>
-<p>从左往右扫一遍，记录valid和如果valid所装的容量：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Bar</span> &#123;</span></div><div class="line">        <span class="keyword">int</span> s;</div><div class="line">        <span class="keyword">bool</span> v;</div><div class="line">        Bar() : s(<span class="number">0</span>), v(<span class="literal">false</span>) &#123;&#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;Bar&gt; content(height.size());</div><div class="line">        <span class="keyword">int</span> s = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; height.size(); i++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = s; j &lt; i &amp;&amp; content[j].v == <span class="literal">false</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (height[j] &lt;= height[i]) &#123;</div><div class="line">                    content[j].v = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">if</span> (j == s)</div><div class="line">                        s = i;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    content[j].s += height[j] - height[i];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxHeight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; content.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (height[i] &gt;= maxHeight &amp;&amp; content[i].v) &#123;</div><div class="line">                maxHeight = height[i];</div><div class="line">                res += content[i].s;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>错误！！！<br>都没有考虑最基础的情况： [4, 2, 3]<br>自己的答案在这个情况下，认为4没有找到&gt;=它的，所以invalid，也就没有后边的容量了</p>
+        <p>看完了大体的内容，对一些细枝末节再看一下，最后看一下test和benchmark的代码，并作出一个总结。</p>
 <hr>
-<p>看了discussion，发现自己还是没有想到简单解决问题的关键：</p>
-<blockquote>
-<p>Here is my idea: instead of calculating area by height*width, we can think it in a cumulative way. In other words, sum water amount of each bin(width=1).<br>Search from left to right and maintain a max height of left and right separately, which is like a one-side wall of partial container. Fix the higher one and flow water from the lower part. For example, if current height of left is lower, we fill water in the left bin. Until left meets right, we filled the whole container.</p>
-</blockquote>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxRight = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.size() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</div><div class="line">            <span class="keyword">if</span> (height[l] &lt;= height[r]) &#123;</div><div class="line">                <span class="keyword">if</span> (height[l] &gt;= maxLeft)</div><div class="line">                    maxLeft = height[l];</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    res += maxLeft - height[l];</div><div class="line">                l++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> (height[r] &gt;= maxRight) &#123;</div><div class="line">                    maxRight = height[r];</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    res += maxRight - height[r];</div><div class="line">                &#125;</div><div class="line">                r--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><p>记录左右的最高值，只要比本侧的最高值低且比另一侧低，就肯定会被填满…</p>
-<p>抓住问题的管家哇，分析关系！</p>
-
+<h2 id="一些细节"><a href="#一些细节" class="headerlink" title="一些细节"></a>一些细节</h2><h3 id="error-handling"><a href="#error-handling" class="headerlink" title="error handling"></a>error handling</h3><p>Koa的error处理的函数有两个，一个是在<code>application.js</code>中的<code>app.onerror</code>，一个是<code>context.js</code>中的<code>ctx.onerror</code>.</p>
+<p>前者，是一个默认的错误处理函数，如果用户设置了自己的错误处理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.on(<span class="string">'error'</span>, (err) =&gt; &#123;...&#125;)</div></pre></td></tr></table></figure>
+<p>那就不会用到这个。<br>（其实这个的功能就是简单的输出一下原始的错误信息）</p>
+<p>前者是给服务端看的，用来log错误信息。</p>
+<p>后者，是在发生错误后如何反映给客户端的，在上一篇中写过了。</p>
+<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h2 id="benchmarks"><a href="#benchmarks" class="headerlink" title="benchmarks"></a>benchmarks</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
       
     </div>
 
@@ -463,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/14/LeetCode373/" rel="next" title="373.Find K Pairs with Smallest Sums">
-                <i class="fa fa-chevron-left"></i> 373.Find K Pairs with Smallest Sums
+              <a href="/2019/01/03/koa-learn-2-2019-01-03/" rel="next" title="Koa源码学习（2）">
+                <i class="fa fa-chevron-left"></i> Koa源码学习（2）
               </a>
             
           </div>
@@ -472,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/17/LeetCode659/" rel="prev" title="659. Split Array into Consecutive Subsequences">
-                659. Split Array into Consecutive Subsequences <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -660,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">2.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾"><span class="nav-number">4.</span> <span class="nav-text">回顾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些细节"><span class="nav-number">1.</span> <span class="nav-text">一些细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-handling"><span class="nav-number">1.1.</span> <span class="nav-text">error handling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test"><span class="nav-number">2.</span> <span class="nav-text">test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#benchmarks"><span class="nav-number">3.</span> <span class="nav-text">benchmarks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -814,9 +782,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2017/11/16/LeetCode42/';
-        this.page.identifier = '2017/11/16/LeetCode42/';
-        this.page.title = '42. Trapping Rain Water';
+        this.page.url = 'http://yoursite.com/2019/01/10/koa-learn-3-2019-01-10/';
+        this.page.identifier = '2019/01/10/koa-learn-3-2019-01-10/';
+        this.page.title = 'Koa源码学习（3）';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');

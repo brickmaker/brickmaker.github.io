@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="Xiaodong&#39;s Blog">
 <meta property="og:description" content="context.js这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的request和response两个对象合到一个context里边，同时加了一些错误处理的便捷方式。 delegation123456789delegate(proto, &apos;response&apos;)  .method(&apos;attachment&apos;)  .method(&apos;redirect&apos;)  ...">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-03T13:19:30.743Z">
+<meta property="og:updated_time" content="2019-01-10T02:07:19.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Koa源码学习（2）">
 <meta name="twitter:description" content="context.js这一部分，定义了Koa的Context对象，其实，这一部分，粗略的看过去，就是把Koa的request和response两个对象合到一个context里边，同时加了一些错误处理的便捷方式。 delegation123456789delegate(proto, &apos;response&apos;)  .method(&apos;attachment&apos;)  .method(&apos;redirect&apos;)  ...">
@@ -332,12 +332,24 @@
                 
               
 
-              <time title="Created: 2019-01-03 21:19:08 / Modified: 21:19:30" itemprop="dateCreated datePublished" datetime="2019-01-03T21:19:08+08:00">2019-01-03</time>
+              <time title="Created: 2019-01-03 21:19:08" itemprop="dateCreated datePublished" datetime="2019-01-03T21:19:08+08:00">2019-01-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-10 10:07:19" itemprop="dateModified" datetime="2019-01-10T10:07:19+08:00">2019-01-10</time>
               
             
           </span>
@@ -405,7 +417,9 @@
 <p>最后这一部分代码，就是让<code>ctx</code>可以方便的使用<code>response</code>和<code>request</code>里的东西，做了一个delegate，本来需要：<code>ctx.response.attachment()</code>，这样只需要：<code>ctx.attachment()</code>.</p>
 <h3 id="异常-错误处理"><a href="#异常-错误处理" class="headerlink" title="异常/错误处理"></a>异常/错误处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">assert: httpAssert, <span class="comment">// &gt;&gt;: wrap http-assert into context</span></div><div class="line"></div><div class="line"><span class="keyword">throw</span>(...args) &#123; <span class="comment">// &gt;&gt;: wrap throw function</span></div><div class="line">  <span class="keyword">throw</span> createError(...args);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 <p>用的分别是<code>http-assert</code>和<code>http-errors</code>来进行assert和error处理</p>
-<h4 id="this-onerror-error-的处理："><a href="#this-onerror-error-的处理：" class="headerlink" title="this.onerror(error){...}的处理："></a><code>this.onerror(error){...}</code>的处理：</h4><p>TODO..</p>
+<h4 id="this-onerror-error-的处理："><a href="#this-onerror-error-的处理：" class="headerlink" title="this.onerror(error){...}的处理："></a><code>this.onerror(error){...}</code>的处理：</h4><p>```js // delegate<br>this.app.emit(‘error’, err, this); // &gt;&gt;: here pass the context<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在这里发生的错误，也告知给application，这样可以让application做出相应的处理。</div><div class="line">这里同时还把`this`传了过去，这样app可以得到context.</div><div class="line"></div><div class="line">```js</div><div class="line">let headerSent = false; // &gt;&gt;: already sent</div><div class="line">if (this.headerSent || !this.writable) &#123;</div><div class="line">  headerSent = err.headerSent = true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">// nothing we can do here other</div><div class="line">// than delegate to the app-level</div><div class="line">// handler and log.</div><div class="line">if (headerSent) &#123;</div><div class="line">  return;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里判断是不是需要对客户端做出response，如果已经sent了，那么就不用做啥了，否则需要处理response返回给客户端。</p>
+<p>后边的代码无非是对不同情况的判断，做出合适的response。</p>
 <h3 id="Cookies处理"><a href="#Cookies处理" class="headerlink" title="Cookies处理"></a>Cookies处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> COOKIES = <span class="built_in">Symbol</span>(<span class="string">'context#cookies'</span>);</div></pre></td></tr></table></figure>
 <p>生成一个唯一的symbol</p>
 <p>get和set分别是这样的操作：</p>
@@ -540,6 +554,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/10/koa-learn-3-2019-01-10/" rel="prev" title="Koa源码学习（3）">
+                Koa源码学习（3） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -626,7 +644,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

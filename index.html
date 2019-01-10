@@ -290,6 +290,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/koa-learn-3-2019-01-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/koa-learn-3-2019-01-10/" itemprop="url">
+                  Koa源码学习（3）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-10 10:07:44 / Modified: 10:08:15" itemprop="dateCreated datePublished" datetime="2019-01-10T10:07:44+08:00">2019-01-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/10/koa-learn-3-2019-01-10/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/10/koa-learn-3-2019-01-10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看完了大体的内容，对一些细枝末节再看一下，最后看一下test和benchmark的代码，并作出一个总结。</p>
+<hr>
+<h2 id="一些细节"><a href="#一些细节" class="headerlink" title="一些细节"></a>一些细节</h2><h3 id="error-handling"><a href="#error-handling" class="headerlink" title="error handling"></a>error handling</h3><p>Koa的error处理的函数有两个，一个是在<code>application.js</code>中的<code>app.onerror</code>，一个是<code>context.js</code>中的<code>ctx.onerror</code>.</p>
+<p>前者，是一个默认的错误处理函数，如果用户设置了自己的错误处理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.on(<span class="string">'error'</span>, (err) =&gt; &#123;...&#125;)</div></pre></td></tr></table></figure>
+<p>那就不会用到这个。<br>（其实这个的功能就是简单的输出一下原始的错误信息）</p>
+<p>前者是给服务端看的，用来log错误信息。</p>
+<p>后者，是在发生错误后如何反映给客户端的，在上一篇中写过了。</p>
+<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><h2 id="benchmarks"><a href="#benchmarks" class="headerlink" title="benchmarks"></a>benchmarks</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/koa-learn-2-2019-01-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -336,12 +513,24 @@
                 
               
 
-              <time title="Created: 2019-01-03 21:19:08 / Modified: 21:19:30" itemprop="dateCreated datePublished" datetime="2019-01-03T21:19:08+08:00">2019-01-03</time>
+              <time title="Created: 2019-01-03 21:19:08" itemprop="dateCreated datePublished" datetime="2019-01-03T21:19:08+08:00">2019-01-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-10 10:07:19" itemprop="dateModified" datetime="2019-01-10T10:07:19+08:00">2019-01-10</time>
               
             
           </span>
@@ -411,7 +600,9 @@
 <p>最后这一部分代码，就是让<code>ctx</code>可以方便的使用<code>response</code>和<code>request</code>里的东西，做了一个delegate，本来需要：<code>ctx.response.attachment()</code>，这样只需要：<code>ctx.attachment()</code>.</p>
 <h3 id="异常-错误处理"><a href="#异常-错误处理" class="headerlink" title="异常/错误处理"></a>异常/错误处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">assert: httpAssert, <span class="comment">// &gt;&gt;: wrap http-assert into context</span></div><div class="line"></div><div class="line"><span class="keyword">throw</span>(...args) &#123; <span class="comment">// &gt;&gt;: wrap throw function</span></div><div class="line">  <span class="keyword">throw</span> createError(...args);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 <p>用的分别是<code>http-assert</code>和<code>http-errors</code>来进行assert和error处理</p>
-<h4 id="this-onerror-error-的处理："><a href="#this-onerror-error-的处理：" class="headerlink" title="this.onerror(error){...}的处理："></a><code>this.onerror(error){...}</code>的处理：</h4><p>TODO..</p>
+<h4 id="this-onerror-error-的处理："><a href="#this-onerror-error-的处理：" class="headerlink" title="this.onerror(error){...}的处理："></a><code>this.onerror(error){...}</code>的处理：</h4><p>```js // delegate<br>this.app.emit(‘error’, err, this); // &gt;&gt;: here pass the context<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在这里发生的错误，也告知给application，这样可以让application做出相应的处理。</div><div class="line">这里同时还把`this`传了过去，这样app可以得到context.</div><div class="line"></div><div class="line">```js</div><div class="line">let headerSent = false; // &gt;&gt;: already sent</div><div class="line">if (this.headerSent || !this.writable) &#123;</div><div class="line">  headerSent = err.headerSent = true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">// nothing we can do here other</div><div class="line">// than delegate to the app-level</div><div class="line">// handler and log.</div><div class="line">if (headerSent) &#123;</div><div class="line">  return;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里判断是不是需要对客户端做出response，如果已经sent了，那么就不用做啥了，否则需要处理response返回给客户端。</p>
+<p>后边的代码无非是对不同情况的判断，做出合适的response。</p>
 <h3 id="Cookies处理"><a href="#Cookies处理" class="headerlink" title="Cookies处理"></a>Cookies处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> COOKIES = <span class="built_in">Symbol</span>(<span class="string">'context#cookies'</span>);</div></pre></td></tr></table></figure>
 <p>生成一个唯一的symbol</p>
 <p>get和set分别是这样的操作：</p>
@@ -2196,202 +2387,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/PAT-cpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/PAT-cpp/" itemprop="url">
-                  PAT C++标准库使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-06 19:31:55" itemprop="dateCreated datePublished" datetime="2018-09-06T19:31:55+08:00">2018-09-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-09-07 16:16:56" itemprop="dateModified" datetime="2018-09-07T16:16:56+08:00">2018-09-07</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/06/PAT-cpp/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/06/PAT-cpp/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">prev(v.end())</div><div class="line">next(it)</div><div class="line">rbegin(v)</div><div class="line">...</div></pre></td></tr></table></figure>
-<h2 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h2><h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><h4 id="从大到小排序："><a href="#从大到小排序：" class="headerlink" title="从大到小排序："></a>从大到小排序：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sort(a.begin(), a.end(), greater&lt;<span class="keyword">int</span>&gt;());</div></pre></td></tr></table></figure>
-<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><h3 id="删除特定元素"><a href="#删除特定元素" class="headerlink" title="删除特定元素"></a>删除特定元素</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">v.erase(remove_if(v.begin(), v.end(), pred), v.end());</div></pre></td></tr></table></figure>
-<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><h3 id="删除特定字符"><a href="#删除特定字符" class="headerlink" title="删除特定字符"></a>删除特定字符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s.erase(remove_if(s.begin(), s.end(), pred), s.end());</div></pre></td></tr></table></figure>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">size_type pos = s.find(ch);</div><div class="line">pos == <span class="built_in">string</span>::npos ?</div></pre></td></tr></table></figure>
-<h2 id="queue"><a href="#queue" class="headerlink" title="queue"></a>queue</h2><h3 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span>;</span></div><div class="line">priority_queue&lt;X, <span class="built_in">vector</span>&lt;X&gt;, <span class="keyword">decltype</span>(cmp)&gt; pq(cmp);</div><div class="line">priority_queue&lt;X, <span class="built_in">vector</span>&lt;X&gt;, greater&lt;X&gt;&gt; pq;</div><div class="line">pq.push();</div><div class="line">pq.top();</div><div class="line">pq.pop();</div></pre></td></tr></table></figure>
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h3 id="合并set"><a href="#合并set" class="headerlink" title="合并set"></a>合并set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.insert(s2.begin(), s2.end());</div></pre></td></tr></table></figure>
-<h2 id="numeric"><a href="#numeric" class="headerlink" title="numeric"></a>numeric</h2><h3 id="accumulate"><a href="#accumulate" class="headerlink" title="accumulate"></a>accumulate</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; vs;</div><div class="line"><span class="built_in">string</span> a;</div><div class="line"><span class="built_in">string</span> res = accumulate(vs.begin(), vs.end(), a);</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2443,7 +2438,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">99</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
