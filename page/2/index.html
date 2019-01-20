@@ -290,6 +290,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/PAT-data-structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/06/PAT-data-structure/" itemprop="url">
+                  PAT 常见数据结构及其表示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-06 19:32:52" itemprop="dateCreated datePublished" datetime="2018-09-06T19:32:52+08:00">2018-09-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-07 16:17:03" itemprop="dateModified" datetime="2018-09-07T16:17:03+08:00">2018-09-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/06/PAT-data-structure/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/06/PAT-data-structure/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="特殊格式"><a href="#特殊格式" class="headerlink" title="特殊格式"></a>特殊格式</h2><h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>通常转化为分钟数或秒数，也可以直接用字符串格式来比较，都是可以的</p>
+<p>如果时间需要进行相互之间的运算，可以考虑用同一时间的偏移来表示，比如MM:DD:HH:MM:SS - 01:01:00:00:00，比如不同时间有不同权值，这样计算时会方便很多</p>
+<h3 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h3><p>数组表示，下标表示次幂，值表示系数，没有的值按0算</p>
+<h2 id="线性结构"><a href="#线性结构" class="headerlink" title="线性结构"></a>线性结构</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>多用<code>id - key - next</code>的三元组表示，存储的时候直接开两个大数组，key和next，这样操作就跟普通链表没有什么区别了。</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>根据前中、后中建树，递归实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Node *<span class="title">build</span><span class="params">(<span class="keyword">int</span> posL, <span class="keyword">int</span> posR, <span class="keyword">int</span> inL, <span class="keyword">int</span> inR)</span></span>;</div></pre></td></tr></table></figure>
+<h3 id="根据-parent-left-right-建树"><a href="#根据-parent-left-right-建树" class="headerlink" title="根据 parent-left-right 建树"></a>根据 parent-left-right 建树</h3><p>先开数组存所有节点，再根据关系，确定指针关系</p>
+<h3 id="多叉树"><a href="#多叉树" class="headerlink" title="多叉树"></a>多叉树</h3><p>二维数组，<code>a[i]</code>表示根节点为i的子节点数组</p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p>矩阵表示，如果没有权，那么用bool，有权值为权</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/PAT-cpp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2196,202 +2393,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/24/PAT-A-1072/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/24/PAT-A-1072/" itemprop="url">
-                  1072. Gas Station
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-24 14:50:47 / Modified: 15:53:24" itemprop="dateCreated datePublished" datetime="2018-08-24T14:50:47+08:00">2018-08-24</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/24/PAT-A-1072/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/24/PAT-A-1072/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805396953219072" target="_blank" rel="external">https://pintia.cn/problem-sets/994805342720868352/problems/994805396953219072</a></p>
-<p><strong>1072 Gas Station（30 分）</strong><br>A gas station has to be built at such a location that the minimum distance between the station and any of the residential housing is as far away as possible. However it must guarantee that all the houses are in its service range.</p>
-<p>Now given the map of the city and several candidate locations for the gas station, you are supposed to give the best recommendation. If there are more than one solution, output the one with the smallest average distance to all the houses. If such a solution is still not unique, output the one with the smallest index number.</p>
-<p><strong>Input Specification:</strong><br>Each input file contains one test case. For each case, the first line contains 4 positive integers: N ( ≤10^3 ), the total number of houses; M ( ≤10 ), the total number of the candidate locations for the gas stations; K ( ≤10^4 ), the number of roads connecting the houses and the gas stations; and D_S, the maximum service range of the gas station. It is hence assumed that all the houses are numbered from 1 to N, and all the candidate locations are numbered from G1 to GM.</p>
-<p>Then K lines follow, each describes a road in the format</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P1 P2 Dist</div></pre></td></tr></table></figure>
-<p>where P1 and P2 are the two ends of a road which can be either house numbers or gas station numbers, and Dist is the integer length of the road.</p>
-<p><strong>Output Specification:</strong><br>For each test case, print in the first line the index number of the best location. In the next line, print the minimum and the average distances between the solution and all the houses. The numbers in a line must be separated by a space and be accurate up to 1 decimal place. If the solution does not exist, simply output No Solution.</p>
-<p><strong>Sample Input 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">4 3 11 5</div><div class="line">1 2 2</div><div class="line">1 4 2</div><div class="line">1 G1 4</div><div class="line">1 G2 3</div><div class="line">2 3 2</div><div class="line">2 G2 1</div><div class="line">3 4 2</div><div class="line">3 G3 2</div><div class="line">4 G1 3</div><div class="line">G2 G1 1</div><div class="line">G3 G2 2</div></pre></td></tr></table></figure>
-<p><strong>Sample Output 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">G1</div><div class="line">2.0 3.3</div></pre></td></tr></table></figure>
-<p><strong>Sample Input 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2 1 2 10</div><div class="line">1 G1 9</div><div class="line">2 G1 20</div></pre></td></tr></table></figure>
-<p><strong>Sample Output 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">No Solution</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>找的距离最近house最远的比较容易</p>
-<p>找距离最远的house最近的话，需要遍历</p>
-<p>还要计算平均距离，那么肯定要遍历一遍了</p>
-<p>又是Dijkstra，加一堆麻烦的东西，唉，这种题要写很久orz</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/24.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> N, M, K, D;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>, &amp;N, &amp;M, &amp;K, &amp;D);</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; g(M + N + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(M + N + <span class="number">1</span>, INT_MAX));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; K; i++) &#123;</div><div class="line">        <span class="keyword">char</span> p1[<span class="number">10</span>];</div><div class="line">        <span class="keyword">char</span> p2[<span class="number">10</span>];</div><div class="line">        <span class="keyword">int</span> dist;</div><div class="line">        <span class="keyword">int</span> pi1, pi2;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%s %s %d"</span>, &amp;p1, &amp;p2, &amp;dist);</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(p1[<span class="number">0</span>])) &#123;</div><div class="line">            pi1 = stoi(p1);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            pi1 = stoi(p1 + <span class="number">1</span>) + N;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(p2[<span class="number">0</span>])) &#123;</div><div class="line">            pi2 = stoi(p2);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            pi2 = stoi(p2 + <span class="number">1</span>) + N;</div><div class="line">        &#125;</div><div class="line">        g[pi1][pi2] = g[pi2][pi1] = dist;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> bestGS = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">double</span> maxMinDist = <span class="number">-1.0</span>;</div><div class="line">    <span class="keyword">double</span> minAvgDist = <span class="number">1000000000</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> gs = N + <span class="number">1</span>; gs &lt;= N + M; gs++) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dist(N + M + <span class="number">1</span>, INT_MAX);</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; done(N + M + <span class="number">1</span>, <span class="literal">false</span>);</div><div class="line">        dist[gs] = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N + M + <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> minD = INT_MAX;</div><div class="line">            <span class="keyword">int</span> curr = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; N + M + <span class="number">1</span>; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (!done[j] &amp;&amp; dist[j] &lt; minD) &#123;</div><div class="line">                    minD = dist[j];</div><div class="line">                    curr = j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            done[curr] = <span class="literal">true</span>;</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; N + M + <span class="number">1</span>; k++) &#123;</div><div class="line">                <span class="keyword">if</span> (g[curr][k] != INT_MAX &amp;&amp; dist[curr] + g[curr][k] &lt; dist[k]) &#123;</div><div class="line">                    dist[k] = dist[curr] + g[curr][k];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> totalDist = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> minDist = INT_MAX;</div><div class="line">        <span class="keyword">bool</span> isValid = <span class="literal">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N + <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (dist[i] &gt; D) &#123;</div><div class="line">                isValid = <span class="literal">false</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            totalDist += dist[i];</div><div class="line">            <span class="keyword">if</span> (dist[i] &lt; minDist)</div><div class="line">                minDist = dist[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (isValid) &#123;</div><div class="line">            <span class="keyword">if</span> (minDist &gt; maxMinDist) &#123;</div><div class="line">                maxMinDist = minDist;</div><div class="line">                bestGS = gs - N;</div><div class="line">                minAvgDist = <span class="number">1.0</span> * totalDist / N;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (minDist == maxMinDist) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="number">1.0</span> * totalDist / N &lt; minAvgDist) &#123;</div><div class="line">                    bestGS = gs - N;</div><div class="line">                    minAvgDist = <span class="number">1.0</span> * totalDist / N;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (bestGS != <span class="number">-1</span>) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"G%d\n"</span>, bestGS);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.1f %.1f"</span>, maxMinDist, minAvgDist);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"No Solution"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2443,7 +2444,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2488,7 +2489,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
