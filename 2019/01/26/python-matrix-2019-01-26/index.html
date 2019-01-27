@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在机器学习中，经常会用到矩阵，在python语言中，向量、矩阵等抽象概念如何表示和使用，自己之前一直有些搞不明白，今天就试着总结下吧。  问题自己需要明确的一些问题：  python中list，二维list如何操作 numpy中array，二维array如何操作 python list和numpy array的区别，转化 向量如何表示 矩阵的一些常用操作 向量、矩阵的运算  listpython内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中矩阵的使用">
+<meta property="og:url" content="http://yoursite.com/2019/01/26/python-matrix-2019-01-26/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="在机器学习中，经常会用到矩阵，在python语言中，向量、矩阵等抽象概念如何表示和使用，自己之前一直有些搞不明白，今天就试着总结下吧。  问题自己需要明确的一些问题：  python中list，二维list如何操作 numpy中array，二维array如何操作 python list和numpy array的区别，转化 向量如何表示 矩阵的一些常用操作 向量、矩阵的运算  listpython内">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-27T07:06:59.102Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中矩阵的使用">
+<meta name="twitter:description" content="在机器学习中，经常会用到矩阵，在python语言中，向量、矩阵等抽象概念如何表示和使用，自己之前一直有些搞不明白，今天就试着总结下吧。  问题自己需要明确的一些问题：  python中list，二维list如何操作 numpy中array，二维array如何操作 python list和numpy array的区别，转化 向量如何表示 矩阵的一些常用操作 向量、矩阵的运算  listpython内">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/26/python-matrix-2019-01-26/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python中矩阵的使用 | Xiaodong's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/26/python-matrix-2019-01-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python中矩阵的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-26 15:12:08" itemprop="dateCreated datePublished" datetime="2019-01-26T15:12:08+08:00">2019-01-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-01-27 15:06:59" itemprop="dateModified" datetime="2019-01-27T15:06:59+08:00">2019-01-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/26/python-matrix-2019-01-26/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/26/python-matrix-2019-01-26/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在机器学习中，经常会用到矩阵，在python语言中，向量、矩阵等抽象概念如何表示和使用，自己之前一直有些搞不明白，今天就试着总结下吧。</p>
+<hr>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>自己需要明确的一些问题：</p>
+<ul>
+<li>python中list，二维list如何操作</li>
+<li>numpy中array，二维array如何操作</li>
+<li>python list和numpy array的区别，转化</li>
+<li>向量如何表示</li>
+<li>矩阵的一些常用操作</li>
+<li>向量、矩阵的运算</li>
+</ul>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><p>python内置了list，也就是数组，可以用来表示向量和矩阵：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment"># 1-d list</span></div><div class="line">l[:] <span class="comment"># [1, 2, 3]</span></div><div class="line">l[:<span class="number">2</span>] <span class="comment"># [1, 2]</span></div><div class="line">l[<span class="number">1</span>:] <span class="comment"># [2, 3]</span></div><div class="line">l[<span class="number">1</span>] <span class="comment"># [2]</span></div><div class="line">l[<span class="number">-1</span>] <span class="comment"># [3]</span></div><div class="line">l[<span class="number">-2</span>] <span class="comment"># [2]</span></div></pre></td></tr></table></figure>
+<p>关于下标，文档里一张图说的很清楚：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> +---+---+---+---+---+---+</div><div class="line"> | P | y | t | h | o | n |</div><div class="line"> +---+---+---+---+---+---+</div><div class="line"> 0   1   2   3   4   5   6</div><div class="line">-6  -5  -4  -3  -2  -1</div></pre></td></tr></table></figure>
+<p><strong>2d-list：</strong></p>
+<p>表示矩阵可以用python的2维list：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mat = [</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</div><div class="line">]</div><div class="line"></div><div class="line"><span class="comment"># mat</span></div><div class="line"><span class="comment"># [[1, 2, 3], [4, 5, 6]]</span></div></pre></td></tr></table></figure>
+<p>表示上呢，python内置的list也就这么回事，具体使用的时候，有一些操作还是值得注意的。<br>关于list所有可以的操作，文档中给出了：<a href="https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range" target="_blank" rel="external">https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range</a><br>（真难找，python的文档咋这么不清楚，把reference和tutorial放在一起的感觉，不喜欢）</p>
+<p><code>+</code>和<code>*</code>的操作，就是concat：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">l + l <span class="comment"># [1, 2, 3, 1, 2, 3]</span></div><div class="line">l * <span class="number">3</span> <span class="comment"># [1, 2, 3, 1, 2, 3, 1, 2, 3]</span></div></pre></td></tr></table></figure>
+<h2 id="NumPy-Array"><a href="#NumPy-Array" class="headerlink" title="NumPy Array"></a>NumPy Array</h2><p>在机器学习中，好多代码第一行就是<code>import numpy as np</code>哈哈，的确，用numpy的array会更多一些，操作也更丰富一些</p>
+<p>ndarray对多维支持很友好，从名字就可以看出来</p>
+<h3 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h3><p>常用的有：</p>
+<ul>
+<li><code>ndim</code></li>
+<li><code>shape</code></li>
+<li><code>size</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">7</span>]: a = np.array(</div><div class="line">   ...: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">   ...: [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]</div><div class="line">   ...: )</div><div class="line"></div><div class="line">In [<span class="number">8</span>]: a</div><div class="line">Out[<span class="number">8</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line"></div><div class="line">In [<span class="number">9</span>]: a.shape</div><div class="line">Out[<span class="number">9</span>]: (<span class="number">2</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">In [<span class="number">10</span>]: type(a.shape)</div><div class="line">Out[<span class="number">10</span>]: tuple</div><div class="line"></div><div class="line">In [<span class="number">11</span>]: a.dtype</div><div class="line">Out[<span class="number">11</span>]: dtype(<span class="string">'int64'</span>)</div><div class="line"></div><div class="line">In [<span class="number">12</span>]: a.ndim</div><div class="line">Out[<span class="number">12</span>]: <span class="number">2</span></div><div class="line"></div><div class="line">In [<span class="number">13</span>]: a.size</div><div class="line">Out[<span class="number">13</span>]: <span class="number">6</span></div></pre></td></tr></table></figure>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>直接从list创建：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">16</span>]: np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line">Out[<span class="number">16</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">In [<span class="number">17</span>]: np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line">Out[<span class="number">17</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line"></div><div class="line">In [<span class="number">18</span>]: np.array([(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>),(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)])</div><div class="line">Out[<span class="number">18</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure>
+<p>用方便的一些填充函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">22</span>]: np.zeros((<span class="number">2</span>, <span class="number">3</span>))</div><div class="line">Out[<span class="number">22</span>]:</div><div class="line">array([[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</div><div class="line">       [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]])</div><div class="line"></div><div class="line">In [<span class="number">23</span>]: np.zeros(<span class="number">3</span>)</div><div class="line">Out[<span class="number">23</span>]: array([<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>])</div></pre></td></tr></table></figure>
+<p>类似的还有<code>np.ones()</code>和<code>np.empty()</code></p>
+<p>用<code>np.arange()</code>或者<code>np.linspace()</code>生成一定间隔的数据，其实用的比较少</p>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><p>numpy文档：</p>
+<blockquote>
+<p>Arithmetic operators on arrays apply <em>elementwise</em>. A new array is created and filled with the result.</p>
+</blockquote>
+<p>所以，一些基本的操作就明确了，比如：<code>*</code>, <code>**</code>等<br>特别要注意是<code>*</code>，并不是矩阵乘法，而是<em>elementwise</em>的乘法</p>
+<p><code>sum</code>, <code>min</code>, <code>max</code>:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">9</span>]: a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line"></div><div class="line">In [<span class="number">10</span>]: a.sum()</div><div class="line">Out[<span class="number">10</span>]: <span class="number">21</span></div><div class="line"></div><div class="line">In [<span class="number">11</span>]: a.sum(axis=<span class="number">0</span>)</div><div class="line">Out[<span class="number">11</span>]: array([<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</div><div class="line"></div><div class="line">In [<span class="number">12</span>]: a.sum(axis=<span class="number">1</span>)</div><div class="line">Out[<span class="number">12</span>]: array([ <span class="number">6</span>, <span class="number">15</span>])</div><div class="line"></div><div class="line">In [<span class="number">13</span>]: a.min(axis=<span class="number">0</span>)</div><div class="line">Out[<span class="number">13</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">In [<span class="number">14</span>]: a.min()</div><div class="line">Out[<span class="number">14</span>]: <span class="number">1</span></div><div class="line"></div><div class="line">In [<span class="number">15</span>]: a.max()</div><div class="line">Out[<span class="number">15</span>]: <span class="number">6</span></div></pre></td></tr></table></figure>
+<p>当然也可以用python自己的函数<code>min</code>, <code>max</code>, <code>sum</code>，这其中应该会有一个cast的过程</p>
+<h3 id="shape操作"><a href="#shape操作" class="headerlink" title="shape操作"></a>shape操作</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">16</span>]: a</div><div class="line">Out[<span class="number">16</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">       [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line"></div><div class="line">In [<span class="number">17</span>]: a.reshape(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line">Out[<span class="number">17</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">4</span>],</div><div class="line">       [<span class="number">5</span>, <span class="number">6</span>]])</div><div class="line">In [<span class="number">20</span>]: a.reshape(<span class="number">3</span>, <span class="number">-1</span>) <span class="comment"># -1表示自动计算</span></div><div class="line">Out[<span class="number">20</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">4</span>],</div><div class="line">       [<span class="number">5</span>, <span class="number">6</span>]])</div><div class="line">       </div><div class="line">In [<span class="number">21</span>]: a.resize(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line"></div><div class="line">In [<span class="number">22</span>]: a</div><div class="line">Out[<span class="number">22</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">4</span>],</div><div class="line">       [<span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure>
+<h3 id="stack-amp-split"><a href="#stack-amp-split" class="headerlink" title="stack &amp; split"></a>stack &amp; split</h3><p><code>hstack</code> <code>vstack</code>：分别水平堆叠和垂直堆叠</p>
+<p><code>hsplit</code> <code>vsplit</code>: 分别水平气氛和垂直切分</p>
+<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><ul>
+<li>no copy (alias): <code>b = a</code></li>
+<li>shallow copy: <code>b = a.view()</code></li>
+<li>deep copy: <code>b = a.copy()</code></li>
+</ul>
+<h3 id="vector-vs-matrix"><a href="#vector-vs-matrix" class="headerlink" title="vector vs. matrix"></a>vector vs. matrix</h3><p>之前自己一直有疑惑的是，numpy中的vector和matrix有什么关系，是不是一样的。<br>因为，在运算的过程中，经常需要矩阵和向量之间进行运算，有时候会有对不齐的操作。</p>
+<p>经过了解，明确了，一维数组和矩阵中的行向量或者列向量是不一样的！不能直接进行运算！！</p>
+<p>两者的相互转化及运算：</p>
+<p>```py In [43]: a = np.array([1, 2, 3])</p>
+<p>In [44]: rv = np.array([a]) # 转换成行向量，(3,) -&gt; (1, 3)</p>
+<p>In [45]: rv<br>Out[45]: array([[1, 2, 3]])</p>
+<p>In [46]: cv = np.vstack(a) # 转换成列向量，(3,) -&gt; (3, 1)</p>
+<p>In [47]: cv<br>Out[47]:<br>array([[1],<br>       [2],<br>       [3]])</p>
+<p>In [48]: cv @ rv<br>Out[48]:<br>array([[1, 2, 3],<br>       [2, 4, 6],<br>       [3, 6, 9]])</p>
+<p>In [52]: rv[0] # 行向量 -&gt; array<br>Out[52]: array([1, 2, 3])</p>
+<p>In [53]: cv[:, 0] # 列向量 -&gt; array<br>Out[53]: array([1, 2, 3])<br>```</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用NumPy的array，会比自带的强大很多！</p>
+<p>一维array和矩阵中的行向量和列向量不一样！</p>
+<p>NumPy的文档还是很清晰的，有问题找文档！（Python的文档是真的辣鸡呀~）</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/20/NA_LAB-2019-01-20/" rel="next" title="NA(Numerical Analysis) Lab总结">
+                <i class="fa fa-chevron-left"></i> NA(Numerical Analysis) Lab总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pic_reverse.png"
+                alt="Xiaodong Zhao" />
+            
+              <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">2.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NumPy-Array"><span class="nav-number">3.</span> <span class="nav-text">NumPy Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本属性"><span class="nav-number">3.1.</span> <span class="nav-text">基本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">3.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算"><span class="nav-number">3.3.</span> <span class="nav-text">运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shape操作"><span class="nav-number">3.4.</span> <span class="nav-text">shape操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stack-amp-split"><span class="nav-number">3.5.</span> <span class="nav-text">stack & split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copy"><span class="nav-number">3.6.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-vs-matrix"><span class="nav-number">3.7.</span> <span class="nav-text">vector vs. matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://brickmaker.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/01/26/python-matrix-2019-01-26/';
+        this.page.identifier = '2019/01/26/python-matrix-2019-01-26/';
+        this.page.title = 'Python中矩阵的使用';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://brickmaker.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
