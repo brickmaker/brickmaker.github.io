@@ -353,7 +353,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-27 15:06:59" itemprop="dateModified" datetime="2019-01-27T15:06:59+08:00">2019-01-27</time>
+                <time title="Modified: 2019-01-27 15:08:44" itemprop="dateModified" datetime="2019-01-27T15:08:44+08:00">2019-01-27</time>
               
             
           </span>
@@ -480,14 +480,7 @@
 <h3 id="vector-vs-matrix"><a href="#vector-vs-matrix" class="headerlink" title="vector vs. matrix"></a>vector vs. matrix</h3><p>之前自己一直有疑惑的是，numpy中的vector和matrix有什么关系，是不是一样的。<br>因为，在运算的过程中，经常需要矩阵和向量之间进行运算，有时候会有对不齐的操作。</p>
 <p>经过了解，明确了，一维数组和矩阵中的行向量或者列向量是不一样的！不能直接进行运算！！</p>
 <p>两者的相互转化及运算：</p>
-<p>```py In [43]: a = np.array([1, 2, 3])</p>
-<p>In [44]: rv = np.array([a]) # 转换成行向量，(3,) -&gt; (1, 3)</p>
-<p>In [45]: rv<br>Out[45]: array([[1, 2, 3]])</p>
-<p>In [46]: cv = np.vstack(a) # 转换成列向量，(3,) -&gt; (3, 1)</p>
-<p>In [47]: cv<br>Out[47]:<br>array([[1],<br>       [2],<br>       [3]])</p>
-<p>In [48]: cv @ rv<br>Out[48]:<br>array([[1, 2, 3],<br>       [2, 4, 6],<br>       [3, 6, 9]])</p>
-<p>In [52]: rv[0] # 行向量 -&gt; array<br>Out[52]: array([1, 2, 3])</p>
-<p>In [53]: cv[:, 0] # 列向量 -&gt; array<br>Out[53]: array([1, 2, 3])<br>```</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">43</span>]: a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">In [<span class="number">44</span>]: rv = np.array([a]) <span class="comment"># 转换成行向量，(3,) -&gt; (1, 3)</span></div><div class="line"></div><div class="line">In [<span class="number">45</span>]: rv</div><div class="line">Out[<span class="number">45</span>]: array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div><div class="line"></div><div class="line">In [<span class="number">46</span>]: cv = np.vstack(a) <span class="comment"># 转换成列向量，(3,) -&gt; (3, 1)</span></div><div class="line"></div><div class="line">In [<span class="number">47</span>]: cv</div><div class="line">Out[<span class="number">47</span>]:</div><div class="line">array([[<span class="number">1</span>],</div><div class="line">       [<span class="number">2</span>],</div><div class="line">       [<span class="number">3</span>]])</div><div class="line"></div><div class="line">In [<span class="number">48</span>]: cv @ rv</div><div class="line">Out[<span class="number">48</span>]:</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</div><div class="line">       [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>],</div><div class="line">       [<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>]])</div><div class="line"></div><div class="line">In [<span class="number">52</span>]: rv[<span class="number">0</span>] <span class="comment"># 行向量 -&gt; array</span></div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"></div><div class="line">In [<span class="number">53</span>]: cv[:, <span class="number">0</span>] <span class="comment"># 列向量 -&gt; array</span></div><div class="line">Out[<span class="number">53</span>]: array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用NumPy的array，会比自带的强大很多！</p>
 <p>一维array和矩阵中的行向量和列向量不一样！</p>
 <p>NumPy的文档还是很清晰的，有问题找文档！（Python的文档是真的辣鸡呀~）</p>
