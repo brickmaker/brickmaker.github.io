@@ -290,6 +290,228 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/web-user-system-2019-02-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/02/web-user-system-2019-02-02/" itemprop="url">
+                  Web开发中的用户系统（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-02 19:06:59" itemprop="dateCreated datePublished" datetime="2019-02-02T19:06:59+08:00">2019-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-10 19:33:10" itemprop="dateModified" datetime="2019-02-10T19:33:10+08:00">2019-02-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/02/web-user-system-2019-02-02/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/02/web-user-system-2019-02-02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>好多Web场景中都会用到用户系统。但Web基于的协议是一个无状态的协议，于是出现了许多幺蛾子来解决，这些的确让自己很头疼，自己一直以来都没怎么搞明白，甚至好多名词都不知道。这次，下定决心了解一波，总结一下。</p>
+<p>任务有如下：</p>
+<ol>
+<li>了解用户系统的一堆名词，authentication、authorization、OAuth、OAuth2、JWT、Session、token等等</li>
+<li>理解实现用户认证和授权的方法与流程</li>
+<li>了解主要的用户系统实现方案</li>
+<li>选择一个库/方案，实现一个用户系统</li>
+</ol>
+<hr>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="authentication-amp-authorization"><a href="#authentication-amp-authorization" class="headerlink" title="authentication &amp; authorization"></a>authentication &amp; authorization</h3><p>翻译的话，authentication：认证；authorization：授权</p>
+<p>StackOverflow上的回答很好了：<a href="https://stackoverflow.com/questions/6556522/authentication-versus-authorization" target="_blank" rel="external">https://stackoverflow.com/questions/6556522/authentication-versus-authorization</a></p>
+<p>简单的说，认证是确认当前操作的的确是某人操作的；授权是确认当前操作是某人权限范围内。</p>
+<p>回答里有人说这是Orthognal的，互不相干的，但我感觉还是有关系的吧，没有认证，哪来的授权？</p>
+<p>了解概念，其实就是知道这是俩东西，需要各自考虑和处理。</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>一直不了解session是个什么东西，捉摸不透，看了好多博客、tutorial，发现也各有各的说法，仍然很迷。</p>
+<p>感觉，session所指的东西，应该有两种意思，一种是抽象的，接近session英文单词的本意，说的就是一种机制，一种实现有状态会话的机制；另一种是具体的，是指这种机制（有人称之为cookie-session机制，我觉得挺好）下，存在服务器上的那个东西，可能好多库都这样叫，于是人们也这样叫吧，我觉得取名<code>sessionInfo</code>应该会更好。</p>
+<h3 id="JWT-token"><a href="#JWT-token" class="headerlink" title="JWT, token"></a>JWT, token</h3><p>JWT是一种方案/机制，这是自己知道的，所谓的token-based authentication，基本指的就是JWT这个机制了。</p>
+<p>这篇文章看了感觉讲的还挺清楚的：<a href="https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide" target="_blank" rel="external">https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide</a></p>
+<h3 id="OAuth-OAuth-2-0"><a href="#OAuth-OAuth-2-0" class="headerlink" title="OAuth, OAuth 2.0"></a>OAuth, OAuth 2.0</h3><p>这两个应该是标准，全称是Open Authorization，2.0是最新版？大概是这个意思吧。</p>
+<p>有官网：<a href="https://oauth.net/2/" target="_blank" rel="external">https://oauth.net/2/</a></p>
+<p>Wikipedia:</p>
+<blockquote>
+<p>开放授权（OAuth）是一个开放标准，允许用户让第三方应用访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。</p>
+<p>OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。每一个令牌授权一个特定的网站（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。这样，OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容。</p>
+</blockquote>
+<p>所以，简单来说的话，就是当一个应用想用第三方应用的信息比如Google的昵称和头像的时候，有权限得到，而不用得到Google的账号和密码。</p>
+<p>本质上和用户系统没有什么关系，其实当用户用第三方登录的时候，只是用了第三方的某些信息注册了一个新用户罢了，没有什么神奇的地方。</p>
+<h3 id="OpenID"><a href="#OpenID" class="headerlink" title="OpenID"></a>OpenID</h3><p>似乎是一个凉了的东西，做authentication的，那就不管它了</p>
+<h3 id="Auth0"><a href="#Auth0" class="headerlink" title="Auth0"></a>Auth0</h3><p>跟着官网的一些指示写了一些东西。</p>
+<p><a href="https://auth0.com/" target="_blank" rel="external">https://auth0.com/</a></p>
+<p>总的来说，这是一个用户系统的服务吧，把好多做好了，可以直接用，全权管理自己的用户，甚至包括第三方的登录。</p>
+<p>集成到自己的app中有点麻烦，没有跟着tutorial走完，大致感觉是Auth0去维护用户，包括authentication和autorization(通过插件的形式)，自己只要来了Auth0的token，Auth0确认下身份和权限然后进行后续的操作就可以了，应该是比较省心的，但也比较黑盒。</p>
+<p>如果快速搞一个用户系统的话，或许，这的确是最好的选择，就像介绍视频说的那样。不过，一般的公司都有自己的用户系统，而个人开发的话，或许也没有很严格的用户系统需要，随便能够authentication就可以了，说不定authorization都是假的hh</p>
+<h3 id="passport-js"><a href="#passport-js" class="headerlink" title="passport.js"></a>passport.js</h3><blockquote>
+<p>Passport is authentication middleware for Node.js.</p>
+</blockquote>
+<p>所以说，这是更方便的进行authentication</p>
+<p>原来需要手动的去做比如用户名+密码审核的工作，它会帮忙更简单的做。<br>原来需要手写OAuth认证流程的，它也有插件帮忙做。</p>
+<hr>
+<p>以上，疯狂查各种博客，网页的结果，没有经过任何的实践，好多都是自己脑补的。</p>
+<p>自己还是对用户系统这一块不是太懂，接下来实践一波，实现一个简易的用户系统，来看看这些东西。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/26/python-matrix-2019-01-26/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2463,188 +2685,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/kSum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/07/kSum/" itemprop="url">
-                  K-Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-07 22:03:37 / Modified: 22:06:44" itemprop="dateCreated datePublished" datetime="2018-09-07T22:03:37+08:00">2018-09-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/07/kSum/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/07/kSum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>很经典的题目，以LeetCode上的4-Sum为例说明。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/4sum/description/" target="_blank" rel="external">https://leetcode.com/problems/4sum/description/</a></p>
-<p><img src="/media/15363290780288.jpg" alt="-w949"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>递归的进行，把 k Sum 分解成 K-1 Sum，直到 2 Sum！！！</p>
-<p>可能效率不是最高的，但代码应该是最清楚的</p>
-<p>复杂度还是很高的，O( N^k-1 )</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; kSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target, <span class="keyword">int</span> k, <span class="keyword">int</span> start) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="keyword">if</span> (nums.size() - start &lt; k)</div><div class="line">            <span class="keyword">return</span> res;</div><div class="line">        <span class="keyword">if</span> (k == <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">int</span> l = start, r = nums.size() - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[l] + nums[r] == target) &#123;</div><div class="line">                    res.push_back(&#123;nums[l], nums[r]&#125;);</div><div class="line">                    l++;</div><div class="line">                    <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>])</div><div class="line">                        l++;</div><div class="line">                    r--;</div><div class="line">                    <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>])</div><div class="line">                        r--;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[l] + nums[r] &lt; target) &#123;</div><div class="line">                    l++;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    r--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> i = start;</div><div class="line">            <span class="keyword">while</span> (i &lt; nums.size() - k + <span class="number">1</span>) &#123;</div><div class="line">                <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; subRes = kSum(nums, target - nums[i], k - <span class="number">1</span>, i + <span class="number">1</span>);</div><div class="line">                <span class="keyword">if</span> (!subRes.empty()) &#123;</div><div class="line">                    <span class="keyword">for</span> (<span class="keyword">auto</span> r : subRes) &#123;</div><div class="line">                        r.insert(r.begin(), nums[i]);</div><div class="line">                        res.push_back(r);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                i++;</div><div class="line">                <span class="keyword">while</span> (i &lt; nums.size() &amp;&amp; nums[i] == nums[i - <span class="number">1</span>])</div><div class="line">                    i++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; fourSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="keyword">return</span> kSum(nums, target, <span class="number">4</span>, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2696,7 +2736,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

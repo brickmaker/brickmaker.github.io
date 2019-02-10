@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="好多Web场景中都会用到用户系统。但Web基于的协议是一个无状态的协议，于是出现了许多幺蛾子来解决，这些的确让自己很头疼，自己一直以来都没怎么搞明白，甚至好多名词都不知道。这次，下定决心了解一波，总结一下。 任务有如下：  了解用户系统的一堆名词，authentication、authorization、OAuth、OAuth2、JWT、Session、token等等 理解实现用户认证和授权的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web开发中的用户系统（一）">
+<meta property="og:url" content="http://yoursite.com/2019/02/02/web-user-system-2019-02-02/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="好多Web场景中都会用到用户系统。但Web基于的协议是一个无状态的协议，于是出现了许多幺蛾子来解决，这些的确让自己很头疼，自己一直以来都没怎么搞明白，甚至好多名词都不知道。这次，下定决心了解一波，总结一下。 任务有如下：  了解用户系统的一堆名词，authentication、authorization、OAuth、OAuth2、JWT、Session、token等等 理解实现用户认证和授权的方法">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-02-10T11:33:10.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web开发中的用户系统（一）">
+<meta name="twitter:description" content="好多Web场景中都会用到用户系统。但Web基于的协议是一个无状态的协议，于是出现了许多幺蛾子来解决，这些的确让自己很头疼，自己一直以来都没怎么搞明白，甚至好多名词都不知道。这次，下定决心了解一波，总结一下。 任务有如下：  了解用户系统的一堆名词，authentication、authorization、OAuth、OAuth2、JWT、Session、token等等 理解实现用户认证和授权的方法">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/02/web-user-system-2019-02-02/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Web开发中的用户系统（一） | Xiaodong's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/web-user-system-2019-02-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web开发中的用户系统（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-02 19:06:59" itemprop="dateCreated datePublished" datetime="2019-02-02T19:06:59+08:00">2019-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-10 19:33:10" itemprop="dateModified" datetime="2019-02-10T19:33:10+08:00">2019-02-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/02/web-user-system-2019-02-02/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/02/web-user-system-2019-02-02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>好多Web场景中都会用到用户系统。但Web基于的协议是一个无状态的协议，于是出现了许多幺蛾子来解决，这些的确让自己很头疼，自己一直以来都没怎么搞明白，甚至好多名词都不知道。这次，下定决心了解一波，总结一下。</p>
+<p>任务有如下：</p>
+<ol>
+<li>了解用户系统的一堆名词，authentication、authorization、OAuth、OAuth2、JWT、Session、token等等</li>
+<li>理解实现用户认证和授权的方法与流程</li>
+<li>了解主要的用户系统实现方案</li>
+<li>选择一个库/方案，实现一个用户系统</li>
+</ol>
+<hr>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="authentication-amp-authorization"><a href="#authentication-amp-authorization" class="headerlink" title="authentication &amp; authorization"></a>authentication &amp; authorization</h3><p>翻译的话，authentication：认证；authorization：授权</p>
+<p>StackOverflow上的回答很好了：<a href="https://stackoverflow.com/questions/6556522/authentication-versus-authorization" target="_blank" rel="external">https://stackoverflow.com/questions/6556522/authentication-versus-authorization</a></p>
+<p>简单的说，认证是确认当前操作的的确是某人操作的；授权是确认当前操作是某人权限范围内。</p>
+<p>回答里有人说这是Orthognal的，互不相干的，但我感觉还是有关系的吧，没有认证，哪来的授权？</p>
+<p>了解概念，其实就是知道这是俩东西，需要各自考虑和处理。</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>一直不了解session是个什么东西，捉摸不透，看了好多博客、tutorial，发现也各有各的说法，仍然很迷。</p>
+<p>感觉，session所指的东西，应该有两种意思，一种是抽象的，接近session英文单词的本意，说的就是一种机制，一种实现有状态会话的机制；另一种是具体的，是指这种机制（有人称之为cookie-session机制，我觉得挺好）下，存在服务器上的那个东西，可能好多库都这样叫，于是人们也这样叫吧，我觉得取名<code>sessionInfo</code>应该会更好。</p>
+<h3 id="JWT-token"><a href="#JWT-token" class="headerlink" title="JWT, token"></a>JWT, token</h3><p>JWT是一种方案/机制，这是自己知道的，所谓的token-based authentication，基本指的就是JWT这个机制了。</p>
+<p>这篇文章看了感觉讲的还挺清楚的：<a href="https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide" target="_blank" rel="external">https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide</a></p>
+<h3 id="OAuth-OAuth-2-0"><a href="#OAuth-OAuth-2-0" class="headerlink" title="OAuth, OAuth 2.0"></a>OAuth, OAuth 2.0</h3><p>这两个应该是标准，全称是Open Authorization，2.0是最新版？大概是这个意思吧。</p>
+<p>有官网：<a href="https://oauth.net/2/" target="_blank" rel="external">https://oauth.net/2/</a></p>
+<p>Wikipedia:</p>
+<blockquote>
+<p>开放授权（OAuth）是一个开放标准，允许用户让第三方应用访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。</p>
+<p>OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。每一个令牌授权一个特定的网站（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。这样，OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容。</p>
+</blockquote>
+<p>所以，简单来说的话，就是当一个应用想用第三方应用的信息比如Google的昵称和头像的时候，有权限得到，而不用得到Google的账号和密码。</p>
+<p>本质上和用户系统没有什么关系，其实当用户用第三方登录的时候，只是用了第三方的某些信息注册了一个新用户罢了，没有什么神奇的地方。</p>
+<h3 id="OpenID"><a href="#OpenID" class="headerlink" title="OpenID"></a>OpenID</h3><p>似乎是一个凉了的东西，做authentication的，那就不管它了</p>
+<h3 id="Auth0"><a href="#Auth0" class="headerlink" title="Auth0"></a>Auth0</h3><p>跟着官网的一些指示写了一些东西。</p>
+<p><a href="https://auth0.com/" target="_blank" rel="external">https://auth0.com/</a></p>
+<p>总的来说，这是一个用户系统的服务吧，把好多做好了，可以直接用，全权管理自己的用户，甚至包括第三方的登录。</p>
+<p>集成到自己的app中有点麻烦，没有跟着tutorial走完，大致感觉是Auth0去维护用户，包括authentication和autorization(通过插件的形式)，自己只要来了Auth0的token，Auth0确认下身份和权限然后进行后续的操作就可以了，应该是比较省心的，但也比较黑盒。</p>
+<p>如果快速搞一个用户系统的话，或许，这的确是最好的选择，就像介绍视频说的那样。不过，一般的公司都有自己的用户系统，而个人开发的话，或许也没有很严格的用户系统需要，随便能够authentication就可以了，说不定authorization都是假的hh</p>
+<h3 id="passport-js"><a href="#passport-js" class="headerlink" title="passport.js"></a>passport.js</h3><blockquote>
+<p>Passport is authentication middleware for Node.js.</p>
+</blockquote>
+<p>所以说，这是更方便的进行authentication</p>
+<p>原来需要手动的去做比如用户名+密码审核的工作，它会帮忙更简单的做。<br>原来需要手写OAuth认证流程的，它也有插件帮忙做。</p>
+<hr>
+<p>以上，疯狂查各种博客，网页的结果，没有经过任何的实践，好多都是自己脑补的。</p>
+<p>自己还是对用户系统这一块不是太懂，接下来实践一波，实现一个简易的用户系统，来看看这些东西。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/26/python-matrix-2019-01-26/" rel="next" title="Python中矩阵的使用">
+                <i class="fa fa-chevron-left"></i> Python中矩阵的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pic_reverse.png"
+                alt="Xiaodong Zhao" />
+            
+              <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#authentication-amp-authorization"><span class="nav-number">1.1.</span> <span class="nav-text">authentication & authorization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session"><span class="nav-number">1.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT-token"><span class="nav-number">1.3.</span> <span class="nav-text">JWT, token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OAuth-OAuth-2-0"><span class="nav-number">1.4.</span> <span class="nav-text">OAuth, OAuth 2.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenID"><span class="nav-number">1.5.</span> <span class="nav-text">OpenID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Auth0"><span class="nav-number">1.6.</span> <span class="nav-text">Auth0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passport-js"><span class="nav-number">1.7.</span> <span class="nav-text">passport.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://brickmaker.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/02/02/web-user-system-2019-02-02/';
+        this.page.identifier = '2019/02/02/web-user-system-2019-02-02/';
+        this.page.title = 'Web开发中的用户系统（一）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://brickmaker.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
