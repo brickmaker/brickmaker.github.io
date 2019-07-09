@@ -290,6 +290,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/23/ES6-module-2018-10-23/" itemprop="url">
+                  ES6 Module学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-23 11:09:23" itemprop="dateCreated datePublished" datetime="2018-10-23T11:09:23+08:00">2018-10-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-22 22:38:05" itemprop="dateModified" datetime="2018-12-22T22:38:05+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/23/ES6-module-2018-10-23/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/23/ES6-module-2018-10-23/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…<br>一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…<br>一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写…</p>
+<p>可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！</p>
+<hr>
+<h2 id="浏览器script标签"><a href="#浏览器script标签" class="headerlink" title="浏览器script标签"></a>浏览器script标签</h2><p>好吧，我以前只知道<code>script</code>标签是把<code>src</code>中指的文件复制过来，现在发现自己已经火星了，去年chrome就支持了引入module，好吧，这样看来，如果就自己用新版的Chrome的话，一切变得简单起来~</p>
+<p>写一个最简单的demo，虽然很直白，但毕竟纪念一下自己第一次使用module:</p>
+<p>index.html:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  hello world</div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>index.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">'./a.js'</span></div><div class="line"><span class="built_in">console</span>.log(a.aaa)</div></pre></td></tr></table></figure>
+<p>a.js:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> aaa = <span class="number">3</span></div></pre></td></tr></table></figure>
+<p>console:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
+<p>可以看出，如果浏览器支持的话，只要加个<code>type=&#39;module&#39;</code>就可以，不用什么编译工具呀，打包工具呀之类的。</p>
+<h2 id="Module怎么用？？？"><a href="#Module怎么用？？？" class="headerlink" title="Module怎么用？？？"></a>Module怎么用？？？</h2><p>其实目前自己对module的理解就是很不具体，可能就是能分成好多个文件写，避免一个文件写的太长；把一些公用的东西提出来，比如config、常数之类的供复用；隔离作用域之类的…</p>
+<p>这些应该都是没有错的，可是真正让自己用的时候，就觉得，没那么简单，它到底是干什么用的？什么时候该用？什么时候不该用？有什么范式嘛？有什么best practice吗？</p>
+<p>这些可能需要长期使用后才有体会吧，目前自己可以先学习一点..</p>
+<p>这里，我觉得讲了一点比较具体的东西，感觉应该值得一看，这本书好像都挺不错的样子：<br><a href="http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript</a><br><a href="http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules</a></p>
+<p>具体的，就不再说了，毕竟没有什么使用经验，以后可以补上…</p>
+<h2 id="编译与打包"><a href="#编译与打包" class="headerlink" title="编译与打包"></a>编译与打包</h2><p>前边提到的是直接浏览器标签<code>type=&#39;module&#39;</code>来让js引入module。</p>
+<ol>
+<li>如果要给用户用呢？用户的浏览器可是无法预知的..</li>
+<li>标签引入是不是不怎么好呀，如果不是http/2的话，是不是还是打包下比较好？</li>
+</ol>
+<p>自己虽然不懂第二点，但是目前这前端形势，第一条就决定了你除非是自己写着玩玩，否则必须使用编译到ES5以及打包的工具..</p>
+<p>于是，自己要接触自己之前恐惧的名词了：Babel，Browsify，Rollup，Webpack…</p>
+<p>这里自己看了一篇文风非常impressive的文章..感觉对新手来说还是很友好的：<br><a href="https://blessing.studio/how-could-i-use-es6-modules-in-production/" target="_blank" rel="external">https://blessing.studio/how-could-i-use-es6-modules-in-production/</a></p>
+<p>其中这张图片比较好的说明了问题：</p>
+<p><img src="/media/15402643340461.jpg" alt=""></p>
+<h3 id="Babel转译工具"><a href="#Babel转译工具" class="headerlink" title="Babel转译工具"></a>Babel转译工具</h3><p>如果单纯的来说的话，Babel就是一个转译工具，把原来用ES6+的语法变成ES5的或者其它的，可是自己不解的地方在于，ES6支持的module，Babel是怎么变的？转译之后，又该如何使用呢？？</p>
+<p>了解了一下，发现它好像是把module转换成CommonJS的规范，所以也不能直接<code>script</code>标签引入完事，而是要用一定的库，比如RequireJS，这个自己之后有时间再看吧，毕竟有了现成的打包工具把它变成一个bundle.js，我为何还要煞费苦心的处理这心转译之后的文件呢？还是看看一些打包工具吧。</p>
+<h3 id="Webpack打包工具"><a href="#Webpack打包工具" class="headerlink" title="Webpack打包工具"></a>Webpack打包工具</h3><p>如果用一句话解释，就是官网上的slogan：</p>
+<blockquote>
+<p>bundle your scripts<br>bundle your styles<br>bundle your assets<br>bundle your images</p>
+</blockquote>
+<p>或者官网这张图：</p>
+<p><img src="/media/15402643469502.jpg" alt="-w1131"></p>
+<p>把有依赖的各种资源编程静态的assets，让我们不用考虑依赖之类的。</p>
+<p>具体的如何整理依赖，tree-shaking什么的就先不管了，反正，最后给我一个<code>bundle.js</code>直接script引入就很合适~</p>
+<p>具体的使用之后再补充吧。</p>
+<h3 id="TypeScript-Webpack"><a href="#TypeScript-Webpack" class="headerlink" title="TypeScript+Webpack"></a>TypeScript+Webpack</h3><p>其实，我一直以为TypeScript和Babel是两个完全不相干的东西，也以为两者一般要同时使用，但后来经过了解发现，反着这俩都能够转换到ES5，所以用TS也不一定要用Babel~</p>
+<p>那么就来入坑TS吧，配一个TypeScript+Webpack的前端项目环境吧，这样就可以优雅的支持Module了~~~</p>
+<h4 id="最简单的TS-Webpack配置Demo"><a href="#最简单的TS-Webpack配置Demo" class="headerlink" title="最简单的TS+Webpack配置Demo"></a>最简单的TS+Webpack配置Demo</h4><p><strong>文件结构：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── dist</div><div class="line">│   ├── bundle.js</div><div class="line">│   └── index.html</div><div class="line">├── package-lock.json</div><div class="line">├── package.json</div><div class="line">├── src</div><div class="line">│   ├── bar.ts</div><div class="line">│   └── index.ts</div><div class="line">├── tsconfig.json</div><div class="line">└── webpack.config.js</div></pre></td></tr></table></figure>
+<p><strong>安装依赖包：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  ...</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "ts-loader": "^5.2.2",</div><div class="line">    "typescript": "^3.1.3",</div><div class="line">    "webpack": "^4.22.0",</div><div class="line">    "webpack-cli": "^3.1.2"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>tsconfig.json</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"compilerOptions"</span>: &#123;</div><div class="line">    <span class="attr">"outDir"</span>: <span class="string">"./dist/"</span>,</div><div class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"module"</span>: <span class="string">"es6"</span>,</div><div class="line">    <span class="attr">"target"</span>: <span class="string">"es5"</span>,</div><div class="line">    <span class="attr">"jsx"</span>: <span class="string">"react"</span>,</div><div class="line">    <span class="attr">"allowJs"</span>: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./src/index.ts'</span>,</div><div class="line">  <span class="attr">mode</span>: <span class="string">'production'</span>,</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'inline-source-map'</span>,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.tsx?$/</span>,</div><div class="line">        <span class="attr">use</span>: <span class="string">'ts-loader'</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">resolve</span>: &#123;</div><div class="line">    <span class="attr">extensions</span>: [<span class="string">'.tsx'</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>src/index.ts</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; greet &#125; <span class="keyword">from</span> <span class="string">'./bar'</span></div><div class="line"></div><div class="line">greet(<span class="string">"world"</span>)</div></pre></td></tr></table></figure>
+<p><strong>src/bar.ts</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> greet = <span class="function">(<span class="params">a: <span class="built_in">String</span></span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;a&#125;</span>`</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; greet &#125;</div></pre></td></tr></table></figure>
+<p><strong>dist/index.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  Hello World</div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npx webpack</div></pre></td></tr></table></figure>
+<p>bundle.js就生成了~</p>
+<p>这个demo反正实现了webpack打包成一个单独的bundle.js文件，且是ES5的，这样一来就可以用高端的TypeScript了，感觉牛的不行，这已经达到了原来的功能。</p>
+<p>如果用webpack来管理的话，思路和原来的是很不一样的，自己也需要重新学习webpack的思路与组织方式，这就放在之后的博客来说吧哈哈哈</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/07/kSum/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2211,197 +2453,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/PAT-A-1033/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/27/PAT-A-1033/" itemprop="url">
-                  1033. To Fill or Not to Fill
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-27 16:16:48 / Modified: 16:43:04" itemprop="dateCreated datePublished" datetime="2018-08-27T16:16:48+08:00">2018-08-27</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/27/PAT-A-1033/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/27/PAT-A-1033/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><strong>1033 To Fill or Not to Fill（25 分）</strong><br>With highways available, driving a car from Hangzhou to any other city is easy. But since the tank capacity of a car is limited, we have to find gas stations on the way from time to time. Different gas station may give different price. You are asked to carefully design the cheapest route to go.</p>
-<p><strong>Input Specification:</strong><br>Each input file contains one test case. For each case, the first line contains 4 positive numbers: Cmax(≤ 100), the maximum capacity of the tank; D (≤30000), the distance between Hangzhou and the destination city; Davg(≤20), the average distance per unit gas that the car can run; and N (≤ 500), the total number of gas stations. Then N lines follow, each contains a pair of non-negative numbers: P_i, the unit gas price, and D_i(≤D), the distance between this station and Hangzhou, for i=1,⋯,N. All the numbers in a line are separated by a space.</p>
-<p><strong>Output Specification:</strong><br>For each test case, print the cheapest price in a line, accurate up to 2 decimal places. It is assumed that the tank is empty at the beginning. If it is impossible to reach the destination, print The maximum travel distance = X where X is the maximum possible distance the car can run, accurate up to 2 decimal places.</p>
-<p><strong>Sample Input 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">50 1300 12 8</div><div class="line">6.00 1250</div><div class="line">7.00 600</div><div class="line">7.00 150</div><div class="line">7.10 0</div><div class="line">7.20 200</div><div class="line">7.50 400</div><div class="line">7.30 1000</div><div class="line">6.85 300</div></pre></td></tr></table></figure>
-<p><strong>Sample Output 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">749.17</div></pre></td></tr></table></figure>
-<p><strong>Sample Input 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">50 1300 12 2</div><div class="line">7.10 0</div><div class="line">7.00 600</div></pre></td></tr></table></figure>
-<p><strong>Sample Output 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The maximum travel distance = 1200.00</div></pre></td></tr></table></figure>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>DP或者贪心吧</p>
-<p>找最便宜的GS，然后走最远的路，直到将整个路线覆盖完<br>实现起来，好像并不是那么容易</p>
-<p>不就是遍历嘛，不会太久的hhh</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>还好AC了，很担心超时</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/27.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Info</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> distance;</div><div class="line">    <span class="keyword">double</span> price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> CMAX, D, Davg, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; CMAX &gt;&gt; D &gt;&gt; Davg &gt;&gt; N;</div><div class="line">    <span class="built_in">vector</span>&lt;Info&gt; gs(N);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; gs[i].price &gt;&gt; gs[i].distance;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">auto</span> cmp = [](Info &amp;a, Info &amp;b) &#123;</div><div class="line">        <span class="keyword">return</span> a.price &lt; b.price;</div><div class="line">    &#125;;</div><div class="line">    sort(gs.begin(), gs.end(), cmp);</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; road(D, <span class="literal">false</span>);</div><div class="line">    <span class="keyword">double</span> cost = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gs.size(); i++) &#123;</div><div class="line">        <span class="keyword">if</span> (find(road.begin(), road.end(), <span class="literal">false</span>) == road.end())</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">int</span> pos = gs[i].distance;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = pos; j &lt; pos + Davg * CMAX &amp;&amp; j &lt; road.size(); j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!road[j]) &#123;</div><div class="line">                road[j] = <span class="literal">true</span>;</div><div class="line">                cnt++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        cost += cnt * gs[i].price / Davg;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (find(road.begin(), road.end(), <span class="literal">false</span>) == road.end()) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.2f"</span>, cost);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">double</span> maxDist = (<span class="keyword">double</span>) distance(road.begin(), find(road.begin(), road.end(), <span class="literal">false</span>));</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"The maximum travel distance = %.2f"</span>, maxDist);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2453,7 +2504,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2502,7 +2553,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

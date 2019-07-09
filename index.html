@@ -290,6 +290,263 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/GSoC-Phase1-2019-07-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/07/GSoC-Phase1-2019-07-07/" itemprop="url">
+                  GSoC 2019 Phase One
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-07 16:25:42" itemprop="dateCreated datePublished" datetime="2019-07-07T16:25:42+08:00">2019-07-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-09 10:43:01" itemprop="dateModified" datetime="2019-07-09T10:43:01+08:00">2019-07-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GSoC/" itemprop="url" rel="index"><span itemprop="name">GSoC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/07/GSoC-Phase1-2019-07-07/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/07/07/GSoC-Phase1-2019-07-07/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Unconsciously, the timeline for GSoC 2019 program has passed its first phase of coding period. Looking back in this period of time, I find that I’ve walked far from the starting point on the road of GSoC.</p>
+<p>In this article, I’ll summarize what I’ve done, what I’ve learned and what my feelings are.</p>
+<hr>
+<h2 id="About-the-Project"><a href="#About-the-Project" class="headerlink" title="About the Project"></a>About the Project</h2><h3 id="Basic-Information"><a href="#Basic-Information" class="headerlink" title="Basic Information"></a>Basic Information</h3><p>My project for this program is <strong>Edge Animations for Large-Scale Network Graphs</strong> from Computational Biology @ University of Nebraska-Lincoln, or simpler, Helikar Lab. My mentor is <strong>Ales Saska</strong>, a very nice person!</p>
+<h3 id="Main-Job"><a href="#Main-Job" class="headerlink" title="Main Job"></a>Main Job</h3><p>My main job is to add some features for ccNetViz, a library for rendering and operating with large-scale network graphs. As I written in my proposal, these features including:</p>
+<ol>
+<li>Edge animation effects: <ol>
+<li>show animation effects with color or shape change</li>
+<li>with speed control options and including some advanced ease effects</li>
+</ol>
+</li>
+<li>Demos to show animation effects, with options so that user can configurate</li>
+<li>Documentation for edge animation to tell people how to use it</li>
+</ol>
+<h3 id="Technique-Stack"><a href="#Technique-Stack" class="headerlink" title="Technique Stack"></a>Technique Stack</h3><ul>
+<li>JavaScript: This is a JavaScript library and mainly written in JavaScript<ul>
+<li>Webpack: We use webpack to pack up JS files and arrange JS codes</li>
+<li>Babel: To transcompile JS code so they can be used in old browser</li>
+</ul>
+</li>
+<li>WebGL: The main function for rendering is implemented using WebGL to accomplish high efficiency<ul>
+<li>GLSL Shader: We use GLSL shaders to do complex calculation, including edge animation</li>
+</ul>
+</li>
+<li>Others: Use some other library or tool to assist development<ul>
+<li>ESLint: lint and regulate our code</li>
+<li>prettier: format code and keep the consistency among all developers</li>
+<li>commit-lint: restrict commit message to certain standard</li>
+</ul>
+</li>
+</ul>
+<h3 id="Why-this-one"><a href="#Why-this-one" class="headerlink" title="Why this one?"></a>Why this one?</h3><p>During the period of choosing project to participate in. I’ve spend a lot of time knowing about all kinds of organizations and projects. But I found that It was very hard to find a project with technique stack of WebGL and Graph Visualization, until I got this one. I will continue study for a master degree in Computer Science, specifically, Data Visualization. So I think this project is very suitable for me. One reason is that I have similar skills like WebGL and JavaScript which are compatible with this project so I can get start soon and contribute more on it. Another is that through this project, I’ll also experience a lot and learn a lot.</p>
+<h2 id="Done-Work"><a href="#Done-Work" class="headerlink" title="Done Work"></a>Done Work</h2><p>After the community bound period, I’ve been familiar with my organization and mentor. Besides, I also done a few contribution to get me involved quickly. In the first phase of coding period. I followed what I have written in my proposal and suggestion from my mentor and got a reasonable result.</p>
+<p>In one word, what I’ve done in this phase is adding edge color animation with a few configuration options to ccNetViz library.</p>
+<h3 id="Color-Animation"><a href="#Color-Animation" class="headerlink" title="Color Animation"></a>Color Animation</h3><p><img src="media/1562378706731.png" alt="1562378706731"></p>
+<p>As the picture shows, with edge animation, the color of certain part of edge will change to red and will move from source node to target node with time. With this effect, it may indicate that something flow in edges.</p>
+<h3 id="Configuration-Options"><a href="#Configuration-Options" class="headerlink" title="Configuration Options"></a>Configuration Options</h3><p><img src="media/1562379194127.png" alt="1562379194127"></p>
+<p>Like other options for node or arrow. I also added some options to control the effects of edge animation. It includes:</p>
+<ol>
+<li>Animation type: control the color change shape on edge, has three options:<ol>
+<li>None: without animation</li>
+<li>Basic: pure color between start point and reached location</li>
+<li>Gradient: gradient color at reached location</li>
+</ol>
+</li>
+<li>Animation speed: specify the speed of movement.</li>
+<li>Animation ease effects: It’s little boring if the animation speed is linear, which means the speed keeps same all the time. So I added some easing effects on animation speed following this site: <a href="https://easings.net/en" target="_blank" rel="external">https://easings.net/en</a>. The options including most of easing functions in it.</li>
+</ol>
+<h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><p>The ccNetViz library mainly focuses on visualizing and operating on large-scale graph data. So the efficiency is very important. If edge animation is two slow to render or interact smoothly, it will be unbearable.</p>
+<p>So I use real dataset to test animation efficiency as the figure shows:</p>
+<p><img src="media/1562380792534.png" alt="1562380792534"></p>
+<p>I added FPS calculation function for ccNetViz so it can live update the render loop times. The benchmark results show that with animation, the quality of graph is worse that one without animation. But the FPS of animation keeps at around 60 regardless of how large dataset we use. Maybe because I put all animation function into shaders and GPU is faster for this kind of computation.</p>
+<h2 id="Implementation-Detail"><a href="#Implementation-Detail" class="headerlink" title="Implementation Detail"></a>Implementation Detail</h2><h3 id="Animation-position-calculation"><a href="#Animation-position-calculation" class="headerlink" title="Animation position calculation"></a>Animation position calculation</h3><p>Every frame we need to update the color change position. So we have to draw graph with new parameters. Here we pass the render time since start.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> drawLoop = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  context.renderTime = (<span class="built_in">Date</span>.now() - startTime) / <span class="number">1000.0</span>;</div><div class="line">  drawOnce();</div><div class="line">  requestAnimationFrame(drawLoop);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>Then we can set uniform in shader and fragment shader will handle where animation color should be drawn according to time. For example:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">float</span> pos = <span class="built_in">fract</span>(v_time) * edgeLen;</div></pre></td></tr></table></figure>
+<h3 id="Color-animation-effects"><a href="#Color-animation-effects" class="headerlink" title="Color animation effects"></a>Color animation effects</h3><p>Simplest method to show animation through color, is to draw part of edge from start position to animation position by animation color, and the other part with original color. It can be simple written as:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">float</span> draw = <span class="number">1.</span> - <span class="built_in">step</span>(pos, edgeLen);</div></pre></td></tr></table></figure>
+<p>But if we want some advanced animation effects, like gradient color at animation position, we have to write more complex mask function. For example:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">float</span> draw = <span class="built_in">fract</span>(<span class="built_in">smoothstep</span>(pos - gradLen, pos, edgeLen));</div></pre></td></tr></table></figure>
+<p>It will show a gradient color block of length <code>gradLen</code> right after <code>pos</code>.</p>
+<h3 id="Easing-effects-of-animation"><a href="#Easing-effects-of-animation" class="headerlink" title="Easing effects of animation"></a>Easing effects of animation</h3><p>This page: <a href="https://easings.net/en" target="_blank" rel="external">https://easings.net/en</a>, gives an intuitive presentation of different easing function. It’s cool if I can add them to color animation. Finally, I found an open source implementation of them on GitHub: <a href="https://github.com/glslify/glsl-easings" target="_blank" rel="external">https://github.com/glslify/glsl-easings</a>. All I want to do is import them and add ease function before <code>fract</code> function like this:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="type">float</span> pos = ease(<span class="built_in">fract</span>(v_time)) * edgeLen;</div></pre></td></tr></table></figure>
+<h2 id="Faced-Challenges"><a href="#Faced-Challenges" class="headerlink" title="Faced Challenges"></a>Faced Challenges</h2><h3 id="Existing-code-structures-and-functions"><a href="#Existing-code-structures-and-functions" class="headerlink" title="Existing code structures and functions"></a>Existing code structures and functions</h3><p>My first job of this program is to read existing code of project. This library already has many complex features so there are lots of modules in it. At first I have no idea of its structure and relation between different files. I asked Ales for help and he instructed me to focus on <code>layer.js</code> file and read its code and shaders. Then I started understanding ccNetViz’s mechanisms and added my code into it.</p>
+<h3 id="Animation-speed-control"><a href="#Animation-speed-control" class="headerlink" title="Animation speed control"></a>Animation speed control</h3><p>For the first time, I basically <code>fract</code> time to range between 0 and 1 and used this factor to multiply totalLen and got animation position. But there was a problem. When coming edges with different length, the speed of animation will not be same. Longer edge will have higher speed. To make animation of all edges with same speed. I tried to use maxLen(window’s diagnal length) as base Length and for each edge, I use length of edge divides maxLen. After that, I get animation speed relate to its length. Longer edge will have longer cycle time and thus guarantee consistent speed.</p>
+<h3 id="Shader-file-loading"><a href="#Shader-file-loading" class="headerlink" title="Shader file loading"></a>Shader file loading</h3><p>The original method to add shader code into project is using array of strings and concat them into a long string. It did work and simple in some extent. But It was very unfriendly for developer because we had to carefully watch on typo during coding and multiple arrays are also somewhat messy.</p>
+<p>At beginning, I also wrote shader code in this way, but finally It got more difficult for me. Then mentor Ales suggested me to use webpack and <code>raw-loader</code> to loader text file. So I can split all shader code into individual files and import them. And with some pulgins of IDE, It even has code highlight.</p>
+<h2 id="Personal-Feelings"><a href="#Personal-Feelings" class="headerlink" title="Personal Feelings"></a>Personal Feelings</h2><p>This is my first time to do real contribution on open source project, so it’s really an amazing experience. Prior to this, I only open some issue for some projects on GitHub but never commit to them. But during this month, I even contributed tens of commits on ccNetViz. When I saw the project manager merged my pull request, I just thought that there will be thousands of people that can use features that I’ve written!</p>
+<p>This month, I learned a lot from my mentor, Ales. He’s a very nice and patient person. I remembered that my first PR actually did some damage to the project. Thanks to Ales that point out my problem and let me fix it. Sometimes I found that I have no idea how to continue in a certain direction and Ales always could give me some very useful tips which help me out of woods.</p>
+<p>I also learned a lot during this month. I learned some tools for team collaboration development, including ESLint and Prettier that help us normalize code, git-cz to do semantic git commits and Pull Request mechanism to deal with multiple contribution. Besides, I got a deeper understanding of WebGL and shaders. Basically I implemented all vital features using shaders. It’s faster and more powerful than I thought before.</p>
+<h2 id="Plan-amp-Thought-for-Phase-2"><a href="#Plan-amp-Thought-for-Phase-2" class="headerlink" title="Plan&amp;Thought for Phase #2"></a>Plan&amp;Thought for Phase #2</h2><p>I think for animation there are two factors. One is the speed of animation over time. The other is animation effects, or animation type. For speed factor, I’ve done it in phase #1. We can control the speed and ease effects of animation. I think that’s enough. So, at next phase, my biggest problem will be the animation type.</p>
+<p>I’ve implemented two animation type, both about color change on edge. They show below:</p>
+<p><img src="/media/image001.png" alt="image001"><br><img src="/media/image002.png" alt="image002"><br>Besides, I also mentioned double gradient color effect in my proposal, it looks like this:<br><img src="/media/image003.png" alt="image003"><br>So my first job is to add this color effect into ccNetViz.</p>
+<p>After that, I’ll focus on the animation with edge’s shape deformation. It’s much more difficult than color change on edge. Currently, I propose three types of animation effect show below:</p>
+<p><img src="/media/image004.png" alt="image004"><br><img src="/media/image006.png" alt="image006"><br><img src="/media/image005.png" alt="image005"><br>The first and the second are similar. They both have edge shape deformation at certain position on edge. The last one may be more troublesome, it includes whole change of edge.</p>
+<p>These three types of animation, will be my main job during the following three or four weeks. Because I don’t know how to implement it yet, I have to research on them or learn some tricky skills of WebGL shaders. I thinks with the power of fragment shaders, I’ll finally find the right way to do it.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/web-user-system-2019-02-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2443,248 +2700,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/23/ES6-module-2018-10-23/" itemprop="url">
-                  ES6 Module学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-23 11:09:23" itemprop="dateCreated datePublished" datetime="2018-10-23T11:09:23+08:00">2018-10-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 22:38:05" itemprop="dateModified" datetime="2018-12-22T22:38:05+08:00">2018-12-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/10/23/ES6-module-2018-10-23/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/23/ES6-module-2018-10-23/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一直对ES6都是知识了解其大致的feature，却从来没有用过，也不知道怎么用…<br>一直对前端的组织、打包不了解，类似Babel、Webpack、Browsify这些看着都是避而远之…<br>一直对React、Vue这些框架的使用都是套scaffold，根本不知道其中是怎样运作的，脱离了脚手架完全不会写…</p>
-<p>可是，这样终归是不行的，终于下定决心去了解，去使用这些东西，真正接触现代的JavaScript！</p>
-<hr>
-<h2 id="浏览器script标签"><a href="#浏览器script标签" class="headerlink" title="浏览器script标签"></a>浏览器script标签</h2><p>好吧，我以前只知道<code>script</code>标签是把<code>src</code>中指的文件复制过来，现在发现自己已经火星了，去年chrome就支持了引入module，好吧，这样看来，如果就自己用新版的Chrome的话，一切变得简单起来~</p>
-<p>写一个最简单的demo，虽然很直白，但毕竟纪念一下自己第一次使用module:</p>
-<p>index.html:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  hello world</div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>index.js:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> a <span class="keyword">from</span> <span class="string">'./a.js'</span></div><div class="line"><span class="built_in">console</span>.log(a.aaa)</div></pre></td></tr></table></figure>
-<p>a.js:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> aaa = <span class="number">3</span></div></pre></td></tr></table></figure>
-<p>console:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3</div></pre></td></tr></table></figure>
-<p>可以看出，如果浏览器支持的话，只要加个<code>type=&#39;module&#39;</code>就可以，不用什么编译工具呀，打包工具呀之类的。</p>
-<h2 id="Module怎么用？？？"><a href="#Module怎么用？？？" class="headerlink" title="Module怎么用？？？"></a>Module怎么用？？？</h2><p>其实目前自己对module的理解就是很不具体，可能就是能分成好多个文件写，避免一个文件写的太长；把一些公用的东西提出来，比如config、常数之类的供复用；隔离作用域之类的…</p>
-<p>这些应该都是没有错的，可是真正让自己用的时候，就觉得，没那么简单，它到底是干什么用的？什么时候该用？什么时候不该用？有什么范式嘛？有什么best practice吗？</p>
-<p>这些可能需要长期使用后才有体会吧，目前自己可以先学习一点..</p>
-<p>这里，我觉得讲了一点比较具体的东西，感觉应该值得一看，这本书好像都挺不错的样子：<br><a href="http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript</a><br><a href="http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules" target="_blank" rel="external">http://exploringjs.com/es6/ch_modules.html#sec_design-goals-es6-modules</a></p>
-<p>具体的，就不再说了，毕竟没有什么使用经验，以后可以补上…</p>
-<h2 id="编译与打包"><a href="#编译与打包" class="headerlink" title="编译与打包"></a>编译与打包</h2><p>前边提到的是直接浏览器标签<code>type=&#39;module&#39;</code>来让js引入module。</p>
-<ol>
-<li>如果要给用户用呢？用户的浏览器可是无法预知的..</li>
-<li>标签引入是不是不怎么好呀，如果不是http/2的话，是不是还是打包下比较好？</li>
-</ol>
-<p>自己虽然不懂第二点，但是目前这前端形势，第一条就决定了你除非是自己写着玩玩，否则必须使用编译到ES5以及打包的工具..</p>
-<p>于是，自己要接触自己之前恐惧的名词了：Babel，Browsify，Rollup，Webpack…</p>
-<p>这里自己看了一篇文风非常impressive的文章..感觉对新手来说还是很友好的：<br><a href="https://blessing.studio/how-could-i-use-es6-modules-in-production/" target="_blank" rel="external">https://blessing.studio/how-could-i-use-es6-modules-in-production/</a></p>
-<p>其中这张图片比较好的说明了问题：</p>
-<p><img src="/media/15402643340461.jpg" alt=""></p>
-<h3 id="Babel转译工具"><a href="#Babel转译工具" class="headerlink" title="Babel转译工具"></a>Babel转译工具</h3><p>如果单纯的来说的话，Babel就是一个转译工具，把原来用ES6+的语法变成ES5的或者其它的，可是自己不解的地方在于，ES6支持的module，Babel是怎么变的？转译之后，又该如何使用呢？？</p>
-<p>了解了一下，发现它好像是把module转换成CommonJS的规范，所以也不能直接<code>script</code>标签引入完事，而是要用一定的库，比如RequireJS，这个自己之后有时间再看吧，毕竟有了现成的打包工具把它变成一个bundle.js，我为何还要煞费苦心的处理这心转译之后的文件呢？还是看看一些打包工具吧。</p>
-<h3 id="Webpack打包工具"><a href="#Webpack打包工具" class="headerlink" title="Webpack打包工具"></a>Webpack打包工具</h3><p>如果用一句话解释，就是官网上的slogan：</p>
-<blockquote>
-<p>bundle your scripts<br>bundle your styles<br>bundle your assets<br>bundle your images</p>
-</blockquote>
-<p>或者官网这张图：</p>
-<p><img src="/media/15402643469502.jpg" alt="-w1131"></p>
-<p>把有依赖的各种资源编程静态的assets，让我们不用考虑依赖之类的。</p>
-<p>具体的如何整理依赖，tree-shaking什么的就先不管了，反正，最后给我一个<code>bundle.js</code>直接script引入就很合适~</p>
-<p>具体的使用之后再补充吧。</p>
-<h3 id="TypeScript-Webpack"><a href="#TypeScript-Webpack" class="headerlink" title="TypeScript+Webpack"></a>TypeScript+Webpack</h3><p>其实，我一直以为TypeScript和Babel是两个完全不相干的东西，也以为两者一般要同时使用，但后来经过了解发现，反着这俩都能够转换到ES5，所以用TS也不一定要用Babel~</p>
-<p>那么就来入坑TS吧，配一个TypeScript+Webpack的前端项目环境吧，这样就可以优雅的支持Module了~~~</p>
-<h4 id="最简单的TS-Webpack配置Demo"><a href="#最简单的TS-Webpack配置Demo" class="headerlink" title="最简单的TS+Webpack配置Demo"></a>最简单的TS+Webpack配置Demo</h4><p><strong>文件结构：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── dist</div><div class="line">│   ├── bundle.js</div><div class="line">│   └── index.html</div><div class="line">├── package-lock.json</div><div class="line">├── package.json</div><div class="line">├── src</div><div class="line">│   ├── bar.ts</div><div class="line">│   └── index.ts</div><div class="line">├── tsconfig.json</div><div class="line">└── webpack.config.js</div></pre></td></tr></table></figure>
-<p><strong>安装依赖包：</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  ...</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "ts-loader": "^5.2.2",</div><div class="line">    "typescript": "^3.1.3",</div><div class="line">    "webpack": "^4.22.0",</div><div class="line">    "webpack-cli": "^3.1.2"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>tsconfig.json</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"compilerOptions"</span>: &#123;</div><div class="line">    <span class="attr">"outDir"</span>: <span class="string">"./dist/"</span>,</div><div class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"noImplicitAny"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"module"</span>: <span class="string">"es6"</span>,</div><div class="line">    <span class="attr">"target"</span>: <span class="string">"es5"</span>,</div><div class="line">    <span class="attr">"jsx"</span>: <span class="string">"react"</span>,</div><div class="line">    <span class="attr">"allowJs"</span>: <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>webpack.config.js</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./src/index.ts'</span>,</div><div class="line">  <span class="attr">mode</span>: <span class="string">'production'</span>,</div><div class="line">  <span class="attr">devtool</span>: <span class="string">'inline-source-map'</span>,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.tsx?$/</span>,</div><div class="line">        <span class="attr">use</span>: <span class="string">'ts-loader'</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">resolve</span>: &#123;</div><div class="line">    <span class="attr">extensions</span>: [<span class="string">'.tsx'</span>, <span class="string">'.ts'</span>, <span class="string">'.js'</span>]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><strong>src/index.ts</strong></p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; greet &#125; <span class="keyword">from</span> <span class="string">'./bar'</span></div><div class="line"></div><div class="line">greet(<span class="string">"world"</span>)</div></pre></td></tr></table></figure>
-<p><strong>src/bar.ts</strong></p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> greet = <span class="function">(<span class="params">a: <span class="built_in">String</span></span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;a&#125;</span>`</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> &#123; greet &#125;</div></pre></td></tr></table></figure>
-<p><strong>dist/index.html</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  Hello World</div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npx webpack</div></pre></td></tr></table></figure>
-<p>bundle.js就生成了~</p>
-<p>这个demo反正实现了webpack打包成一个单独的bundle.js文件，且是ES5的，这样一来就可以用高端的TypeScript了，感觉牛的不行，这已经达到了原来的功能。</p>
-<p>如果用webpack来管理的话，思路和原来的是很不一样的，自己也需要重新学习webpack的思路与组织方式，这就放在之后的博客来说吧哈哈哈</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2736,7 +2751,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2785,7 +2800,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

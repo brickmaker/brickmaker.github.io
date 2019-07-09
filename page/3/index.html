@@ -290,6 +290,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/PAT-A-1033/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/27/PAT-A-1033/" itemprop="url">
+                  1033. To Fill or Not to Fill
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-27 16:16:48 / Modified: 16:43:04" itemprop="dateCreated datePublished" datetime="2018-08-27T16:16:48+08:00">2018-08-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/PAT/" itemprop="url" rel="index"><span itemprop="name">PAT</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/27/PAT-A-1033/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/27/PAT-A-1033/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><strong>1033 To Fill or Not to Fill（25 分）</strong><br>With highways available, driving a car from Hangzhou to any other city is easy. But since the tank capacity of a car is limited, we have to find gas stations on the way from time to time. Different gas station may give different price. You are asked to carefully design the cheapest route to go.</p>
+<p><strong>Input Specification:</strong><br>Each input file contains one test case. For each case, the first line contains 4 positive numbers: Cmax(≤ 100), the maximum capacity of the tank; D (≤30000), the distance between Hangzhou and the destination city; Davg(≤20), the average distance per unit gas that the car can run; and N (≤ 500), the total number of gas stations. Then N lines follow, each contains a pair of non-negative numbers: P_i, the unit gas price, and D_i(≤D), the distance between this station and Hangzhou, for i=1,⋯,N. All the numbers in a line are separated by a space.</p>
+<p><strong>Output Specification:</strong><br>For each test case, print the cheapest price in a line, accurate up to 2 decimal places. It is assumed that the tank is empty at the beginning. If it is impossible to reach the destination, print The maximum travel distance = X where X is the maximum possible distance the car can run, accurate up to 2 decimal places.</p>
+<p><strong>Sample Input 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">50 1300 12 8</div><div class="line">6.00 1250</div><div class="line">7.00 600</div><div class="line">7.00 150</div><div class="line">7.10 0</div><div class="line">7.20 200</div><div class="line">7.50 400</div><div class="line">7.30 1000</div><div class="line">6.85 300</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">749.17</div></pre></td></tr></table></figure>
+<p><strong>Sample Input 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">50 1300 12 2</div><div class="line">7.10 0</div><div class="line">7.00 600</div></pre></td></tr></table></figure>
+<p><strong>Sample Output 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The maximum travel distance = 1200.00</div></pre></td></tr></table></figure>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>DP或者贪心吧</p>
+<p>找最便宜的GS，然后走最远的路，直到将整个路线覆盖完<br>实现起来，好像并不是那么容易</p>
+<p>不就是遍历嘛，不会太久的hhh</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>还好AC了，很担心超时</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Created by Zhao Xiaodong on 2018/8/27.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Info</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> distance;</div><div class="line">    <span class="keyword">double</span> price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> CMAX, D, Davg, N;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; CMAX &gt;&gt; D &gt;&gt; Davg &gt;&gt; N;</div><div class="line">    <span class="built_in">vector</span>&lt;Info&gt; gs(N);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; gs[i].price &gt;&gt; gs[i].distance;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">auto</span> cmp = [](Info &amp;a, Info &amp;b) &#123;</div><div class="line">        <span class="keyword">return</span> a.price &lt; b.price;</div><div class="line">    &#125;;</div><div class="line">    sort(gs.begin(), gs.end(), cmp);</div><div class="line"></div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; road(D, <span class="literal">false</span>);</div><div class="line">    <span class="keyword">double</span> cost = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gs.size(); i++) &#123;</div><div class="line">        <span class="keyword">if</span> (find(road.begin(), road.end(), <span class="literal">false</span>) == road.end())</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">int</span> pos = gs[i].distance;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = pos; j &lt; pos + Davg * CMAX &amp;&amp; j &lt; road.size(); j++) &#123;</div><div class="line">            <span class="keyword">if</span> (!road[j]) &#123;</div><div class="line">                road[j] = <span class="literal">true</span>;</div><div class="line">                cnt++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        cost += cnt * gs[i].price / Davg;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (find(road.begin(), road.end(), <span class="literal">false</span>) == road.end()) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%.2f"</span>, cost);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">double</span> maxDist = (<span class="keyword">double</span>) distance(road.begin(), find(road.begin(), road.end(), <span class="literal">false</span>));</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"The maximum travel distance = %.2f"</span>, maxDist);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/26/tree-from-parent-array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1965,227 +2156,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/kmp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/kmp/" itemprop="url">
-                  KMP String Pattern Matching
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 22:35:57" itemprop="dateCreated datePublished" datetime="2018-08-19T22:35:57+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-20 10:39:24" itemprop="dateModified" datetime="2018-08-20T10:39:24+08:00">2018-08-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/19/kmp/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/19/kmp/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>KMP算法，之前都没有听说过，考研竟然要考？？excuse me？不过了解了之后，发现，这个算法还是很有用，同时也是很经典的，在此将自己的学习历程以及总结记录下来。</p>
-<hr>
-<h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><h3 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h3><p>由字符串模式匹配引进的。</p>
-<p>直观来看，对于字符串匹配，也就是<code>strstr()</code>函数的功能，首先想到的是直接的遍历比较，对于长度为m的字符串以及长度为n的pattern，复杂度是O(m * n)。而应用KMP算法，可以将时间复杂度降到O(m + n)。</p>
-<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>这个到处都有说，各种“循循善诱”引出的。简单来说，就是：<br>对于pattern，当比到第k位，发现不匹配了，这个时候，前k位匹配的自己其实已经知道是什么了，所以这一段的最后一部分，可能和pattern的前一部分相同，直接从这之后开始比就好了。</p>
-<p>这样一来，扫字符串的时候，指针是不用往后挪的，当到达p位置发现pattern的第k位不匹配，此时，string的[p-k, p-1]这一段和pattern的[0, k-1]这k位是匹配的。<br>如果是原来，那么string的指针得回去，从现在的p回到p-k+1的位置，然后pattern也向前挪一位比较。KMP的话，不把string的指针往后挪，而是只把pattern向前挪，当然，相同的就对齐，比较之后的了。</p>
-<p>于是，pattern挪的距离就成了关键。对于[0, k-1]这k位，如果有相同的前缀和后缀，那么就挪到前缀和原来后缀这一段对齐。</p>
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="1-next数组"><a href="#1-next数组" class="headerlink" title="1. next数组"></a>1. next数组</h4><p>next数组是什么呢：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">next[i] = pattern[0, i-1]这一子串的最长相同前后缀</div></pre></td></tr></table></figure>
-<p>比如说<code>ABCABD</code>，在D处，也就是next[5]为2。<br>另外，规定<code>next[0] = -1</code>。</p>
-<p>其实，这样的说明个人是非常不喜欢的，只说了是什么，并没有说为什么这样定义，只知道这样后边要用到，然后就能够解决问题。就像好多线代教材上的证明，我看的过程中很恼火，你倒是告诉我为什么要这样做，鬼才想得到这里。</p>
-<p>那么这里为什么要算next呢，算了有什么用呢？</p>
-<p>这里next数组有两层意思，一个就是上边说的这个位置之前的子串的最长相同前后缀长度；另一个是，下一次比较时，在pattern的第j位开始比较。这两者本质上是一致的。</p>
-<p>如果之前有k位的相同前后缀，即next[j] = k，那么，说明前k位[0, k-1]可以对齐到原来后缀的位置，而开始比较新的，可以从第k位开始比。</p>
-<p>这样一来，这个next数组就直接告诉了我们，当string中的指针i不后退的时候，pattern中的指针应该从何处开始。</p>
-<h4 id="2-计算next数组"><a href="#2-计算next数组" class="headerlink" title="2. 计算next数组"></a>2. 计算next数组</h4><p>先上伪代码：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">genNext</span><span class="params">(string p)</span>:</span></div><div class="line">    n = p.length</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0</span>, n):</div><div class="line">        next[i] = <span class="number">0</span></div><div class="line">    next[<span class="number">0</span>] = <span class="number">-1</span></div><div class="line">    curr = <span class="number">-1</span> <span class="comment"># [1]</span></div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i+<span class="number">1</span> &lt; n:</div><div class="line">        <span class="keyword">if</span> curr == <span class="number">-1</span> <span class="keyword">or</span> p[i] == p[curr]:</div><div class="line">            curr++</div><div class="line">            i++</div><div class="line">            next[i] = curr</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            curr = next[curr] <span class="comment"># [2]</span></div><div class="line">    <span class="keyword">return</span> next</div></pre></td></tr></table></figure>
-<p>这个代码还是很短的，但其实并不是很好理解，至少对我来说..</p>
-<p><code>curr</code>代表当前相同前后缀的长度，同时也可以当做下标用，这个上文讨论过类似的用法</p>
-<p>有两个点需要注意，在代码中已经标出：</p>
-<h5 id="2-curr-next-curr"><a href="#2-curr-next-curr" class="headerlink" title="[2] curr = next[curr]"></a>[2] <code>curr = next[curr]</code></h5><p>先看第二点，<code>curr = next[curr]</code>，<code>if</code>后边的很好理解（先忽略<code>curr == -1</code>的判断），就是相同的话，往前走就是了，下一位的<code>next</code>就是<code>curr</code>加之后的结果。如果不相等，就有趣了，并不是相同前后缀的长度就是0了，没有最长，还有第二长嘛：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">              p         i</div><div class="line">        0 1 2 3 4 5 6 7 8 9</div><div class="line">        a b a c d a b a b x</div><div class="line">next   -1 0 0 1 0 0 1 2 3 2</div></pre></td></tr></table></figure>
-<p>如上图，curr(p)和i到达如图所示的位置，发现s[3]和s[8]并不相同，但这时不能简单的认为这一段就没有相同的前后缀，虽然之前最长的<code>a b a</code>无法延续下去，但是说不定次长的还可以。</p>
-<p><strong>次长的是什么呢？其实就是[0, p-1]这一段的最长相同前后缀！</strong></p>
-<p>于是，就有了<code>curr = next[curr]</code></p>
-<p>这样一来，p变为1，再去比较s[1]和s[8]时，发现相等了，这样就可以愉快的前进了。</p>
-<h5 id="1-1的使用"><a href="#1-1的使用" class="headerlink" title="[1] -1的使用"></a>[1] -1的使用</h5><p>出现了3处<code>-1</code>，这其实算是算法设计中的一个小trick吧，用于控制边界条件。</p>
-<p>跟[1]有联系，在<code>curr = next[curr]</code>过程中，curr其实一直再找更短的最长相同前后缀，所以curr一直再往后退，那么什么时候是个头呢？就是根本没有共同的前后缀，那么必然会出现<code>curr = next[curr] = 0</code>的情况，这时，下一步的时候，<code>next[curr]</code>也就是<code>next[0]</code>该有一个合适的值，让这个后退的过程停下来，这里取了-1。<br>于是，也就有了<code>if</code>判断时候的<code>curr == -1</code>，停下，<code>curr</code>赋0（正好+1是0，用-1也有这个好处），然后赋给next。<br>至于初始<code>curr = -1</code>，是初始化的技巧。如果不这样，可能还需给<code>s[1]</code>赋初值，这样不够优雅，也增添了好多判断的麻烦等等。</p>
-<h4 id="3-计算字符串模式匹配位置"><a href="#3-计算字符串模式匹配位置" class="headerlink" title="3. 计算字符串模式匹配位置"></a>3. 计算字符串模式匹配位置</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">kmpMatch</span><span class="params">(s, p)</span>:</span></div><div class="line">    next = genNext(p)</div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i &lt; s.lenth &amp;&amp; j &lt; p.length:</div><div class="line">        <span class="keyword">if</span> j == <span class="number">-1</span> || s[i] == p[j]:</div><div class="line">            i++</div><div class="line">            j++</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            j = next[j]</div><div class="line">    <span class="keyword">if</span> j == p.length:</div><div class="line">        <span class="keyword">return</span> i - j</div></pre></td></tr></table></figure>
-<p>精巧啊，这个KMP算法，求next以及之后的匹配，第一次看到原理及实现，真的是觉得很精巧，值得反复揣摩。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="1-字符串匹配（strstr-实现）"><a href="#1-字符串匹配（strstr-实现）" class="headerlink" title="1. 字符串匹配（strstr()实现）"></a>1. 字符串匹配（<code>strstr()</code>实现）</h3><p><a href="https://leetcode.com/problems/implement-strstr/description/" target="_blank" rel="external">LeetCode 28. Implement strStr()</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genNext</span><span class="params">(<span class="built_in">string</span>&amp; p, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; next)</span> </span>&#123;</div><div class="line">        next[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> j = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> n = p.length();</div><div class="line">        <span class="keyword">while</span> (i + <span class="number">1</span> &lt; n) &#123;</div><div class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || p[i] == p[j]) &#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">                next[i] = j;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                j = next[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">strStr</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (p.empty())</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next(p.length(), <span class="number">0</span>);</div><div class="line">        genNext(p, next);</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> sLen = s.length(), pLen = p.length();</div><div class="line">        <span class="keyword">while</span> (i &lt; sLen &amp;&amp; j &lt; pLen) &#123;</div><div class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || s[i] == p[j]) &#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                j = next[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (j == pLen) &#123;</div><div class="line">            <span class="keyword">return</span> i - j;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>算是上述算法的一个C++实现吧，没有一句多余的废话。</p>
-<p>另外注意一点，如果有负数，和<code>s.size()</code>，<code>s.length()</code>之类无符号数比，会有问题哦，记得转成有符号数，或者采用其它方法防止之类的问题。</p>
-<h3 id="2-重复子串问题"><a href="#2-重复子串问题" class="headerlink" title="2. 重复子串问题"></a>2. 重复子串问题</h3><p><a href="https://leetcode.com/problems/repeated-substring-pattern/description/" target="_blank" rel="external">LeetCode 459. Repeated Substring Pattern</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">genNext</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; next)</span> </span>&#123;</div><div class="line">        next[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> j = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        <span class="keyword">while</span> (i &lt; len) &#123;</div><div class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || s[i] == s[j]) &#123;</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">                next[i] = j;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                j = next[j];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">repeatedSubstringPattern</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (s.empty())</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; next(s.length() + <span class="number">1</span>, <span class="number">0</span>);</div><div class="line">        genNext(s, next);</div><div class="line">        <span class="keyword">return</span> (next[s.length()] != <span class="number">0</span>) &amp;&amp; (s.length() % (s.length() - next[s.length()]) == <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
-<p>阮一峰: 字符串匹配的KMP算法<br><a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></p>
-<p>很详细的 KMP 算法讲解，逻辑清晰，易懂<br><a href="https://juejin.im/entry/58edc67461ff4b006925d2e9" target="_blank" rel="external">https://juejin.im/entry/58edc67461ff4b006925d2e9</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2237,7 +2207,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2286,7 +2256,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
