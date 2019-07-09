@@ -115,14 +115,14 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/07/07/GSoC-Phase1-2019-07-07/media/1562378706731.png">
 <meta property="og:image" content="http://yoursite.com/2019/07/07/GSoC-Phase1-2019-07-07/media/1562379194127.png">
-<meta property="og:image" content="http://yoursite.com/2019/07/07/GSoC-Phase1-2019-07-07/media/1562380792534.png">
+<meta property="og:image" content="http://yoursite.com/2019/07/07/GSoC-Phase1-2019-07-07/media/animate-benchmark.png">
 <meta property="og:image" content="http://yoursite.com/media/image001.png">
 <meta property="og:image" content="http://yoursite.com/media/image002.png">
 <meta property="og:image" content="http://yoursite.com/media/image003.png">
 <meta property="og:image" content="http://yoursite.com/media/image004.png">
 <meta property="og:image" content="http://yoursite.com/media/image006.png">
 <meta property="og:image" content="http://yoursite.com/media/image005.png">
-<meta property="og:updated_time" content="2019-07-09T02:43:01.087Z">
+<meta property="og:updated_time" content="2019-07-09T02:53:14.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GSoC 2019 Phase One">
 <meta name="twitter:description" content="Unconsciously, the timeline for GSoC 2019 program has passed its first phase of coding period. Looking back in this period of time, I find that I’ve walked far from the starting point on the road of G">
@@ -359,7 +359,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-09 10:43:01" itemprop="dateModified" datetime="2019-07-09T10:43:01+08:00">2019-07-09</time>
+                <time title="Modified: 2019-07-09 10:53:14" itemprop="dateModified" datetime="2019-07-09T10:53:14+08:00">2019-07-09</time>
               
             
           </span>
@@ -472,7 +472,7 @@
 </ol>
 <h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><p>The ccNetViz library mainly focuses on visualizing and operating on large-scale graph data. So the efficiency is very important. If edge animation is two slow to render or interact smoothly, it will be unbearable.</p>
 <p>So I use real dataset to test animation efficiency as the figure shows:</p>
-<p><img src="media/1562380792534.png" alt="1562380792534"></p>
+<p><img src="media/animate-benchmark.png" alt="animate-benckmark"></p>
 <p>I added FPS calculation function for ccNetViz so it can live update the render loop times. The benchmark results show that with animation, the quality of graph is worse that one without animation. But the FPS of animation keeps at around 60 regardless of how large dataset we use. Maybe because I put all animation function into shaders and GPU is faster for this kind of computation.</p>
 <h2 id="Implementation-Detail"><a href="#Implementation-Detail" class="headerlink" title="Implementation Detail"></a>Implementation Detail</h2><h3 id="Animation-position-calculation"><a href="#Animation-position-calculation" class="headerlink" title="Animation position calculation"></a>Animation position calculation</h3><p>Every frame we need to update the color change position. So we have to draw graph with new parameters. Here we pass the render time since start.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> drawLoop = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  context.renderTime = (<span class="built_in">Date</span>.now() - startTime) / <span class="number">1000.0</span>;</div><div class="line">  drawOnce();</div><div class="line">  requestAnimationFrame(drawLoop);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
