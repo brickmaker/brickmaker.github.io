@@ -290,6 +290,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/d3-learn-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/06/d3-learn-1/" itemprop="url">
+                  D3.js 学习笔记-01
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-06 19:49:01 / Modified: 19:51:20" itemprop="dateCreated datePublished" datetime="2018-11-06T19:49:01+08:00">2018-11-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Data-Visualization/" itemprop="url" rel="index"><span itemprop="name">Data Visualization</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/06/d3-learn-1/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/06/d3-learn-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>曾经觉得D3超级难用，API反人类，好多东西跟现代的JS不符，上手不容易…<br>后来，当开始用D3之后，发现，自己误会了D3.js的定位，D3的丰富与灵活超乎了自己的想象，于是决定认真地学习下这个古老而又有极强生命力的库！</p>
+<hr>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>阅读D3的Overview：<a href="https://d3js.org/" target="_blank" rel="external">https://d3js.org/</a></p>
+<p>虽然篇幅很短，但是介绍了D3的核心特性，个人总结两点：</p>
+<ol>
+<li><strong>强大的DOM操作功能</strong></li>
+<li><strong>Data-&gt;DOM 的 transformation</strong></li>
+</ol>
+<p>感觉D3的核心功能就这么两个，它的API也是为这两个而服务的，习惯了之后特别的简洁和自然。</p>
+<p>DOM操作功能不必说，跟JQuery类似，对DOM的获取、属性修改等操作非常容易，不过D3强大的地方在于，由于是Data Driven的，对于DOM操作的动态性以及与数据的贴合性非常的好，使其在用DOM显示数据上有很大的优势！</p>
+<p>第二项，非常的优秀！</p>
+<blockquote>
+<p>Transformation, not Representation</p>
+</blockquote>
+<p>这是D3的一个特性，其所有的显示，都是普普通通的DOM元素，图形是SVG之类的，没有自己的一套表现，D3的重点不在于此，而是在于转化上，将普通的数据，能够很便利的映射到DOM上，通过丰富的SVG的表现力，来呈现可视化图形。</p>
+<p>加上许多D3的插件或者辅助功能，D3的能力被大幅的提升，比如<code>d3-force</code>，运用力引导图的算法布局图，然后运用d3来呈现出来，其实算法本身跟显示关系并不大，只需要将每个点的位置算出来即可，但是由于D3生态的丰富以及表现的方便，于是就与其结合了起来。现在去找一个力引导布局的算法，首选还是<code>d3-force</code>。</p>
+<h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><p>没有找到官方的Tutorial，这很难过，D3的所有官方文档，都在GitHub Repo的wiki里：<a href="https://github.com/d3/d3/wiki" target="_blank" rel="external">https://github.com/d3/d3/wiki</a> 而其中的tutorial部分，其实就是一个awesome-list，虽然很多，但没有系统完整的，非常的不友好！</p>
+<p>不过有几个东西还是很值得参考的：</p>
+<ol>
+<li>API Reference，不管什么，reference都是必须的，写的还算明白，不过不能拿来学习：<a href="https://github.com/d3/d3/blob/master/API.md" target="_blank" rel="external">https://github.com/d3/d3/blob/master/API.md</a></li>
+<li>Gallery：<a href="https://github.com/d3/d3/wiki/Gallery" target="_blank" rel="external">https://github.com/d3/d3/wiki/Gallery</a> 现在应该所有的例子，都放在了Observable上，这是个类似于notebook的新玩意，似乎还挺好玩的</li>
+<li>Observable上的visualization collection：<a href="https://beta.observablehq.com/collection/@observablehq/visualization" target="_blank" rel="external">https://beta.observablehq.com/collection/@observablehq/visualization</a></li>
+</ol>
+<p>目前打算是稍微看下Observable这个东西，然后挑感兴趣的例子去看如何实现，然后尝试自己写一些！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/23/ES6-module-2018-10-23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2269,190 +2462,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/lowest-common-ancestor/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/lowest-common-ancestor/" itemprop="url">
-                  Lowest Common Ancestor of a Binary Tree
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-28 14:52:52 / Modified: 14:55:51" itemprop="dateCreated datePublished" datetime="2018-08-28T14:52:52+08:00">2018-08-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/28/lowest-common-ancestor/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/28/lowest-common-ancestor/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/" target="_blank" rel="external">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/</a></p>
-<p><img src="/media/15354392217599.jpg" alt="-w953"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>自己想的是，dfs找到两者的路径，然后比较两者相同的前缀。</p>
-<p>不过，看了discussion中的一个解答之后，发现自己还真是naive了，看准情况，暴力的才是最好的！</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>我的答案：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;TreeNode*&gt;&gt; path;</div><div class="line">    <span class="built_in">vector</span>&lt;TreeNode*&gt; curr;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!node)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        curr.push_back(node);</div><div class="line">        <span class="keyword">if</span> (node-&gt;val == k) &#123;</div><div class="line">            path[k] = curr;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            dfs(node-&gt;left, k);</div><div class="line">            dfs(node-&gt;right, k);</div><div class="line">        &#125;</div><div class="line">        curr.pop_back();</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</div><div class="line">        dfs(root, p-&gt;val);</div><div class="line">        dfs(root, q-&gt;val);</div><div class="line">        TreeNode* res = root;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (i &gt;= path[p-&gt;val].size() || i &gt;= path[q-&gt;val].size() || path[p-&gt;val][i] != path[q-&gt;val][i]) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                res = path[p-&gt;val][i];</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>discussion中某位的答案：<br><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C++JavaPythonRuby" target="_blank" rel="external">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/discuss/65225/4-lines-C++JavaPythonRuby</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!root || root == p || root == q) <span class="keyword">return</span> root;</div><div class="line">    TreeNode* left = lowestCommonAncestor(root-&gt;left, p, q);</div><div class="line">    TreeNode* right = lowestCommonAncestor(root-&gt;right, p, q);</div><div class="line">    <span class="keyword">return</span> !left ? right : !right ? left : root;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2504,7 +2513,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
