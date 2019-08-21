@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program. Project Information Project Title:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Summer of Code 2019">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/index.html">
+<meta property="og:site_name" content="Xiaodong&#39;s Blog">
+<meta property="og:description" content="This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program. Project Information Project Title:">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/media/gsoc-color-animation.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/media/gsoc-shape-animation.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/media/gsoc-animation-benchmark.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/media/1566279772432.png">
+<meta property="og:updated_time" content="2019-08-21T00:45:11.434Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Summer of Code 2019">
+<meta name="twitter:description" content="This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program. Project Information Project Title:">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/media/gsoc-color-animation.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Google Summer of Code 2019 | Xiaodong's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaodong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Coder love Design</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Google Summer of Code 2019
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-20 22:27:04" itemprop="dateCreated datePublished" datetime="2019-08-20T22:27:04+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-21 08:45:11" itemprop="dateModified" datetime="2019-08-21T08:45:11+08:00">2019-08-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GSoC/" itemprop="url" rel="index"><span itemprop="name">GSoC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/20/Google-Summer-of-Code-2019/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/08/20/Google-Summer-of-Code-2019/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program.</p>
+<h2 id="Project-Information"><a href="#Project-Information" class="headerlink" title="Project Information"></a>Project Information</h2><ul>
+<li><strong>Project Title:</strong> Edge Animations for Large-Scale Network Graphs</li>
+<li><strong>Student:</strong> Xiaodong Zhao</li>
+<li><strong>Organization:</strong> Computational Biology @ University of Nebraska-Lincoln</li>
+<li><strong>Mentors:</strong> Ales Saska, Resa Helikar</li>
+<li><strong>Project Code Repository:</strong> <a href="https://github.com/HelikarLab/ccNetViz" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz</a></li>
+</ul>
+<h2 id="Project-Overview"><a href="#Project-Overview" class="headerlink" title="Project Overview"></a>Project Overview</h2><p>My main job is to add more features for <a href="https://github.com/HelikarLab/ccNetViz" target="_blank" rel="external">ccNetViz library</a>, a JavaScript library for visualization of large-scale network graphs using WebGL. It enables custom styling of nodes and edges in CSS like wavy, curve edges, dynamic changes of the network, force-directed layout and basic graph interactivity. Used for example by <a href="http://cellcollective.org/" target="_blank" rel="external">Cell Collective</a> project.</p>
+<p>As I wrote in my proposal, I’ll add edge animations on it. Including color animations, speed control and other fancy animations like wavy curve, dotted line and bubble flow effects. These animations will be totally customizable and we’ll also offer some high quality presets for user to choose. Finally, documentation for edge animation will be complete and we’ll also have some demo pages to show all effects of edge animation.</p>
+<p>Besides, during the process of development, we found the source code need refactoring. So I also done some refactoring job to get it clearer and easier to understand.</p>
+<h2 id="Contribution-to-Project"><a href="#Contribution-to-Project" class="headerlink" title="Contribution to Project"></a>Contribution to Project</h2><h3 id="Commits-amp-Pull-Requests"><a href="#Commits-amp-Pull-Requests" class="headerlink" title="Commits &amp; Pull Requests"></a>Commits &amp; Pull Requests</h3><p>In ccNetViz project, I created:</p>
+<ul>
+<li><a href="https://github.com/HelikarLab/ccNetViz/pulls?utf8=✓&amp;q=is%3Apr+author%3Abrickmaker+is%3Aclosed" target="_blank" rel="external">22 Pull Requests</a>. (21 of them were merged)</li>
+<li><a href="https://github.com/HelikarLab/ccNetViz/commits?author=brickmaker" target="_blank" rel="external">92 commits</a> at main project and <a href="https://github.com/HelikarLab/ccNetViz/commits/gh-pages?author=brickmaker" target="_blank" rel="external">12 commits</a> at ccNetViz’s GitHub Pages project</li>
+</ul>
+<p>All these pull requests and commits including:</p>
+<ol>
+<li><strong>Animation features addition:</strong> including color animation, shape animation and easing effects.</li>
+<li><strong>Examples for added features:</strong> example pages to demonstrate what new features look like.</li>
+<li><strong>Refactoring of code:</strong> including code splitting and plugin architecture.</li>
+<li><strong>Documentations:</strong> documentation for both animation features and plugin usage.</li>
+</ol>
+<p>These contributions will be introduced in detail below.</p>
+<h3 id="Detail-of-Results"><a href="#Detail-of-Results" class="headerlink" title="Detail of Results"></a>Detail of Results</h3><h4 id="1-Edge-Animation"><a href="#1-Edge-Animation" class="headerlink" title="1. Edge Animation"></a>1. Edge Animation</h4><p>The original ccNetViz only support static graph without change over time. I added several animation effects on graph edge so it can convey more semantic information like signal transmission in neural networks or blood flow in blood circulation system.</p>
+<p><strong>Color Animation</strong></p>
+<p>Basic idea of animation is using different color on edge. I implement three type of color animation:</p>
+<p><img src="media/gsoc-color-animation.png" alt="gsoc-color-animation"></p>
+<p>(The above example of color animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a>)</p>
+<p>These three types of color animation are implemented in GLSL shader using similar control logic only with different animation color shape. Because animation is added, at entry of drawing we need add a draw loop to refresh canvas.</p>
+<p><strong>Shape Animation</strong></p>
+<p>Shape animation is a kind of more complex animation effects which I implement after color animation. I need to change original shape of edge and show different shapes. Sometimes the shape will show outside of original edge bound, which makes it difficult to implement.</p>
+<p>I added three features of shape animation in total, they are: wave effect, bubble effect, dotted effect:</p>
+<p><img src="media/gsoc-shape-animation.png" alt="gsoc-shape-animation"></p>
+<p>(The above example of shape animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a> , <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html</a>)</p>
+<p>The options about bubble animation and wave animation are same as color animation, including speed and easing effects. As for dot animation, it also contains other two options to configure: number of dots and interval of dots.</p>
+<p><strong>Easing Effects</strong></p>
+<p>To enrich the effect of animation, I add easing function on animation speed. According to this website: <a href="https://easings.net/en" target="_blank" rel="external">https://easings.net/en</a>, I add all easing functions on it except from easeBack and easeElastic. Besides, I also add some other easing effects, basically the combination or modification of existing easings: sinInOutInv and quartInOutInv.</p>
+<p>All these easing effects can be configured in <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">line advanced animation example</a>.</p>
+<p><strong>Benchmarks</strong></p>
+<p>The ccNetViz library is used for large scale graph visualization and the performance is essential when we add new features. So I do some benchmarks on edge animation and calculate its FPS. Below is screenshot of benchmarks:</p>
+<p><img src="media/gsoc-animation-benchmark.png" alt="gsoc-animation-benchmark"></p>
+<p>From benchmark results show above, we are inferred that under different scale of graph data, the animation keeps a relative good performance: about 60 FPS.</p>
+<p><strong>Examples</strong></p>
+<p>To display all effects of new animation features, I add four examples on ccNetViz’s website:</p>
+<p><img src="media/1566279772432.png" alt="1566279772432"></p>
+<p>They are:</p>
+<ol>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate.html" target="_blank" rel="external">basic animation</a>:</strong> initial example shows basic and gradient color animation</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">advanced animation</a>:</strong> shows all animation types except dotted effects and all configurable options</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html" target="_blank" rel="external">dotted animation</a>:</strong> shows dotted effects as well as its own options</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animation_benchmark.html" target="_blank" rel="external">animation benchmark</a>:</strong> benchmark results of edge animation</li>
+</ol>
+<h4 id="2-Code-Refactoring"><a href="#2-Code-Refactoring" class="headerlink" title="2. Code Refactoring"></a>2. Code Refactoring</h4><p>In addition to feature implementation, after discussion with my mentor, we found that it’s necessary to do some code refactoring work.</p>
+<p><strong>Code splitting</strong></p>
+<p>To add animation features, the core source code file I needed to understand and modify is <code>layer.js</code> in original code. But it contains more than one thousand lines. I spent a lot of time analyzing this file and added animation logic. Unfortunately, this made <code>layer.js</code> even bigger. One reason was that in ccNetViz, all elements like node, edge, label, arrow, were putted in <code>layer.js</code> together. When someone wanted to add any feature, it would extend this file.</p>
+<p>The first ting I needed to do is to move GLSL shader code into separate files, because in original code it used concatenation of strings and made code long and hard to modify. I extracted all stings into <code>.glsl</code> files and use webpack’s raw-loader to load them.</p>
+<p>Then I needed to do is to split different kinds of element into different files respectively. This step was hardest part during the who process. There were plenty of dependencies between each other. Finally, code related to same shape was put into same folder and the whole structure got clearer.</p>
+<p>Finally, I also rearranged shader files and put them under shape’s folder respectively. After these steps, The original long and obscure <code>layer.js</code> no longer exist and is replaced by clear folder structure of several kinds of shapes.</p>
+<p><strong>Plugin architecture</strong></p>
+<p>When I was implementing animation features, I added a lot of codes to support new features, which made the size of whole library much larger. To keep ccNetViz lightweight, we finally decided to move animation features outside as a plugin so that it can be imported on demand.</p>
+<p>I created a new webpack project and moved shaders of animation functions, easing functions as well as animation logic into it. And all these codes were combined as a new type of plugin: <code>AnimationEdgePlugin</code> and could be easily injected into original ccNetViz at runtime.</p>
+<p>The description and documentation of new added animation plugin can be found here: <a href="https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md</a></p>
+<h2 id="Things-learned-from-Project"><a href="#Things-learned-from-Project" class="headerlink" title="Things learned from Project"></a>Things learned from Project</h2><p>Last three months I have been working on this project and learned a lot during whole process. First of all, as a coding program, it’s a big boost to my programming skills. I only wrote some small demo programs of WebGL. It was my first time to handle a large scale project. And for efficiency consideration, most of my work was to write shader language of WebGL. I got a lot practice on shader programming. The code refactoring process helped me think like an architect of software and trained my code abstraction skills.</p>
+<p>Another big benefit for me is that I learned a lot of collaboration and communication skills. I learned how to work with other developers together and contribute on a large project. I got familiar with some tools on GitHub for collaboration like issues, pull requests and code reviews. And at regular meeting every week with my mentor, I also practiced my expression skills to clearly state my problem and my thought.</p>
+<p>In a word, I learned a lot from this three month program and these things will benefit me forever during my lifetime as a programmer.</p>
+<h2 id="Personal-Feelings"><a href="#Personal-Feelings" class="headerlink" title="Personal Feelings"></a>Personal Feelings</h2><p>This is my first time to attend GSoC, or more generally, this is my first time to do real contribution on open source project, so it’s really an amazing experience. Prior to this, I only opened issues for some projects on GitHub but never committed to them. But last three months I could not believe that I even committed more than 100 times on ccNetViz! It’s very rewarding to do contribution on open source library.</p>
+<p>I’m very grateful for my mentor Ales. He helped me a lot during last few months. Every time I got stuck and did not know how to continue, he could always give me some constructive suggestions and got me out of woods. He’s a very nice and patient person. Sometimes I asked some ridiculous questions that I didn’t realize, but he always gave me positive suggestions. Without Ales’ help I could not working on this project smoothly.</p>
+<h2 id="Student-Information"><a href="#Student-Information" class="headerlink" title="Student Information"></a>Student Information</h2><ul>
+<li><strong>Name:</strong> Xiaodong Zhao</li>
+<li><strong>Email:</strong> zxd.brickmaker@gmail.com</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/brickmaker" target="_blank" rel="external">https://github.com/brickmaker</a></li>
+<li><strong>Website:</strong> <a href="https://brickmaker.github.io/" target="_blank" rel="external">https://brickmaker.github.io/</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/29/GSoC-Phase2-2019-07-29/" rel="next" title="GSoC 2019 Phase Two">
+                <i class="fa fa-chevron-left"></i> GSoC 2019 Phase Two
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pic_reverse.png"
+                alt="Xiaodong Zhao" />
+            
+              <p class="site-author-name" itemprop="name">Xiaodong Zhao</p>
+              <p class="site-description motion-element" itemprop="description">Coder love Design</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/brickmaker" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhaoxiaodong0902@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Information"><span class="nav-number">1.</span> <span class="nav-text">Project Information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Project-Overview"><span class="nav-number">2.</span> <span class="nav-text">Project Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contribution-to-Project"><span class="nav-number">3.</span> <span class="nav-text">Contribution to Project</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Commits-amp-Pull-Requests"><span class="nav-number">3.1.</span> <span class="nav-text">Commits & Pull Requests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Detail-of-Results"><span class="nav-number">3.2.</span> <span class="nav-text">Detail of Results</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Edge-Animation"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. Edge Animation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Code-Refactoring"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. Code Refactoring</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Things-learned-from-Project"><span class="nav-number">4.</span> <span class="nav-text">Things learned from Project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Personal-Feelings"><span class="nav-number">5.</span> <span class="nav-text">Personal Feelings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Student-Information"><span class="nav-number">6.</span> <span class="nav-text">Student Information</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaodong Zhao</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.8</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://brickmaker.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/';
+        this.page.identifier = '2019/08/20/Google-Summer-of-Code-2019/';
+        this.page.title = 'Google Summer of Code 2019';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://brickmaker.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

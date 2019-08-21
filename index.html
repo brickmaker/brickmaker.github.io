@@ -290,6 +290,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/Google-Summer-of-Code-2019/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/20/Google-Summer-of-Code-2019/" itemprop="url">
+                  Google Summer of Code 2019
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-20 22:27:04" itemprop="dateCreated datePublished" datetime="2019-08-20T22:27:04+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-21 08:45:11" itemprop="dateModified" datetime="2019-08-21T08:45:11+08:00">2019-08-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/GSoC/" itemprop="url" rel="index"><span itemprop="name">GSoC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/20/Google-Summer-of-Code-2019/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/08/20/Google-Summer-of-Code-2019/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program.</p>
+<h2 id="Project-Information"><a href="#Project-Information" class="headerlink" title="Project Information"></a>Project Information</h2><ul>
+<li><strong>Project Title:</strong> Edge Animations for Large-Scale Network Graphs</li>
+<li><strong>Student:</strong> Xiaodong Zhao</li>
+<li><strong>Organization:</strong> Computational Biology @ University of Nebraska-Lincoln</li>
+<li><strong>Mentors:</strong> Ales Saska, Resa Helikar</li>
+<li><strong>Project Code Repository:</strong> <a href="https://github.com/HelikarLab/ccNetViz" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz</a></li>
+</ul>
+<h2 id="Project-Overview"><a href="#Project-Overview" class="headerlink" title="Project Overview"></a>Project Overview</h2><p>My main job is to add more features for <a href="https://github.com/HelikarLab/ccNetViz" target="_blank" rel="external">ccNetViz library</a>, a JavaScript library for visualization of large-scale network graphs using WebGL. It enables custom styling of nodes and edges in CSS like wavy, curve edges, dynamic changes of the network, force-directed layout and basic graph interactivity. Used for example by <a href="http://cellcollective.org/" target="_blank" rel="external">Cell Collective</a> project.</p>
+<p>As I wrote in my proposal, I’ll add edge animations on it. Including color animations, speed control and other fancy animations like wavy curve, dotted line and bubble flow effects. These animations will be totally customizable and we’ll also offer some high quality presets for user to choose. Finally, documentation for edge animation will be complete and we’ll also have some demo pages to show all effects of edge animation.</p>
+<p>Besides, during the process of development, we found the source code need refactoring. So I also done some refactoring job to get it clearer and easier to understand.</p>
+<h2 id="Contribution-to-Project"><a href="#Contribution-to-Project" class="headerlink" title="Contribution to Project"></a>Contribution to Project</h2><h3 id="Commits-amp-Pull-Requests"><a href="#Commits-amp-Pull-Requests" class="headerlink" title="Commits &amp; Pull Requests"></a>Commits &amp; Pull Requests</h3><p>In ccNetViz project, I created:</p>
+<ul>
+<li><a href="https://github.com/HelikarLab/ccNetViz/pulls?utf8=✓&amp;q=is%3Apr+author%3Abrickmaker+is%3Aclosed" target="_blank" rel="external">22 Pull Requests</a>. (21 of them were merged)</li>
+<li><a href="https://github.com/HelikarLab/ccNetViz/commits?author=brickmaker" target="_blank" rel="external">92 commits</a> at main project and <a href="https://github.com/HelikarLab/ccNetViz/commits/gh-pages?author=brickmaker" target="_blank" rel="external">12 commits</a> at ccNetViz’s GitHub Pages project</li>
+</ul>
+<p>All these pull requests and commits including:</p>
+<ol>
+<li><strong>Animation features addition:</strong> including color animation, shape animation and easing effects.</li>
+<li><strong>Examples for added features:</strong> example pages to demonstrate what new features look like.</li>
+<li><strong>Refactoring of code:</strong> including code splitting and plugin architecture.</li>
+<li><strong>Documentations:</strong> documentation for both animation features and plugin usage.</li>
+</ol>
+<p>These contributions will be introduced in detail below.</p>
+<h3 id="Detail-of-Results"><a href="#Detail-of-Results" class="headerlink" title="Detail of Results"></a>Detail of Results</h3><h4 id="1-Edge-Animation"><a href="#1-Edge-Animation" class="headerlink" title="1. Edge Animation"></a>1. Edge Animation</h4><p>The original ccNetViz only support static graph without change over time. I added several animation effects on graph edge so it can convey more semantic information like signal transmission in neural networks or blood flow in blood circulation system.</p>
+<p><strong>Color Animation</strong></p>
+<p>Basic idea of animation is using different color on edge. I implement three type of color animation:</p>
+<p><img src="media/gsoc-color-animation.png" alt="gsoc-color-animation"></p>
+<p>(The above example of color animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a>)</p>
+<p>These three types of color animation are implemented in GLSL shader using similar control logic only with different animation color shape. Because animation is added, at entry of drawing we need add a draw loop to refresh canvas.</p>
+<p><strong>Shape Animation</strong></p>
+<p>Shape animation is a kind of more complex animation effects which I implement after color animation. I need to change original shape of edge and show different shapes. Sometimes the shape will show outside of original edge bound, which makes it difficult to implement.</p>
+<p>I added three features of shape animation in total, they are: wave effect, bubble effect, dotted effect:</p>
+<p><img src="media/gsoc-shape-animation.png" alt="gsoc-shape-animation"></p>
+<p>(The above example of shape animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a> , <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html</a>)</p>
+<p>The options about bubble animation and wave animation are same as color animation, including speed and easing effects. As for dot animation, it also contains other two options to configure: number of dots and interval of dots.</p>
+<p><strong>Easing Effects</strong></p>
+<p>To enrich the effect of animation, I add easing function on animation speed. According to this website: <a href="https://easings.net/en" target="_blank" rel="external">https://easings.net/en</a>, I add all easing functions on it except from easeBack and easeElastic. Besides, I also add some other easing effects, basically the combination or modification of existing easings: sinInOutInv and quartInOutInv.</p>
+<p>All these easing effects can be configured in <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">line advanced animation example</a>.</p>
+<p><strong>Benchmarks</strong></p>
+<p>The ccNetViz library is used for large scale graph visualization and the performance is essential when we add new features. So I do some benchmarks on edge animation and calculate its FPS. Below is screenshot of benchmarks:</p>
+<p><img src="media/gsoc-animation-benchmark.png" alt="gsoc-animation-benchmark"></p>
+<p>From benchmark results show above, we are inferred that under different scale of graph data, the animation keeps a relative good performance: about 60 FPS.</p>
+<p><strong>Examples</strong></p>
+<p>To display all effects of new animation features, I add four examples on ccNetViz’s website:</p>
+<p><img src="media/1566279772432.png" alt="1566279772432"></p>
+<p>They are:</p>
+<ol>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate.html" target="_blank" rel="external">basic animation</a>:</strong> initial example shows basic and gradient color animation</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">advanced animation</a>:</strong> shows all animation types except dotted effects and all configurable options</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html" target="_blank" rel="external">dotted animation</a>:</strong> shows dotted effects as well as its own options</li>
+<li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animation_benchmark.html" target="_blank" rel="external">animation benchmark</a>:</strong> benchmark results of edge animation</li>
+</ol>
+<h4 id="2-Code-Refactoring"><a href="#2-Code-Refactoring" class="headerlink" title="2. Code Refactoring"></a>2. Code Refactoring</h4><p>In addition to feature implementation, after discussion with my mentor, we found that it’s necessary to do some code refactoring work.</p>
+<p><strong>Code splitting</strong></p>
+<p>To add animation features, the core source code file I needed to understand and modify is <code>layer.js</code> in original code. But it contains more than one thousand lines. I spent a lot of time analyzing this file and added animation logic. Unfortunately, this made <code>layer.js</code> even bigger. One reason was that in ccNetViz, all elements like node, edge, label, arrow, were putted in <code>layer.js</code> together. When someone wanted to add any feature, it would extend this file.</p>
+<p>The first ting I needed to do is to move GLSL shader code into separate files, because in original code it used concatenation of strings and made code long and hard to modify. I extracted all stings into <code>.glsl</code> files and use webpack’s raw-loader to load them.</p>
+<p>Then I needed to do is to split different kinds of element into different files respectively. This step was hardest part during the who process. There were plenty of dependencies between each other. Finally, code related to same shape was put into same folder and the whole structure got clearer.</p>
+<p>Finally, I also rearranged shader files and put them under shape’s folder respectively. After these steps, The original long and obscure <code>layer.js</code> no longer exist and is replaced by clear folder structure of several kinds of shapes.</p>
+<p><strong>Plugin architecture</strong></p>
+<p>When I was implementing animation features, I added a lot of codes to support new features, which made the size of whole library much larger. To keep ccNetViz lightweight, we finally decided to move animation features outside as a plugin so that it can be imported on demand.</p>
+<p>I created a new webpack project and moved shaders of animation functions, easing functions as well as animation logic into it. And all these codes were combined as a new type of plugin: <code>AnimationEdgePlugin</code> and could be easily injected into original ccNetViz at runtime.</p>
+<p>The description and documentation of new added animation plugin can be found here: <a href="https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md</a></p>
+<h2 id="Things-learned-from-Project"><a href="#Things-learned-from-Project" class="headerlink" title="Things learned from Project"></a>Things learned from Project</h2><p>Last three months I have been working on this project and learned a lot during whole process. First of all, as a coding program, it’s a big boost to my programming skills. I only wrote some small demo programs of WebGL. It was my first time to handle a large scale project. And for efficiency consideration, most of my work was to write shader language of WebGL. I got a lot practice on shader programming. The code refactoring process helped me think like an architect of software and trained my code abstraction skills.</p>
+<p>Another big benefit for me is that I learned a lot of collaboration and communication skills. I learned how to work with other developers together and contribute on a large project. I got familiar with some tools on GitHub for collaboration like issues, pull requests and code reviews. And at regular meeting every week with my mentor, I also practiced my expression skills to clearly state my problem and my thought.</p>
+<p>In a word, I learned a lot from this three month program and these things will benefit me forever during my lifetime as a programmer.</p>
+<h2 id="Personal-Feelings"><a href="#Personal-Feelings" class="headerlink" title="Personal Feelings"></a>Personal Feelings</h2><p>This is my first time to attend GSoC, or more generally, this is my first time to do real contribution on open source project, so it’s really an amazing experience. Prior to this, I only opened issues for some projects on GitHub but never committed to them. But last three months I could not believe that I even committed more than 100 times on ccNetViz! It’s very rewarding to do contribution on open source library.</p>
+<p>I’m very grateful for my mentor Ales. He helped me a lot during last few months. Every time I got stuck and did not know how to continue, he could always give me some constructive suggestions and got me out of woods. He’s a very nice and patient person. Sometimes I asked some ridiculous questions that I didn’t realize, but he always gave me positive suggestions. Without Ales’ help I could not working on this project smoothly.</p>
+<h2 id="Student-Information"><a href="#Student-Information" class="headerlink" title="Student Information"></a>Student Information</h2><ul>
+<li><strong>Name:</strong> Xiaodong Zhao</li>
+<li><strong>Email:</strong> zxd.brickmaker@gmail.com</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/brickmaker" target="_blank" rel="external">https://github.com/brickmaker</a></li>
+<li><strong>Website:</strong> <a href="https://brickmaker.github.io/" target="_blank" rel="external">https://brickmaker.github.io/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/GSoC-Phase2-2019-07-29/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2494,225 +2749,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/nodejs-real-time-application-2018-12-22/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/22/nodejs-real-time-application-2018-12-22/" itemprop="url">
-                  Real-Time Application in NodeJS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-22 22:31:05" itemprop="dateCreated datePublished" datetime="2018-12-22T22:31:05+08:00">2018-12-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-25 18:46:45" itemprop="dateModified" datetime="2018-12-25T18:46:45+08:00">2018-12-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/22/nodejs-real-time-application-2018-12-22/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/22/nodejs-real-time-application-2018-12-22/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近阅读<em>Mastering Node.js</em>一书，看到第六章，觉得书中的几个例子都特别有代表性，所以自己也事项一遍，顺便做点笔记，以备以后参阅。</p>
-<hr>
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>第一节讲的是AJAX，可能之前比较熟悉吧，或者说，我这一代人可能从来没有接触过那种一个URL，获取HTML文件，里边并不能做什么其它事情的WEB时代。</p>
-<p>AJAX主要就是这个<strong>A</strong>，异步，可以让浏览器在自己想向server获取数据的时候发出请求，并在服务器返回之后做相应的处理，而不用请求整个文档，我目前的理解大致就是这样，不做过多叙述了。</p>
-<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>socket的确之前接触的不多，感觉的确很神奇，如何做到实时的通信呢？很是好奇。</p>
-<p>不过看过之后，发现其并不是走HTTP协议，所以不是什么黑科技了，而是底层的浏览器所提供的功能，与server之间建立持久的TCP连接，然后相互通信。</p>
-<p>书上配套的例子，一个协同画画的东西，很好的展示了websocket的功能，下边就是写的一些说明，备以后查阅。</p>
-<h3 id="co-draw"><a href="#co-draw" class="headerlink" title="co-draw"></a>co-draw</h3><p>代码：<a href="https://github.com/brickmaker/node-real-time-demo/tree/master/co-draw" target="_blank" rel="external">https://github.com/brickmaker/node-real-time-demo/tree/master/co-draw</a></p>
-<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><p>server端的代码非常简单，直接复制过来，因为基本没有特别的与socket.io无关的内容：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> serve = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</div><div class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).createServer(app.callback());</div><div class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</div><div class="line"></div><div class="line">app.use(serve(__dirname + <span class="string">'/public'</span>));</div><div class="line"></div><div class="line">io.on(<span class="string">'connection'</span>, (socket) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`client <span class="subst">$&#123;socket.id&#125;</span> connected`</span>)</div><div class="line"></div><div class="line">  socket.on(<span class="string">'draw'</span>, data =&gt; &#123;</div><div class="line">    socket.broadcast.emit(<span class="string">'draw'</span>, data)</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">server.listen(<span class="number">8102</span>);</div></pre></td></tr></table></figure>
-<p>用了<code>Koa</code>，用<code>koa-static</code>来serve前端文件，Koa和socket.io的接入可能需要记一下，好像并不是那么想当然。</p>
-<p>服务端监听客户端的连接，并可以得到客户端的socket，进行后续操作：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">io.on(<span class="string">'connection'</span>, socket =&gt; &#123;...&#125;)</div></pre></td></tr></table></figure>
-<p>在回调里就可以写一些逻辑了。</p>
-<h4 id="client"><a href="#client" class="headerlink" title="client"></a>client</h4><p>客户端初始化<code>socket.io</code>很简单：</p>
-<p>在<code>index.html</code>中加入：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>然后在scripts中加一条：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> socket = io.connect(<span class="string">'/'</span>);</div></pre></td></tr></table></figure>
-<p>就OK了，觉得很神奇。</p>
-<p>至于操作，这里只用到了两个：</p>
-<ol>
-<li>在自己绘制的时候，向server发消息：“我在绘制…”，并附上绘制的数据</li>
-<li>监听服务器传来别人绘制的消息，然后把别人画的也加上来</li>
-</ol>
-<p>OK，基本就是这样。</p>
-<h2 id="SSE-Server-Sent-Events"><a href="#SSE-Server-Sent-Events" class="headerlink" title="SSE(Server Sent Events)"></a>SSE(Server Sent Events)</h2><p>顾名思义，就是server向客户端发送消息，不过其实这一点websocket也可以做，这可能也是之前自己从来没有听过这个名词的原因吧。</p>
-<p>它的好处可能就是用的是HTTP协议，然后比较简单吧，具体的看Stack Overflow上的两者对比：<a href="https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource" target="_blank" rel="external">https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource</a></p>
-<h3 id="Real-time-Q-amp-A"><a href="#Real-time-Q-amp-A" class="headerlink" title="Real-time Q&amp;A"></a>Real-time Q&amp;A</h3><p>唔，写到后边都不太想写了，真的，参考价值不大，其实关于SSE的很少，不过还是要学习一下这种方式。</p>
-<p>代码：<a href="https://github.com/brickmaker/node-real-time-demo/tree/master/real-time-QA" target="_blank" rel="external">https://github.com/brickmaker/node-real-time-demo/tree/master/real-time-QA</a></p>
-<p>说白了，就这个例子来看，其实就相当于，建立了一个持久的HTTP连接，然后有数据就写数据，没有什么特别的，只不过都通过那个HTTP发，然后断了之后能重新连上。</p>
-<h4 id="server-1"><a href="#server-1" class="headerlink" title="server"></a>server</h4><p>服务端，拿到客户端请求Event Source时候的socket，存下来，想给谁发数据的时候，直接<code>socket.write()</code>就OK了。</p>
-<h4 id="client-1"><a href="#client-1" class="headerlink" title="client"></a>client</h4><p>客户端的连接也比较简单：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> eventSource = <span class="keyword">new</span> EventSource(<span class="string">'/event-source'</span>);</div></pre></td></tr></table></figure>
-<p>然后就是各种<code>addEventListener(...)</code>来监听消息。</p>
-<p>值得注意的是，可以设定不同的事件，是通过字符串的方式设定的，比如这样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">clientSocket.write(<span class="string">`event: <span class="subst">$&#123;event&#125;</span>\n`</span>);</div><div class="line">clientSocket.write(<span class="string">`data: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(data)&#125;</span>\n\n`</span>);</div></pre></td></tr></table></figure>
-<p>客户端监听对应的事件类别就可以了~</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2764,7 +2800,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -290,6 +290,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/quicksort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/quicksort/" itemprop="url">
+                  Quicksort(快排) 算法整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-22 11:13:53 / Modified: 14:38:26" itemprop="dateCreated datePublished" datetime="2018-08-22T11:13:53+08:00">2018-08-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/22/quicksort/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/22/quicksort/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学数据结构的时候，就没有真正的手写过快排，思想是简单，但是算法思想和实现上，还是有一定的差距的，这中间的差距，可能就是所谓的编程能力吧。</p>
+<p>这里整理下快排的实现，包括递归方式，非递归方式，pivot不同选取方式等的实现。</p>
+<hr>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>基本思想描述起来还是很简单的，找到一个pivot元素，每趟把所有元素中，小于的放到左边，大于的放到右边，然后递归的进行就好了。</p>
+<p>具体怎么放，就是两边向中间扫，碰到不合适的，就swap。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><p>这里pivot选取的是第一个元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> pivot = a[l];</div><div class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">        <span class="keyword">while</span> (l &lt; r &amp;&amp; a[r] &gt;= pivot)</div><div class="line">            r--;</div><div class="line">        a[l] = a[r];</div><div class="line">        <span class="keyword">while</span> (l &lt; r &amp;&amp; a[l] &lt;= pivot)</div><div class="line">            l++;</div><div class="line">        a[r] = a[l];</div><div class="line">    &#125;</div><div class="line">    a[l] = pivot;</div><div class="line">    <span class="keyword">return</span> l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (l &gt;= r)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> pivot = partition(a, l, r);</div><div class="line">    quicksort(a, l, pivot);</div><div class="line">    quicksort(a, pivot + <span class="number">1</span>, r);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里其实还是很精巧的，简洁对称，在partition的<code>while</code>循环中。</p>
+<p>两个<code>while</code>，让l和r运作到指定的位置，但两者并不是同时到达，然后进行swap，而是利用<code>a[0]</code>当做pivot之后，位置空出，正好借此达成互换的目的：先把<code>a[r]</code>放到原来pivot的位置，然后把<code>a[l]</code>放到上一步的<code>a[r]</code>位置，这样，<code>a[l]</code>再一次空出，可以重复这个过程。</p>
+<h3 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h3><p>非递归的实现，主要是分治的时候，记录当前的l,r位置，这里用栈来存储：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksortIterative</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (l &gt;= r)</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">    s.push(l);</div><div class="line">    s.push(r);</div><div class="line">    <span class="keyword">int</span> pivot;</div><div class="line">    <span class="keyword">while</span> (!s.empty()) &#123;</div><div class="line">        r = s.top();</div><div class="line">        s.pop();</div><div class="line">        l = s.top();</div><div class="line">        s.pop();</div><div class="line">        pivot = partition(a, l, r);</div><div class="line">        <span class="keyword">if</span> (l &lt; pivot - <span class="number">1</span>) &#123;</div><div class="line">            s.push(l);</div><div class="line">            s.push(pivot - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (pivot + <span class="number">1</span> &lt; r) &#123;</div><div class="line">            s.push(pivot + <span class="number">1</span>);</div><div class="line">            s.push(r);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="pivot选取非0位置元素"><a href="#pivot选取非0位置元素" class="headerlink" title="pivot选取非0位置元素"></a>pivot选取非0位置元素</h3><p>这里不讨论如何选取这个pivot，有各种选取方式，什么第一个，最后一个，中间的，三个里边的中间值，随机选等等。</p>
+<p>其实这些都是大同小异，只不过，上边用<code>a[0]</code>的时候，有一些小trick，如果用其它的话，就不能用哪个trick了，这里自己再单独实现以下。</p>
+<p>啊，我好傻啊，干嘛那么想不开，既然不是第一个，换到第一个就对了嘛，还想那么多干嘛…</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">int partitionRandomPivot(vector&lt;int&gt; &amp;a, int l, int r) &#123;</div><div class="line">    random_device rd;</div><div class="line">    mt19937 gen(rd());</div><div class="line">    uniform_int_distribution&lt;int&gt; distribution(l, r);</div><div class="line">    int pivotIdx = distribution(gen);</div><div class="line">    int pivot = a[pivotIdx];</div><div class="line">    a[pivotIdx] = a[l];</div><div class="line">    // below is the same</div><div class="line">    while (l &lt; r) &#123;</div><div class="line">        while (l &lt; r &amp;&amp; a[r] &gt;= pivot)</div><div class="line">            r--;</div><div class="line">        a[l] = a[r];</div><div class="line">        while (l &lt; r &amp;&amp; a[l] &lt;= pivot)</div><div class="line">            l++;</div><div class="line">        a[r] = a[l];</div><div class="line">    &#125;</div><div class="line">    a[l] = pivot;</div><div class="line">    return l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>算了，权当是，学习一下modern c++中，随机数的用法吧hhh</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/K-th-largest-element/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2098,187 +2284,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/leetcode59/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/25/leetcode59/" itemprop="url">
-                  59. Spiral Matrix II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-25 21:07:55 / Modified: 21:09:13" itemprop="dateCreated datePublished" datetime="2018-07-25T21:07:55+08:00">2018-07-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/25/leetcode59/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/25/leetcode59/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/spiral-matrix-ii/description/" target="_blank" rel="external">https://leetcode.com/problems/spiral-matrix-ii/description/</a></p>
-<p><img src="/media/15325241019111.jpg" alt="-w951"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>其实就是考虑一些边界值，考虑的好，就写起来很简洁</p>
-<p>还有四个方向的变化，怎么统一起来，一点小trick</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generateMatrix(<span class="keyword">int</span> n) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>));</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; h&#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;;</div><div class="line">        <span class="keyword">int</span> d = <span class="number">0</span>;</div><div class="line">        res[i][j] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n * n; k++) &#123;</div><div class="line">            <span class="keyword">int</span> ti = i + v[d];</div><div class="line">            <span class="keyword">int</span> tj = j + h[d];</div><div class="line">            <span class="keyword">if</span> (!(ti &gt;= <span class="number">0</span> &amp;&amp; ti &lt; n &amp;&amp; tj &gt;= <span class="number">0</span> &amp;&amp; tj &lt; n &amp;&amp; res[ti][tj] == <span class="number">0</span>)) &#123;</div><div class="line">                d = (d + <span class="number">1</span>) % <span class="number">4</span>;</div><div class="line">            &#125;</div><div class="line">            i = i + v[d];</div><div class="line">            j = j + h[d];</div><div class="line">            res[i][j] = k;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2330,7 +2335,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

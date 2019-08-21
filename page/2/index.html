@@ -290,6 +290,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/nodejs-real-time-application-2018-12-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiaodong Zhao">
+      <meta itemprop="description" content="Coder love Design">
+      <meta itemprop="image" content="/images/pic_reverse.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaodong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/22/nodejs-real-time-application-2018-12-22/" itemprop="url">
+                  Real-Time Application in NodeJS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-22 22:31:05" itemprop="dateCreated datePublished" datetime="2018-12-22T22:31:05+08:00">2018-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-25 18:46:45" itemprop="dateModified" datetime="2018-12-25T18:46:45+08:00">2018-12-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/22/nodejs-real-time-application-2018-12-22/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/22/nodejs-real-time-application-2018-12-22/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近阅读<em>Mastering Node.js</em>一书，看到第六章，觉得书中的几个例子都特别有代表性，所以自己也事项一遍，顺便做点笔记，以备以后参阅。</p>
+<hr>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>第一节讲的是AJAX，可能之前比较熟悉吧，或者说，我这一代人可能从来没有接触过那种一个URL，获取HTML文件，里边并不能做什么其它事情的WEB时代。</p>
+<p>AJAX主要就是这个<strong>A</strong>，异步，可以让浏览器在自己想向server获取数据的时候发出请求，并在服务器返回之后做相应的处理，而不用请求整个文档，我目前的理解大致就是这样，不做过多叙述了。</p>
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>socket的确之前接触的不多，感觉的确很神奇，如何做到实时的通信呢？很是好奇。</p>
+<p>不过看过之后，发现其并不是走HTTP协议，所以不是什么黑科技了，而是底层的浏览器所提供的功能，与server之间建立持久的TCP连接，然后相互通信。</p>
+<p>书上配套的例子，一个协同画画的东西，很好的展示了websocket的功能，下边就是写的一些说明，备以后查阅。</p>
+<h3 id="co-draw"><a href="#co-draw" class="headerlink" title="co-draw"></a>co-draw</h3><p>代码：<a href="https://github.com/brickmaker/node-real-time-demo/tree/master/co-draw" target="_blank" rel="external">https://github.com/brickmaker/node-real-time-demo/tree/master/co-draw</a></p>
+<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><p>server端的代码非常简单，直接复制过来，因为基本没有特别的与socket.io无关的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> serve = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</div><div class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).createServer(app.callback());</div><div class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</div><div class="line"></div><div class="line">app.use(serve(__dirname + <span class="string">'/public'</span>));</div><div class="line"></div><div class="line">io.on(<span class="string">'connection'</span>, (socket) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`client <span class="subst">$&#123;socket.id&#125;</span> connected`</span>)</div><div class="line"></div><div class="line">  socket.on(<span class="string">'draw'</span>, data =&gt; &#123;</div><div class="line">    socket.broadcast.emit(<span class="string">'draw'</span>, data)</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">server.listen(<span class="number">8102</span>);</div></pre></td></tr></table></figure>
+<p>用了<code>Koa</code>，用<code>koa-static</code>来serve前端文件，Koa和socket.io的接入可能需要记一下，好像并不是那么想当然。</p>
+<p>服务端监听客户端的连接，并可以得到客户端的socket，进行后续操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">io.on(<span class="string">'connection'</span>, socket =&gt; &#123;...&#125;)</div></pre></td></tr></table></figure>
+<p>在回调里就可以写一些逻辑了。</p>
+<h4 id="client"><a href="#client" class="headerlink" title="client"></a>client</h4><p>客户端初始化<code>socket.io</code>很简单：</p>
+<p>在<code>index.html</code>中加入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后在scripts中加一条：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> socket = io.connect(<span class="string">'/'</span>);</div></pre></td></tr></table></figure>
+<p>就OK了，觉得很神奇。</p>
+<p>至于操作，这里只用到了两个：</p>
+<ol>
+<li>在自己绘制的时候，向server发消息：“我在绘制…”，并附上绘制的数据</li>
+<li>监听服务器传来别人绘制的消息，然后把别人画的也加上来</li>
+</ol>
+<p>OK，基本就是这样。</p>
+<h2 id="SSE-Server-Sent-Events"><a href="#SSE-Server-Sent-Events" class="headerlink" title="SSE(Server Sent Events)"></a>SSE(Server Sent Events)</h2><p>顾名思义，就是server向客户端发送消息，不过其实这一点websocket也可以做，这可能也是之前自己从来没有听过这个名词的原因吧。</p>
+<p>它的好处可能就是用的是HTTP协议，然后比较简单吧，具体的看Stack Overflow上的两者对比：<a href="https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource" target="_blank" rel="external">https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource</a></p>
+<h3 id="Real-time-Q-amp-A"><a href="#Real-time-Q-amp-A" class="headerlink" title="Real-time Q&amp;A"></a>Real-time Q&amp;A</h3><p>唔，写到后边都不太想写了，真的，参考价值不大，其实关于SSE的很少，不过还是要学习一下这种方式。</p>
+<p>代码：<a href="https://github.com/brickmaker/node-real-time-demo/tree/master/real-time-QA" target="_blank" rel="external">https://github.com/brickmaker/node-real-time-demo/tree/master/real-time-QA</a></p>
+<p>说白了，就这个例子来看，其实就相当于，建立了一个持久的HTTP连接，然后有数据就写数据，没有什么特别的，只不过都通过那个HTTP发，然后断了之后能重新连上。</p>
+<h4 id="server-1"><a href="#server-1" class="headerlink" title="server"></a>server</h4><p>服务端，拿到客户端请求Event Source时候的socket，存下来，想给谁发数据的时候，直接<code>socket.write()</code>就OK了。</p>
+<h4 id="client-1"><a href="#client-1" class="headerlink" title="client"></a>client</h4><p>客户端的连接也比较简单：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> eventSource = <span class="keyword">new</span> EventSource(<span class="string">'/event-source'</span>);</div></pre></td></tr></table></figure>
+<p>然后就是各种<code>addEventListener(...)</code>来监听消息。</p>
+<p>值得注意的是，可以设定不同的事件，是通过字符串的方式设定的，比如这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">clientSocket.write(<span class="string">`event: <span class="subst">$&#123;event&#125;</span>\n`</span>);</div><div class="line">clientSocket.write(<span class="string">`data: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(data)&#125;</span>\n\n`</span>);</div></pre></td></tr></table></figure>
+<p>客户端监听对应的事件类别就可以了~</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/d3-learn-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2273,195 +2492,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/3-Sum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xiaodong Zhao">
-      <meta itemprop="description" content="Coder love Design">
-      <meta itemprop="image" content="/images/pic_reverse.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xiaodong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/3-Sum/" itemprop="url">
-                  3 Sum
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-28 15:29:14 / Modified: 15:55:47" itemprop="dateCreated datePublished" datetime="2018-08-28T15:29:14+08:00">2018-08-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/classic/" itemprop="url" rel="index"><span itemprop="name">classic</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/28/3-Sum/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/28/3-Sum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a href="https://leetcode.com/problems/3sum/description/" target="_blank" rel="external">https://leetcode.com/problems/3sum/description/</a></p>
-<p><img src="/media/15354413955546.jpg" alt="-w957"></p>
-<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>可以说是很经典了。</p>
-<p>最naive的方式，三层循环，遍历，O( n^3 ), 肯定不行</p>
-<p>先排序，超过了就break，能省一点时间</p>
-<p>唉，还有重复的问题呢，答案不能重复</p>
-<p>哎呀，不想了，直接看答案吧，这种问题，肯定是那种知道解法之后，终身不忘的</p>
-<hr>
-<p>O( N^2 )的解法：</p>
-<p>排序<br>从左往右遍历，确定第一个数A[i]<br>对于第二个数和第三个数，分别是A[i + 1]和A[n - 1]，一头一尾<br>如果相加为0，输出<br>如果大了，右边的往左走，否则，左边往右走</p>
-<p>关于重复问题需要判断一下，需要判断一下，找到下一个不重复的</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</div><div class="line">        sort(nums.begin(), nums.end());</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + <span class="number">2</span> &lt; nums.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>])</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            <span class="keyword">int</span> a = nums[i];</div><div class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> r = nums.size() - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</div><div class="line">                <span class="keyword">if</span> (a + nums[l] + nums[r] &lt; <span class="number">0</span>) &#123;</div><div class="line">                    l++;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a + nums[l] + nums[r] &gt; <span class="number">0</span>) &#123;</div><div class="line">                    r--;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    res.push_back(&#123;a, nums[l], nums[r]&#125;);</div><div class="line">                    l++;</div><div class="line">                    r--;</div><div class="line">                    <span class="keyword">while</span> (nums[l - <span class="number">1</span>] == nums[l])</div><div class="line">                        l++;</div><div class="line">                    <span class="keyword">while</span> (nums[r + <span class="number">1</span>] == nums[r])</div><div class="line">                        r--;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这里，重复的判断，就是遇到重复的，就继续向前走，直到不重复！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2513,7 +2543,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
