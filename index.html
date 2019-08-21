@@ -353,7 +353,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-21 08:53:17" itemprop="dateModified" datetime="2019-08-21T08:53:17+08:00">2019-08-21</time>
+                <time title="Modified: 2019-08-21 09:46:46" itemprop="dateModified" datetime="2019-08-21T09:46:46+08:00">2019-08-21</time>
               
             
           </span>
@@ -472,7 +472,7 @@
 <li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animation_benchmark.html" target="_blank" rel="external">animation benchmark</a>:</strong> benchmark results of edge animation</li>
 </ol>
 <h4 id="2-Code-Refactoring"><a href="#2-Code-Refactoring" class="headerlink" title="2. Code Refactoring"></a>2. Code Refactoring</h4><p>In addition to feature implementation, after discussion with my mentor, we found that it’s necessary to do some code refactoring work.</p>
-<p><strong>Code splitting</strong></p>
+<p><strong><code>layer.js</code> refactor</strong></p>
 <p>To add animation features, the core source code file I needed to understand and modify is <code>layer.js</code> in original code. But it contains more than one thousand lines. I spent a lot of time analyzing this file and added animation logic. Unfortunately, this made <code>layer.js</code> even bigger. One reason was that in ccNetViz, all elements like node, edge, label, arrow, were putted in <code>layer.js</code> together. When someone wanted to add any feature, it would extend this file.</p>
 <p>The first ting I needed to do is to move GLSL shader code into separate files, because in original code it used concatenation of strings and made code long and hard to modify. I extracted all stings into <code>.glsl</code> files and use webpack’s raw-loader to load them.</p>
 <p>Then I needed to do is to split different kinds of element into different files respectively. This step was hardest part during the who process. There were plenty of dependencies between each other. Finally, code related to same shape was put into same folder and the whole structure got clearer.</p>
