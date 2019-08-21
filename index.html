@@ -353,7 +353,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-21 08:45:11" itemprop="dateModified" datetime="2019-08-21T08:45:11+08:00">2019-08-21</time>
+                <time title="Modified: 2019-08-21 08:49:53" itemprop="dateModified" datetime="2019-08-21T08:49:53+08:00">2019-08-21</time>
               
             
           </span>
@@ -445,13 +445,13 @@
 <h3 id="Detail-of-Results"><a href="#Detail-of-Results" class="headerlink" title="Detail of Results"></a>Detail of Results</h3><h4 id="1-Edge-Animation"><a href="#1-Edge-Animation" class="headerlink" title="1. Edge Animation"></a>1. Edge Animation</h4><p>The original ccNetViz only support static graph without change over time. I added several animation effects on graph edge so it can convey more semantic information like signal transmission in neural networks or blood flow in blood circulation system.</p>
 <p><strong>Color Animation</strong></p>
 <p>Basic idea of animation is using different color on edge. I implement three type of color animation:</p>
-<p><img src="media/gsoc-color-animation.png" alt="gsoc-color-animation"></p>
+<p><img src="/media/gsoc-color-animation.png" alt="gsoc-color-animation"></p>
 <p>(The above example of color animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a>)</p>
 <p>These three types of color animation are implemented in GLSL shader using similar control logic only with different animation color shape. Because animation is added, at entry of drawing we need add a draw loop to refresh canvas.</p>
 <p><strong>Shape Animation</strong></p>
 <p>Shape animation is a kind of more complex animation effects which I implement after color animation. I need to change original shape of edge and show different shapes. Sometimes the shape will show outside of original edge bound, which makes it difficult to implement.</p>
 <p>I added three features of shape animation in total, they are: wave effect, bubble effect, dotted effect:</p>
-<p><img src="media/gsoc-shape-animation.png" alt="gsoc-shape-animation"></p>
+<p><img src="/media/gsoc-shape-animation.png" alt="gsoc-shape-animation"></p>
 <p>(The above example of shape animation can be found here: <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html</a> , <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html" target="_blank" rel="external">https://helikarlab.github.io/ccNetViz/examples/line_animate_dot.html</a>)</p>
 <p>The options about bubble animation and wave animation are same as color animation, including speed and easing effects. As for dot animation, it also contains other two options to configure: number of dots and interval of dots.</p>
 <p><strong>Easing Effects</strong></p>
@@ -459,11 +459,11 @@
 <p>All these easing effects can be configured in <a href="https://helikarlab.github.io/ccNetViz/examples/line_animate_complex.html" target="_blank" rel="external">line advanced animation example</a>.</p>
 <p><strong>Benchmarks</strong></p>
 <p>The ccNetViz library is used for large scale graph visualization and the performance is essential when we add new features. So I do some benchmarks on edge animation and calculate its FPS. Below is screenshot of benchmarks:</p>
-<p><img src="media/gsoc-animation-benchmark.png" alt="gsoc-animation-benchmark"></p>
+<p><img src="/media/gsoc-animation-benchmark.png" alt="gsoc-animation-benchmark"></p>
 <p>From benchmark results show above, we are inferred that under different scale of graph data, the animation keeps a relative good performance: about 60 FPS.</p>
 <p><strong>Examples</strong></p>
 <p>To display all effects of new animation features, I add four examples on ccNetViz’s website:</p>
-<p><img src="media/1566279772432.png" alt="1566279772432"></p>
+<p><img src="/media/1566279772432.png" alt="1566279772432"></p>
 <p>They are:</p>
 <ol>
 <li><strong><a href="https://helikarlab.github.io/ccNetViz/examples/line_animate.html" target="_blank" rel="external">basic animation</a>:</strong> initial example shows basic and gradient color animation</li>
