@@ -117,7 +117,7 @@
 <meta property="og:image" content="http://yoursite.com/media/gsoc-shape-animation.png">
 <meta property="og:image" content="http://yoursite.com/media/gsoc-animation-benchmark.png">
 <meta property="og:image" content="http://yoursite.com/media/gsoc-animation-examples.png">
-<meta property="og:updated_time" content="2019-08-21T02:32:23.087Z">
+<meta property="og:updated_time" content="2019-08-22T02:10:00.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Summer of Code 2019">
 <meta name="twitter:description" content="This post describes all stuffs about my GSoC 2019 project. Including information of my project, what I’ve done, what I’ve learned and how I feel during this program. Project Information Project Title:">
@@ -354,7 +354,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-21 10:32:23" itemprop="dateModified" datetime="2019-08-21T10:32:23+08:00">2019-08-21</time>
+                <time title="Modified: 2019-08-22 10:10:00" itemprop="dateModified" datetime="2019-08-22T10:10:00+08:00">2019-08-22</time>
               
             
           </span>
@@ -479,7 +479,7 @@
 <p><strong>Plugin architecture</strong></p>
 <p>When I was implementing animation features, I added a lot of codes to support new features, which made the size of whole library much larger. To keep ccNetViz lightweight, we finally decided to move animation features outside as a plugin so that it can be imported on demand.</p>
 <p>I created a new webpack project and moved shaders of animation functions, easing functions as well as animation logic into it. And all these codes were combined as a new type of plugin: <code>AnimationEdgePlugin</code> and could be easily injected into original ccNetViz at runtime.</p>
-<p>The description and documentation of new added animation plugin can be found here:<br><a href="https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz/blob/master/src/plugins/animation-line/README.md</a></p>
+<p>The description and documentation of new added animation plugin can be found here:<br><a href="https://github.com/HelikarLab/ccNetViz/blob/master/plugins/animation-line/README.md" target="_blank" rel="external">https://github.com/HelikarLab/ccNetViz/blob/master/plugins/animation-line/README.md</a></p>
 <h2 id="Things-learned-from-Project"><a href="#Things-learned-from-Project" class="headerlink" title="Things learned from Project"></a>Things learned from Project</h2><p>Last three months I have been working on this project and learned a lot during whole process. First of all, as a coding program, it’s a big boost to my programming skills. I only wrote some small demo programs of WebGL. It was my first time to handle a large scale project. And for efficiency consideration, most of my work was to write shader language of WebGL. I got a lot practice on shader programming. The code refactoring process helped me think like an architect of software and trained my code abstraction skills.</p>
 <p>Another big benefit for me is that I learned a lot of collaboration and communication skills. I learned how to work with other developers together and contribute on a large project. I got familiar with some tools on GitHub for collaboration like issues, pull requests and code reviews. And at regular meeting every week with my mentor, I also practiced my expression skills to clearly state my problem and my thought.</p>
 <p>In a word, I learned a lot from this three month program and these things will benefit me forever during my lifetime as a programmer.</p>
